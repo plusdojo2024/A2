@@ -8,18 +8,22 @@ body {
 }
 
 main {
-    height: 50%; /* 画面の半分の高さ */
+    height: 50%;
+    /* 画面の半分の高さ */
     display: flex;
-    flex-direction: row; /* 横並び */
-    justify-content: space-around; /* 中央に配置 */
-    align-items: center; /* 中央に配置 */
+    flex-direction: row;
+    /* 横並び */
+    justify-content: space-around;
+    /* 中央に配置 */
+    align-items: center;
+    /* 中央に配置 */
 }
 
 .nav ul {
     background-color: #B3C8CF;
     list-style-type: none;
     padding: 20px;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,12 +40,13 @@ main {
 
 .ranking {
     background-color: #E5DDC5;
-    border-radius: 20px; /*四角の角を丸くする*/
+    border-radius: 20px;
+    /*四角の角を丸くする*/
 }
 
 h1 {
     color: #ffffff;
-    margin: 3px 0 0 0 ;
+    margin: 3px 0 0 0;
     font-size: 40px;
 }
 
@@ -59,7 +64,8 @@ select[name=select] {
     height: 4.5em;
     width: 10em;
     border: 1px solid #ccc;
-    border-radius: 20px; /*ジャンル欄の角を丸くする*/
+    border-radius: 20px;
+    /*ジャンル欄の角を丸くする*/
 }
 
 input[name=search] {
@@ -67,5 +73,6 @@ input[name=search] {
     width: 30em;
     margin: 8px 0 0 0;
     border: 1px solid #ccc;
-    border-radius: 20px; /*検索欄の角を丸くする*/
+    border-radius: 20px;
+    /*検索欄の角を丸くする*/
 }

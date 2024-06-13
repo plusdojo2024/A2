@@ -2,13 +2,13 @@ package model;
 import java.io.Serializable;
 public class Post implements Serializable{
 
-	private int post_id;
-	private int user_id;
-	private String title;
-	private String recommend;
-	private int interest;
-	private String created_at;
-	private String updated_at;
+	private int post_id;	//ポストID
+	private int user_id;	//ユーザID
+	private String title;	//タイトル
+	private String recommend;	//オススメ
+	private int interest;	//気になる！
+	private String created_at;	//登録日時
+	private String updated_at;	//更新日時
 
 	public int getPost_id() {
 		return post_id;

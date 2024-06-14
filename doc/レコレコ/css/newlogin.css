@@ -52,7 +52,7 @@ label {
 .table {
     background-color: #ffffff;
     margin: 0px 100px 500px 400px;
-    padding: 10px 45px 50px 17px ;
+    padding: 10px 45px 50px 64px ;
 }
 
 .table  a {
@@ -62,7 +62,32 @@ label {
 }
 
 .login {
-    margin: 10px 50px 10px 50px;
+    margin: 10px 40px 0px 30px;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center; /* 中央に配置 */
+    gap: 8px;
+}
+
+.delete-button {
+    position: relative;
+    bottom: 70px;
+    border: 1px solid black;
+    margin: 0px 30px 10px 400px;
+    padding: 5px;
+    background-color: #ffffff;
+    display: flex; /* 複数の要素を横に並べるため */
+    align-items: center; 
+    border-radius: 10px; /*四角の角を丸くする*/
+    align-items: center; /* 中央に配置 */
+    gap: 8px;
 }
 
 input[name=id], input[name=pass], input[name=name] {
@@ -73,14 +98,15 @@ input[name=id], input[name=pass], input[name=name] {
     background-color: #dcdcdc;
 }
 
-.delete-button {
-    border: 1px solid black;
-    margin: 10px 30px 10px 400px;
-    padding: 5px;
+input[name=upload] {
+    border: 2px solid #000000;
+    margin: 0px 5px 0px 5px;
+    padding: 10px 200px 10px 10px;
+    width: 100px;
+    color: #000000;
     background-color: #ffffff;
-    display: flex; /* 複数の要素を横に並べるため */
-    align-items: center; 
-    border-radius: 10px; /*四角の角を丸くする*/
+    font-size: 0.8em;
+    border-radius: 10px;
 }
 
 input[name=my_introduction] {

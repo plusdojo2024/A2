@@ -1,0 +1,40 @@
+<!-- １．このフッタータグを丸ごとコピペして、自分の担当ページのHTMLのボディタグの下に入れる。 -->
+
+    </body>
+	<footer>
+		<a href=#top><span class="gotop"></span></a>
+		<p class="copyright">&copy; WAC</p>
+	</footer>
+</html>
+
+
+<!-- ２． このcssのコードを丸ごとコピペして、自分の担当ページのcssファイルのどこかに入れる-->
+
+/* フッター */
+footer a{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.gotop{
+    display: block;
+    margin-bottom: 30px;
+    margin-right:30px;
+	width: 20px;
+	height: 20px;
+	border-top: 3px solid #FFFFFF;
+	border-right: 3px solid #FFFFFF;
+	transform: rotate(-45deg)
+}
+
+.copyright{
+	padding: 50px;
+	background-color: #B3C8CF;
+	color: #FFFFFF;
+	text-align: center;
+}

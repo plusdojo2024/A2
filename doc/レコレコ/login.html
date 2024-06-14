@@ -32,13 +32,13 @@
             </tr>
             <tr>
                 <td>
+                    <form id="loginForm" action="home.html" method="get"></form>
                     <input type="button" name="submit" value="ログイン" onclick="validateForm()"><br>
-                    <a href="newlogin">新規会員登録はこちら→</a>
+                    <a href="newlogin.html">新規会員登録はこちら→</a>
                 </td>
             </tr>
         </table>
         <script>
-            
             //アラートボックス
              function validateForm() {
             var userIdInput = document.getElementById("id").value;
@@ -49,11 +49,10 @@
             } else if (userPassoword === ""){
                 alert("パスワードを入力してください");
                 return false;
+            } else {
+                document.getElementById("loginForm").submit();
             }
         }
-
-
-
-        </script>
+     </script>
      </body>
 </html>

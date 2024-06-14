@@ -9,10 +9,10 @@
         <nav class="nav">
             <ul>
                 <li>
-                    <h1>レコレコ</h1>
+                    <h1><a href="home.html">レコレコ</a></h1>
                 </li>
                 <li>
-                    <form action="" method="get">
+                    <form action="searchResult.html" method="get">
                     <select name="select">
                         <option value="all">すべて</option>
                         <option value="movie">映画</option>
@@ -29,7 +29,16 @@
                 </form>
                 </li>
                 <li><a href=""><img src="image/post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
-                <li><a href=""><img src="image/login1.png" width="75px" height="75px" name="icon" alt="アイコン"></a></li>
+                <div class="co">
+                <li><a href=""><img src="image/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
+                <ul class="dropdown-menu">
+                    <li><a href="">マイページ</a></li>
+                    <li><a href="user_management.html">ユーザ管理</a></li>
+                    <li><a href="">ログアウト</a></li>
+                </ul>
+                 </div>
+                </a>
+            </li>
             </ul>
         </nav>
     </header>
@@ -64,13 +73,14 @@
                  <tr>
                     <td>
                         <label class="photo">アイコン画像の選択</label><br>
-                        <img src="image/icon.png" class="login" alt="アイコン" width="150px" height="150px">
-                        <input type="button" name="upload" value="写真をアップロード"><br>
-                        <div>
+                        <div class="icon">
+                        <img src="image/icon.png"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                        <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                        </div>
                             <button class="delete-button" onclick="deleteItem()">
                                 <img src="image/garbage_can.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">削除
                                 </button>
-                        </div>
+                        
                     </td>
                  </tr>
                  <tr>
@@ -96,5 +106,37 @@
                  </tr>
             </table>
         </form>
+        <script>
+
+            // ファイル選択時に呼び出される関数
+        function previewImage(event) {
+            // 選択されたファイルを取得
+            var selectedFile = event.target.files[0];
+            // ファイルが選択されている場合
+            if (selectedFile) {
+                // FileReaderオブジェクトを作成
+                var reader = new FileReader();
+                // ファイルの読み込みが完了した時の処理を定義
+                reader.onload = function(event) {
+                    // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                    document.getElementById('preview').src = event.target.result;
+                };
+                // ファイルの読み込みを実行
+                reader.readAsDataURL(selectedFile);
+            } else {
+                // ファイルが選択されていない場合は元のアイコンを表示
+                document.getElementById('preview').src = "image/icon.png";
+            }
+        }
+    
+         // 削除ボタンをクリックしたときに呼び出される関数
+         function deleteItem() {
+            // 元のアイコン画像のパスを設定
+            document.getElementById('preview').src = "image/icon.png";
+            // ファイル選択のinput要素もリセットする場合は次の行を追加
+            document.querySelector('input[type="file"]').value = null;
+        }
+    
+        </script>
     </body>
-</html>
+    </html>

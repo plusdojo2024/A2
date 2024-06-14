@@ -26,10 +26,38 @@ body {
     margin: 5px 100px 0 0;
 }
 
-h1 {
+/* メニューの初期状態を非表示に */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #cee9ef;
+    min-width: 30px;
+    box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px 10px;
+    z-index: 1;
+}
+.co{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu a {
+    color: #545454;
+    background-color: #cee9ef;
+    font-size: 0.8m;
+    text-decoration: none;
+}
+
+/* アイコン画像をホバーした際にメニューを表示 */
+.nav li:hover .dropdown-menu {
+    display: block;
+}
+
+h1 a {
     color: #ffffff;
     margin: 3px 0 0 0 ;
-    font-size: 40px;
+    font-size: 38px;
+    text-decoration: none;
 }
 
 h3 {
@@ -43,7 +71,7 @@ h3 {
 .table {
     background-color: #ffffff;
     margin: 0px 100px 500px 400px;
-    padding: 10px 45px 50px 17px ;
+    padding: 10px 45px 50px 63.5px ;
 }
 
 .table  a {
@@ -62,10 +90,18 @@ label {
 }
 
 .login {
-    margin: 10px 50px 10px 50px;
+    margin: 10px 40px 0px 30px;
+}
+
+.icon {
+    display: flex;
+    align-items: center; /* 中央に配置 */
+    gap: 8px;
 }
 
 .delete-button {
+    position: relative;
+    bottom: 80px;
     border: 1px solid black;
     margin: 10px 30px 10px 400px;
     padding: 5px;
@@ -73,6 +109,8 @@ label {
     display: flex; /* 複数の要素を横に並べるため */
     align-items: center; 
     border-radius: 10px; /*四角の角を丸くする*/
+    align-items: center; /* 中央に配置 */
+    gap: 8px;
 }
 
 select[name=select] {
@@ -102,12 +140,12 @@ input[name=id], input[name=pass], input[name=name] {
 
 input[name=upload] {
     border: 2px solid #000000;
-    margin: 0px 50px 0px 60px;
-    padding: 10px 180px 10px 30px;
+    margin: 0px 5px 0px 5px;
+    padding: 10px 200px 10px 10px;
     width: 100px;
     color: #000000;
     background-color: #ffffff;
-    font-size: 1.1em;
+    font-size: 0.8em;
     border-radius: 10px;
 }
 

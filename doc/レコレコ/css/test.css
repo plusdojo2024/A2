@@ -1,0 +1,213 @@
+html {
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #F1EEDC;
+}
+
+
+
+.nav ul {
+    background-color: #B3C8CF;
+    list-style-type: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.nav img {
+    margin: 10px 10px 10px 0;
+}
+
+.nav a:last-child {
+    margin: 5px 100px 0 0;
+}
+
+/* メニューの初期状態を非表示に */
+header .nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #cee9ef;
+    width: 200px;
+    margin: 0 50px 0 30px;
+    font-size: 1em;
+    text-align: center;
+    /* テキストを中央揃え */
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 0px 20px 0px 10px;
+    z-index: 1;
+    left: -50px;
+    /* メニューを左に20ピクセル移動 */
+}
+
+header .nav .dropdown-menu li {
+    border-bottom: 1px solid #545454;
+    /* 各項目の下に線を追加 */
+}
+
+header .nav .dropdown-menu li:last-child {
+    border-bottom: none;
+    /* 最後の項目の下線を削除 */
+}
+
+header .nav .dropdown-menu li a {
+    display: block;
+    /* リンクをブロック要素にすることで全体をクリック可能に */
+    padding: 3px 10px 10px 10px;
+    /* リンクの内側の余白 */
+    text-decoration: none;
+    /* 下線を削除 */
+    color: #545454;
+    /* リンクの色 */
+}
+
+.co {
+    position: relative;
+    display: inline-block;
+    margin: 0 100px 0 10px;
+}
+
+.dropdown-menu a {
+    color: #545454;
+    background-color: #cee9ef;
+    font-size: 0.8m;
+    text-decoration: none;
+}
+
+/* アイコン画像をホバーした際にメニューを表示 */
+.nav li:hover .dropdown-menu {
+    display: block;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+h1 {
+    color: black;
+    font-size: 40px;
+}
+
+label {
+    font-size: 1.2em;
+    margin: 0 30px 0 30px;
+}
+
+select[name=select] {
+    height: 4.5em;
+    width: 10em;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    /*ジャンル欄の角を丸くする*/
+}
+
+input[name=search] {
+    height: 4em;
+    width: 30em;
+    margin: 8px 0 0 0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    /*検索欄の角を丸くする*/
+}
+
+button[name=submit] {
+    text-align: left;
+    display: block;
+    border: none;
+    margin: 30px 180px 0px 30px;
+    padding: 5px 20px 0px 20px;
+    width: 300px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1.2em;
+    border-radius: 20px;
+
+    /*ログインボタンの角を丸くする*/
+}
+
+img[name=photo] {
+    margin: 30px 30px 0px 200px;
+
+}
+
+.column {
+    display: block;
+    /* Change display to block to stack vertically */
+    width: 100%;
+    /* Each column takes full width */
+    color: black;
+    margin: 30px 0px 0px 20px;
+}
+
+a[href="#tabpage1"] {
+    margin: 0px -10px 0px 50px;
+
+}
+
+a[href="#tabpage2"] {
+    margin: 0px 0px 0px -10px;
+}
+
+#tabcontrol a {
+    height: 4em;
+    width: 45%;
+    display: inline-block;
+    /* インラインブロック化 */
+    border-width: 1px 1px 0px 1px;
+    /* 下以外の枠線を引く */
+    border-style: solid;
+    text-align: center;
+    /* 枠線の種類：実線 */
+    border-color: white;
+    /* 枠線の色：黒色 */
+    border-radius: 20px 20px 0px 0px;
+    /* 枠線の左上角と右上角だけを丸く */
+    padding: 0px 30px 30px 0px;
+    /* 内側の余白 */
+    text-decoration: none;
+    /* リンクの下線を消す */
+    color: black;
+    /* 文字色：黒色 */
+    background-color: gray;
+    /* 背景色：白色 */
+    font-weight: bold;
+    /* 太字 */
+    position: relative;
+    /* JavaScriptでz-indexを調整するために必要 */
+}
+
+#tabbody div {
+    border: 1px solid white;
+    /* 枠線：黒色の実線を1pxの太さで引く */
+    margin: -20px 50px 0px 50px;
+    /* 上側にあるタブと1pxだけ重ねるために「-1px」を指定 */
+    padding: 1em;
+    /* 内側の余白量 */
+    background-color: white;
+    /* 背景色：白色 */
+    position: relative;
+    /* z-indexを調整するために必要 */
+    z-index: 0;
+    /* 重なり順序を「最も背面」にするため */
+    overflow: scroll;
+    overflow-y: scroll;
+    height: 500px;
+}
+
+
+#tabcontrol a.selected {
+    background-color: white;
+}
+
+
+
+
+
+overflow: scroll;

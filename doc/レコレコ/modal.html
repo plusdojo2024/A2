@@ -6,7 +6,6 @@
             <link rel="stylesheet" type="text/css" href="/A2/css/common.css">
             <link rel="stylesheet" href="css/home.css">
             <link rel="stylesheet" href="css/modal.css">
-
     </head>
         <header>
             <nav class="nav">
@@ -43,6 +42,12 @@
         <div class="layer js-modal">
           <div class="modal">
             <div class="modal__inner">
+              <div class="modal__button-wrap">
+                <button class="close-button js-close-button">
+                  <span></span>
+                  <span></span>
+                </button>
+               </div>
               <div class="modal__contents">
                 <div class="modalhed">
                   <div class="flex">
@@ -53,7 +58,6 @@
                       <p class="title">ＨＵＮＴＥＲ×ＨＵＮＴＥＲ</p>
                     </div>
                   </div>
-                
                   全文表示<br>
                   全文表示<br>
                   全文表示<br>
@@ -61,18 +65,21 @@
                   全文表示<br>
                   全文表示<br>
                   全文表示<br>
-                </div>
-              <div class="modal__content">
+              </div>
             </div>
           </div>
-        </div>
         </div>
         <script>
           const modal = document.querySelector('.js-modal'); // layer要素に付与したjs-modalクラスを取得し変数に格納
           const modalButton = document.querySelector('.js-modal-button'); // button要素に付与したjs-modal-buttonクラスを取得し、変数に格納
-          // モーダルボタンをクリックしたときのイベントを登録
+          const modalClose = document.querySelector('.js-close-button');　// xボタンのjs-close-buttonを取得し変数に格納
+          // クリックしたときのイベントを登録
           modalButton.addEventListener('click', () => {
           modal.classList.add('is-open');
+          });
+          // xボタンをクリックしたときのイベントを登録
+          modalClose.addEventListener('click', () => { 
+          modal.classList.remove('is-open'); 
           });
         </script>
     </body>

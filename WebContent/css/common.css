@@ -67,12 +67,21 @@ footer a{
 
 /*削除ボタン------------------------------------*/
 .delete-button {
+    display: flex;
     border: 1px solid black;
     margin: 10px 30px 10px 400px;
-    padding: 5px;
+    padding: 8px;
     background-color: #ffffff;
     align-items: center;
     border-radius: 10px;
 }
 
+.delete-button img{
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}
 
+.delete-button .delete-text{
+    display: inline-block;
+}

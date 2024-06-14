@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>新規ユーザ登録|レコレコ</title>
-<link rel="stylesheet" type="text/css" href="A2/css/newlogin.css">
+<link rel="stylesheet" type="text/css" href="/A2/css/newlogin.css">
 </head>
 <header>
   <nav class="nav">

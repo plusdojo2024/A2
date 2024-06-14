@@ -16,7 +16,6 @@
     </header>
     <body>
         <h3>新規ユーザ登録</h3>
-        <form id="newlogin" method="get" action="login.html">
         <table class="table">
             <tr>
                 <td>
@@ -45,13 +44,14 @@
              <tr>
                 <td>
                     <label class="photo">アイコン画像の選択</label><br>
-                    <img src="image/icon.png" class="login" alt="アイコン" width="150px" height="150px">
-                    <input type="button" name="upload" value="写真をアップロード"><br>
-                    <div>
+                    <div class="icon">
+                    <img src="image/icon.png" id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                    <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                    </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="image/garbage_can.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">削除
-                            </button>
-                    </div>
+                        </button>
+                    
                 </td>
              </tr>
              <tr>
@@ -71,10 +71,47 @@
              </tr>
              <tr>
                 <td>
-                    <input type="button" name="submit" value="登録">
+                    <input type="button" name="submit" value="登録" onclick="registerUser()">
                 </td>
              </tr>
         </table>
-    </form>
+    <script>
+        
+        // ファイル選択時に呼び出される関数
+    function previewImage(event) {
+        // 選択されたファイルを取得
+        var selectedFile = event.target.files[0];
+        // ファイルが選択されている場合
+        if (selectedFile) {
+            // FileReaderオブジェクトを作成
+            var reader = new FileReader();
+            // ファイルの読み込みが完了した時の処理を定義
+            reader.onload = function(event) {
+                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                document.getElementById('preview').src = event.target.result;
+            };
+            // ファイルの読み込みを実行
+            reader.readAsDataURL(selectedFile);
+        } else {
+            // ファイルが選択されていない場合は元のアイコンを表示
+            document.getElementById('preview').src = "image/icon.png";
+        }
+    }
+
+     // 削除ボタンをクリックしたときに呼び出される関数
+     function deleteItem() {
+        // 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "image/icon.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+    }
+
+        // 登録ボタンをクリックしたときに呼び出される関数
+        function registerUser() {
+            // ここにフォームのバリデーションコードを追加することができます
+            // バリデーションが成功したら、以下のコードでリダイレクトを行います
+            window.location.href = "login.html";
+        }
+    </script>
     </body>
 </html>

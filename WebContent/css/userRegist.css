@@ -54,7 +54,7 @@ label {
 .table {
     background-color: #ffffff;
     margin: 0px 100px 500px 400px;
-    padding: 10px 45px 50px 17px ;
+    padding: 10px 45px 50px 64px ;
 }
 
 .table  a {
@@ -64,7 +64,7 @@ label {
 }
 
 .login {
-    margin: 10px 40px 10px 30px;
+    margin: 10px 40px 0px 30px;
 }
 
 .icon-container {
@@ -79,6 +79,8 @@ label {
 }
 
 .delete-button {
+	position: relative;
+    bottom: 70px;
     border: 1px solid black;
     margin: 0px 30px 10px 400px;
     padding: 5px;

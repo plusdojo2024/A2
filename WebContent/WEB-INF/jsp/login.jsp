@@ -40,6 +40,10 @@
               </td>
           </tr>
       </table>
+      <footer>
+            <a href=#top><span class="gotop"></span></a>
+            <p class="copyright">&copy; WAC</p>
+        </footer>
       <script>
             //アラートボックス
              function validateForm() {

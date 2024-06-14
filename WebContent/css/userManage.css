@@ -29,18 +29,38 @@ body {
 }
 
 /* メニューの初期状態を非表示に */
-.dropdown-menu {
+header .nav .dropdown-menu {
     display: none;
     position: absolute;
     background-color: #cee9ef;
-    min-width: 30px;
+    width: 200px;
+    margin: 0 50px 0 30px;
+    font-size: 1em;
+    text-align: center; /* テキストを中央揃え */
     box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.2);
-    padding: 10px 10px;
+    padding: 0px  20px 0px  10px;
     z-index: 1;
+    left: -50px; /* メニューを左に20ピクセル移動 */
+}
+
+header .nav .dropdown-menu li {
+    border-bottom: 1px solid #545454; /* 各項目の下に線を追加 */
+}
+
+header .nav .dropdown-menu li:last-child {
+    border-bottom: none; /* 最後の項目の下線を削除 */
+}
+
+header .nav .dropdown-menu li a {
+    display: block; /* リンクをブロック要素にすることで全体をクリック可能に */
+    padding: 3px 10px 10px 10px; /* リンクの内側の余白 */
+    text-decoration: none; /* 下線を削除 */
+    color: #545454; /* リンクの色 */
 }
 .co{
     position: relative;
     display: inline-block;
+    margin: 0 100px 0 10px;
 }
 
 .dropdown-menu a {
@@ -210,4 +230,33 @@ input[name="delete1"] {
     background-color: #1e90ff;
     font-size: 1.2em;
     border-radius: 20px; /*ログインボタンの角を丸くする*/
+}
+
+/* フッター */
+footer a{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.gotop{
+    display: block;
+    margin-bottom: 30px;
+    margin-right:30px;
+	width: 20px;
+	height: 20px;
+	border-top: 3px solid #FFFFFF;
+	border-right: 3px solid #FFFFFF;
+	transform: rotate(-45deg)
+}
+
+.copyright{
+	padding: 50px;
+	background-color: #B3C8CF;
+	color: #FFFFFF;
+	text-align: center;
 }

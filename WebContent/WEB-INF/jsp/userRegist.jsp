@@ -77,6 +77,10 @@
                 </td>
              </tr>
         </table>
+        <footer>
+            <a href=#top><span class="gotop"></span></a>
+            <p class="copyright">&copy; WAC</p>
+        </footer>
         <script>
 
         // ファイル選択時に呼び出される関数

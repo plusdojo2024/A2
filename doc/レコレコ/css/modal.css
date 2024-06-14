@@ -86,3 +86,41 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* •Â‚¶‚éƒ{ƒ^ƒ“ */
+.modal__button-wrap {
+  position: absolute;
+  right: 10px;
+  top: -28px;
+  display: inline-flex;
+}
+
+.close-button {
+  position: relative;
+  width: 39px;
+  height: 39px;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  padding: 0;
+  border: transparent;
+  cursor: pointer;
+}
+
+.close-button span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  display: inline-block;
+  position: absolute;
+  left: calc(50% - 12px);
+  top: 50%;
+  border-radius: 20px;
+}
+
+.close-button span:nth-child(1) {
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.close-button span:nth-child(2) {
+  transform: rotate(-45deg) translate(1px, -1px);
+}

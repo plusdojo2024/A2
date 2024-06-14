@@ -2,14 +2,14 @@ package model;
 import java.io.Serializable;
 public class Review implements Serializable {
 
-	private int review_id;
-	private int user_id;
-	private int contents_id;
-	private String title;
-	private String review;
-	private int good;
-	private String created_at;
-	private String updated_at;
+	private int review_id;		//レビューID
+	private int user_id;		//ユーザID
+	private int contents_id;	//コンテンツID
+	private String title;		//タイトル
+	private String review;		//レビュー内容
+	private int good;			//いいね
+	private String created_at;	//登録日時
+	private String updated_at;	//更新日時
 
 	public int getReview_id() {
 		return review_id;

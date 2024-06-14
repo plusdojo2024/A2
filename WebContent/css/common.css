@@ -1,1 +1,47 @@
 @charset "UTF-8";
+
+/*リセットCSS----------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+/*全体-----------------------------------------*/
+html {
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #F1EEDC;
+}
+
+/*ヘッダーナビゲーション-----------------------*/
+.nav ul {
+    background-color: #B3C8CF;
+    list-style-type: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.nav img {
+    margin: 10px 10px 10px 0;
+}
+
+.nav a:last-child {
+    margin: 5px 100px 0 0;
+}
+
+/*削除ボタン------------------------------------*/
+.delete-button {
+    border: 1px solid black;
+    margin: 10px 30px 10px 400px;
+    padding: 5px;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 10px;
+}

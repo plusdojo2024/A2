@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン|レコレコ</title>
+<link rel="stylesheet" type="text/css" href="/A2/css/common.css">
 <link rel="stylesheet" type="text/css" href="/A2/css/login.css">
 </head>
 <header>

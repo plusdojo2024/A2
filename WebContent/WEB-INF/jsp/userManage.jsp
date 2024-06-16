@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザ管理|レコレコ</title>
+<link rel="stylesheet" type="text/css" href="/A2/css/common.css">
 <link rel="stylesheet" type="text/css" href="/A2/css/userManage.css">
 </head>
 <header>
@@ -14,7 +15,7 @@
                     <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
                 </li>
                 <li>
-                    <form action="/A2/SearchServlet" method="get">
+                    <form action="/A2/SearchServlet" method="post">
                     <select name="select">
                         <option value="all">すべて</option>
                         <option value="movie">映画</option>
@@ -30,9 +31,9 @@
                     <input type="image" src="image/search.png" width="20px" height="20px" alt="虫眼鏡">
                 </form>
                 </li>
-                <li><a href=""><img src="/A2/image/post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
+                <li><a href=""><img src="/A2/img/button_post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
                 <div class="co">
-                <li><a href=""><img src="/A2/image/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
+                <li><a href=""><img src="/A2/img/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
                 <ul class="dropdown-menu">
                     <li><a href="">マイページ</a></li>
                     <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
@@ -77,11 +78,11 @@
                     <td>
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
-                        <img src="/A2/image/icon.png"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                        <img src="/A2/img/icon_default.png"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                             <button class="delete-button" onclick="deleteItem()">
-                                <img src="/A2/image/garbage_can.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">削除
+                                <img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
                                 </button>
 
                     </td>

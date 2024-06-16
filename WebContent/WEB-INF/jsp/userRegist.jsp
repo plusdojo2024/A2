@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>新規ユーザ登録|レコレコ</title>
+<link rel="stylesheet" type="text/css" href="/A2/css/common.css">
 <link rel="stylesheet" type="text/css" href="/A2/css/newlogin.css">
 </head>
 <header>
@@ -18,6 +19,7 @@
 </header>
 <body>
 <h3>新規ユーザ登録</h3>
+<form action="/A2/userRegistServlet" method=post>
         <table class="table">
             <tr>
                 <td>
@@ -47,11 +49,11 @@
                 <td>
                     <label class="photo">アイコン画像の選択</label><br>
                     <div class="icon">
-                    <img src="A2/image/icon.png" id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                    <img src="A2/img/icon_default.png" name="icon" id="preview" class="login" alt="アイコン" width="180px" height="200px">
                     <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                         <button class="delete-button" onclick="deleteItem()">
-                            <img src="A2/image/garbage_can.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">削除
+                            <img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
                         </button>
 
                 </td>
@@ -77,6 +79,7 @@
                 </td>
              </tr>
         </table>
+        </form>
         <footer>
             <a href=#top><span class="gotop"></span></a>
             <p class="copyright">&copy; WAC</p>

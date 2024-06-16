@@ -35,9 +35,9 @@
                 <div class="co">
                 <li><a href=""><img src="/A2/img/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
                 <ul class="dropdown-menu">
-                    <li><a href="">マイページ</a></li>
+                    <li><a href="/A2/MyPageServlet">マイページ</a></li>
                     <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
-                    <li><a href="">ログアウト</a></li>
+                    <li><a href="/A2/LoginServlet">ログアウト</a></li>
                 </ul>
                 </a>
                 </div>
@@ -48,7 +48,7 @@
 <body>
 <body>
         <h3>ユーザ管理</h3>
-        <form id="user_management" method="get" action="home.html">
+        <form id="user_management" method="get" action="/A2/HomeServlet">
             <table class="table">
                 <tr>
                     <td>
@@ -133,16 +133,19 @@
                 reader.readAsDataURL(selectedFile);
             } else {
                 // ファイルが選択されていない場合は元のアイコンを表示
-                document.getElementById('preview').src = "image/icon.png";
+                document.getElementById('preview').src = "/A2/img/icon_default.png";
             }
         }
 
          // 削除ボタンをクリックしたときに呼び出される関数
          function deleteItem() {
             // 元のアイコン画像のパスを設定
-            document.getElementById('preview').src = "image/icon.png";
+            document.getElementById('preview').src = "/A2/img/icon_default.png";
             // ファイル選択のinput要素もリセットする場合は次の行を追加
             document.querySelector('input[type="file"]').value = null;
+
+             // ページの再読み込みを防ぐ
+             event.preventDefault();
         }
 
         </script>

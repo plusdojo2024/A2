@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>新規ユーザ登録|レコレコ</title>
 <link rel="stylesheet" type="text/css" href="/A2/css/common.css">
-<link rel="stylesheet" type="text/css" href="/A2/css/newlogin.css">
+<link rel="stylesheet" type="text/css" href="/A2/css/userRegist.css">
 </head>
 <header>
   <nav class="nav">
@@ -49,7 +49,7 @@
                 <td>
                     <label class="photo">アイコン画像の選択</label><br>
                     <div class="icon">
-                    <img src="A2/img/icon_default.png" name="icon" id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                    <img src="/A2/img/icon_default.png" name="icon" id="preview" class="login" alt="アイコン" width="180px" height="200px">
                     <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                         <button class="delete-button" onclick="deleteItem()">
@@ -103,16 +103,19 @@
             reader.readAsDataURL(selectedFile);
         } else {
             // ファイルが選択されていない場合は元のアイコンを表示
-            document.getElementById('preview').src = "image/icon.png";
+            document.getElementById('preview').src = "/A2/img/icon_default.png";
         }
     }
 
      // 削除ボタンをクリックしたときに呼び出される関数
      function deleteItem() {
         // 元のアイコン画像のパスを設定
-        document.getElementById('preview').src = "image/icon.png";
+        document.getElementById('preview').src = "/A2/img/icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
+
+        // ページの再読み込みを防ぐ
+        event.preventDefault();
     }
 
         // 登録ボタンをクリックしたときに呼び出される関数

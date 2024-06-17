@@ -63,6 +63,42 @@
         .btn:hover {
             background-color: #45a049;
         }
+
+        #tabcontrol a {
+    margin-top: 30px;
+    line-height: 4em;
+    height: 40px;
+    width:220px;
+    display: inline-block;
+    /* インラインブロック化 */
+    border-width: 1px 1px 0px 1px;
+    /* 下以外の枠線を引く */
+    border-style: solid;
+    text-align: center;
+    /* 枠線の種類：実線 */
+    border-color: white;
+    /* 枠線の色：黒色 */
+    border-radius: 20px 20px 0px 0px;
+    /* 枠線の左上角と右上角だけを丸く */
+    padding: 0px 30px 30px 0px;
+    /* 内側の余白 */
+    text-decoration: none;
+    /* リンクの下線を消す */
+    color: black;
+    /* 文字色：黒色 */
+    background-color: gray;
+    /* 背景色：白色 */
+    font-weight: bold;
+    /* 太字 */
+    position: relative;
+    /* JavaScriptでz-indexを調整するために必要 */
+}
+
+/*必須*/
+#tabcontrol a.selected {
+    background-color: white;
+}
+
     </style>
 </head>
 <body>
@@ -89,10 +125,13 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal2')">&times;</span>
             <p>ポスト投函</p>
-            <input type="text" name="title" placeholder="タイトル(50字以内)"><br>
-            <input type="text" name="my_introduction" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)"><br>
-            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
-            <input type="button"name="submit1" value="投函"></button>
+            <div class="box1">
+                <input type="text" name="title" placeholder="タイトル(50字以内)"><br>
+                <textarea class="textbox" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)"></textarea><br>
+            </div>
+                <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+                <input type="button"name="submit1" value="投函"></button>
+            
         </div>
     </div>
     <!-- 受け取りモーダル -->
@@ -112,6 +151,14 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal4')">&times;</span>
             <p>一覧ページ</p>
+            <p id="tabcontrol">
+                <a href="#tabpage1">
+                    投函した作品
+                </a>
+                <a href="#tabpage2">
+                    受け取った作品
+                </a>
+            </p>
         </div>
     </div>
 

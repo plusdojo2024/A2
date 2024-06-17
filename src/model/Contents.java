@@ -2,22 +2,21 @@ package model;
 import java.io.Serializable;
 
 public class Contents implements Serializable {
-	private int contents_id;		//コンテンツID
+	private int contentsId;		//コンテンツID
 	private String title;				//タイトル
 	private String ruby;				//ふりがな
 	private String genre;				//ジャンル
 	private String creator;			//制作者
 	private String year;				//公開年
 	private String image;				//画像
-	private String created_at;	//登録日時
-	private String updated_at;	//更新日時
+	private String createdAt;	//登録日時
+	private String updatedAt;	//更新日時
 
-
-	public int getContents_id() {
-		return contents_id;
+	public int getContentsId() {
+		return contentsId;
 	}
-	public void setContents_id(int contents_id) {
-		this.contents_id = contents_id;
+	public void setContentsId(int contentsId) {
+		this.contentsId = contentsId;
 	}
 	public String getTitle() {
 		return title;
@@ -55,17 +54,16 @@ public class Contents implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-
 }

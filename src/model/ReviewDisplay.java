@@ -2,29 +2,29 @@ package model;
 import java.io.Serializable;
 
 public class ReviewDisplay implements Serializable {
-	private int review_id;			//レビューID
-	private String user_id;			//ユーザID
+	private int reviewId;			//レビューID
+	private String userId;			//ユーザID
 	private int good;					//いいね
-	private int user_id_writer;//投稿者ユーザID
-	private int contents_id;		//コンテンツID
+	private int userIdWriter;//投稿者ユーザID
+	private int contentsId;		//コンテンツID
 	private String title;				//タイトル
 	private String review;			//レビュー内容
 	private String image;				//画像
-	private String created_at;	//登録日
-	private String user_name;		//ユーザ名
+	private String createdAt;	//登録日
+	private String userName;		//ユーザ名
 	private String icon;				//アイコン
 
-	public int getReview_id() {
-		return review_id;
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public int getGood() {
 		return good;
@@ -32,17 +32,17 @@ public class ReviewDisplay implements Serializable {
 	public void setGood(int good) {
 		this.good = good;
 	}
-	public int getUser_id_writer() {
-		return user_id_writer;
+	public int getUserIdWriter() {
+		return userIdWriter;
 	}
-	public void setUser_id_writer(int user_id_writer) {
-		this.user_id_writer = user_id_writer;
+	public void setUserIdWriter(int userIdWriter) {
+		this.userIdWriter = userIdWriter;
 	}
-	public int getContents_id() {
-		return contents_id;
+	public int getContentsId() {
+		return contentsId;
 	}
-	public void setContents_id(int contents_id) {
-		this.contents_id = contents_id;
+	public void setContentsId(int contentsId) {
+		this.contentsId = contentsId;
 	}
 	public String getTitle() {
 		return title;
@@ -62,17 +62,17 @@ public class ReviewDisplay implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getIcon() {
 		return icon;

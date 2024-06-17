@@ -1,5 +1,0 @@
-並べ替えとかできるやつのサンプルです。
-・SearchSampleServlet.javaはsrc直下のservletパッケージに入れてください
-・EmployeeBeans.javaはsrc直下のmodelパッケージに入れてください
-・SearchSample.jspはWEB-INFの下にjspフォルダを作成しその中に入れてください。
-実行はSearchSampleServlet.java（Servlet）から行います。

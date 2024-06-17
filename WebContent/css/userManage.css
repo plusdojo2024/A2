@@ -125,7 +125,7 @@ input[name=search] {
     border-radius: 20px; /*検索欄の角を丸くする*/
 }
 
-input[name=id], input[name=pass], input[name=name] {
+input[name=mail], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;

@@ -4,36 +4,36 @@ import java.io.Serializable;
 
 public class MyContents implements Serializable {
 
-	private int my_contents_id; //マイコンテンツID
-	private int contents_id;    //コンテンツID
-	private int user_id;         //ユーザID
+	private int myContentsId; //マイコンテンツID
+	private int contentsId;    //コンテンツID
+	private int userId;         //ユーザID
 	private int status;         //属性
 	private String title;       //タイトル
 	private String genre;       //ジャンル
 	private String creator;     //製作者
 	private String year;        //公開年
 	private String image;       //画像
-	private String created_at;  //登録日
-	private String updated_at;  //更新日
+	private String createdAt;  //登録日
+	private String updatedAt;  //更新日
 
 
-	public int getMy_contents_id() {
-		return my_contents_id;
+	public int getMyContentsId() {
+		return myContentsId;
 	}
-	public void setMy_contents_id(int my_contents_id) {
-		this.my_contents_id = my_contents_id;
+	public void setMyContentsId(int myContentsId) {
+		this.myContentsId = myContentsId;
 	}
-	public int getContents_id() {
-		return contents_id;
+	public int getContentsId() {
+		return contentsId;
 	}
-	public void setContents_id(int contents_id) {
-		this.contents_id = contents_id;
+	public void setContentsId(int contentsId) {
+		this.contentsId = contentsId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public int getStatus() {
 		return status;
@@ -71,18 +71,16 @@ public class MyContents implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-
-
 }

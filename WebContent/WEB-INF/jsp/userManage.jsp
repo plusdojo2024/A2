@@ -52,8 +52,8 @@
             <table class="table">
                 <tr>
                     <td>
-                        <label class="id">ユーザID（メールアドレス）</label><br>
-                        <input type="email" name="id">
+                        <label class="mail">ユーザID（メールアドレス）</label><br>
+                        <input type="email" name="mail">
                     </td>
                 </tr>
                 <tr>

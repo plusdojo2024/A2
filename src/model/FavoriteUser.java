@@ -2,33 +2,33 @@ package model;
 import java.io.Serializable;
 
 public class FavoriteUser implements Serializable {
-	private int user_id;			//ユーザID
-	private int user_id_favorite;	//お気に入りユーザID
-	private String created_at;		//登録日時
-	private String update_at;		//更新日時
+	private int userId;			//ユーザID
+	private int userIdFavorite;	//お気に入りユーザID
+	private String createdAt;	//登録日時
+	private String updateAt;	//更新日時
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public int getUser_id_favorite() {
-		return user_id_favorite;
+	public int getUserIdFavorite() {
+		return userIdFavorite;
 	}
-	public void setUser_id_favorite(int user_id_favorite) {
-		this.user_id_favorite = user_id_favorite;
+	public void setUserIdFavorite(int userIdFavorite) {
+		this.userIdFavorite = userIdFavorite;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdate_at() {
-		return update_at;
+	public String getUpdateAt() {
+		return updateAt;
 	}
-	public void setUpdate_at(String update_at) {
-		this.update_at = update_at;
-	}
-}
+	public void setUpdateAt(String updateAt) {
+		this.updateAt = updateAt;
+	}		//更新日時
+

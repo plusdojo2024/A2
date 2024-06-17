@@ -1,0 +1,53 @@
+/* ポスト */
+.modalhed{
+  text-align: center;
+  font-size: 170%;
+}
+
+input[name=submit] {
+  border: none;
+  margin: 30px 30px 10px 30px;
+  padding: 20px 60px 20px 50px;
+  width: 500px;
+  color: #ffffff;
+  background-color: #1e90ff;
+  font-size: 1.2em;
+  border-radius: 20px; /*ボタンの角を丸くする*/
+}
+
+input[name=submit1] {
+  border: none;
+  margin: 10px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
+  width: 230px;
+  color: #ffffff;
+  background-color: #1e90ff;
+  font-size: 1.2em;
+  border-radius: 20px; /*ボタンの角を丸くする*/
+}
+
+/* テキスト入力欄 */
+input[name=title] {
+  border: 1px solid #ccc;
+  height: 3em;
+  width: 38em;
+  margin: 3px 30px;
+  background-color: #dcdcdc;
+  /*border-radius: 10px; /*四角の角を丸くする*/
+}
+
+input[name=my_introduction] {
+  border: 1px solid #ccc;
+  height: 13em;
+  width: 38em;
+  margin: 3px 30px;
+  background-color: #dcdcdc;
+  /*border-radius: 10px; /*四角の角を丸くする*/
+}
+
+.title{
+text-align: left;
+}
+.maintext{
+text-align: left;
+}

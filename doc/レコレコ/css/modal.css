@@ -1,3 +1,4 @@
+/* モーダル全体 */
 /* グレー背景 */
 .layer {
   background: rgba(0, 0, 0, .2); /* 背景を薄くする */
@@ -18,7 +19,7 @@
   position: relative;
   margin-right: auto;
   margin-left: auto;
-  width: 80%;
+  width: 50%;
   min-width: 440px;
 
   opacity: 0;
@@ -38,37 +39,6 @@
   display: block;
   padding: 21px 8px 21px;
   height: auto;
-}
-
-.flex {
-  display: flex; /*横並び*/
-}
-.flex .image {
-  width: 640px; /*画像サイズ指定*/
-  margin: 0;
-  padding: 0;
-  width: 150px;
-  height: 170px;
-  overflow: hidden;
-  position: relative;
-}
-.flex .right {
-  margin: 0 0 0 20px;
-  padding: 0;
-}
-.flex .day {
-  margin: 0 0 0 20px;
-  font-size: 25px;
-}
-.flex .name {
-  margin: 0 0 0 20px;
-  font-size: 25px;
-}
-.flex .title {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  font-size: 50px;
 }
 
 .modal__content {
@@ -123,4 +93,35 @@
 
 .close-button span:nth-child(2) {
   transform: rotate(-45deg) translate(1px, -1px);
+}
+/* 全文表示 */
+.flex {
+  display: flex; /*横並び*/
+}
+.flex .image {
+  width: 640px; /*画像サイズ指定*/
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+}
+.flex .right {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+.flex .day {
+  margin: 0 0 0 20px;
+  font-size: 25px;
+}
+.flex .name {
+  margin: 0 0 0 20px;
+  font-size: 25px;
+}
+.flex .title {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 50px;
 }

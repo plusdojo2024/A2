@@ -13,10 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.ChatDao;
 import dao.FavoriteUserDao;
-import dao.MyContentsDao;
-import dao.ReviewDisplayDao;
-import dao.ReviewDao;
 import dao.GoodDao;
+import dao.MyContentsDao;
+import dao.ReviewDao;
+import dao.ReviewDisplayDao;
 import model.Chat;
 import model.FavoriteUser;
 import model.MyContents;
@@ -47,15 +47,16 @@ public class MyPageServlet extends HttpServlet {
     		int reviewCount = rDao.reviewCount();
     	//レビューにもらったいいねの総数を取得する
     		int allGoodCount = gDao.allGoodCount();
-    	// リクエストスコープに格納する
-        	request.setAttribute("", );
+    	// リクエストスコープに格納する(UserのBeansに入れるようにする？)
+    		user.setReviewCount(reviewCount);
+    		user.setAllGoodCount(allGoodCount);
 
         //コレクション、ウィッシュリストの一覧を取得してリクエストスコープに入れる
             //マイコレクションDAOを生成
             	MyContentsDao mDao = new MyContentsDao();
             //ユーザのコレクションとウィッシュリストを取得する
-            	List<MyContents> collection = mDao.selectCollection(user_id);
-            	List<MyContents> wishList = mDao.selectWishList(user_id);
+            	List<MyContents> collection = mDao.selectCollection(userId);
+            	List<MyContents> wishList = mDao.selectWishList(userId);
             // リクエストスコープに格納する
             	request.setAttribute("collection", collection);
             	request.setAttribute("wishList", wishList);
@@ -64,11 +65,13 @@ public class MyPageServlet extends HttpServlet {
             //レビューディスプレイDAOを生成
             	ReviewDisplayDao rdDao = new ReviewDisplayDao();
             //ユーザのレビューリストを取得する
-            	List<ReviewDisplay> reviewList = rdDao.userSelect(user_id);
+            	List<ReviewDisplay> reviewList = rdDao.userSelect(userId);
 
             //いいね数を取得する
             	for(ReviewDisplay reviewDisplay: reviewList) {
-            		int reviewDisplay.get()
+            		int reviewId = reviewDisplay.getReviewID();
+            		reviewDisplay.setGoodCount(rdDao.countGood(reviewId));
+            		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
             	}
 
             // リクエストスコープに格納する
@@ -79,7 +82,7 @@ public class MyPageServlet extends HttpServlet {
             //お気に入りユーザDAOを生成
             	FavoriteUserDao fDao = new FavoriteUserDao();
             //お気に入りユーザのリストを取得する
-            	List<FavoriteUser> favoriteUserList = fDao.select(user_id);
+            	List<FavoriteUser> favoriteUserList = fDao.select(userId);
             // リクエストスコープに格納する
             	request.setAttribute("favoriteUserList", favoriteUserList);
 
@@ -87,7 +90,7 @@ public class MyPageServlet extends HttpServlet {
            //お気に入りユーザDAOを生成
             	ChatDao cDao = new ChatDao();
            //お気に入りユーザのリストを取得する
-            	List<Chat> chatList = fDao.selectHistory(user_id);
+            	List<Chat> chatList = fDao.selectHistory(userId);
             //リクエストスコープに格納する
         		request.setAttribute("chatList", chatList);
 

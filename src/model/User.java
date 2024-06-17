@@ -2,23 +2,22 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private int user_id;           //ユーザID
+    private int userId;           //ユーザID
     private String mail;           //メールアドレス
     private String pass;           //パスワード
-    private String user_name;      //ユーザ名
+    private String userName;      //ユーザ名
     private String icon;           //アイコン画像
-    private int open_close;        //公開・非公開
+    private int openClose;        //公開・非公開
     private String introduction;   //自己紹介文
     private int flag;              //フラグ
-    private String created_at;     //登録日時
-    private String updated_at;     //更新日時
+    private String createdAt;     //登録日時
+    private String updatedAt;     //更新日時
 
-
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getMail() {
 		return mail;
@@ -32,11 +31,11 @@ public class User implements Serializable {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getIcon() {
 		return icon;
@@ -44,11 +43,11 @@ public class User implements Serializable {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public int getOpen_close() {
-		return open_close;
+	public int getOpenClose() {
+		return openClose;
 	}
-	public void setOpen_close(int open_close) {
-		this.open_close = open_close;
+	public void setOpenClose(int openClose) {
+		this.openClose = openClose;
 	}
 	public String getIntroduction() {
 		return introduction;
@@ -62,16 +61,17 @@ public class User implements Serializable {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
+
 }

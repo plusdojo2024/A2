@@ -93,7 +93,7 @@ ON f.user_id_favorite=u.user_id
 WHERE f.user_id=?;
 
 
-【コンテンツDAO】
+【マイコンテンツDAO】
 コレクションの一覧を表示させる
 
 SELECT m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image
@@ -114,7 +114,7 @@ WHERE m.user_id=?
 AND m.status=0;
 
 
-【コンテンツディティールDAO】
+【コンテンツDAO】
 コンテンツ詳細画面を表示させる
 
 

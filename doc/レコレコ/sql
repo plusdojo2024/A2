@@ -1,0 +1,142 @@
+レビューを表示させる（レビューといいね）
+SELECT count(review_id), r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, g.user_id, g.good, u.user_name, u.icon
+FROM review AS r
+(INNER) JOIN good AS g
+ON r.review_id=g.review_id
+(INNER) JOIN user AS u
+ON r.user_id_writer=u.user_id
+WHERE r.user_id_writer=?
+OR r.contents_id=?
+GROUP BY r.review_id
+
+
+あるコンテンツか、あるユーザのレビューを表示させる（いいねはなし）
+SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, u.user_name, u.icon
+FROM review AS r
+(INNER) JOIN user AS u
+ON r.user_id_writer=u.user_id
+WHERE r.user_id_writer=?
+OR r.contents_id=?;
+
+ある特定のレビューのいいね数を数える
+SELECT review_id, count(review_id)
+FROM good
+WHERE review_id=?
+GROUP BY review_id;
+
+自分がいいねをつけたかどうかを確認する
+SELECT review_id, user_id, count(*)
+FROM good
+WHERE review_id=? 
+AND user_id=?;
+
+
+
+タイムラインのレビューを表示させる（いいねはなし）
+SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, u.user_name, u.icon, f.user_id
+FROM review AS r
+(INNER) JOIN user AS u
+ON r.user_id_writer=u.user_id
+LEFT JOIN 
+(SELECT user_id_favorite, user_id
+FROM favorite_user
+WHERE user_id=?) AS f
+ON r.user_id_writer=f.user_id_favorite
+WHERE r.user_id_writer=?
+
+
+
+いいねの総数を表示させる
+SELECT r.user_id_writer, count(*),
+FROM good AS g
+INNER JOIN review AS r
+ON g.review_id=r.review_id
+WHERE r.user_id_writer=?;
+
+
+
+ランキングを表示させる
+SELECT r.user_id_writer, u.user_name, u.icon, count(r.user_id_writer)
+FROM review AS r
+INNER JOIN user AS u
+ON r.user_id_writer=u.user_id
+INNER JOIN good AS g
+ON r.review_id=g.review_id
+GROUP BY r.user_id_writer
+ORDER BY count(r.user_id_writer)
+(LIMIT 5);
+
+
+
+レビューの総数を表示させる
+
+SELECT user_id_writer, COUNT(review_id)
+FROM review
+WHERE user_id_writer=?;
+
+
+
+お気に入りユーザの一覧を表示させる
+
+SELECT f.user_id, f.favorite_user, u.user_name, u.icon
+FROM favorite_user AS f
+(INNER) JOIN user AS u
+ON f.user_id_favorite=u.user_id
+WHERE f.user_id=?;
+
+
+コレクションの一覧を表示させる
+
+SELECT m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image
+FROM my_contents AS m
+(INNER) contents AS c
+ON m.contents_id=c.contents_id
+WHERE m.user_id=?
+AND m.status=1;
+
+
+ウィッシュリストの一覧を表示させる
+
+SELECT m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image
+FROM my_contents AS m
+(INNER) contents AS c
+ON m.contents_id=c.contents_id
+WHERE m.user_id=?
+AND m.status=0;
+
+
+コンテンツ詳細画面を表示させる
+
+
+
+ランダムチャットの相手を選出する
+SELECT m.contents_id, u.user_id, u.user_name, u.icon
+FROM my_contents AS m
+INNER JOIN user AS u
+ON m.user_id=u.user_id
+WHERE m.contents_id=?
+
+
+指定チャットの相手を検索する
+
+
+ポスト受け取り時の処理
+１．ポストテーブルからおすすめをとってくる（受け取ったサーブレット側でランダムに選ぶ）
+SELECT post_id, title, recommend 
+FROM post;
+
+２．受け取りテーブルに受け取ったおすすめを記録する
+INSERT post_recieve(user_id, post_id, created_at) VALUE(?, ?, ?);
+
+
+ポスト投函一覧を表示させる
+SELECT post_id, user_id_writer, title, recommend 
+FROM post
+WHERE user_id_writer=?;
+
+ポスト受け取り一覧を表示させる
+SELECT r.user_id, p.title, p.recommend, p.interest
+FROM post AS p
+INNER JOIN post_recieve AS r
+ON p.post_id=r.post_id
+WHERE r.user_id=?

@@ -3,23 +3,22 @@ import java.io.Serializable;
 
 public class Good implements Serializable{
 
-	private int review_id;
-	private int user_id;
+	private int reviewId;
+	private int userId;
 	private int good;
-	private String created_at;
-	private String updated_at;
-
-	public int getReview_id() {
-		return review_id;
+	private String createdAt;
+	private String updatedAt;
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public int getGood() {
 		return good;
@@ -27,17 +26,17 @@ public class Good implements Serializable{
 	public void setGood(int good) {
 		this.good = good;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 }

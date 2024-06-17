@@ -22,12 +22,11 @@ body {
 .nav ul {
     background-color: #B3C8CF;
     list-style-type: none;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     align-items: center;
 }
 
-/*常に<h1>をでサイン指定*/
 .nav h1 a{
     color: #ffffff;
     text-decoration: none;
@@ -35,6 +34,7 @@ body {
     padding: 0 20px;
 }
 
+/*常にh1をこのデザインに指定する*/
 .nav h1 a:hover,
 .nav h1 a:focus,
 .nav h1 a:active {
@@ -43,7 +43,6 @@ body {
 }
 
 /* 検索フォーム */
-
 .search-form {
     display: flex;
     align-items: center;
@@ -72,6 +71,11 @@ body {
     border-radius: 0px 20px 20px 0px;
 }
 
+.nav .search-box select:focus,
+.nav .search-input:focus{
+    outline: none;
+}
+
 /*imgのデザイン指定*/
 .nav .search-button {
     position: absolute;
@@ -92,10 +96,27 @@ body {
 }
 
 .nav .icon-img {
-    margin: 10px 10px 10px 0;
+    position: absolute;
+    left: 310px;
+    top:-33px;
+    margin: 10px 20px 10px 0;
     width: 50px;
     height: 50px;
     border-radius: 100%;
+}
+
+.nav .user-name{
+    position: absolute;
+    left: 380px;
+    color: #545454;
+    text-decoration: none;
+    display: inline-block;
+    top: -13px;
+}
+
+.nav .user-container{
+    display: flex;
+    align-items: center;
 }
 
 /* メニューの初期状態を非表示に */
@@ -109,9 +130,8 @@ header .nav .dropdown-menu {
     box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
     padding: 0px  10px 0px  10px;
     z-index: 1;
-    left: -50px; /* メニューを左に20ピクセル移動 */
-    margin-left: 100px;
-    padding-top: 0;
+    top: 30px;
+    margin-left: 320px;
 }
 
 header .nav .dropdown-menu li {
@@ -144,12 +164,6 @@ header .nav .dropdown-menu li a {
 /* アイコン画像をホバーした際にメニューを表示 */
 .nav li:hover .dropdown-menu {
     display: block;
-}
-
-.nav .user-name{
-    color: #545454;
-    text-decoration: none;
-    margin-right: 30px;
 }
 
 /*フッター--------------------------------------*/

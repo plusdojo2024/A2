@@ -15,7 +15,7 @@
                         <h1>レコレコ</h1>
                     </li>
                     <li>
-                        <form action="" method="get">
+                        <form action="" method="post">
                         	<select name="select">
                             	<option value="all">すべて</option>
                             	<option value="movie">映画</option>

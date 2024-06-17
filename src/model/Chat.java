@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Chat implements Serializable{
 
-	private int chatId;
-	private int userIdSpeaker;
-	private int userIdListener;
-	private String talk;
-	private String image;
-	private int check;
-	private String createdAt;
-	private String updateAt;
+	private int chatId;				//チャットID
+	private int userIdSpeaker;		//ユーザID（発言者)
+	private int userIdListener;		//ユーザID（相手)
+	private String talk;			//発言
+	private String image;			//画像
+	private int check;				//既読
+	private String createdAt;		//登録日時
+	private String updateAt;		//更新日時
 
 
 	public int getChatId() {

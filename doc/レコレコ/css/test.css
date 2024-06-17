@@ -65,6 +65,40 @@ header .nav .dropdown-menu li a {
     /* リンクの色 */
 }
 
+h1 {
+    color: #ffffff;
+    margin: 3px 0 0 0;
+    font-size: 38px;
+}
+
+footer a {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gotop {
+    display: block;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    transform: rotate(-45deg)
+}
+
+.copyright {
+    padding: 50px;
+    background-color: #B3C8CF;
+    color: #FFFFFF;
+    text-align: center;
+}
+
 .co {
     position: relative;
     display: inline-block;
@@ -88,11 +122,18 @@ header .nav .dropdown-menu li a {
     justify-content: space-between;
 }
 
+.flex2 {
+    display: flex;
+}
 
-
-h1 {
+h1.big {
     color: black;
     font-size: 40px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 0%;
 }
 
 label {
@@ -108,6 +149,20 @@ select[name=select] {
     /*ジャンル欄の角を丸くする*/
 }
 
+select[name=select2] {
+
+    margin-left: 60px;
+    height: 3.5em;
+    width: 15em;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+
+    /*ジャンル欄の角を丸くする*/
+}
+
+
+
 input[name=search] {
     height: 4em;
     width: 30em;
@@ -117,24 +172,31 @@ input[name=search] {
     /*検索欄の角を丸くする*/
 }
 
-button[name=submit] {
-    text-align: left;
-    display: block;
-    border: none;
-    margin: 30px 180px 0px 30px;
-    padding: 5px 20px 0px 20px;
-    width: 300px;
-    color: #ffffff;
-    background-color: #35AFDB;
-    font-size: 1.2em;
-    border-radius: 20px;
 
-    /*ログインボタンの角を丸くする*/
-}
+/*ログインボタンの角を丸くする*/
+
 
 img[name=photo] {
     margin: 30px 30px 0px 200px;
+}
 
+img[name=photo2] {
+    margin: 10px 30px 0px 20px;
+}
+
+
+button[name=submit] {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    border: none;
+    margin: 30px 250px 0px 30px;
+    padding: 5px 20px 0px 20px;
+    width: 260px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1em;
+    border-radius: 10px;
 }
 
 .column {
@@ -147,17 +209,21 @@ img[name=photo] {
 }
 
 a[href="#tabpage1"] {
-    margin: 0px -10px 0px 50px;
+    margin: 0px 5px 0px 50px;
 
 }
+
 
 a[href="#tabpage2"] {
     margin: 0px 0px 0px -10px;
+    display: none;
 }
 
 #tabcontrol a {
-    height: 4em;
-    width: 45%;
+    margin-top: 30px;
+    line-height: 4em;
+    height: 40px;
+    width: 670px;
     display: inline-block;
     /* インラインブロック化 */
     border-width: 1px 1px 0px 1px;
@@ -183,25 +249,13 @@ a[href="#tabpage2"] {
     /* JavaScriptでz-indexを調整するために必要 */
 }
 
-#tabbody div {
-    border: 1px solid white;
-    /* 枠線：黒色の実線を1pxの太さで引く */
-    margin: -20px 50px 0px 50px;
-    /* 上側にあるタブと1pxだけ重ねるために「-1px」を指定 */
-    padding: 1em;
-    /* 内側の余白量 */
-    background-color: white;
-    /* 背景色：白色 */
-    position: relative;
-    /* z-indexを調整するために必要 */
-    z-index: 0;
-    /* 重なり順序を「最も背面」にするため */
-    overflow: scroll;
-    overflow-y: scroll;
-    height: 500px;
-}
 
 
+
+
+
+
+/*必須*/
 #tabcontrol a.selected {
     background-color: white;
 }
@@ -210,4 +264,216 @@ a[href="#tabpage2"] {
 
 
 
-overflow: scroll;
+
+
+
+
+
+
+.bt img {
+    width: 30px;
+    height: 30px;
+    margin-right: 7px;
+    margin-bottom: 5px;
+}
+
+/* 削除ボタンのデザイン */
+.delete-button {
+    position: relative;
+    bottom: 20px;
+    border: 1px solid black;
+    margin: -120px 20px 0px 10px;
+    padding: 5px 10px 0 10px;
+    background-color: #ffffff;
+    display: flex;
+    /* 複数の要素を横に並べるため */
+    align-items: center;
+    border-radius: 10px;
+    /*四角の角を丸くする*/
+    align-items: center;
+    /* 中央に配置 */
+    gap: 8px;
+}
+
+/* 削除ボタンのデザイン */
+.delete-button1 {
+    position: relative;
+    bottom: 25px;
+    border: 1px solid black;
+    margin: -121px 0px 0px 1100px;
+    padding: 5px 10px 0 10px;
+    background-color: #ffffff;
+    display: flex;
+    /* 複数の要素を横に並べるため */
+    align-items: center;
+    border-radius: 10px;
+    /*四角の角を丸くする*/
+    align-items: center;
+    /* 中央に配置 */
+    gap: 8px;
+}
+
+
+
+
+
+.contents {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    /* 中央に配置 */
+    gap: 5px;
+    margin: 20px 0px 0px 0px;
+
+
+}
+
+
+.contents1 {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    /* 中央に配置 */
+    gap: 5px;
+    margin: 20px 0px 0px 0px;
+
+
+}
+
+.contents p {
+    color: #545454;
+    margin: -180px 800px 0px 0px;
+}
+
+.contents1 p {
+    color: #545454;
+    margin: -178px 700px 0px 0px;
+}
+
+.image {
+    margin: 10px 30px 20px 50px;
+}
+
+
+.namae {
+    margin: -150px 30px 20px -20px;
+    display: flex;
+    position: relative;
+}
+
+.namae1 {
+    margin-top: 5px;
+}
+
+h3.short {
+    margin: -180px 0px 50px 260px;
+}
+
+.review {
+    margin: -40px 0px 50px 260px;
+}
+
+.heart {
+    position: absolute;
+    width: 40px;
+    /* ハートの幅を小さくする */
+    height: 36px;
+    /* ハートの高さを小さくする */
+    left: 90%;
+    top: 57%;
+    /* ハートを垂直方向に中央揃え */
+    margin-top: -20px;
+    /* ハートを垂直方向に中央揃え */
+    margin-left: -40px;
+    /* ハートを水平方向に中央揃え */
+
+}
+
+.heart::before,
+.heart::after {
+    position: absolute;
+    content: "";
+    left: 20px;
+    /* ハートの左半分の幅を調整 */
+    top: 0;
+    width: 20px;
+    /* ハートの幅をさらに小さくする */
+    height: 32px;
+    /* ハートの高さをさらに小さくする */
+    background: #f88dc8;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.heart-count {
+    position: absolute;
+    left: 45px;
+    /* 数字の左端位置を調整 */
+    top: 45%;
+    /* 数字を垂直方向に中央揃え */
+    transform: translateY(-50%);
+    /* 数字を中央揃えにするための調整 */
+    font-size: 14px;
+    /* 数字のフォントサイズを調整 */
+    color: #545454;
+    /* 数字の色を指定 */
+}
+
+
+
+
+
+/*必須*/
+.area.selected {
+    display: block;
+
+}
+
+.area {
+    border: 1px solid white;
+    /* 枠線：黒色の実線を1pxの太さで引く */
+    margin: -16px 50px 0px 50px;
+    /* 上側にあるタブと1pxだけ重ねるために「-1px」を指定 */
+    padding: 1em;
+    /* 内側の余白量 */
+    background-color: white;
+    /* 背景色：白色 */
+
+    /* z-indexを調整するために必要 */
+
+    /* 重なり順序を「最も背面」にするため */
+    overflow: scroll;
+    height: 500px;
+    display: none;
+}
+
+
+#tabpage1 {
+    position: relative;
+    /* tabpage1 が親要素 */
+
+    height: 500px;
+    /* 適切な高さに設定 */
+}
+
+.newreview {
+    position: sticky;
+    /* 親要素に対して絶対位置を指定 */
+    bottom: -100px;
+    /* 下端からの位置 */
+    right: 100px;
+    margin-left: 1200px;
+    margin-top: 200px;
+    /* 右端からの位置 */
+    z-index: 10;
+    /* 他の要素よりも手前に表示 */
+}

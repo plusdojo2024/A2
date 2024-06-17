@@ -11,7 +11,7 @@
     <nav class="nav">
         <ul>
             <li>
-                <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
+                <h1><a href=""></a>レコレコ</a></h1>
             </li>
             <li>
                 <form action="/A2/SearchServlet" method="get">
@@ -35,7 +35,7 @@
                 <li><a href=""><img src="image/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
                         <ul class="dropdown-menu">
                             <li><a href="">マイページ</a></li>
-                            <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                            <li><a href="/userManageServlet">ユーザ管理</a></li>
                             <li><a href="">ログアウト</a></li>
                         </ul>
                     </a>
@@ -47,31 +47,32 @@
 
 <body>
     <div class="flex">
-        <img src="image/ffx.png" width="225px" height="250px" name="photo" alt="写真">
+        <img src="image/ffx.png" width="180px" height="200px" name="photo" alt="写真">
         <div class="column">
-            <h1>FINAL FANTASY X</h1>
-            <h2>ゲーム</h2>
-            <h2>2001年</h2>
-            <h2>スクウェア</h2>
+            <h1 class="big">FINAL FANTASY X</h1>
+            <h3>ゲーム</h3>
+            <h3>2001年</h3>
+            <h3>スクウェア</h3>
         </div>
 
         <nav class="bt">
             <button type="button" name="submit">
-                <img src="image/point_chat.png" width="40px" height="40px" alt="チャットの画像">
-                <span class="up">ランダムチャットを開始</span>
+                <img src="image/point_chat.png" alt="チャットの画像">
+                ランダムチャットを開始
             </button>
             <button type="button" name="submit">
-                <img src="image/point_plus.png" width="40px" height="40px" alt="追加の画像">
-                <span class="up">コレクションに追加</span>
+                <img src="image/point_plus.png" alt="追加の画像">
+                コレクションに追加
             </button>
             <button type="button" name="submit">
-                <img src="image/point_plus.png" width="40px" height="40px" alt="追加の画像">
-                <span class="up">ウィッシュリストに追加</span>
+                <img src="image/point_plus.png" alt="追加の画像">
+                ウィッシュリストに追加
             </button>
         </nav>
     </div>
+
     <p id="tabcontrol">
-        <a href="#tabpage1" class="selected">
+        <a href="#tabpage1">
             自分のレビュー
         </a>
         <a href="#tabpage2">
@@ -80,194 +81,124 @@
     </p>
 
     <div id="tabbody">
-        <div id="tabpage1"><select name="select">
+
+        <div id="tabpage1" class="area selected">
+            <select name="select2">
                 <option value="all">並び替え</option>
-                <option value="movie">新しい順</option>
-                <option value="dorama">古い順</option>
+                <option value="new">新しい順</span></option>
+                <option value="old">古い順</span></option>
             </select>
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 
+            <div class="contents">
+                <img src="image/ffx.png" class="image" width="180px" height="200px" alt="写真">
+                <p>06/06 22:22 投稿</p>
+                <button class="delete-button" onclick="deleteItem()">
+                    <img src="image/garbage_can.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">削除
+                </button>
+            </div>
+
+            <h3 class="short">FINAL FANTASY X</h3>
+            <div class="review">
+                <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+            </div>
+            <button class="delete-button1" onclick="deleteItem()">
+                <img src="image/point_edit.png" class="delete-icon" width="30px" height="30px" alt="ゴミ箱">編集
+            </button>
+            <div class="heart">
+                <span class="heart-count">123</span>
+            </div>
+            <img src="image/button_review.png" class="newreview" width="100px" height="100px" alt="新規レビューの写真">
         </div>
-        <div id="tabpage2" style="display: none;"><select name="select">
+
+
+
+
+
+
+
+        <div id="tabpage2" class="area">
+            <select name="select2">
                 <option value="all">並び替え</option>
-                <option value="movie">新しい順</option>
-                <option value="dorama">古い順</option>
+                <option value="new">新しい順</option>
+                <option value="old">古い順</option>
             </select>
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
-            いいいいいいいいいいいいいいいいいいいいいいいい
+            <div class="contents1">
+                <img src="image/ffx.png" class="image" width="180px" height="200px" alt="写真">
+                <div class="namae">
+                    <img src="image/login1.png" class="image1" width="40px" height="40px" alt="アイコン写真"><span
+                        class="namae1">名前さん</span>
+                </div>
+                <p>06/06 22:22 投稿</p>
+
+            </div>
+
+            <h3 class="short">FINAL FANTASY X</h3>
+            <div class="review">
+                <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+            </div>
+
+
+
 
         </div>
     </div>
-</body>
-<script type="text/javascript">
-    // ---------------------------
-    // ▼A：対象要素を得る
-    // ---------------------------
-    var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
-    var pages = document.getElementById('tabbody').getElementsByTagName('div');
 
-    // ---------------------------
-    // ▼B：タブの切り替え処理
-    // ---------------------------
-    function changeTab() {
-        // ▼B-1. href属性値から対象のid名を抜き出す
-        var targetid = this.getAttribute('href').substring(1);
 
-        // ▼B-2. 指定のタブページだけを表示する
-        for (var i = 0; i < pages.length; i++) {
-            if (pages[i].id === targetid) {
-                pages[i].style.display = "block";
-            } else {
-                pages[i].style.display = "none";
+
+
+
+
+
+    <footer>
+        <a href=#top><span class="gotop"></span></a>
+        <p class="copyright">&copy; WAC</p>
+    </footer>
+
+    <script type="text/javascript">
+        // ---------------------------
+        // ▼A：対象要素を得る
+        // ---------------------------
+        var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+        var pages = document.getElementById('tabbody').getElementsByClassName('area');
+
+        // ---------------------------
+        // ▼B：タブの切り替え処理
+        // ---------------------------
+        function changeTab() {
+            var targetid = this.getAttribute('href').substring(1);
+
+            // 対象のタブページだけを表示する
+            for (var i = 0; i < pages.length; i++) {
+                if (pages[i].id === targetid) {
+                    pages[i].classList.add('selected');
+                } else {
+                    pages[i].classList.remove('selected');
+                }
             }
+
+            // クリックされたタブにselectedクラスを追加し、他のタブから削除する
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('selected');
+            }
+            this.classList.add('selected');
+
+            // ページ遷移しないようにfalseを返す
+            return false;
         }
 
-        // ▼B-3. クリックされたタブにselectedクラスを追加し、他のタブから削除する
+        // ---------------------------
+        // ▼C：すべてのタブに対して、クリック時にchangeTab関数が実行されるよう指定する
+        // ---------------------------
         for (var i = 0; i < tabs.length; i++) {
-            tabs[i].classList.remove('selected');
+            tabs[i].onclick = changeTab;
         }
-        this.classList.add('selected');
 
-        // ▼B-4. ページ遷移しないようにfalseを返す
-        return false;
-    }
-
-    // ---------------------------
-    // ▼C：すべてのタブに対して、クリック時にchangeTab関数が実行されるよう指定する
-    // ---------------------------
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].onclick = changeTab;
-    }
-
-    // ---------------------------
-    // ▼D：最初は先頭のタブを選択しておく
-    // ---------------------------
-    tabs[0].classList.add('selected');
-</script>
+        // ---------------------------
+        // ▼D：最初は先頭のタブを選択しておく
+        // ---------------------------
+        tabs[0].classList.add('selected');
+    </script>
+</body>
 
 </html>

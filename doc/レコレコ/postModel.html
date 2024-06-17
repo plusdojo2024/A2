@@ -1,0 +1,181 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/postmodal.css">
+    <meta charset="UTF-8">
+    <title>ポストモーダル</title>
+    <style>
+        /* モーダルのスタイル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            text-align: center;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            height: 50%;
+            border-radius: 13px;
+            box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-top: 125px;
+            margin-bottom: 125px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- モーダルを開くボタン -->
+<button id="openModalBtn" class="btn">レビュー</button>
+
+<!-- 最初のモーダル -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal1')">&times;</span>
+        ポスト
+        <div class="modalmain">
+          <br>
+          <input type="button"name="submit"  value="投函"onclick="openSecondModal()"></button><br>
+          <input type="button" name="submit" value="受け取り"onclick="openSecondModal1()"></button><br>
+          <input type="button" name="submit" value="一覧"onclick="openSecondModal2()"></button>
+          </div>
+    </div>
+</div>
+    
+    <!-- 投函モーダル -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <p>ポスト投函</p>
+            <input type="text" name="title" placeholder="タイトル(50字以内)"><br>
+            <input type="text" name="my_introduction" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)"><br>
+            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+            <input type="button"name="submit1" value="投函"></button>
+        </div>
+    </div>
+    <!-- 受け取りモーダル -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <p>ポスト受け取り</p><br>
+            <div class="title">タイトル</div><br>
+            <div class="maintext">本文aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><br>
+            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+            <input type="button"name="submit1" value="気になる"></button>
+        </div>
+    </div>
+
+    <!-- 一覧モーダル -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <p>一覧ページ</p>
+        </div>
+    </div>
+
+    <script>
+        // モーダルを開くボタンを取得
+        var openModalBtn = document.getElementById("openModalBtn");
+    
+        // モーダルを開く関数
+        openModalBtn.onclick = function() {
+            openModal('modal1');
+        }
+    
+        // モーダルを開く関数
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+    
+        // モーダルを閉じる関数
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+    
+        // 投函モーダルを開く関数
+        function openSecondModal() {
+            closeModal('modal1');
+            openModal('modal2');
+        }
+        // 受け取りモーダルを開く関数
+        function openSecondModal1() {
+            closeModal('modal1');
+            openModal('modal3');
+        }
+        // 一覧モーダルを開く関数
+        function openSecondModal2() {
+            closeModal('modal1');
+            openModal('modal4');
+        }
+
+        function openSecondModal3() {
+            closeModal('modal2');
+            openModal('modal1');
+        }
+
+        // モーダルの外側がクリックされたときに閉じる処理
+        window.onclick = function(event) {
+            var modal1 = document.getElementById('modal1');
+            var modal2 = document.getElementById('modal2');
+            if (event.target == modal1) {
+                closeModal('modal1');
+            }
+            if (event.target == modal2) {
+                closeModal('modal2');
+            }
+            if (event.target == modal3) {
+                closeModal('modal3');
+            }
+            if (event.target == modal4) {
+                closeModal('modal4');
+            }
+        }
+    </script>
+    
+    </body>
+    </html>
+    

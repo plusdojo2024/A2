@@ -129,9 +129,8 @@
                 <input type="text" name="title" placeholder="タイトル(50字以内)"><br>
                 <textarea class="textbox" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)"></textarea><br>
             </div>
-                <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
-                <input type="button"name="submit1" value="投函"></button>
-            
+            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+            <input type="button"name="submit1" value="投函"></button>
         </div>
     </div>
     <!-- 受け取りモーダル -->
@@ -139,8 +138,10 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal3')">&times;</span>
             <p>ポスト受け取り</p><br>
-            <div class="title">タイトル</div><br>
-            <div class="maintext">本文aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><br>
+            <div class="box1">
+                <p class="taitoru">タイトル</p><br>
+                <p class="honnbunn">本文aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p><br>
+            </div>
             <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
             <input type="button"name="submit1" value="気になる"></button>
         </div>
@@ -151,6 +152,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal4')">&times;</span>
             <p>一覧ページ</p>
+            <div class="box1">
             <p id="tabcontrol">
                 <a href="#tabpage1">
                     投函した作品
@@ -159,6 +161,7 @@
                     受け取った作品
                 </a>
             </p>
+            </div>
         </div>
     </div>
 

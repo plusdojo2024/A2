@@ -45,18 +45,23 @@ input[name=title] {
   /*border-radius: 10px; /*ŽlŠp‚ÌŠp‚ðŠÛ‚­‚·‚é*/
 }
 
-.title{
+.taitoru{
   text-align: left;
-  margin: 3px 30px;
+  height: 3em;
+  width: 38em;
+  margin: 3px 5px;
 }
-.maintext{
+p.honnbunn{
 text-align: left;
+height: 13em;
 width: 38em;
-margin: 3px 30px;
+margin: 3px 5px;
 }
 
 
 .box1 {
+  padding: 0.5em 1px;
+  margin: 5px 40px;
   font-weight: bold;
   border: solid 3px #000000;
 }

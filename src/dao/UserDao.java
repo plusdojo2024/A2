@@ -98,25 +98,25 @@ public class UserDao {
 			// SQL文を完成させる
 
 				pStmt.setString(1, user.getMail());
-				pStmt.setString(2, pass);
-				pStmt.setString(3, userName);
+				pStmt.setString(2, user.getPass());
+				pStmt.setString(3, user.getUserName());
 
-			if (icon != null && !icon.equals("")) {
-				pStmt.setString(4, icon);
+			if (user.getIcon() != null && !user.getIcon().equals("")) {
+				pStmt.setString(4,user.getIcon());
 			} else {
 				pStmt.setString(4, "");
 			}
 
-			pStmt.setInt(5, openClose);
+			pStmt.setInt(5, user.getOpenClose());
 
 
-			if (introduction != null && ! introduction.equals("")) {
-				pStmt.setString(6, introduction);
+			if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
+				pStmt.setString(6, user.getIntroduction());
 			} else {
 				pStmt.setString(6, "");
 			}
 
-			pStmt.setString(7, createdAt);
+			pStmt.setString(7, user.getCreatedAt());
 
 
 			// SQL文を実行する
@@ -160,26 +160,26 @@ public class UserDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				pStmt.setString(1, newMail);
-				pStmt.setString(2, newPass);
-				pStmt.setString(3, newUserName);
+				pStmt.setString(1, user.getMail());
+				pStmt.setString(2, user.getPass());
+				pStmt.setString(3, user.getUserName());
 
-			if (newIcon != null && !newIcon.equals("")) {
-				pStmt.setString(4, newIcon);
+			if (user.getIcon() != null && !user.getIcon().equals("")) {
+				pStmt.setString(4, user.getIcon());
 			} else {
 				pStmt.setString(4, "");
 			}
 
-			pStmt.setInt(5, newOpenClose);
+			pStmt.setInt(5, user.getOpenClose());
 
 
-			if (newIntroduction != null && ! newIntroduction.equals("")) {
-				pStmt.setString(6, newIntroduction);
+			if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
+				pStmt.setString(6, user.getIntroduction());
 			} else {
 				pStmt.setString(6, "");
 			}
 
-			pStmt.setString(7, userID);
+			pStmt.setInt(7, user.getUserId());
 
 
 				// SQL文を実行する
@@ -295,15 +295,18 @@ public class UserDao {
 						} else {
 							otherUser = null;
 						}
-						//失敗したらresultはtrueのまま
+						//失敗したらotherUserはnullを入れる
 					}
 					catch (SQLNonTransientException e) {
+						otherUser = null;
 						e.printStackTrace();
 					}
 					catch (SQLException e) {
+						otherUser = null;
 						e.printStackTrace();
 					}
 					catch (ClassNotFoundException e) {
+						otherUser = null;
 						e.printStackTrace();
 					}
 					finally {

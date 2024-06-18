@@ -5,55 +5,59 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザ管理|レコレコ</title>
-<link rel="stylesheet" type="text/css" href="/A2/css/common.css">
-<link rel="stylesheet" type="text/css" href="/A2/css/userManage.css">
+<link rel="stylesheet" type="text/css" href="common.css">
+<link rel="stylesheet" type="text/css" href="userManage.css">
 </head>
 <header>
-        <nav class="nav">
-            <ul>
-                <li>
-                    <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
-                </li>
-                <li>
-                    <form action="/A2/SearchServlet" method="post">
-                    <select name="select">
-                        <option value="all">すべて</option>
-                        <option value="movie">映画</option>
-                        <option value="dorama">ドラマ</option>
-                        <option value="anime">アニメ</option>
-                        <option value="sonota1">その他（映像）</option>
-                        <option value="novel">小説</option>
-                        <option value="comics">マンガ</option>
-                        <option value="sonota2">その他（書籍）</option>
-                        <option value="game">ゲーム</option>
-                    </select>
-                    <input type="text" name="search" placeholder="コンテンツ名を検索・登録">
-                    <input type="image" src="image/search.png" width="20px" height="20px" alt="虫眼鏡">
-                </form>
-                </li>
-                <li><a href=""><img src="/A2/img/button_post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
-                <div class="co">
-                <li><a href=""><img src="/A2/img/login1.png" width="75px" height="75px" name="icon" alt="アイコン">
-                <ul class="dropdown-menu">
-                    <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                    <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
-                    <li><a href="/A2/LoginServlet">ログアウト</a></li>
-                </ul>
-                </a>
-                </div>
+    <nav class="nav">
+        <ul>
+            <li>
+                <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
             </li>
-            </ul>
-        </nav>
-    </header>
+            <li>
+                <form action="/A2/SearchServlet"  class="search-form" method="post">
+                    <div class="search-box">
+                        <select name="select">
+                            <option value="all">すべて</option>
+                            <option value="movie">映画</option>
+                            <option value="dorama">ドラマ</option>
+                            <option value="anime">アニメ</option>
+                            <option value="sonota1">その他（映像）</option>
+                            <option value="novel">小説</option>
+                            <option value="comics">マンガ</option>
+                            <option value="sonota2">その他（書籍）</option>
+                            <option value="game">ゲーム</option>
+                        </select>
+                        <input type="text" name="search"  class="search-input" placeholder="コンテンツ名を検索・登録">
+                        <input type="image" src="/A2/img/button_search.png" class="search-button" alt="虫眼鏡">
+                    </div>
+                </form>
+            </li>
+            <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+            <div class="co">
+                <div class="user-container"></div>
+                    <li><a href=""><img src="/A2/img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span class="user-name">recoreco</span>
+                        <ul class="dropdown-menu">
+                            <li><a href="/A2/MyPageServlet">マイページ</a></li>
+                            <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                            <li><a href="/A2/LoginServlet">ログアウト</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </ul>
+    </nav>
+</header>
 <body>
 <body>
         <h3>ユーザ管理</h3>
-        <form id="user_management" method="get" action="/A2/HomeServlet">
+        <form id="user_management" method="get" action="home.html">
             <table class="table">
                 <tr>
                     <td>
-                        <label class="mail">ユーザID（メールアドレス）</label><br>
-                        <input type="email" name="mail">
+                        <label class="id">ユーザID（メールアドレス）</label><br>
+                        <input type="email" name="id">
                     </td>
                 </tr>
                 <tr>
@@ -78,11 +82,11 @@
                     <td>
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
-                        <img src="/A2/img/icon_default.png"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                        <img src="icon_default.png"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                             <button class="delete-button" onclick="deleteItem()">
-                                <img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
+                                <img src="point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
                                 </button>
 
                     </td>
@@ -133,14 +137,14 @@
                 reader.readAsDataURL(selectedFile);
             } else {
                 // ファイルが選択されていない場合は元のアイコンを表示
-                document.getElementById('preview').src = "/A2/img/icon_default.png";
+                document.getElementById('preview').src = "icon_default.png";
             }
         }
 
          // 削除ボタンをクリックしたときに呼び出される関数
          function deleteItem() {
             // 元のアイコン画像のパスを設定
-            document.getElementById('preview').src = "/A2/img/icon_default.png";
+            document.getElementById('preview').src = "icon_default.png";
             // ファイル選択のinput要素もリセットする場合は次の行を追加
             document.querySelector('input[type="file"]').value = null;
 
@@ -150,4 +154,4 @@
 
         </script>
 </body>
-</html>
+</html>>

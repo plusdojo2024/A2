@@ -1,59 +1,5 @@
 @charset "UTF-8";
 
-/* メニューの初期状態を非表示に */
-header .nav .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #cee9ef;
-    width: 200px;
-    margin: 0 50px 0 30px;
-    font-size: 1em;
-    text-align: center; /* テキストを中央揃え */
-    box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.2);
-    padding: 0px  20px 0px  10px;
-    z-index: 1;
-    left: -50px; /* メニューを左に20ピクセル移動 */
-}
-
-header .nav .dropdown-menu li {
-    border-bottom: 1px solid #545454; /* 各項目の下に線を追加 */
-}
-
-header .nav .dropdown-menu li:last-child {
-    border-bottom: none; /* 最後の項目の下線を削除 */
-}
-
-header .nav .dropdown-menu li a {
-    display: block; /* リンクをブロック要素にすることで全体をクリック可能に */
-    padding: 3px 10px 10px 10px; /* リンクの内側の余白 */
-    text-decoration: none; /* 下線を削除 */
-    color: #545454; /* リンクの色 */
-}
-.co{
-    position: relative;
-    display: inline-block;
-    margin: 0 100px 0 10px;
-}
-
-.dropdown-menu a {
-    color: #545454;
-    background-color: #cee9ef;
-    font-size: 0.8m;
-    text-decoration: none;
-}
-
-/* アイコン画像をホバーした際にメニューを表示 */
-.nav li:hover .dropdown-menu {
-    display: block;
-}
-
-h1 a {
-    color: #ffffff;
-    margin: 3px 0 0 0 ;
-    font-size: 38px;
-    text-decoration: none;
-}
-
 h3 {
     color: #ffffff;
     background-color: #B3C8CF;
@@ -93,39 +39,7 @@ label {
     gap: 8px;
 }
 
-/* 削除ボタンのデザイン */
-.delete-button {
-    position: relative;
-    bottom: 80px;
-    border: 1px solid black;
-    margin: 10px 30px 10px 400px;
-    padding: 5px;
-    background-color: #ffffff;
-    display: flex; /* 複数の要素を横に並べるため */
-    align-items: center;
-    border-radius: 10px; /*四角の角を丸くする*/
-    align-items: center; /* 中央に配置 */
-    gap: 8px;
-}
-
-select[name=select] {
-    height: 4.5em;
-    width: 10em;
-    border: 1px solid #ccc;
-    color: #ffffff;
-    background-color: #54A3BF;
-    border-radius: 20px; /*ジャンル欄の角を丸くする*/
-}
-
-input[name=search] {
-    height: 4em;
-    width: 30em;
-    margin: 8px 0 0 0;
-    border: 1px solid #ccc;
-    border-radius: 20px; /*検索欄の角を丸くする*/
-}
-
-input[name=mail], input[name=pass], input[name=name] {
+input[name=id], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;

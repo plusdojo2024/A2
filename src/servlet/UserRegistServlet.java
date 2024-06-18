@@ -21,7 +21,7 @@ public class UserRegistServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("mail") == null) {
+		if (session.getAttribute("loginUser") == null) {
 			response.sendRedirect("/A2/LoginServlet");
 			return;
 		}
@@ -57,20 +57,23 @@ public class UserRegistServlet extends HttpServlet{
 	    //登録処理を行う
 	    UserDao uDao = new UserDao();
 	    //メールアドレスの確認処理
-	    boolean mail_id = uDao.selsect(mail);
+	    boolean mail_id = uDao.checkMail(mail);
 
 	    if(mail_id) {
 	    	// すでに登録されているメールアドレスの場合、登録失敗としてフォワードする
-            request.setAttribute("errorMessage", "このメールアドレスはすでに使用されています。");
+	    	String errorMessage = "このメールアドレスはすでに使用されています。";
+            request.setAttribute("errorMessage",errorMessage );
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegist.jsp");
             dispatcher.forward(request, response);
 	    } else {
 	    	//登録が成功した場合
-		    boolean success = uDao.insert(user);
+		    boolean success = uDao.userResist(user);
 	      if(success) {
 	    	response.sendRedirect(request.getContextPath() + "/LoginServlet");
 	    } else {
 	    	// 新規ユーザ登録ページにフォワードする
+	    	String errorMessage = "登録に失敗しました。";
+	    	request.setAttribute("errorMessage",errorMessage );
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegist.jsp");
 	    	dispatcher.forward(request, response);
 	      }

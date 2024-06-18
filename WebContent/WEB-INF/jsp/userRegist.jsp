@@ -12,7 +12,7 @@
   <nav class="nav">
     <ul>
       <li>
-        <h1>レコレコ</h1>
+        <h1><a href="/A2/UserRegistServlet">レコレコ</a></h1>
       </li>
     </ul>
   </nav>

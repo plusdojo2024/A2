@@ -21,7 +21,7 @@ public class UserManageServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("mail") == null) {
+		if (session.getAttribute("loginUser") == null) {
 			response.sendRedirect("/A2/LoginServlet");
 			return;
 		}
@@ -29,12 +29,6 @@ public class UserManageServlet extends HttpServlet{
 		//セッションスコープからユーザIDを取ってくる
 		User user = (User)session.getAttribute("User");
 		int user_id = user.getUserId();
-
-		//パスワードを調べてスコープに入れる
-		UserDao uDao = new UserDao();
-		String pass = uDao.selectPass(pass);
-
-		session.setAttribute("pass", pass);
 
 		//マイページのフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/A2/jsp/home.jsp");
@@ -45,14 +39,10 @@ public class UserManageServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("mail") == null) {
+		if (session.getAttribute("loginUser") == null) {
 		response.sendRedirect("/A2/LoginServlet");
 		return;
 		}
-
-		//セッションスコープからユーザIDを取ってくる
-		User userId = (User)session.getAttribute("User");
-		int user_id = userId.getUserId();
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
@@ -77,26 +67,41 @@ public class UserManageServlet extends HttpServlet{
 
 	    //登録処理を行う
 	    UserDao uDao = new UserDao();
-	    boolean success = uDao.insert(user);
+	  //メールアドレスの確認処理
+	    boolean mail_id = uDao.checkMail(mail);
+	    boolean success = uDao.userResist(user);
 
-	    //更新または削除を行う
-	    if(request.getParameter("update").equals("更新")) {
-	    	if(success) {
-	    		response.sendRedirect(request.getContextPath() + "/UserManageServlet");
-	    	} else {
-	    		// ユーザ管理ページにフォワードする
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserManage.jsp");
-		    	dispatcher.forward(request, response);
-	    	}
-	    }
-	    else if(request.getParameter("delete1").equals("削除") || request.getParameter("delete1").equals("Yes")) {
-	    	if(success) {
-	    		response.sendRedirect(request.getContextPath() + "/LoginServlet");
-	    	} else {
-	    		// ユーザ管理ページにフォワードする
-		    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserManage.jsp");
-		    	dispatcher.forward(request, response);
-	    	}
-	    }
-	}
+
+	    if(mail_id) {
+	    	// すでに登録されているメールアドレスの場合、登録失敗としてフォワードする
+	    	String errorMessage = "このメールアドレスはすでに使用されています。";
+            request.setAttribute("errorMessage",errorMessage );
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegist.jsp");
+            dispatcher.forward(request, response);
+	    } else {
+	    	//更新または削除を行う
+	    	if(request.getParameter("update").equals("更新")) {
+	    		if(success) {
+	    			response.sendRedirect(request.getContextPath() + "/UserManageServlet");
+	    			} else {
+	    				String errorMessage = "登録に失敗しました。";
+	    				request.setAttribute("errorMessage",errorMessage );
+	    				// ユーザ管理ページにフォワードする
+	    				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserManage.jsp");
+	    				dispatcher.forward(request, response);
+	    				}
+	    			}
+	    			else if(request.getParameter("delete1").equals("削除") || request.getParameter("delete1").equals("Yes")) {
+	    					if(success) {
+	    							response.sendRedirect(request.getContextPath() + "/LoginServlet");
+	    					} else {
+	    							String errorMessage = "登録に失敗しました。";
+	    							request.setAttribute("errorMessage",errorMessage );
+	    							// ユーザ管理ページにフォワードする
+	    							RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserManage.jsp");
+	    							dispatcher.forward(request, response);
+	    					}
+	    			}
+	    		}
+		}
 }

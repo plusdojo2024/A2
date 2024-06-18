@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+h3 {
+    color: #ffffff;
+    background-color: #B3C8CF;
+    margin: 60px 400px 0px 400px;
+    padding: 10px 0 10px 0 ;
+    text-align: center;
+}
+
+.table {
+    background-color: #ffffff;
+    margin: 0px 100px 500px 400px;
+    padding: 10px 62px 50px 63.5px ;
+}
+
+.table  a {
+    margin: 0 30px 0 30px;
+    color: #696969;
+    text-decoration: none;
+}
+
+label {
+    font-size: 1.2em;
+    margin: 0 30px 0 30px;
+}
+
+.required {
+    color: #ffa500;
+}
+
+.login {
+    margin: 10px 40px 0px 30px;
+}
+
+.icon {
+    display: flex;
+    align-items: center; /* 中央に配置 */
+    gap: 8px;
+}
+
+input[name=id], input[name=pass], input[name=name] {
+    border: 1px solid #ccc;
+    height: 3em;
+    width: 38em;
+    margin: 10px 30px;
+    background-color: #dcdcdc;
+}
+
+input[name=upload] {
+    border: 2px solid #000000;
+    margin: 0px 5px 0px 5px;
+    padding: 10px 200px 10px 10px;
+    width: 100px;
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 0.8em;
+    border-radius: 10px;
+}
+
+input[name=my_introduction] {
+    border: 1px solid #ccc;
+    height: 10em;
+    width: 38em;
+    margin: 10px 30px;
+    background-color: #dcdcdc;
+    border-radius: 10px; /*四角の角を丸くする*/
+}
+
+
+
+/* ラジオボタンのスタイル */
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* 円形のボタン */
+    border: 2px solid #696969; /* 枠線の色 */
+    outline: none;
+    cursor: pointer;
+}
+
+/* ラジオボタンが選択されたときのスタイル */
+input[type="radio"]:checked {
+    background-color: #35AFDB; /* 選択されたときの背景色 */
+    padding: 4px; /* 枠線と背景の間に空白を入れる */
+}
+
+/* ラジオボタンのラベルのスタイル */
+input[type="radio"] + label {
+    font-size: 1em;
+    color: #696969;
+    margin-left: 20px; /* ラベルとボタンの間隔 */
+    cursor: pointer;
+}
+
+input[name="update"] {
+    border: none;
+    margin: 30px 19px 10px 19px;
+    padding: 20px 60px 20px 50px;
+    width: 255px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1.2em;
+    border-radius: 20px; /*ログインボタンの角を丸くする*/
+}
+
+input[name="delete1"] {
+    border: none;
+    margin: 30px 18px 10px 18px;
+    padding: 20px 60px 20px 50px;
+    width: 255px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1.2em;
+    border-radius: 20px; /*ログインボタンの角を丸くする*/
+}

@@ -1,0 +1,131 @@
+
+main {
+    height: 50%; /* 画面の半分の高さ */
+    display: flex;
+    flex-direction: row; /* 横並び */
+    justify-content: space-around; /* 中央に配置 */
+    align-items: center; /* 中央に配置 */
+}
+
+
+.ranking {
+    background-color: #E5DDC5;
+    border-radius: 20px; /*四角の角を丸くする*/
+    margin-top: 30px;
+    padding: 30px;
+    margin-bottom: 10px;
+    
+}
+
+.ranking h2 {
+    color: #ffffff;
+    font-size: 30px;
+    margin: 0; /* h2 の余白をリセット */
+}
+
+
+.ranking h2 {
+    color: #ffffff;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+h3 {
+    font-size: 30px;
+    color: #545454;
+    margin: -100px 10px 150px 130px;
+}
+
+h4{
+    margin: -150px 10px 120px 130px;
+}
+
+h5 {
+    margin: -146px 10px 125px 455px;
+}
+
+
+.ranking .ok {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.table-wrapper {
+    
+    overflow: auto; /* コンテンツがクラスを超えたらスクロール */
+    max-height: 60vh; /* 最大の高さを画面の80%までに制限 */
+}
+
+.table {
+    background-color: #dcdcdc;
+    padding: 10px 30px 10px 30px;
+}
+
+.goodranking {
+    border: #545454;
+    border-radius: 20px; /*検索欄の角を丸くする*/
+    display: flex;
+    padding: 10px 90px 10px 90px;
+    background-color: #ffffff;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.goodranking img {
+    margin: 10px 60px 10px 20px; /* 画像とテキストの間隔を調整 */
+    width: 60px;
+    height: 60px;
+}
+
+
+
+.timeline {
+    border: #545454;
+    border-radius: 20px; /*検索欄の角を丸くする*/
+    display: flex;
+    padding: 20px 100px 20px 100px;
+    background-color: #ffffff;
+    align-items: center; /* 中央に配置 */
+    margin: 5px 0;
+    
+}
+
+.review {
+    margin-top: 5px;
+    margin-bottom: -100px;
+}
+
+.timeline1 {
+    width: 90px;
+    height: 100px;
+    margin: 0 10px 0 -90px;
+}
+
+.timeline p {
+    margin-bottom: 77px;
+    margin-left: 10px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%; /*アイコンを丸に*/
+}
+
+.icon1 {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%; /*アイコンを丸に*/
+    margin-bottom: 75px;
+}
+
+
+.heart {
+    width: 20px;
+    height: 20px;
+    margin: -120px 10px 120px 430px;
+}
+
+

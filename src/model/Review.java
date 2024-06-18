@@ -2,32 +2,34 @@ package model;
 import java.io.Serializable;
 public class Review implements Serializable {
 
-	private int review_id;		//レビューID
-	private int user_id;		//ユーザID
-	private int contents_id;	//コンテンツID
+	private int reviewId;		//レビューID
+	private int userId;		//ユーザID
+	private int contentsId;	//コンテンツID
 	private String title;		//タイトル
 	private String review;		//レビュー内容
 	private int good;			//いいね
-	private String created_at;	//登録日時
-	private String updated_at;	//更新日時
+	private String createdAt;	//登録日時
+	private String updatedAt;	//更新日時
 
-	public int getReview_id() {
-		return review_id;
+
+
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public int getContents_id() {
-		return contents_id;
+	public int getContentsId() {
+		return contentsId;
 	}
-	public void setContents_id(int contents_id) {
-		this.contents_id = contents_id;
+	public void setContentsId(int contentsId) {
+		this.contentsId = contentsId;
 	}
 	public String getTitle() {
 		return title;
@@ -47,18 +49,19 @@ public class Review implements Serializable {
 	public void setGood(int good) {
 		this.good = good;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
+
 
 
 }

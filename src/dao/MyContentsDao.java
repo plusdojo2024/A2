@@ -11,11 +11,11 @@ import java.util.List;
 
 import model.MyContents;
 
-//レビュー表示のための情報を取ってくるDAO
+//マイコンテンツ表示のための情報を取ってくるDAO
 public class MyContentsDao {
 
-    //ユーザIDでレビューを検索し、指定したユーザが書いたレビューとそれを書いたユーザ情報の一覧のリストを返す(いいねの情報のみ別途取得)
-    public List<MyContents> user1Select(int userId) {
+    //ユーザIDで検索し、コレクションのリストを取得する
+    public List<MyContents> selectCollection(int userId) {
 		Connection conn = null;
 		List<MyContents> collectionList = new ArrayList<MyContents>();
 
@@ -40,17 +40,15 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("r.my_contents_id"));
-				record.setContentsId(rs.getInt("r.contents_id"));
-				record.setUserId(rs.getInt("r.user_id"));
-				record.setStatus(rs.getInt("r.status"));
-				record.setTitle(rs.getString("r.title"));
-				record.setGenre(rs.getString("r.genre"));
-				record.setCreator(rs.getString("r.creator"));
-				record.setYear(rs.getString("u.year"));
-				record.setImage(rs.getString("u.image"));
-				record.setCreatedAt(rs.getString("u.created_at"));
-				record.setUpdatedAt(rs.getString("u.updated_at"));
+				record.setUserId(rs.getInt("m.user_id"));
+				record.setContentsId(rs.getInt("m.contents_id"));
+				record.setStatus(rs.getInt("m.status"));
+				record.setTitle(rs.getString("c.title"));
+				record.setRuby(rs.getString("c.ruby"));
+				record.setGenre(rs.getString("c.genre"));
+				record.setCreator(rs.getString("c.creator"));
+				record.setYear(rs.getString("c.year"));
+				record.setImage(rs.getString("c.image"));
 
 				collectionList.add(record);
 			}
@@ -82,7 +80,7 @@ public class MyContentsDao {
 
 
     //ユーザIDでレビューを検索し、指定したユーザが書いたレビューとそれを書いたユーザ情報の一覧のリストを返す(いいねの情報のみ別途取得)
-    public List<MyContents> user2elect(int userId) {
+    public List<MyContents> selectWishList(int userId) {
 		Connection conn = null;
 		List<MyContents> wishList = new ArrayList<MyContents>();
 
@@ -107,17 +105,15 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("r.my_contents_id"));
-				record.setContentsId(rs.getInt("r.contents_id"));
-				record.setUserId(rs.getInt("r.user_id"));
-				record.setStatus(rs.getInt("r.status"));
-				record.setTitle(rs.getString("r.title"));
-				record.setGenre(rs.getString("r.genre"));
-				record.setCreator(rs.getString("r.creator"));
-				record.setYear(rs.getString("u.year"));
-				record.setImage(rs.getString("u.image"));
-				record.setCreatedAt(rs.getString("u.created_at"));
-				record.setUpdatedAt(rs.getString("u.update_at"));
+				record.setUserId(rs.getInt("m.user_id"));
+				record.setContentsId(rs.getInt("m.contents_id"));
+				record.setStatus(rs.getInt("m.status"));
+				record.setTitle(rs.getString("c.title"));
+				record.setRuby(rs.getString("c.ruby"));
+				record.setGenre(rs.getString("c.genre"));
+				record.setCreator(rs.getString("c.creator"));
+				record.setYear(rs.getString("c.year"));
+				record.setImage(rs.getString("c.image"));
 
 				wishList.add(record);
 			}

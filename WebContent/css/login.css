@@ -11,7 +11,7 @@ h3 {
 .table {
     background-color: #ffffff;
     margin: 0px 100px 500px 400px;
-    padding: 50px 96px 50px 50px ;
+    padding: 50px 86px 50px 50px ;
 }
 
 .table  a {
@@ -35,7 +35,7 @@ input[name=id], input[name=pass], input[name=name] {
 
 input[name=submit] {
     border: none;
-    margin: 30px 30px 10px 30px;
+    margin: 30px 30px 10px 50px;
     padding: 20px 60px 20px 50px;
     width: 500px;
     color: #ffffff;

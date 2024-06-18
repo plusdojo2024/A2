@@ -44,9 +44,9 @@ public class MyPageServlet extends HttpServlet {
     		ReviewDao rDao = new ReviewDao();
     		GoodDao gDao = new GoodDao();
     	//投稿したレビューの総数を取得する
-    		int reviewCount = rDao.reviewCount(userId);
+    		int reviewCount = rDao.countTotalReview(userId);
     	//レビューにもらったいいねの総数を取得する
-    		int allGoodCount = gDao.allGoodCount(userId);
+    		int allGoodCount = gDao.countTotalGood(userId);
     	// UserのBeansに入れる
     		user.setReviewCount(reviewCount);
     		user.setAllGoodCount(allGoodCount);

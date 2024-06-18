@@ -33,7 +33,7 @@ public class OtherMyPageServlet extends HttpServlet {
 
     	// リクエストパラメータを取得する
     	request.setCharacterEncoding("UTF-8");
-		String otherUserId = request.getParameter("id");
+		int otherUserId = Integer.parseInt(request.getParameter("id"));
 
     	//他ユーザのインスタンスを作成する
 		UserDao uDao = new UserDao();

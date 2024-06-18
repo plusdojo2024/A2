@@ -66,8 +66,7 @@ FROM favorite_user
 WHERE user_id=?) AS f
 ON r.user_id_writer=f.user_id_favorite
 WHERE f.user_id=?
-AND r.created_at
-
+AND r.created >= (NOW() - INTERVAL 7 DAY);
 
 【いいねDAO】
 いいねの総数を表示させる

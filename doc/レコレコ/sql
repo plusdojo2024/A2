@@ -54,7 +54,7 @@ AND user_id=?;
 
 
 
-【タイムラインDAO】分ける必要ある？？
+【タイムラインDAO】
 タイムラインのレビューを表示させる（いいねはなし）
 SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, u.user_name, u.icon, f.user_id
 FROM review AS r
@@ -65,7 +65,8 @@ LEFT JOIN
 FROM favorite_user
 WHERE user_id=?) AS f
 ON r.user_id_writer=f.user_id_favorite
-WHERE r.user_id_writer=?
+WHERE f.user_id=?
+AND r.created_at
 
 
 【いいねDAO】

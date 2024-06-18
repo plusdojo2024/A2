@@ -2,25 +2,26 @@ package model;
 import java.io.Serializable;
 public class Post implements Serializable{
 
-	private int post_id;	//ポストID
-	private int user_id;	//ユーザID
+	private int postId;	//ポストID
+	private int userId;	//ユーザID
 	private String title;	//タイトル
 	private String recommend;	//オススメ
 	private int interest;	//気になる！
-	private String created_at;	//登録日時
-	private String updated_at;	//更新日時
+	private String createdAt;	//登録日時
+	private String updatedAt;
 
-	public int getPost_id() {
-		return post_id;
+
+	public int getPostId() {
+		return postId;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getTitle() {
 		return title;
@@ -40,17 +41,16 @@ public class Post implements Serializable{
 	public void setInterest(int interest) {
 		this.interest = interest;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public String getUpdated_at() {
-		return updated_at;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-
 }

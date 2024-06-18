@@ -35,8 +35,8 @@ SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image,
 FROM review AS r
 (INNER) JOIN user AS u
 ON r.user_id_writer=u.user_id
-WHERE r.user_id_writer=?
-OR r.contents_id=?;
+WHERE r.user_id_writer=? AND u.flag=1
+OR r.contents_id=? AND u.flag=1;
 
 
 【レビューディスプレイDAO】
@@ -66,6 +66,7 @@ FROM favorite_user
 WHERE user_id=?) AS f
 ON r.user_id_writer=f.user_id_favorite
 WHERE f.user_id=?
+AND u.flag=1
 AND r.created >= (NOW() - INTERVAL 7 DAY);
 
 【いいねDAO】

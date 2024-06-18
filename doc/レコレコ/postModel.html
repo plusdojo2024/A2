@@ -6,100 +6,6 @@
     <link rel="stylesheet" href="css/postmodal.css">
     <meta charset="UTF-8">
     <title>ポストモーダル</title>
-    <style>
-        /* モーダルのスタイル */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            text-align: center;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 40%;
-            height: 50%;
-            border-radius: 13px;
-            box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
-            margin-top: 125px;
-            margin-bottom: 125px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .btn {
-            display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        #tabcontrol a {
-    margin-top: 30px;
-    line-height: 4em;
-    height: 40px;
-    width:220px;
-    display: inline-block;
-    /* インラインブロック化 */
-    border-width: 1px 1px 0px 1px;
-    /* 下以外の枠線を引く */
-    border-style: solid;
-    text-align: center;
-    /* 枠線の種類：実線 */
-    border-color: white;
-    /* 枠線の色：黒色 */
-    border-radius: 20px 20px 0px 0px;
-    /* 枠線の左上角と右上角だけを丸く */
-    padding: 0px 30px 30px 0px;
-    /* 内側の余白 */
-    text-decoration: none;
-    /* リンクの下線を消す */
-    color: black;
-    /* 文字色：黒色 */
-    background-color: gray;
-    /* 背景色：白色 */
-    font-weight: bold;
-    /* 太字 */
-    position: relative;
-    /* JavaScriptでz-indexを調整するために必要 */
-}
-
-/*必須*/
-#tabcontrol a.selected {
-    background-color: white;
-}
-
-    </style>
 </head>
 <body>
 
@@ -107,18 +13,18 @@
 <button id="openModalBtn" class="btn">レビュー</button>
 
 <!-- 最初のモーダル -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('modal1')">&times;</span>
-        ポスト
-        <div class="modalmain">
-          <br>
-          <input type="button"name="submit"  value="投函"onclick="openSecondModal()"></button><br>
-          <input type="button" name="submit" value="受け取り"onclick="openSecondModal1()"></button><br>
-          <input type="button" name="submit" value="一覧"onclick="openSecondModal2()"></button>
-          </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            ポスト
+            <div class="modalmain">
+            <br>
+            <input type="button"name="submit"  value="投函"onclick="openSecondModal()"></button><br>
+            <input type="button" name="submit" value="受け取り"onclick="openSecondModal1()"></button><br>
+            <input type="button" name="submit" value="一覧"onclick="openSecondModal2()"></button>
+            </div>
+        </div>
     </div>
-</div>
     
     <!-- 投函モーダル -->
     <div id="modal2" class="modal">
@@ -129,7 +35,7 @@
                 <input type="text" name="title" placeholder="タイトル(50字以内)"><br>
                 <textarea class="textbox" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)"></textarea><br>
             </div>
-            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+            <input type="button"name="submit1" value="戻る"onclick="openSecondModal3()"></button>
             <input type="button"name="submit1" value="投函"></button>
         </div>
     </div>
@@ -137,22 +43,22 @@
     <div id="modal3" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal3')">&times;</span>
-            <p>ポスト受け取り</p><br>
+            <p>ポスト受け取り</p>
             <div class="box1">
-                <p class="taitoru">タイトル</p><br>
-                <p class="honnbunn">本文aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p><br>
+                <textarea class="textbox1" name="title" placeholder="">タイトル</textarea><br>
+                <textarea class="textbox" placeholder="">本文</textarea><br>
             </div>
-            <input type="button"name="submit1" value="戻る"onclick="openSecondModa3()"></button>
+            <input type="button"name="submit1" value="戻る"onclick="openSecondModal4()"></button>
             <input type="button"name="submit1" value="気になる"></button>
         </div>
     </div>
 
     <!-- 一覧モーダル -->
     <div id="modal4" class="modal">
-        <div class="modal-content">
+        <div class="modal1-content">
             <span class="close" onclick="closeModal('modal4')">&times;</span>
             <p>一覧ページ</p>
-            <div class="box1">
+            <div class="box2">
             <p id="tabcontrol">
                 <a href="#tabpage1">
                     投函した作品
@@ -161,10 +67,92 @@
                     受け取った作品
                 </a>
             </p>
+            <div id="tabbody">
+                <div id="tabpage1" class="area selected">
+                    <div class="contents">
+                        <h3 class="title3">FINAL FANTASY X</h3>
+                        <div class="maintext">
+                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                        </div>
+                    </div>
+
+                    <div class="contents">
+                        <h3 class="title3">FINAL FANTASY X</h3>
+                        <div class="maintext">
+                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                        </div>
+                    </div>
+
+                    <div class="contents">
+                        <h3 class="title3">FINAL FANTASY X</h3>
+                        <div class="maintext">
+                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="tabpage2" class="area ">
+                    <div class="contents">
+                        <h3 class="title3">ベルセルク</h3>
+                        <div class="maintext">
+                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="button"name="submit1" value="戻る"onclick="openSecondModal5()"></button>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- tabjs -->
+    <script type="text/javascript">
+        // ---------------------------
+        // ▼A：対象要素を得る
+        // ---------------------------
+        var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+        var pages = document.getElementById('tabbody').getElementsByClassName('area');
+
+        // ---------------------------
+        // ▼B：タブの切り替え処理
+        // ---------------------------
+        function changeTab() {
+            var targetid = this.getAttribute('href').substring(1);
+
+            // 対象のタブページだけを表示する
+            for (var i = 0; i < pages.length; i++) {
+                if (pages[i].id === targetid) {
+                    pages[i].classList.add('selected');
+                } else {
+                    pages[i].classList.remove('selected');
+                }
+            }
+
+            // クリックされたタブにselectedクラスを追加し、他のタブから削除する
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('selected');
+            }
+            this.classList.add('selected');
+
+            // ページ遷移しないようにfalseを返す
+            return false;
+        }
+
+        // ---------------------------
+        // ▼C：すべてのタブに対して、クリック時にchangeTab関数が実行されるよう指定する
+        // ---------------------------
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].onclick = changeTab;
+        }
+
+        // ---------------------------
+        // ▼D：最初は先頭のタブを選択しておく
+        // ---------------------------
+        tabs[0].classList.add('selected');
+    </script>
+    <!-- modaljs -->
     <script>
         // モーダルを開くボタンを取得
         var openModalBtn = document.getElementById("openModalBtn");
@@ -201,9 +189,19 @@
             closeModal('modal1');
             openModal('modal4');
         }
-
+        // 戻るボタン
         function openSecondModal3() {
             closeModal('modal2');
+            openModal('modal1');
+        }
+
+        function openSecondModal4() {
+            closeModal('modal3');
+            openModal('modal1');
+        }
+
+        function openSecondModal5() {
+            closeModal('modal4');
             openModal('modal1');
         }
 

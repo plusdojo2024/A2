@@ -72,6 +72,7 @@ WHERE f.user_id=?
 AND u.flag=1
 AND r.created >= (NOW() - INTERVAL 7 DAY);
 
+
 【いいねDAO】
 いいねの総数を表示させる
 SELECT count(*),
@@ -95,7 +96,7 @@ ORDER BY count(r.user_id_writer)
 
 
 
-【ユーザDAOまたはレビューDAO】
+【レビューDAO】
 
 レビューの総数を表示させる
 

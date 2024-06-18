@@ -23,7 +23,7 @@ public class ContentsDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// INSERTT文を準備する
-				String sql = "INSERT INTO contents(Title,Ruby,Image,Genre,Year,Creator,CreatedAt) VALUES (?,?,?,?,?,?,?)";
+				String sql = "INSERT INTO contents(title,ruby,image,genre,year,creator,created_at) VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1, contents.getTitle());
 				pStmt.setString(2, contents.getRuby());

@@ -30,7 +30,7 @@ public class MyPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// もしもログインしていなかったらログインサーブレットにリダイレクトする
     	HttpSession session = request.getSession();
-    	if (session.getAttribute("User") == null) {
+    	if (session.getAttribute("loginUser") == null) {
     		response.sendRedirect("/A2/LoginServlet");
     		return;
     	}
@@ -39,15 +39,15 @@ public class MyPageServlet extends HttpServlet {
     	User user = (User)session.getAttribute("user");
     	int userId = user.getUserId();
 
-    	//実績を取得してリクエストスコープに入れる
+    	//実績を取得する
     	//DAOを生成
     		ReviewDao rDao = new ReviewDao();
     		GoodDao gDao = new GoodDao();
     	//投稿したレビューの総数を取得する
-    		int reviewCount = rDao.reviewCount();
+    		int reviewCount = rDao.reviewCount(userId);
     	//レビューにもらったいいねの総数を取得する
-    		int allGoodCount = gDao.allGoodCount();
-    	// リクエストスコープに格納する(UserのBeansに入れるようにする？)
+    		int allGoodCount = gDao.allGoodCount(userId);
+    	// UserのBeansに入れる
     		user.setReviewCount(reviewCount);
     		user.setAllGoodCount(allGoodCount);
 
@@ -69,7 +69,7 @@ public class MyPageServlet extends HttpServlet {
 
             //いいね数を取得する
             	for(ReviewDisplay reviewDisplay: reviewList) {
-            		int reviewId = reviewDisplay.getReviewID();
+            		int reviewId = reviewDisplay.getReviewId();
             		reviewDisplay.setGoodCount(rdDao.countGood(reviewId));
             		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
             	}

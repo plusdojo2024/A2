@@ -30,5 +30,6 @@ public class FavoriteUser implements Serializable {
 	}
 	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
-	}		//更新日時
+	}
+}
 

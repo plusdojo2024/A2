@@ -15,7 +15,7 @@ import model.ReviewDisplay;
 public class ReviewDisplayDao {
 
     //ユーザIDでレビューを検索し、指定したユーザが書いたレビューとそれを書いたユーザ情報の一覧のリストを返す(いいねの情報のみ別途取得)
-    public List<ReviewDisplay> userSelect(int user_id_writer) {
+    public List<ReviewDisplay> userSelect(int userIdWriter) {
 		Connection conn = null;
 		List<ReviewDisplay> reviewList = new ArrayList<ReviewDisplay>();
 
@@ -31,7 +31,7 @@ public class ReviewDisplayDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, user_id_writer);
+			pStmt.setInt(1, userIdWriter);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -40,14 +40,14 @@ public class ReviewDisplayDao {
 			while (rs.next()) {
 				ReviewDisplay record = new ReviewDisplay();
 
-				record.setReview_id(rs.getInt("r.review_id"));
-				record.setUser_id_writer(rs.getString("r.user_id_writer"));
-				record.setContents_id(rs.getString("r.contents_id"));
+				record.setReviewId(rs.getInt("r.review_id"));
+				record.setUserIdWriter(rs.getInt("r.user_id_writer"));
+				record.setContentsId(rs.getInt("r.contents_id"));
 				record.setTitle(rs.getString("r.title"));
 				record.setReview(rs.getString("r.review"));
 				record.setImage(rs.getString("r.image"));
-				record.setCreated_at(rs.getString("r.created_at"));
-				record.setUser_name(rs.getString("u.user_name"));
+				record.setCreatedAt(rs.getString("r.created_at"));
+				record.setUserName(rs.getString("u.user_name"));
 				record.setIcon(rs.getString("u.icon"));
 
 				reviewList.add(record);
@@ -80,7 +80,7 @@ public class ReviewDisplayDao {
 
 
     //コンテンツIDでレビューを検索し、指定したコンテンツに対するレビューとそれを書いたユーザ情報のリストを返す(いいねの情報のみ別途取得)
-    public List<ReviewDisplay> contentsSelect(int contents_id) {
+    public List<ReviewDisplay> contentsSelect(int contentsId) {
 		Connection conn = null;
 		List<ReviewDisplay> reviewList = new ArrayList<ReviewDisplay>();
 
@@ -96,7 +96,7 @@ public class ReviewDisplayDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, user_id_writer);
+			pStmt.setInt(1, contentsId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -105,14 +105,14 @@ public class ReviewDisplayDao {
 			while (rs.next()) {
 				ReviewDisplay record = new ReviewDisplay();
 
-				record.setReview_id(rs.getInt("r.review_id"));
-				record.setUser_id_writer(rs.getString("r.user_id_writer"));
-				record.setContents_id(rs.getString("r.contents_id"));
+				record.setReviewId(rs.getInt("r.review_id"));
+				record.setUserIdWriter(rs.getInt("r.user_id_writer"));
+				record.setContentsId(rs.getInt("r.contents_id"));
 				record.setTitle(rs.getString("r.title"));
 				record.setReview(rs.getString("r.review"));
 				record.setImage(rs.getString("r.image"));
-				record.setCreated_at(rs.getString("r.created_at"));
-				record.setUser_name(rs.getString("u.user_name"));
+				record.setCreatedAt(rs.getString("r.created_at"));
+				record.setUserName(rs.getString("u.user_name"));
 				record.setIcon(rs.getString("u.icon"));
 
 				reviewList.add(record);
@@ -146,7 +146,7 @@ public class ReviewDisplayDao {
 
 
     //レビューIDで指定したレビューのいいねの数を返す
-    public int countGood(int review_id) {
+    public int countGood(int reviewId) {
 		Connection conn = null;
 		int count = 0;
 
@@ -162,7 +162,7 @@ public class ReviewDisplayDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, review_id);
+			pStmt.setInt(1, reviewId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -196,7 +196,7 @@ public class ReviewDisplayDao {
 	}
 
     //レビューIDで指定したレビューに、自分がいいねをつけているかどうか確認する。つけていたらtrue、つけていなかったらfalseを返す
-    public boolean confirmGood(int user_id, int review_id) {
+    public boolean confirmGood(int userId, int reviewId) {
 		Connection conn = null;
 		boolean good = false;
 
@@ -212,8 +212,8 @@ public class ReviewDisplayDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, user_id);
-            pStmt.setInt(2, review_id);
+			pStmt.setInt(1, userId);
+            pStmt.setInt(2, reviewId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -223,7 +223,7 @@ public class ReviewDisplayDao {
 
             //countの結果が1なら、いいねがついているのでtrue。0なら、いいねはついていないのでfalseのまま
             if (rs.getInt("count(*)") == 1) {
-                good = true; 
+                good = true;
             }
 		}
 		catch (SQLException e) {

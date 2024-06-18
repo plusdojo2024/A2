@@ -12,6 +12,8 @@ public class User implements Serializable {
     private int flag;              //フラグ
     private String createdAt;     //登録日時
     private String updatedAt;     //更新日時
+    private int reviewCount;	//投稿したレビューの総数
+    private int allGoodCount;	//レビューにもらったいいねの総数
 
 	public int getUserId() {
 		return userId;
@@ -63,6 +65,18 @@ public class User implements Serializable {
 	}
 	public String getCreatedAt() {
 		return createdAt;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+	public int getAllGoodCount() {
+		return allGoodCount;
+	}
+	public void setAllGoodCount(int allGoodCount) {
+		this.allGoodCount = allGoodCount;
 	}
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;

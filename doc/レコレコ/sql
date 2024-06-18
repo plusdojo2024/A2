@@ -28,6 +28,9 @@ UPDATE user SET mail=?, pass=?, user_name=?, icon=?, open_close=?, introduction=
 ユーザ情報削除
 UPDATE user SET flag=0 WHERE user_id=? AND flag=1;
 
+他ユーザの検索
+SELECT user_id, user_name, icon, introduction FROM user WHERE user_id=? AND flag=1;
+
 
 【レビューディスプレイDAO】
 あるコンテンツか、あるユーザのレビューを表示させる（いいねはなし）

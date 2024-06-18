@@ -451,7 +451,7 @@ h3.short {
     /* z-indexを調整するために必要 */
 
     /* 重なり順序を「最も背面」にするため */
-    overflow: scroll;
+
     height: 500px;
     display: none;
 }

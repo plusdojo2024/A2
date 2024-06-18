@@ -70,7 +70,7 @@ public class FavoriteUserDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// SQL文を準備する
-				String sql = "DELETE FROM favorite_user(user_id_favorite,user_id) VALUES (?,?)";
+				String sql = "DELETE FROM favorite_user WHERE user_id_favorite=? AND user_id=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる

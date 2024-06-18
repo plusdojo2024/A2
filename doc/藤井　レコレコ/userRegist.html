@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>新規ユーザ登録|レコレコ</title>
-<link rel="stylesheet" type="text/css" href="/A2/css/common.css">
-<link rel="stylesheet" type="text/css" href="/A2/css/userRegist.css">
+<link rel="stylesheet" type="text/css" href="common.css">
+<link rel="stylesheet" type="text/css" href="userRegist.css">
 </head>
 <header>
   <nav class="nav">
@@ -49,11 +47,11 @@
                 <td>
                     <label class="photo">アイコン画像の選択</label><br>
                     <div class="icon">
-                    <img src="/A2/img/icon_default.png" name="icon" id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                    <img src="icon_default.png" name="icon" id="preview" class="login" alt="アイコン" width="180px" height="200px">
                     <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                         <button class="delete-button" onclick="deleteItem()">
-                            <img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
+                            <img src="point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
                         </button>
 
                 </td>
@@ -103,14 +101,14 @@
             reader.readAsDataURL(selectedFile);
         } else {
             // ファイルが選択されていない場合は元のアイコンを表示
-            document.getElementById('preview').src = "/A2/img/icon_default.png";
+            document.getElementById('preview').src = "icon_default.png";
         }
     }
 
      // 削除ボタンをクリックしたときに呼び出される関数
      function deleteItem() {
         // 元のアイコン画像のパスを設定
-        document.getElementById('preview').src = "/A2/img/icon_default.png";
+        document.getElementById('preview').src = "icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
 

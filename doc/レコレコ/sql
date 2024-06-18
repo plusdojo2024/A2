@@ -11,6 +11,24 @@ GROUP BY r.review_id
 
 
 
+【ユーザDAO】
+ログイン
+SELECT user_id, mail, pass, user_name, icon, open_close, introduction FROM user WHERE mail=? AND pass=? AND flag=1;
+
+メール確認
+SELECT count(*) FROM user WHERE mail=? AND flag=1;
+
+ユーザ情報登録
+INSERT INTO user(mail, pass, user_name, icon, open_close, introduction, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+ユーザ情報更新
+UPDATE user SET mail=?, pass=?, user_name=?, icon=?, open_close=?, introduction=? WHERE user_id=? AND flag=1;
+
+
+ユーザ情報削除
+UPDATE user SET flag=0 WHERE user_id=? AND flag=1;
+
+
 【レビューディスプレイDAO】
 あるコンテンツか、あるユーザのレビューを表示させる（いいねはなし）
 SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, u.user_name, u.icon
@@ -36,7 +54,7 @@ AND user_id=?;
 
 
 
-【タイムラインDAO】分ける必要ある？？
+【タイムラインDAO】
 タイムラインのレビューを表示させる（いいねはなし）
 SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, r.created_at, u.user_name, u.icon, f.user_id
 FROM review AS r
@@ -47,7 +65,8 @@ LEFT JOIN
 FROM favorite_user
 WHERE user_id=?) AS f
 ON r.user_id_writer=f.user_id_favorite
-WHERE r.user_id_writer=?
+WHERE f.user_id=?
+AND r.created_at
 
 
 【いいねDAO】
@@ -139,7 +158,7 @@ SELECT post_id, title, recommend
 FROM post;
 
 ２．受け取りテーブルに受け取ったおすすめを記録する
-INSERT post_recieve(user_id, post_id, created_at) VALUE(?, ?, ?);
+INSERT INTO post_recieve(user_id, post_id, created_at) VALUE(?, ?, ?);
 
 
 【ポストリストDAO】
@@ -156,3 +175,4 @@ FROM post AS p
 INNER JOIN post_recieve AS r
 ON p.post_id=r.post_id
 WHERE r.user_id=?
+

@@ -130,7 +130,7 @@ public class ContentsDao {
 
 
 	    //フリーワードで検索してヒットしたコンテンツのリストを返す
-	    public List<Contents> userSelect(String freeWord ) {
+	    public List<Contents> searchContents(String freeWord ) {
 			Connection conn = null;
 			List<Contents> contentsList = new ArrayList<Contents>();
 

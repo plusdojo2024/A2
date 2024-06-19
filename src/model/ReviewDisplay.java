@@ -4,7 +4,8 @@ import java.io.Serializable;
 public class ReviewDisplay implements Serializable {
 	private int reviewId;			//レビューID
 	private String userId;			//ユーザID
-	private int good;					//いいね
+	private int goodCount;					//レビューについているいいね数
+	private int MyGood;		//自分がいいねしたかどうか。1＝いいねしてる、0＝いいねしてない
 	private int userIdWriter;//投稿者ユーザID
 	private int contentsId;		//コンテンツID
 	private String title;				//タイトル
@@ -13,7 +14,6 @@ public class ReviewDisplay implements Serializable {
 	private String createdAt;	//登録日
 	private String userName;		//ユーザ名
 	private String icon;				//アイコン
-
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -26,11 +26,18 @@ public class ReviewDisplay implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getGood() {
-		return good;
+	public int getGoodCount() {
+		return goodCount;
 	}
-	public void setGood(int good) {
-		this.good = good;
+	public void setGoodCount(int goodCount) {
+		this.goodCount = goodCount;
+	}
+
+	public int getMyGood() {
+		return MyGood;
+	}
+	public void setMyGood(int myGood) {
+		MyGood = myGood;
 	}
 	public int getUserIdWriter() {
 		return userIdWriter;

@@ -195,10 +195,10 @@ public class ReviewDisplayDao {
 		return count;
 	}
 
-    //レビューIDで指定したレビューに、自分がいいねをつけているかどうか確認する。つけていたらtrue、つけていなかったらfalseを返す
-    public boolean confirmGood(int userId, int reviewId) {
+    //レビューIDで指定したレビューに、自分がいいねをつけているかどうか確認する。つけていたら1、つけていなかったら0を返す
+    public int confirmGood(int userId, int reviewId) {
 		Connection conn = null;
-		boolean good = false;
+		int good = 0;
 
 		try {
 			// JDBCドライバを読み込む
@@ -223,7 +223,7 @@ public class ReviewDisplayDao {
 
             //countの結果が1なら、いいねがついているのでtrue。0なら、いいねはついていないのでfalseのまま
             if (rs.getInt("count(*)") == 1) {
-                good = true;
+                good = 1;
             }
 		}
 		catch (SQLException e) {

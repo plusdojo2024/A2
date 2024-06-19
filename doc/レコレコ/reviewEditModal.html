@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>レビュー投稿モーダル</title>
+    <title>レビュー編集モーダル</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <style>
         /* モーダルのスタイル */
@@ -118,22 +118,22 @@
 <!-- モーダルを開くボタン -->
 <button id="openModalBtn" class="btn">モーダルを開く</button>
 
-<!-- レビュー投稿画面のモーダル -->
+<!-- レビュー編集画面のモーダル -->
 <div id="modal1" class="modal">
     <div class="modal-content">
         <!--閉じるボタン-->
         <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <h6>レビュー投稿</h6>
+        <h6>レビュー編集</h6>
         <table>
             <tr>
                 <td>
-                    <input type="text" name="review-title" placeholder="レビュータイトル（50文字）">
+                    <input type="text" name="review-title" placeholder="レビュータイトル（50文字）" value="HUNTER×HUNTER最新巻">
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="review-img">
-                        <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                        <img src="img/content_hh_comic.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                     <button class="delete-button" onclick="deleteItem()">
@@ -143,23 +143,23 @@
             </tr>
             <tr>
                 <td>
-                    <textarea id="review-detail" maxlength="500" rows="5" placeholder="レビュー本文（500文字以内）" required></textarea>
+                    <textarea id="review-detail" maxlength="500" rows="5" placeholder="レビュー本文（500文字以内）"　required>オモロイ！オモロイ！</textarea>
                  </td>
             </tr>
             <tr>
                  <td>
-                <button class="btn" onclick="openSecondModal()">投稿</button>
+                <button class="btn" onclick="openSecondModal()">更新</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
 
-<!-- 次のモーダル -->
+<!-- 成功画面のモーダル -->
 <div id="modal2" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal2')">&times;</span>
-        <p>次のモーダル</p>
+        <p>レビューを更新しました。</p>
     </div>
 </div>
 
@@ -204,35 +204,35 @@
 
     // ファイル選択時に呼び出される関数
     function previewImage(event) {
-    	// 選択されたファイルを取得
-        var selectedFile = event.target.files[0];
-        // ファイルが選択されている場合
-        if (selectedFile) {
-            // FileReaderオブジェクトを作成
-            var reader = new FileReader();
-            // ファイルの読み込みが完了した時の処理を定義
-            reader.onload = function(event) {
-                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
-                document.getElementById('preview').src = event.target.result;
-            };
-            // ファイルの読み込みを実行
-            reader.readAsDataURL(selectedFile);
-        } else {
-            // ファイルが選択されていない場合は元のアイコンを表示
-           	document.getElementById('preview').src = "/A2/img/icon_default.png";
-            }
-        }
+    	 // 選択されたファイルを取得
+         var selectedFile = event.target.files[0];
+         // ファイルが選択されている場合
+         if (selectedFile) {
+             // FileReaderオブジェクトを作成
+             var reader = new FileReader();
+             // ファイルの読み込みが完了した時の処理を定義
+             reader.onload = function(event) {
+                 // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                 document.getElementById('preview').src = event.target.result;
+             };
+             // ファイルの読み込みを実行
+             reader.readAsDataURL(selectedFile);
+         } else {
+             // ファイルが選択されていない場合は元のアイコンを表示
+             document.getElementById('preview').src = "img/icon_default.png";
+         }
+    }
 
-         // 削除ボタンをクリックしたときに呼び出される関数
-         function deleteItem() {
-            // 元のアイコン画像のパスを設定
-            document.getElementById('preview').src = "/A2/img/icon_default.png";
-            // ファイル選択のinput要素もリセットする場合は次の行を追加
-            document.querySelector('input[type="file"]').value = null;
+    // 削除ボタンをクリックしたときに呼び出される関数
+    function deleteItem() {
+    	// 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "img/icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
 
-             // ページの再読み込みを防ぐ
-             event.preventDefault();
-        }
+        // ページの再読み込みを防ぐ
+        event.preventDefault();
+    }
 </script>
 
 </body>

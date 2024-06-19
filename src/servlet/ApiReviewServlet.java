@@ -130,11 +130,9 @@ public class ApiReviewServlet extends HttpServlet {
 				    } catch (JsonProcessingException e) {
 				        e.printStackTrace();
 				    }
-				}
-
-			}
-
+					}
 		}
 	}
+}
 
 

@@ -9,13 +9,7 @@ public class MyContents implements Serializable {
 	private int userId;         //ユーザID
 	private int status;         //属性
 	private String title;       //タイトル
-	private String ruby;				//ふりがな
-	public String getRuby() {
-		return ruby;
-	}
-	public void setRuby(String ruby) {
-		this.ruby = ruby;
-	}
+	private String ruby;		//ふりがな
 	private String genre;       //ジャンル
 	private String creator;     //製作者
 	private String year;        //公開年
@@ -53,6 +47,12 @@ public class MyContents implements Serializable {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getRuby() {
+		return ruby;
+	}
+	public void setRuby(String ruby) {
+		this.ruby = ruby;
 	}
 	public String getGenre() {
 		return genre;

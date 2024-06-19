@@ -63,7 +63,7 @@ public class FavoriteUserDao {
 
 
 		// 引数numberで指定されたお気に入りユーザー情報を削除し、成功したらtrueを返す
-		public boolean UserDelete(int userIdFavorite, int userId) {
+		public boolean userDelete(int userIdFavorite, int userId) {
 			Connection conn = null;
 			boolean result = false;
 

@@ -71,7 +71,7 @@ public class ReviewDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 			//DELETE文の準備
-			String sql ="DELETE FROM WHERE review_id=?";
+			String sql ="DELETE FROM review WHERE review_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, reviewId);
 

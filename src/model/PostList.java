@@ -8,7 +8,7 @@ public class PostList implements Serializable{
 	private String created_at; //ポストを受け取った時点の日時（つまりポスト受け取りテーブルのカラム）
 	private String title;
 	private String recommend;
-	private int interest;
+	private int my_interest;
 
 	public int getUser_id() {
 		return user_id;
@@ -40,11 +40,11 @@ public class PostList implements Serializable{
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
-	public int getInterest() {
-		return interest;
+	public int getMy_interest() {
+		return my_interest;
 	}
-	public void setInterest(int interest) {
-		this.interest = interest;
+	public void setMy_interest(int my_interest) {
+		this.my_interest = my_interest;
 	}
 
 }

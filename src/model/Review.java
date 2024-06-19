@@ -7,7 +7,6 @@ public class Review implements Serializable {
 	private int contentsId;	//コンテンツID
 	private String title;		//タイトル
 	private String review;		//レビュー内容
-	private int good;			//いいね
 	private String createdAt;	//登録日時
 	private String updatedAt;	//更新日時
 
@@ -42,12 +41,6 @@ public class Review implements Serializable {
 	}
 	public void setReview(String review) {
 		this.review = review;
-	}
-	public int getGood() {
-		return good;
-	}
-	public void setGood(int good) {
-		this.good = good;
 	}
 	public String getCreatedAt() {
 		return createdAt;

@@ -32,7 +32,6 @@
 		$.ajaxSetup({scriptCharset:'utf-8'});
 		$.ajax({
 			//どのサーブレットに送るか
-			//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
 			url: '/A2/ApiGoodServlet',
 			//どのメソッドを使用するか
 			type:"POST",

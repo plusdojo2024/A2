@@ -4,59 +4,72 @@
         <meat charset="UTF-8">
             <title>マイページ|レコレコ</title>
             <link rel="stylesheet" href="css/OtherMyPage.css">
-            <link rel="stylesheet" type="text/css" href="css/common.css">
+            <link rel="stylesheet" href="css/common.css">
     </head>
     <header>
         <nav class="nav">
             <ul>
                 <li>
-                    <h1>レコレコ</h1>
+                    <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
                 </li>
                 <li>
-                    <form action="" method="post">
-                        <select name="select">
-                            <option value="all">すべて</option>
-                            <option value="movie">映画</option>
-                            <option value="dorama">ドラマ</option>
-                            <option value="anime">アニメ</option>
-                            <option value="sonota1">その他（映像）</option>
-                            <option value="novel">小説</option>
-                            <option value="comics">マンガ</option>
-                            <option value="sonota2">その他（書籍）</option>
-                            <option value="game">ゲーム</option>
-                        </select>
-                        <input type="text" name="search" placeholder="コンテンツ名を検索・登録">
-                        <input type="image" src="image/search.png" width="20px" height="20px" alt="虫眼鏡">
+                    <form action="/A2/SearchServlet" class="search-form" method="post">
+                        <div class="search-box">
+                            <select name="select">
+                                <option value="all">すべて</option>
+                                <option value="movie">映画</option>
+                                <option value="dorama">ドラマ</option>
+                                <option value="anime">アニメ</option>
+                                <option value="sonota1">その他（映像）</option>
+                                <option value="novel">小説</option>
+                                <option value="comics">マンガ</option>
+                                <option value="sonota2">その他（書籍）</option>
+                                <option value="game">ゲーム</option>
+                            </select>
+                            <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
+                            <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
+                        </div>
                     </form>
                 </li>
-                <li><a href=""><img src="image/post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
-                <li><a href=""><img src="image/login1.png" width="75px" height="75px" name="icon" alt="アイコン"></a></li>
+                <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+                <div class="co">
+                    <div class="user-container">
+                        <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span class="user-name">recoreco</span>
+                            <ul class="dropdown-menu">
+                                <li><a href="/A2/MyPageServlet">マイページ</a></li>
+                                <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                                <li><a href="/A2/LoginServlet">ログアウト</a></li>
+                            </ul>
+                            </a>
+                        </li>
+                        
+                    </div>
+                </div>
             </ul>
         </nav>
     </header>
     <body id="top">
         <!-- ユーザ情報 -->
-        <div class="userInfo">
-            <img src="image/icon.png" alt="アイコン" width="150px" height="150px">
-            <div>
-                <h2>ユーザ名</h2>
-                <p>
+        <div class="profile">
+            <img src="img/icon_higuchi.png" alt="アイコン" class="icon">
+            <div class="userInfo">
+                <h2 class="userName">樋口 さん</h2>
+                <p class="achievements">
                     総レビュー件数　${count_review}件<br>
-                    <button type="button" name="favorite_add" class="bt">
-                        <img src="img/point_favorite.png" alt="お気に入りユーザに追加の画像">
-                        <span class="bt-text">お気に入りユーザに追加</span>
-                    </button>
-                    <button type="button" name="direct-chat" class="bt">
-                        <img src="img/point_chat.png" alt="チャットの画像">
-                        <span class="bt-text"> チャットをする</span>
-                    </button>
                 </p>
+                <button type="button" name="favorite_add" class="bt">
+                    <img src="img/point_favorite.png" alt="お気に入りユーザに追加の画像">
+                    <span class="bt-text">お気に入りユーザに追加</span>
+                </button>
+                <button type="button" name="direct-chat" class="bt">
+                    <img src="img/point_chat.png" alt="チャットの画像">
+                    <span class="bt-text">チャットをする</span>
+                </button>
             </div>
             <p class="introduction">
-                ${introduction}
+                ${introduction}自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介
             </p>
         </div>
-
         <!-- タブ -->
         <div class="wrapper">
             <ul class="tab">

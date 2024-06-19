@@ -27,12 +27,12 @@ public class TimelineDao {
 
     		// SQL文を準備する
     		String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review,"
-    				+ " r.image, r.created_at, u.user_name, u.icon, f.user_id "
+    				+ " r.image,  SUBSTRING(r.created_at,1,19) , u.user_name, u.icon, f.user_id "
     				+ "FROM review AS r (INNER) JOIN user AS u "
     				+ "ON r.user_id_writer=u.user_id"
     				+ " LEFT JOIN (SELECT user_id_favorite, user_id FROM favorite_user WHERE user_id=?) AS f"
     				+ " ON r.user_id_writer=f.user_id_favorite "
-    				+ "WHERE f.user_id=? AND u.flag=1 AND r.created >= (NOW() - INTERVAL 7 DAY)";
+    				+ "WHERE f.user_id=? AND u.flag=1  AND u.open_close=1 AND LEFT(r.created_at,10) > (CURRENT_DATE-7)";
     		PreparedStatement pStmt = conn.prepareStatement(sql);
 
     		// SQL文を完成させる

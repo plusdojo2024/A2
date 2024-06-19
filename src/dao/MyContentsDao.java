@@ -81,7 +81,7 @@ public class MyContentsDao {
 	}
 
 	//コレクションINSERT
-	public boolean registCollectionInsert(MyContents myContents) {
+	public boolean registCollection(int contentsId, int userId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -106,8 +106,8 @@ public class MyContentsDao {
 			// INSERTT文を準備する
 			pStmt.setInt(1,myContents.getContentsId());
 			pStmt.setInt(2,myContents.getUserId());
-			pStmt.setInt(3,myContents.getStatus());
-			pStmt.setTimestamp(4, createdAt);
+
+			pStmt.setTimestamp(3, createdAt);
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {
@@ -209,7 +209,7 @@ public class MyContentsDao {
 
 
 	//ウィッシュリストINSERT
-	public boolean registWishListInsert(MyContents myContents) {
+	public boolean registWishList(MyContents myContents) {
 		Connection conn = null;
 		boolean result = false;
 

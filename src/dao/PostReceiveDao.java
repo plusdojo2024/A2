@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
 import java.sql.Timestamp;
@@ -163,5 +164,106 @@ public class PostReceiveDao {
 				// 結果を返す
 				return result;
 			}
+
+			//受け取ったおすすめを、既に受け取ったことがあるかどうか調べる。
+			//既に受け取ったことがある場合はtrueを、受け取ったことがない場合はfalseを返す
+			public boolean confirmRecommendHistory(int postId) {
+				Connection conn = null;
+				boolean result = true;
+
+				try {
+					//データベースの準備
+					Class.forName("org.h2.Driver");
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+					// SELECT文の準備
+					String sql = "SELECT count(*) FROM post_receive WHERE post_id=?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setInt(1, postId);
+
+					// SELECT文を実行し、結果表を取得する
+					ResultSet rs = pStmt.executeQuery();
+
+					//mailが既に登録されていたらtrue 登録されていなかったらfalseを入れる
+					rs.next();//表の一行目を見に行く
+					if (rs.getInt("count(*)") == 0) {
+						result = false;
+						//失敗したらresultはtrueのまま
+					}
+				}
+				catch (SQLNonTransientException e) {
+					e.printStackTrace();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				finally {
+					// データベースを切断
+					if (conn != null) {
+						try {
+							conn.close();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				// 結果を返す
+				return result;
+			}
+
+			//指定したポストIDのおすすめに、誰か1人でも気になる！をつけているかどうか調べる。
+			//気になる！をつけている人が1人以上いた場合1を、0人だった場合0を返す。
+				public int checkInterest(int postId) {
+					Connection conn = null;
+					int interest = 0;
+
+					try {
+						//データベースの準備
+						Class.forName("org.h2.Driver");
+						conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+						// SELECT文の準備
+						String sql = "SELECT count(*) FROM post_receive WHERE post_id=? AND my_interest=1";
+						PreparedStatement pStmt = conn.prepareStatement(sql);
+						pStmt.setInt(1, postId);
+
+						// SELECT文を実行し、結果表を取得する
+						ResultSet rs = pStmt.executeQuery();
+
+						//気になる！をつけている人が1人以上いた場合1を入れる。0人だった場合0のまま。
+						rs.next();//表の一行目を見に行く
+						if (rs.getInt("count(*)") > 0) {
+							interest = 1;
+						}//処理に失敗したら0のまま
+					}
+					catch (SQLNonTransientException e) {
+						e.printStackTrace();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+					catch (ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					finally {
+						// データベースを切断
+						if (conn != null) {
+							try {
+								conn.close();
+							}
+							catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+
+					// 結果を返す
+					return interest;
+				}
 
 }

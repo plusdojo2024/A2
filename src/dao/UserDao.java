@@ -330,7 +330,7 @@ public class UserDao {
 
 
 
-	//メールアドレスにかぶりがないかを確認する
+	//メールアドレスに重複がないかを確認する
 	public boolean checkMail(String mail) {
 		Connection conn = null;
 		boolean result = true;

@@ -197,10 +197,16 @@ pStmt.setString(5, "%" + contents.card.getYear() + "%");
 
 
 【マイコンテンツDAO】
-INSERT INTO my_contents(user_id_favorite,user_id) VALUES (?,?)
-DELETE FROM my_contents WHERE user_id_favorite=? AND user_id=?
+コレクションに追加するメソッド　メソッド名：registCollection
+INSERT INTO my_contents(contents_id, user_id, status, created_at) VALUES (?,?,1,?)
+TIMEATAMP文も付け加える
+
+ウィッシュリストに追加するメソッド　メソッド名：registWishList
+INSERT INTO my_contents(contents_id, user_id, status, created_at) VALUES (?,?,0,?)
+TIMEATAMP文も付け加える
+
+マイコンテンツテーブルからデータを削除（コレクション、ウィッシュリスト共通のメソッドを1つだけ作ればよい）　メソッド名：deleteMyContents
+DELETE FROM my_contents WHERE my_contents_id=?
 
 
 【いいねDAO】
-INSERT INTO my_contents(user_id_favorite,user_id) VALUES (?,?)
-DELETE FROM my_contents WHERE user_id_favorite=? AND user_id=?

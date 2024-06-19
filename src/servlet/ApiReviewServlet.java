@@ -71,9 +71,9 @@ public class ApiReviewServlet extends HttpServlet {
 					//beansを作る
 					Review reviewBeans = new Review();
 					reviewBeans.setContentsId(contentsId);
+					reviewBeans.setUserId(userId);
 					reviewBeans.setTitle(title);
 					reviewBeans.setReview(review);
-					reviewBeans.setUserId(userId);
 					//送信されたデータをreviewテーブルに追加
 					boolean result = rDao.reviewRegist(reviewBeans);
 
@@ -94,10 +94,11 @@ public class ApiReviewServlet extends HttpServlet {
 					else if(status.equals ("編集")){
 					//beansを作る
 					Review reviewBeans = new Review();
+					reviewBeans.setReviewId(reviewId);
 					reviewBeans.setContentsId(contentsId);
+					reviewBeans.setUserId(userId);
 					reviewBeans.setTitle(title);
 					reviewBeans.setReview(review);
-					reviewBeans.setUserId(userId);
 					//送信されたデータをreviewテーブルに追加
 					boolean result = rDao.reviewUpdate(reviewBeans);
 

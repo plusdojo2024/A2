@@ -69,7 +69,7 @@ public class UserManageServlet extends HttpServlet{
 	    UserDao uDao = new UserDao();
 	  //メールアドレスの確認処理
 	    boolean mail_id = uDao.checkMail(mail);
-	    boolean success = uDao.userResist(user);
+	    boolean success = uDao.userRegist(user);
 
 
 	    if(mail_id) {

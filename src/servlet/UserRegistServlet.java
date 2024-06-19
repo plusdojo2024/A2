@@ -67,7 +67,7 @@ public class UserRegistServlet extends HttpServlet{
             dispatcher.forward(request, response);
 	    } else {
 	    	//登録が成功した場合
-		    boolean success = uDao.userResist(user);
+		    boolean success = uDao.userRegist(user);
 	      if(success) {
 	    	response.sendRedirect(request.getContextPath() + "/LoginServlet");
 	    } else {

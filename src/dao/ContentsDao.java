@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Contents;
 
@@ -66,7 +68,7 @@ public class ContentsDao {
 
 
 
-			//他ユーザを検索する
+			//コンテンツIDで指定されたコンテンツの情報返す
 			public Contents contentsSelect(int contentsId) {
 					Connection conn = null;
 					Contents contents = new Contents();
@@ -87,8 +89,6 @@ public class ContentsDao {
 
 					// SELECT文を実行し、結果表を取得する
 					ResultSet rs = pStmt.executeQuery();
-
-					//mailが既に登録されていたらtrue 登録されていなかったらfalseを入れる
 					rs.next();//表の一行目を見に行く
 					if (rs.getInt("user_id") != null) {
 						contents.setContentsId(rs.getInt("contets_id"));
@@ -98,7 +98,6 @@ public class ContentsDao {
 						contents.setContentsId(rs.getInt("creator"));
 						contents.setContentsId(rs.getInt("year"));
 						contents.setContentsId(rs.getInt("image"));
-					//失敗したらLoginUserインスタンスにはnullが入る
 					} else {
 						contents = null;
 					}
@@ -128,4 +127,73 @@ public class ContentsDao {
 				// 結果を返す
 				return contents;
 			}
+
+
+	    //フリーワードで検索してヒットしたコンテンツのリストを返す
+	    public List<Contents> userSelect(String freeWord ) {
+			Connection conn = null;
+			List<Contents> contentsList = new ArrayList<Contents>();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+				// SQL文を準備する
+				String sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents"
+						+ "WHERE title LIKE ? OR ruby LIKE ? OR genre LIKE ? creator LIKE ? OR year LIKE ? OR"
+						+ "ORDER BY ruby";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setString(1, "%" + freeWord + "%");
+				pStmt.setString(2, "%" + freeWord + "%");
+				pStmt.setString(3, "%" + freeWord + "%");
+				pStmt.setString(4, "%" + freeWord + "%");
+				pStmt.setString(5, "%" + freeWord + "%");
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					Contents record = new Contents();
+
+					record.setContentsId(rs.getInt("contents_id"));
+					record.setTitle(rs.getString("title"));
+					record.setRuby(rs.getString("ruby"));
+					record.setGenre(rs.getString("genre"));
+					record.setCreator(rs.getString("creator"));
+					record.setYear(rs.getString("year"));
+					record.setImage(rs.getString("image"));
+
+					contentsList.add(record);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				contentsList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				contentsList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						contentsList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return contentsList;
+		}
 }

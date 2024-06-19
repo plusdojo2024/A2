@@ -63,9 +63,10 @@
             background-color: #35AFDB;
         }
 
-        h6 {
+        .modal-title {
             font-size: larger;
             text-align: center;
+            font-weight: bold;
         }
 
         input[name=review-title]{
@@ -123,7 +124,7 @@
     <div class="modal-content">
         <!--閉じるボタン-->
         <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <h6>レビュー投稿</h6>
+        <p class="modal-title">レビュー投稿</p>
         <table>
             <tr>
                 <td>
@@ -133,11 +134,11 @@
             <tr>
                 <td>
                     <div class="review-img">
-                        <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                        <img src="/A2/img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                     <button class="delete-button" onclick="deleteItem()">
-                        <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
+                        <img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
                     </button>
                 </td>
             </tr>
@@ -152,14 +153,6 @@
                 </td>
             </tr>
         </table>
-    </div>
-</div>
-
-<!-- 次のモーダル -->
-<div id="modal2" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('modal2')">&times;</span>
-        <p>次のモーダル</p>
     </div>
 </div>
 
@@ -184,12 +177,6 @@
         modal.style.display = "none";
     }
 
-    // 次のモーダルを開く関数
-    function openSecondModal() {
-        closeModal('modal1');
-        openModal('modal2');
-    }
-
     // モーダルの外側がクリックされたときに閉じる処理
     window.onclick = function(event) {
         var modal1 = document.getElementById('modal1');
@@ -204,7 +191,7 @@
 
     // ファイル選択時に呼び出される関数
     function previewImage(event) {
-    	// 選択されたファイルを取得
+        // 選択されたファイルを取得
         var selectedFile = event.target.files[0];
         // ファイルが選択されている場合
         if (selectedFile) {
@@ -219,20 +206,20 @@
             reader.readAsDataURL(selectedFile);
         } else {
             // ファイルが選択されていない場合は元のアイコンを表示
-           	document.getElementById('preview').src = "/A2/img/icon_default.png";
-            }
-        }
-
-         // 削除ボタンをクリックしたときに呼び出される関数
-         function deleteItem() {
-            // 元のアイコン画像のパスを設定
             document.getElementById('preview').src = "/A2/img/icon_default.png";
-            // ファイル選択のinput要素もリセットする場合は次の行を追加
-            document.querySelector('input[type="file"]').value = null;
-
-             // ページの再読み込みを防ぐ
-             event.preventDefault();
         }
+    }
+
+    // 削除ボタンをクリックしたときに呼び出される関数
+     function deleteItem() {
+        // 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "/A2/img/icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+
+         // ページの再読み込みを防ぐ
+         event.preventDefault();
+    }
 </script>
 
 </body>

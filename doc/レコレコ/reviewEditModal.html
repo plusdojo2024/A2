@@ -63,9 +63,10 @@
             background-color: #35AFDB;
         }
 
-        h6 {
+        .modal-title {
             font-size: larger;
             text-align: center;
+            font-weight: bold;
         }
 
         input[name=review-title]{
@@ -123,7 +124,7 @@
     <div class="modal-content">
         <!--閉じるボタン-->
         <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <h6>レビュー編集</h6>
+        <p class="modal-title">レビュー編集</p>
         <table>
             <tr>
                 <td>
@@ -133,7 +134,7 @@
             <tr>
                 <td>
                     <div class="review-img">
-                        <img src="img/content_hh_comic.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
+                        <img src="/A2/img/content_hh_comic.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                     </div>
                     <button class="delete-button" onclick="deleteItem()">
@@ -219,14 +220,14 @@
              reader.readAsDataURL(selectedFile);
          } else {
              // ファイルが選択されていない場合は元のアイコンを表示
-             document.getElementById('preview').src = "img/icon_default.png";
+             document.getElementById('preview').src = "/A2/img/icon_default.png";
          }
     }
 
     // 削除ボタンをクリックしたときに呼び出される関数
     function deleteItem() {
     	// 元のアイコン画像のパスを設定
-        document.getElementById('preview').src = "img/icon_default.png";
+        document.getElementById('preview').src = "/A2/img/icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
 

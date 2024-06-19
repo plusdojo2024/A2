@@ -38,8 +38,8 @@ SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image,
 FROM review AS r
 (INNER) JOIN user AS u
 ON r.user_id_writer=u.user_id
-WHERE r.user_id_writer=? AND u.flag=1
-OR r.contents_id=? AND u.flag=1;
+WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1
+OR r.contents_id=? AND u.flag=1 AND u.open_close=1;
 
 
 【レビューディスプレイDAO】
@@ -69,7 +69,7 @@ FROM favorite_user
 WHERE user_id=?) AS f
 ON r.user_id_writer=f.user_id_favorite
 WHERE f.user_id=?
-AND u.flag=1
+AND u.flag=1  AND u.open_close=1
 AND r.created >= (NOW() - INTERVAL 7 DAY);
 
 
@@ -90,6 +90,7 @@ INNER JOIN user AS u
 ON r.user_id_writer=u.user_id
 INNER JOIN good AS g
 ON r.review_id=g.review_id
+WHERE u.flag=1  AND u.open_close=1
 GROUP BY r.user_id_writer
 ORDER BY count(r.user_id_writer)
 (LIMIT 5);
@@ -113,7 +114,7 @@ SELECT f.user_id, f.favorite_user, u.user_name, u.icon
 FROM favorite_user AS f
 (INNER) JOIN user AS u
 ON f.user_id_favorite=u.user_id
-WHERE f.user_id=?;
+WHERE f.user_id=? AND u.flag=1 AND u.open_close=1;
 
 
 【マイコンテンツDAO】
@@ -148,7 +149,7 @@ SELECT m.contents_id, u.user_id, u.user_name, u.icon
 FROM my_contents AS m
 INNER JOIN user AS u
 ON m.user_id=u.user_id
-WHERE m.contents_id=?
+WHERE m.contents_id=?  AND u.flag=1  AND u.open_close=1
 
 
 【ユーザDAO？】
@@ -162,7 +163,7 @@ SELECT post_id, title, recommend
 FROM post;
 
 ２．受け取りテーブルに受け取ったおすすめを記録する
-INSERT INTO post_recieve(user_id, post_id, created_at) VALUE(?, ?, ?);
+INSERT INTO post_recieve(user_id, post_id, created_at) VALUES(?, ?, ?);
 
 
 【ポストリストDAO】
@@ -180,3 +181,32 @@ INNER JOIN post_recieve AS r
 ON p.post_id=r.post_id
 WHERE r.user_id=?
 
+
+
+【コンテンツDAO】参考：BCDAO、コンテンツDAO
+SELECT contents_id,title,ruby,genre,creator,year,image FROM contents
+WHERE title LIKE ? OR ruby LIKE ? OR genre LIKE ? creator LIKE ? OR year LIKE ? OR  
+ORDER BY ruby
+
+// SQL文を完成させる
+pStmt.setString(1, "%" + contents.getTitle() + "%");
+pStmt.setString(2, "%" + contents.card.getRuby() + "%");
+pStmt.setString(3, "%" + contents.card.getGenre() + "%");
+pStmt.setString(4, "%" + contents.card.getCreator() + "%");
+pStmt.setString(5, "%" + contents.card.getYear() + "%");
+
+
+【マイコンテンツDAO】
+コレクションに追加するメソッド　メソッド名：registCollection
+INSERT INTO my_contents(contents_id, user_id, status, created_at) VALUES (?,?,1,?)
+TIMEATAMP文も付け加える
+
+ウィッシュリストに追加するメソッド　メソッド名：registWishList
+INSERT INTO my_contents(contents_id, user_id, status, created_at) VALUES (?,?,0,?)
+TIMEATAMP文も付け加える
+
+マイコンテンツテーブルからデータを削除（コレクション、ウィッシュリスト共通のメソッドを1つだけ作ればよい）　メソッド名：deleteMyContents
+DELETE FROM my_contents WHERE my_contents_id=?
+
+
+【いいねDAO】

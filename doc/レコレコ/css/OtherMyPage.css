@@ -1,17 +1,78 @@
-h1 {
-    color: #ffffff;
-    margin: 3px 0 0 0 ;
-    font-size: 40px;
+/* 他ユーザのマイページ上部分共通のCSS */
+/* ユーザ情報全体 */
+.profile{
+  display: flex;
+  margin-top: 3%;
+  margin-left: 15%;
+  margin-left: 15%;
 }
 
-h2{
-    color: #545454
+/* アイコン */
+.icon{
+  height: 200px;
+  width: 200px;
 }
 
-label {
-    font-size: 1.2em;
-    margin: 0 30px 0 30px;
+/* ユーザ名と実績 */
+.userInfo{
+  margin-left: 5%;
+  margin-right: 5%;
 }
+
+/* ユーザ名 */
+.userName{
+  font-family: sans-serif;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+/* 実績 */
+.achievements{
+  font-size: 1.1rem;
+}
+
+/* 自己紹介文 */
+.introduction{
+  background-color: #FFFFFF;
+  height: 150px;
+  width: 400px;
+  padding: 25px;
+
+  /* 垂直・水平方向に真ん中に表示されるようにする */
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* ボタンのためのCSS */
+.bt{
+  display: flex;
+  width: 260px;
+  height: 45px;
+  margin: 10px;
+  padding: 5px 20px 0px 20px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #35AFDB;
+  align-items: center;
+  font-size: 1em;
+  border-radius: 10px;
+}
+
+.bt img{
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+  margin-bottom: 5px;
+}
+
+.bt .bt-text{
+  display: inline-block;
+  margin-left: 4px;
+}
+
 
 /* タブのスタイル */
 /*tabの形状*/
@@ -89,30 +150,3 @@ label {
     padding: 10px; 
     border-bottom: 1px solid #ddd;
   }
-
-/* ボタンのためのCSS */
-.bt{
-    display: flex;
-    width: 260px;
-    height: 45px;
-    margin: 30px 180px 0px 30px;
-    padding: 5px 20px 0px 20px;
-    border: none;
-    border-radius: 10px;
-    color: #ffffff;
-    background-color: #35AFDB;
-    align-items: center;
-    font-size: 1em;
-    border-radius: 10px;
-}
-
-.bt img{
-    width: 30px;
-    height: 30px;
-    margin-right: 7px;
-    margin-bottom: 5px;
-}
-
-.bt .bt-text{
-    display: inline-block;
-}

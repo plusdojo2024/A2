@@ -1,21 +1,54 @@
-h1 {
-    color: #ffffff;
-    margin: 3px 0 0 0 ;
-    font-size: 40px;
+/* マイページ上部分共通のCSS */
+/* ユーザ情報全体 */
+.profile{
+  display: flex;
+  margin-top: 3%;
+  margin-left: 15%;
+  margin-left: 15%;
 }
 
-h2{
-    color: #545454
+/* アイコン */
+.icon{
+  height: 200px;
+  width: 200px;
 }
 
-label {
-    font-size: 1.2em;
-    margin: 0 30px 0 30px;
+/* ユーザ名と実績 */
+.userInfo{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 4%;
+  margin-right: 3%;
+}
+
+/* ユーザ名 */
+.userName{
+  font-family: sans-serif;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+/* 実績 */
+.achievements{
+  font-size: 1.1rem;
+}
+
+/* 自己紹介文 */
+.introduction{
+  background-color: #FFFFFF;
+  height: 150px;
+  width: 400px;
+  padding: 25px;
+
+  /* 垂直・水平方向に真ん中に表示されるようにする */
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 /* タブのスタイル */
 /*tabの形状*/
-.tab{
+ .tab{
     display: flex;
     flex-wrap: wrap;
   }

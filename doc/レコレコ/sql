@@ -175,7 +175,7 @@ WHERE user_id_writer=?;
 
 【ポストリストDAO】
 ポスト受け取り一覧を表示させる
-SELECT r.user_id, p.title, p.recommend, p.interest
+SELECT r.user_id, p.title, p.recommend, r.my_interest
 FROM post AS p
 INNER JOIN post_recieve AS r
 ON p.post_id=r.post_id

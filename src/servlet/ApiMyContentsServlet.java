@@ -12,9 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dao.GoodDao;
 import dao.MyContentsDao;
-import dao.ReviewDisplayDao;
 import model.User;
 
 /**
@@ -55,9 +53,10 @@ public class ApiMyContentsServlet extends HttpServlet {
 					String data1 = request.getParameter("data1");
 					String data2 = request.getParameter("data2");
 					String data3 = request.getParameter("data3");
-					int status = Integer.parseInt(data1);
-					int contentsId = Integer.parseInt(data2);
-					int life = Integer.parseInt(data3);
+
+					int status = Integer.parseInt(data1); //コレクションとウィッシュリストのどちらの登録を行うかを判断。1＝コレクション、0＝ウィッシュリスト
+					int contentsId = Integer.parseInt(data2); //コンテンツID
+					int life = Integer.parseInt(data3); //登録か削除かを判断。1＝登録、0＝なら削除処理を行う
 						//入力されたデータを表示
 						System.out.println(data1);
 						System.out.println(data2);
@@ -82,7 +81,7 @@ public class ApiMyContentsServlet extends HttpServlet {
 						    } catch (JsonProcessingException e) {
 						        e.printStackTrace();
 						    }
-
+						//ウィッシュリストに追加
 						} else {
 							//送信されたデータをMyContentsテーブルに追加
 							boolean result = mDao.registWishList(contentsId, userId);
@@ -119,7 +118,7 @@ public class ApiMyContentsServlet extends HttpServlet {
 					        e.printStackTrace();
 					    }
 					}
-
+				}
 
 	}
 

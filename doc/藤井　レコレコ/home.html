@@ -115,7 +115,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>鋼の錬金術師</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -131,7 +131,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -147,7 +147,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -163,7 +163,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>鋼の錬金術師</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -178,7 +178,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -194,7 +194,7 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
                                     <img src="button_good1.png" class="heart" alt="ハート">
                                     <h5>123</h5>
                                 </div>
@@ -208,5 +208,19 @@
             <a href=#top><span class="gotop"></span></a>
             <p class="copyright">&copy; WAC</p>
         </footer>
+        <script>
+            // h4要素のテキストを制限して省略する関数
+            const truncateText = (element, maxLength) => {
+                let text = element.textContent;
+                if (text.length > maxLength) {
+                    element.textContent = text.slice(0, maxLength) + '…';
+                }
+            };
+    
+            // h4要素を持つ要素を取得して処理する
+            document.querySelectorAll('h4.truncate').forEach(h4 => {
+                truncateText(h4, 20); // 20文字まで表示し、それ以降を省略する
+            });
+        </script>
     </body>
 </html>

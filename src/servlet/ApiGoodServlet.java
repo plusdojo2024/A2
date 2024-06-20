@@ -17,7 +17,7 @@ import dao.ReviewDisplayDao;
 import model.User;
 
 
-@WebServlet("/GoodServlet")
+@WebServlet("/ApiGoodServlet")
 public class ApiGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

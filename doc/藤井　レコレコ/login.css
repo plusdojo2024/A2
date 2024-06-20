@@ -8,10 +8,22 @@ h3 {
     text-align: center;
 }
 
+h4 {
+    color: #ffffff;
+    background-color: #B3C8CF;
+    text-align: center;
+    padding: 30px 80px 30px 80px;
+    margin-top: -54.8px;
+    margin-left: -40px;
+    margin-right: -8%;
+    border: #B3C8CF;
+    border-radius: 20px 20px 0 0; 
+}
+
 .table {
     background-color: #ffffff;
     margin: 0px 100px 500px 400px;
-    padding: 50px 96px 50px 50px ;
+    padding: 50px 74px 50px 50px ;
 }
 
 .table  a {
@@ -35,7 +47,7 @@ input[name=id], input[name=pass], input[name=name] {
 
 input[name=submit] {
     border: none;
-    margin: 30px 30px 10px 30px;
+    margin: 30px 30px 10px 50px;
     padding: 20px 60px 20px 50px;
     width: 500px;
     color: #ffffff;
@@ -44,3 +56,56 @@ input[name=submit] {
     border-radius: 20px; /*ログインボタンの角を丸くする*/
 }
 
+/* アラートボックス */
+
+@keyframes showAlertAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.7); /* 最初は小さく */
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1); /* 最終的に通常サイズに */
+        opacity: 1;
+    }
+}
+
+.alertBox {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+	height: 300px;
+	width: 500px;
+    padding: 55px 40px 40px 40px;
+    background-color: white;
+	border-radius: 5%;
+    z-index: 1000;
+	color: #545454;
+    animation: showAlertAnimation 0.3s ease forwards; /* アニメーションの適用 */
+}
+
+.alertBox p {
+	font-size: 1.2em;
+	padding: 80px 10px 10px 55px;
+    color: #545454;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.submit {
+    color: #ffffff;
+    padding: 20px 50px;
+    margin: 70px 10px 10px 175px;
+    border-radius: 20px; /*ログインボタンの角を丸くする*/
+    background-color: #35AFDB;
+}

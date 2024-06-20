@@ -30,14 +30,14 @@
               <td>
                   <label class="pass">パスワード</label><br>
                   <input type="password"  id="pass" name="pass" placeholder="パスワード"><br>
-                  <a href="newlogin">パスワードを忘れた方はこちら→</a>
+                  <a href="/A2/userRegist">パスワードを忘れた方はこちら→</a>
               </td>
           </tr>
           <tr>
               <td>
-                  <form id="loginForm" action="home.html" method="get"></form>
+                  <form id="loginForm" action="/A2/LoginServlet" method="get"></form>
                   <input type="button" name="submit" value="ログイン" onclick="validateForm()"><br>
-                  <a href="newlogin">新規会員登録はこちら→</a>
+                  <a href="/A2/userRegist">新規会員登録はこちら→</a>
               </td>
           </tr>
       </table>

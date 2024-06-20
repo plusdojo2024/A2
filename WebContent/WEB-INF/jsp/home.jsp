@@ -5,8 +5,8 @@
     <head>
         <meat charset="UTF-8">
             <title>ホーム|レコレコ</title>
-            <link rel="stylesheet" href="common.css">
-            <link rel="stylesheet" href="home.css">
+            <link rel="stylesheet" href="/A2/css/common.css">
+            <link rel="stylesheet" href="/A2/css/home.css">
     </head>
         <header>
             <nav class="nav">

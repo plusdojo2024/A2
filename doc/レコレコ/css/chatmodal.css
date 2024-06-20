@@ -49,15 +49,28 @@ body {
 .input-area button {
   padding: 10px 20px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #35AFDB;
   color: white;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
 }
+.button0 {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffffff;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.point{
+  height: 30px;
+  width: 30px;
+}
 
 .input-area button:hover {
-  background-color: #45a049;
+  background-color: #35AFDB;
 }
 
 .message-time {

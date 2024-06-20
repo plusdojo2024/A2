@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>コンテンツ詳細|レコレコ</title>
     <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="common.css">
 
 
 </head>
@@ -56,7 +57,7 @@
     <div class="flex">
         <img src="img/ffx.png" width="180px" height="200px" name="photo" alt="写真">
         <div class="column">
-            <h1 class="big">FINAL FANTASY X</h1>
+            <h1 class="big">FINAL FANTASY X</h1><input type="hidden" id="contentsId" value="${contentsId}">
             <h3>ゲーム</h3>
             <h3>2001年</h3>
             <h3>スクウェア</h3>
@@ -67,11 +68,11 @@
                 <img src="img/point_chat.png" alt="チャットの画像">
                 ランダムチャットを開始
             </button>
-            <button type="button" name="submit" id="collectionBtn" onclick="toggleCollection()">
+            <button type="button" name="submit" id="collectionBtn" value="1" onclick="goAjaxCollection()">
                 <img src="img/point_plus.png" alt="追加の画像">
                 コレクションに追加
             </button>
-            <button type="button" name="submit" id="wishlistBtn" onclick="toggleWishlist()">
+            <button type="button" name="submit" id="wishlistBtn" value="1" onclick="goAjaxWishlist()">
                 <img src="img/point_plus.png" alt="追加の画像">
                 ウィッシュリストに追加
             </button>
@@ -110,11 +111,9 @@
             <button class="delete-button1" onclick="deleteItem()">
                 <img src="img/point_edit.png" class="delete-icon" width="20px" height="20px" alt="ゴミ箱">編集
             </button>
-            <div class="heart" onclick="toggleHeartColor()">
+            <div class="heart" onclick="toggleHeartColor(this)">
                 <span class="heart-count">0</span>
             </div>
-
-
             <img src="img/button_review.png" class="newreview" width="100px" height="100px" alt="新規レビューの写真">
         </div>
 
@@ -138,10 +137,12 @@
             <div class="review">
                 <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
             </div>
-            <div class="heart" onclick="toggleHeartColor()">
+            <div class="heart2" onclick="toggleHeartColor(this)">
                 <span class="heart-count">0</span>
             </div>
         </div>
+
+
     </div>
 
     <footer>
@@ -194,59 +195,147 @@
         tabs[0].classList.add('selected');
 
 
+        function goAjaxCollection() {
+
+            //値を取得してくる
+            let status = 1;
+            let contentsId = document.getElementById('contentsId').value;
+            let life = document.getElementById('collectionBtn').value;
+
+
+            //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+            let postData = { data1: status, data2: contentsId, data3: life }
+
+            //非同期通信始めるよ
+            $.ajaxSetup({ scriptCharset: 'utf-8' });
+            $.ajax({
+                //どのサーブレットに送るか
+                //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+                url: '/A2/ApiMyContentsServlet',
+                //どのメソッドを使用するか
+                type: "POST",
+                //受け取るデータのタイプ
+                dataType: "json",
+                //何をサーブレットに飛ばすか（変数を記述）
+                data: postData,
+                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+                processDate: false,
+                timeStamp: new Date().getTime()
+                //非同期通信が成功したときの処理
+            }).done(function (data) {
+                //成功した場合は、ボタンが反転する（同時に削除ボタンになる）
+                if (data === "true") {
+                    toggleCollection();
+                    /* ボタンが反転する処理 */
+                } else {
+                    //失敗した場合はなにもしない
+                }
+            })
+                //非同期通信が失敗したときの処理
+                .fail(function () {
+                    //失敗した場合はなにもしない
+                });
+        }
+
+
+        function goAjaxWishlist() {
+
+            //値を取得してくる
+            let status = 0;
+            let contentsId = document.getElementById('contentsId').value;
+            let life = document.getElementById('wishlistBtn').value;
+
+
+            //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+            let postData = { data1: status, data2: contentsId, data3: life }
+
+            //非同期通信始めるよ
+            $.ajaxSetup({ scriptCharset: 'utf-8' });
+            $.ajax({
+                //どのサーブレットに送るか
+                //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+                url: '/A2/ApiMyContentsServlet',
+                //どのメソッドを使用するか
+                type: "POST",
+                //受け取るデータのタイプ
+                dataType: "json",
+                //何をサーブレットに飛ばすか（変数を記述）
+                data: postData,
+                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+                processDate: false,
+                timeStamp: new Date().getTime()
+                //非同期通信が成功したときの処理
+            }).done(function (data) {
+                //成功した場合は、ボタンが反転する（同時に削除ボタンになる）
+                if (data === "true") {
+                    toggleWishlist()
+                    /* ここにボタンが反転する処理 */
+                } else {
+                    //失敗した場合はなにもしない
+                }
+            })
+                //非同期通信が失敗したときの処理
+                .fail(function () {
+                    //失敗した場合はなにもしない
+                });
+        }
+
+
+
 
 
         function toggleCollection() {
             var collectionButton = document.getElementById('collectionBtn');
             if (collectionButton.innerText.includes('コレクションに追加')) {
-                collectionButton.innerHTML = '<img src="image/garbage_can.png" alt="削除の画像"> コレクションから削除';
+                collectionButton.innerHTML = '<img src="img/point_delete.png" alt="削除の画像"> コレクションから削除';
                 collectionButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
             } else {
-                collectionButton.innerHTML = '<img src="image/point_plus.png" alt="追加の画像"> コレクションに追加';
+                collectionButton.innerHTML = '<img src="img/point_plus.png" alt="追加の画像"> コレクションに追加';
                 collectionButton.style.backgroundColor = ''; // デフォルトに戻す
             }
         }
 
+
         function toggleWishlist() {
             var wishlistButton = document.getElementById('wishlistBtn');
             if (wishlistButton.innerText.includes('ウィッシュリストに追加')) {
-                wishlistButton.innerHTML = '<img src="image/garbage_can.png" alt="削除の画像"> <span style="font-size: 95%;">ウィッシュリストから削除</span>';
+                wishlistButton.innerHTML = '<img src="img/point_delete.png" alt="削除の画像"> <span style="font-size: 95%;">ウィッシュリストから削除</span>';
                 wishlistButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
             } else {
-                wishlistButton.innerHTML = '<img src="image/point_plus.png" alt="追加の画像"> ウィッシュリストに追加';
+                wishlistButton.innerHTML = '<img src="img/point_plus.png" alt="追加の画像"> ウィッシュリストに追加';
                 wishlistButton.style.backgroundColor = ''; // デフォルトに戻す
             }
         }
 
-        function toggleHeartColor() {
-            var heart = document.querySelector('.heart');
-            heart.classList.toggle('clicked');
-        }
 
 
-        let count = 0; // 初期の数値
 
-        function toggleHeartColor() {
-            var heart = document.querySelector('.heart');
-            var heartCount = document.querySelector('.heart-count');
 
-            // イベントが発生した要素が .heart-count である場合、何もしない
-            if (event.target.classList.contains('heart-count')) {
-                return;
+
+        let countTab1 = 0;
+        let countTab2 = 0;
+
+        function toggleHeartColor(heart) {
+            var heartCount = heart.querySelector('.heart-count');
+
+            if (heart.parentElement.id === 'tabpage1') {
+                if (heart.classList.contains('clicked')) {
+                    countTab1--;
+                } else {
+                    countTab1++;
+                }
+                heartCount.textContent = countTab1;
+            } else if (heart.parentElement.id === 'tabpage2') {
+                if (heart.classList.contains('clicked')) {
+                    countTab2--;
+                } else {
+                    countTab2++;
+                }
+                heartCount.textContent = countTab2;
             }
 
-            if (heart.classList.contains('clicked')) {
-                count--; // ハートがクリックされたらカウントを減らす
-                heartCount.textContent = count; // 数字を更新する
-            } else {
-                count++; // ハートがクリックされていない場合はカウントを増やす
-                heartCount.textContent = count; // 数字を更新する
-            }
-
             heart.classList.toggle('clicked');
         }
-
-
     </script>
 </body>
 

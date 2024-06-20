@@ -3,30 +3,31 @@ import java.io.Serializable;
 //ポスト一覧（受け取り）表示用Beans
 public class PostList implements Serializable{
 
-	private int user_id; //ポスト受け取ったユーザのID
-	private int post_id;
-	private String created_at; //ポストを受け取った時点の日時（つまりポスト受け取りテーブルのカラム）
+	private int userId; //ポスト受け取ったユーザのID
+	private int postId;
+	private String createdAt; //ポストを受け取った時点の日時（つまりポスト受け取りテーブルのカラム）
 	private String title;
 	private String recommend;
-	private int my_interest;
-
-	public int getUser_id() {
-		return user_id;
+	private int myInterest;
+	private int userIdWriter;
+	private int interest;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public int getPost_id() {
-		return post_id;
+	public int getPostId() {
+		return postId;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
-	public String getCreated_at() {
-		return created_at;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 	public String getTitle() {
 		return title;
@@ -40,11 +41,27 @@ public class PostList implements Serializable{
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
-	public int getMy_interest() {
-		return my_interest;
+	public int getMyInterest() {
+		return myInterest;
 	}
-	public void setMy_interest(int my_interest) {
-		this.my_interest = my_interest;
+	public void setMyInterest(int myInterest) {
+		this.myInterest = myInterest;
 	}
+	public int getUserIdWriter() {
+		return userIdWriter;
+	}
+	public void setUserIdWriter(int userIdWriter) {
+		this.userIdWriter = userIdWriter;
+	}
+	public int getInterest() {
+		return interest;
+	}
+	public void setInterest(int interest) {
+		this.interest = interest;
+	}
+
+
+
+
 
 }

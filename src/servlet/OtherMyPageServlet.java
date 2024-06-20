@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.FavoriteUserDao;
 import dao.MyContentsDao;
 import dao.ReviewDao;
 import dao.ReviewDisplayDao;
@@ -32,35 +31,25 @@ public class OtherMyPageServlet extends HttpServlet {
     		return;
     	}
 
-    	//セッションスコープからユーザーIDを取ってくる
-    	User user = (User)session.getAttribute("user");
-    	int userId = user.getUserId();
-
     	// リクエストパラメータを取得する
     	request.setCharacterEncoding("UTF-8");
 		int otherUserId = Integer.parseInt(request.getParameter("id"));
 
     	//他ユーザのインスタンスを作成する
 		UserDao uDao = new UserDao();
-		User otherUser = uDao.userSelect(otherUserId);
+		User otherUser = uDao.selectUser(otherUserId);
 
-		//DAOを生成
-		ReviewDao rDao = new ReviewDao();
-		FavoriteUserDao fDao = new FavoriteUserDao();
 
     	//実績を取得する
+    	//DAOを生成
+    		ReviewDao rDao = new ReviewDao();
     	//投稿したレビューの総数を取得する
-    		int reviewCount = rDao.countTotalReview(otherUserId);
+    		int reviewCount = rDao.reviewCount(otherUserId);
     	// UserのBeansに入れる
     		otherUser.setReviewCount(reviewCount);
 
     	//他ユーザのインスタンスをリクエストスコープに入れる
     		request.setAttribute("otherUser", otherUser);
-
-    	//そのユーザがお気に入りユーザに登録済みかどうかを判断する
-    		//int型の戻り値をInteger型に変換し、リクエストスコープに入れる(int型はスコープに入らないため)
-    		Integer favorite = Integer.valueOf(fDao.confirmFavorite(userId, otherUserId));
-    		request.setAttribute("favorite", favorite);
 
         //コレクション、ウィッシュリストの一覧を取得してリクエストスコープに入れる
             //マイコレクションDAOを生成
@@ -79,7 +68,7 @@ public class OtherMyPageServlet extends HttpServlet {
             //いいね数を取得する
             	for(ReviewDisplay reviewDisplay: reviewList) {
             		int reviewId = reviewDisplay.getReviewId();
-            		reviewDisplay.setGoodCount(rdDao.countGood(reviewId));
+            		reviewDisplay.setGoodCount(rdDao.countGood(revidewId));
             		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
             	}
 

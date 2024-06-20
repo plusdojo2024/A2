@@ -69,9 +69,6 @@
 }
 
 /* ポスト */
-.ppost{
-  text-align: center;
-}
 .modalhed{
   text-align: center;
   font-size: 170%;
@@ -84,17 +81,6 @@ input[name=submit] {
   width: 500px;
   color: #ffffff;
   background-color: #35AFDB;
-  font-size: 1.2em;
-  border-radius: 20px; /*ボタンの角を丸くする*/
-}
-
-input[name=submit3] {
-  border: none;
-  margin: 15px 30px 10px 30px;
-  padding: 20px 30px 20px 50px;
-  width: 500px;
-  color: #ffffff;
-  background-color: #CFCFCF;
   font-size: 1.2em;
   border-radius: 20px; /*ボタンの角を丸くする*/
 }
@@ -257,13 +243,3 @@ a[href="#tabpage2"] {
 .maintext{
   margin: 0;
 }
-
-
-
-
-
-
-
-
-
-

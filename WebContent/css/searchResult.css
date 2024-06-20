@@ -2,12 +2,14 @@
 * {
     margin: 0;
     padding:0;
-    box-sizing:border-box;
+    /*box-sizing:border-box;*/
+    border: 0;
     }
 
 html {
     font-size: 16px;
     font-family: sans-serif;
+    color:#545454
 }
 
 body {
@@ -128,7 +130,7 @@ h3 {
     display: flex;
 }
 
-
+/*ヘッダーナビゲーション-----------------------*/
 .nav ul {
     background-color: #B3C8CF;
     list-style-type: none;
@@ -139,6 +141,23 @@ h3 {
     align-items: center;
     gap: 80px;
 }
+
+.nav h1 a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: larger;
+    padding: 0 20px;
+}
+
+/*常にh1をこのデザインに指定する*/
+.nav h1 a:hover,
+.nav h1 a:focus,
+.nav h1 a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
 
 .nav img {
     margin: 10px 10px 10px 0;

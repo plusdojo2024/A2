@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
-import java.sql.Timestamp;
 
 import model.Review;
 
@@ -21,18 +20,16 @@ public class ReviewDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 			//INSERT文の準備
-			String sql = "INSERT INTO review(user_id, contents_id, title, review, created_at) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO review(review_id, user_id, contents_id, title, review, good, created_at, update_at) VALUES (?,?,?,?,?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			// Java側で現在のタイムスタンプを取得
-			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-
-			//sql文を完成させる
-			pStmt.setInt(1, review.getUserId());
-			pStmt.setInt(2, review.getContentsId());
-			pStmt.setString(3, review.getTitle());
-			pStmt.setString(4, review.getReview());
-			pStmt.setTimestamp(5, createdAt);
+			pStmt.setInt(1, review.getReviewId());
+			pStmt.setInt(2, review.getUserId());
+			pStmt.setInt(3, review.getContentsId());
+			pStmt.setString(4, review.getTitle());
+			pStmt.setString(5, review.getReview());
+			pStmt.setInt(6, review.getGood());
+			pStmt.setString(7, review.getCreatedAt());
+			pStmt.setString(8, review.getUpdatedAt());
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {
@@ -115,15 +112,16 @@ public class ReviewDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 			//UPDATE文の準備
-			String sql = "UPDATE review SET user_id=?, contents_id=?, title=?, review=?, update_at=DEFAULT WHERE review_id=?";
+			String sql = "UPDATE review SET user_id=?, contents_id=?, title=?, review=?, good=?, created_at=?, update_at=? WHERE review_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			//sql文を完成させる
-			pStmt.setInt(1, review.getUserId());
-			pStmt.setInt(2, review.getContentsId());
-			pStmt.setString(3, review.getTitle());
-			pStmt.setString(4, review.getReview());
-			pStmt.setInt(5, review.getReviewId());
+			pStmt.setInt(1, review.getReviewId());
+			pStmt.setInt(2, review.getUserId());
+			pStmt.setInt(3, review.getContentsId());
+			pStmt.setString(4, review.getTitle());
+			pStmt.setString(5, review.getReview());
+			pStmt.setInt(6, review.getGood());
+			pStmt.setString(7, review.getCreatedAt());
+			pStmt.setString(8, review.getUpdatedAt());
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {

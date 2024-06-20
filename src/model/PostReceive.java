@@ -5,7 +5,6 @@ public class PostReceive implements Serializable {
     private int postReceiveId;         //ポスト受け取りID
     private int userId;                 //ユーザID
     private int postId;                 //ポストID
-    private int myInterest;                 //自分が気になる！をつけたかどうか。1＝つけた、0＝つけてな
     private String createdAt;           //登録日時
     private String updatedAt;           //更新日時
 
@@ -26,12 +25,6 @@ public class PostReceive implements Serializable {
 	}
 	public void setPostId(int postId) {
 		this.postId = postId;
-	}
-	public int getMyInterest() {
-		return myInterest;
-	}
-	public void setMyInterest(int myInterest) {
-		this.myInterest = myInterest;
 	}
 	public String getCreatedAt() {
 		return createdAt;

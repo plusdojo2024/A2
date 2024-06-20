@@ -168,59 +168,5 @@ public class FavoriteUserDao {
 			return favoriteList;
 		}
 
-	  //ユーザIDで指定した他ユーザについて、自分がお気に入りをつけているかどうか確認する。つけていたら1、つけていなかったら0を返す
-	    public int confirmFavorite(int userId, int userIdFavorite) {
-			Connection conn = null;
-			int favorite = 0;
-
-			try {
-				// JDBCドライバを読み込む
-				Class.forName("org.h2.Driver");
-
-				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
-
-				// SQL文を準備する
-				String sql = "SELECT count(*) FROM favorite_user WHERE user_id=? AND user_id_favorite=?";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
-
-				// SQL文を完成させる
-				pStmt.setInt(1, userId);
-	            pStmt.setInt(2, userIdFavorite);
-
-				// SQL文を実行し、結果表を取得する
-				ResultSet rs = pStmt.executeQuery();
-
-	            //結果のテーブルの1行目を見に行く
-	            rs.next();
-
-	            //countの結果が1なら、いいねがついているのでtrue。0なら、いいねはついていないのでfalseのまま
-	            if (rs.getInt("count(*)") == 1) {
-	                favorite = 1;
-	            }
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			finally {
-				// データベースを切断
-				if (conn != null) {
-					try {
-						conn.close();
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-			// 結果を返す
-			return favorite;
-		}
-
-
 }
 

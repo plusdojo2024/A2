@@ -13,7 +13,7 @@ import java.util.List;
 
 import model.MyContents;
 
-//コレクション、ウィッシュリストの表示、登録、削除のためのDAO
+//マイコンテンツ表示のための情報を取ってくるDAO
 public class MyContentsDao {
 
     //ユーザIDで検索し、コレクションのリストを取得する
@@ -29,7 +29,7 @@ public class MyContentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m (INNER) contents AS c ON m.contents_id=c.contents_idWHERE m.user_id=? AND m.status=1";
+			String sql = "SELECT m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m (INNER) contents AS c ON m.contents_id=c.contents_idWHERE m.user_id=? AND m.status=1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -42,7 +42,6 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("m.my_contents_id"));
 				record.setUserId(rs.getInt("m.user_id"));
 				record.setContentsId(rs.getInt("m.contents_id"));
 				record.setStatus(rs.getInt("m.status"));
@@ -81,7 +80,7 @@ public class MyContentsDao {
 		return collectionList;
 	}
 
-	//コレクションの登録を行う
+	//コレクションINSERT
 	public boolean registCollection(int contentsId, int userId) {
 		Connection conn = null;
 		boolean result = false;
@@ -105,8 +104,9 @@ public class MyContentsDao {
 
 
 			// INSERTT文を準備する
-			pStmt.setInt(1,contentsId);
-			pStmt.setInt(2,userId);
+			pStmt.setInt(1,myContents.getContentsId());
+			pStmt.setInt(2,myContents.getUserId());
+
 			pStmt.setTimestamp(3, createdAt);
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
@@ -141,7 +141,7 @@ public class MyContentsDao {
 	}
 
 
-	//ユーザIDで検索し、ウィッシュリストを取得する
+    //ウィッシュリスト
     public List<MyContents> selectWishList(int userId) {
 		Connection conn = null;
 		List<MyContents> wishList = new ArrayList<MyContents>();
@@ -154,7 +154,7 @@ public class MyContentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m (INNER) contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=0;";
+			String sql = "SELECT m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m (INNER) contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=0;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -167,7 +167,6 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("m.my_contents_id"));
 				record.setUserId(rs.getInt("m.user_id"));
 				record.setContentsId(rs.getInt("m.contents_id"));
 				record.setStatus(rs.getInt("m.status"));
@@ -209,8 +208,8 @@ public class MyContentsDao {
 
 
 
-	//コンテンツをウィッシュリストに登録する
-	public boolean registWishList(int contentsId, int userId) {
+	//ウィッシュリストINSERT
+	public boolean registWishList(MyContents myContents) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -233,9 +232,10 @@ public class MyContentsDao {
 
 
 			// INSERTT文を準備する
-			pStmt.setInt(1,contentsId);
-			pStmt.setInt(2,userId);
-			pStmt.setTimestamp(3, createdAt);
+			pStmt.setInt(1,myContents.getContentsId());
+			pStmt.setInt(2,myContents.getUserId());
+			pStmt.setInt(3,myContents.getStatus());
+			pStmt.setTimestamp(4, createdAt);
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {
@@ -269,8 +269,8 @@ public class MyContentsDao {
 	}
 
 
-	//マイコンテンツテーブルからデータを削除する
-	public boolean deleteMyContents(int contentsId, int userId) {
+	//マイコンテンツからテーブルデータを削除
+	public boolean deleteMyContents(int myContentsId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -280,10 +280,9 @@ public class MyContentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			//DELETE文の準備
-			String sql ="DELETE FROM my_contents WHERE contents_id=? AND user_id=?";
+			String sql ="DELETE FROM my_contents WHERE my_contents_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setInt(1, contentsId);
-			pStmt.setInt(2, userId);
+			pStmt.setInt(1, myContentsId);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

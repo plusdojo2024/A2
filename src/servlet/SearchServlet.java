@@ -37,6 +37,12 @@ public class SearchServlet extends HttpServlet {
 		ContentsDao cDao = new ContentsDao();
 		List<Contents> contentsList = cDao.searchContents(freeWord);
 
+		if(contentsList.isEmpty()) {
+			//一致するコンテンツがなかったら、検索結果がなかった場合のページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/noSearchResult.jsp");
+			dispatcher.forward(request, response);
+		}
+
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("contentsList", contentsList);

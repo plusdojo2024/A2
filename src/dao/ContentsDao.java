@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,18 +28,13 @@ public class ContentsDao {
 				// INSERTT文を準備する
 				String sql = "INSERT INTO contents(title,ruby,image,genre,year,creator,created_at) VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-
-				// Java側で現在のタイムスタンプを取得
-				Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-
 				pStmt.setString(1, contents.getTitle());
 				pStmt.setString(2, contents.getRuby());
 				pStmt.setString(3, contents.getImage());
 				pStmt.setString(4, contents.getGenre());
 				pStmt.setString(5, contents.getYear());
 				pStmt.setString(6, contents.getCreator());
-				pStmt.setTimestamp(7, createdAt);
-
+				pStmt.setString(7, contents.getCreatedAt());
 
 				// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 				if (pStmt.executeUpdate() == 1) {

@@ -1,4 +1,12 @@
-/* マイページ上部分共通のCSS */
+/* ページ全体のスタイル */
+
+li{
+  /* リストの先頭の丸をなくす */
+  list-style: none;
+}
+
+
+/* マイページ上部分共通のスタイル */
 /* ユーザ情報全体 */
 .profile{
   display: flex;
@@ -58,10 +66,6 @@
   margin-right: 50px;
 }
 
-#tab li{
-  /* リストの先頭の丸をなくす */
-  list-style: none;
-}
 
 #tab a{
   /* 垂直・水平方向に真ん中に表示されるようにする */
@@ -129,4 +133,173 @@ display: block;
   /* 角丸 */
   text-align: center;
   /* 中央揃え */
+}
+
+
+/* コレクション、ウィッシュリストのスタイル */
+.myContentsList{
+  /* コンテンツを横並びにする */
+  display: flex;
+}
+
+.contents{
+  /* 文字のスタイル */
+  color: #545454;
+  text-decoration: none;
+
+  /* 文字を中央に配置する */
+  display: block;
+  text-align: center;
+}
+
+.contentsImage{
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 150px;
+  width: 135px;
+}
+
+/* レビュー一覧のスタイル */
+
+.reviewBar{
+  display: flex;
+  margin: 5px 20px 5px 20px;
+  height: 244px;
+  width: 1323px;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
+}
+
+.review{
+  margin: 20px;
+}
+
+.reviewTime{
+  margin-left: 20px;
+  font-size: 0.8rem;
+}
+
+.reviewImage{
+  height: 200px;
+  width: 180px;
+  margin: 20px;
+}
+
+.reviewText{
+}
+
+/*削除ボタン------------------------------------*/
+.button{
+}
+
+.update-button {
+  display: flex;
+  border: 1px solid black;
+  padding: 8px;
+  background-color: #ffffff;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.update-button img{
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+
+.update-button .update-text{
+  display: inline-block;
+}
+
+
+/* ハートアイコン */
+.heart {
+  position: absolute;
+  /* 絶対位置 */
+  width: 40px;
+  /* 幅 */
+  height: 36px;
+  /* 高さ */
+  left: 90%;
+  /* 左からの位置 */
+  top: 57%;
+  /* 上からの位置 */
+  margin-top: -20px;
+  /* 上のマージン */
+  margin-left: -40px;
+  /* 左のマージン */
+}
+
+/* ハートアイコンの要素 */
+.heart::before,
+.heart::after {
+  position: absolute;
+  /* 絶対位置 */
+  content: "";
+  /* コンテンツ */
+  left: 20px;
+  /* 左からの位置 */
+  top: 0;
+  /* 上からの位置 */
+  width: 20px;
+  /* 幅 */
+  height: 32px;
+  /* 高さ */
+  background: #f88dc8;
+  /* 背景色 */
+  border-radius: 50px 50px 0 0;
+  /* 角丸 */
+  transform: rotate(-45deg);
+  /* 45度回転 */
+  transform-origin: 0 100%;
+  /* 回転の原点 */
+}
+
+/* ハートアイコンの要素2 */
+.heart::after {
+  left: 0;
+  /* 左からの位置 */
+  transform: rotate(45deg);
+  /* 45度回転 */
+  transform-origin: 100% 100%;
+  /* 回転の原点 */
+}
+
+/* ハートの数 */
+.heart-count {
+  position: absolute;
+  /* 絶対位置 */
+  left: 45px;
+  /* 左からの位置 */
+  top: 45%;
+  /* 上からの位置 */
+  transform: translateY(-50%);
+  /* 垂直方向の中央揃え */
+  font-size: 14px;
+  /* フォントサイズ */
+  color: #545454;
+  /* テキスト色 */
+}
+
+/* チャット履歴のスタイル */
+.chat-history {
+  display: flex;
+  margin: 5px 20px 5px 20px;
+  color: #545454;
+  text-decoration: none;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
+}
+.chat-icon{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.talk{
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.check-count{
+
 }

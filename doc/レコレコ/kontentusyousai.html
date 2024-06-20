@@ -99,17 +99,18 @@
             <div class="contents">
                 <img src="img/ffx.png" class="image" width="180px" height="200px" alt="写真">
                 <p>06/06 22:22 投稿</p>
-                <button class="delete-button" onclick="deleteItem()">
+                <button class="delete-button" onclick="goAjaxDelete()">
                     <img src="img/garbage_can.png" class="delete-icon" width="20px" height="20px" alt="ゴミ箱">削除
                 </button>
             </div>
 
-            <h3 class="short">FINAL FANTASY X</h3>
-            <div class="review">
+            <h3 class="short" id="title" value="${title}">FINAL FANTASY X</h3>
+            <div class="review" id="review" value="${review}">
+                <input type="hidden" id="reviewId" value="${reviewId}">
                 <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
             </div>
-            <button class="delete-button1" onclick="deleteItem()">
-                <img src="img/point_edit.png" class="delete-icon" width="20px" height="20px" alt="ゴミ箱">編集
+            <button class="delete-button1" onclick="goAjaxEdit()">
+                <img src="img/point_edit.png" class="delete-icon" width="20px" height="20px" alt="編集">編集
             </button>
             <div class="heart" onclick="toggleHeartColor(this)">
                 <span class="heart-count">0</span>
@@ -280,6 +281,139 @@
                 });
         }
 
+        //登録Ajax
+        function goAjax() {
+
+        //値を取得してくる
+        let status = "登録";
+        let contentsId = document.getElementById('contentsId').value;
+        let title = document.getElementById('title').value;
+        let review = document.getElementById('review').value;
+        let reviewId = document.getElementById('reviewId').value;
+
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviewId }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiReviewServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+            //モーダルを開く処理
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //削除Ajax
+        function goAjaxDelete() {
+
+        //値を取得してくる
+        let status = "削除";
+        let contentsId = document.getElementById('contentsId').value;
+        let title = document.getElementById('title').value;
+        let review = document.getElementById('review').value;
+        let reviewId = document.getElementById('reviewId').value;
+       
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let postData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviewId }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiReviewServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+                
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //編集Ajax
+        function goAjaxEdit() {
+        //値を取得してくる
+        let status = "編集";
+        let contentsId = document.getElementById('contentsId').value;
+        let title = document.getElementById('title').value;
+        let review = document.getElementById('review').value;
+        let reviewId = document.getElementById('reviewId').value;
+
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviewId }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiReviewServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+            //モーダルを開く処理
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
 
 
 

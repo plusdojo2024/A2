@@ -349,9 +349,6 @@ public class UserDao {
 
 			pStmt.setString(1, mail);
 
-
-
-
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 

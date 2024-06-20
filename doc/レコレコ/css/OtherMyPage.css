@@ -76,77 +76,84 @@
 
 /* タブのスタイル */
 /*tabの形状*/
-.tab{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .tab li a{
-    display: block;
-    background:#ddd;
-    margin:0 2px;
-    padding:10px 20px;
-  }
-  /*liにactiveクラスがついた時の形状*/
-  .tab li.active a{
-    background:#fff;
-  }
-  
-  
-  /*エリアの表示非表示と形状*/
-  .area {
-    display: none;/*はじめは非表示*/
-    opacity: 0;/*透過0*/
-    background: #fff;
-    padding:50px 20px;
-  }
-  
-  /*areaにis-activeというクラスがついた時の形状*/
-  .area.is-active {
-      display: block;/*表示*/
-      animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
-      animation-duration: 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes displayAnime{
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  
-  
-  /*========= レイアウトのためのCSS ===============*/
-  
-  body{
-    background:#eee;
-  }
-  
-  ul{
-    list-style:none;
-  }
-  
-  a{
-    color:#333;
-    text-decoration: none;
-  }
-  
-  .wrapper{
-    width:100%;
-    max-width: 960px;
-    margin:30px auto;
-      background:#fefefe;
-  }
-  
-  .area h2{
-    font-size:1.3rem;
-    margin:0 0 20px 10px;
-  }
-  
-  .area li{
-    padding: 10px; 
-    border-bottom: 1px solid #ddd;
-  }
+#tab {
+  /* タブメニューを横に並べる */
+  display: flex;
+
+  /* margin */
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#tab li{
+  /* リストの先頭の丸をなくす */
+  list-style: none;
+}
+
+#tab a{
+  /* 垂直・水平方向に真ん中に表示されるようにする */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 背景 */
+  background-color: #CFCFCF;
+
+  /* 角を丸く */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  /* 高さと幅 */
+  width: 707px;
+  height: 50px;
+
+  color: #545454;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#tab a.selected{
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+}
+
+/* 選択されたタブのスタイル */
+
+.area {
+  border: 1px solid white;
+  /* ボーダー */
+  margin: -16px 50px 50px 50px;
+  /* マージン */
+  padding: 1em;
+  /* パディング */
+  background-color: white;
+  /* 背景色 */
+  overflow-y: scroll;
+  /* 縦スクロール */
+  height: 500px;
+  /* 高さ */
+  width: 1380px;
+  display: none;
+  /* 非表示 */
+}
+
+.area.selected {
+display: block;
+/* ブロック要素として表示 */
+}
+
+/* selectタブのスタイル */
+.select{
+  margin: 10px;
+  height: 30px;
+  /* 高さ */
+  width: 100px;
+  /* 幅 */
+  border: 1px solid #ccc;
+  /* ボーダー */
+  border-radius: 20px;
+  /* 角丸 */
+  text-align: center;
+  /* 中央揃え */
+}

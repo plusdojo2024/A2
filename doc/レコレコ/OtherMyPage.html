@@ -72,67 +72,113 @@
         </div>
         <!-- タブ -->
         <div class="wrapper">
-            <ul class="tab">
+            <ul id="tab">
               <li><a href="#collectionList">コレクション</a></li>
               <li><a href="#reviewList">レビュー一覧</a></li>
             </ul>
-          
-              <div id="collectionList" class="area">
-                <h2>コレクション</h2>
-                <select name="sort">
-                    <option value="sort">並び替え</option>
-                    <option value="fromNew">新しい順</option>
-                    <option value="fromOld">古い順</option>
-                </select>
-                <select name="narrowDown">
-                    <option value="narrowDown">絞り込み</option>
-                    <option value="all">すべて</option>
-                    <option value="movie">映画</option>
-                    <option value="dorama">ドラマ</option>
-                    <option value="anime">アニメ</option>
-                    <option value="sonota1">その他（映像）</option>
-                    <option value="novel">小説</option>
-                    <option value="comics">マンガ</option>
-                    <option value="sonota2">その他（書籍）</option>
-                    <option value="game">ゲーム</option>
-                </select>
-                <ul>
-                    <c:forEach var="e" items="${collectionList}" >
-                        <li>
-                            <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                <a href="javascript:form${e.contents_id}.submit()" class="">
-                                    <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                    <img src="${e.image}" alt="コンテンツ画像"><br>
-                                    ${e.contents_title}<br>
-                                    ${e.contents_jenre}
-                                </a>
-                            </form>
-                        </li>
-                    </c:forEach>
-                </ul>
-              <!--/area--></div>
-              <div id="reviewList" class="area">
-                <h2>レビュー一覧</h2>
-                <select name="sort">
-                    <option value="sort">並び替え</option>
-                    <option value="fromNew">新しい順</option>
-                    <option value="fromOld">古い順</option>
-                </select>
-                <ul>
-                    <c:forEach var="e" items="${reviewList}" >
-                        <li>                          
-                            <img src="${e.image}" alt="コンテンツ画像"><br>
-                            ${e.created_at}<br>
-                            ${e.title}<br>
-                            ${e.review}<br>
-                            <span>heart</span>
-                            ${e.good_count}<br>
-                        </li>
-                    </c:forEach>
-                </ul>
-              <!--/area--></div>
+
+            <div id="tabbody">
+                <div id="collectionList" class="area selected">
+                    <select name="sort" class="select">
+                        <option value="sort">並び替え</option>
+                        <option value="fromNew">新しい順</option>
+                        <option value="fromOld">古い順</option>
+                    </select>
+                    <select name="narrowDown" class="select">
+                        <option value="narrowDown">絞り込み</option>
+                        <option value="all">すべて</option>
+                        <option value="movie">映画</option>
+                        <option value="dorama">ドラマ</option>
+                        <option value="anime">アニメ</option>
+                        <option value="sonota1">その他（映像）</option>
+                        <option value="novel">小説</option>
+                        <option value="comics">マンガ</option>
+                        <option value="sonota2">その他（書籍）</option>
+                        <option value="game">ゲーム</option>
+                    </select>
+                    <ul>
+                        <c:forEach var="e" items="${collectionList}" >
+                            <li>
+                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
+                                    <a href="javascript:form${e.contents_id}.submit()" class="">
+                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
+                                        <img src="${e.image}" alt="コンテンツ画像"><br>
+                                        ${e.contents_title}<br>
+                                        ${e.contents_jenre}
+                                    </a>
+                                </form>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                <!--/area--></div>
+                <div id="reviewList" class="area">
+                    <select name="sort" class="select">
+                        <option value="sort">並び替え</option>
+                        <option value="fromNew">新しい順</option>
+                        <option value="fromOld">古い順</option>
+                    </select>
+                    <ul>
+                        <c:forEach var="e" items="${reviewList}" >
+                            <li>                          
+                                <img src="${e.image}" alt="コンテンツ画像"><br>
+                                ${e.created_at}<br>
+                                ${e.title}<br>
+                                ${e.review}<br>
+                                <span>heart</span>
+                                ${e.good_count}<br>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                <!--/area--></div>
+            </div>
           <!--wrapper--></div>
-    <script src="js/myPage.js"></script>
+          <script>
+            'use strict';
+     
+             // ---------------------------
+             // ▼A：対象要素を得る
+             // ---------------------------
+             var tabs = document.getElementById('tab').getElementsByTagName('a');
+             var pages = document.getElementById('tabbody').getElementsByClassName('area');
+     
+             // ---------------------------
+             // ▼B：タブの切り替え処理
+             // ---------------------------
+             function changeTab() {
+                 var targetid = this.getAttribute('href').substring(1);
+     
+                 // 対象のタブページだけを表示する
+                 for (var i = 0; i < pages.length; i++) {
+                     if (pages[i].id === targetid) {
+                         pages[i].classList.add('selected');
+                     } else {
+                         pages[i].classList.remove('selected');
+                     }
+                 }
+     
+                 // クリックされたタブにselectedクラスを追加し、他のタブから削除する
+                 for (var i = 0; i < tabs.length; i++) {
+                     tabs[i].classList.remove('selected');
+                 }
+                 this.classList.add('selected');
+     
+                 // ページ遷移しないようにfalseを返す
+                 return false;
+             }
+     
+             // ---------------------------
+             // ▼C：すべてのタブに対して、クリック時にchangeTab関数が実行されるよう指定する
+             // ---------------------------
+             for (var i = 0; i < tabs.length; i++) {
+                 tabs[i].onclick = changeTab;
+             }
+     
+             // ---------------------------
+             // ▼D：最初は先頭のタブを選択しておく
+             // ---------------------------
+             tabs[0].classList.add('selected');
+     
+         </script>
     </body>
 	<footer>
 		<a href=#top><span class="gotop"></span></a>

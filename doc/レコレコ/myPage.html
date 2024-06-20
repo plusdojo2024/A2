@@ -66,7 +66,7 @@
 
         <!-- タブ -->
         <div class="wrapper">
-            <ul class="tab">
+            <ul id="tab">
               <li><a href="#collectionList">コレクション</a></li>
               <li><a href="#reviewList">レビュー一覧</a></li>
               <li><a href="#wishList">ウィッシュリスト</a></li>
@@ -74,15 +74,14 @@
               <li><a href="#chatList">チャット</a></li>
             </ul>
 
-            </div id="tabbody">
+            <div id="tabbody">
                 <div id="collectionList" class="area selected">
-                    <h2>コレクション</h2>
-                    <select name="sort">
+                    <select name="sort" class="select">
                         <option value="sort">並び替え</option>
                         <option value="fromNew">新しい順</option>
                         <option value="fromOld">古い順</option>
                     </select>
-                    <select name="narrowDown">
+                    <select name="narrowDown" class="select">
                         <option value="narrowDown">絞り込み</option>
                         <option value="all">すべて</option>
                         <option value="movie">映画</option>
@@ -110,8 +109,7 @@
                     </ul>
                 <!--/area--></div>
                 <div id="reviewList" class="area">
-                    <h2>レビュー一覧</h2>
-                    <select name="sort">
+                    <select name="sort" class="select">
                         <option value="sort">並び替え</option>
                         <option value="fromNew">新しい順</option>
                         <option value="fromOld">古い順</option>
@@ -130,13 +128,12 @@
                     </ul>
                 <!--/area--></div>
                 <div id="wishList" class="area">
-                    <h2>ウィッシュリスト</h2>
-                    <select name="sort">
+                    <select name="sort" class="select">
                         <option value="sort">並び替え</option>
                         <option value="fromNew">新しい順</option>
                         <option value="fromOld">古い順</option>
                     </select>
-                    <select name="narrowDown">
+                    <select name="narrowDown" class="select">
                         <option value="narrowDown">絞り込み</option>
                         <option value="all">すべて</option>
                         <option value="movie">映画</option>
@@ -164,7 +161,6 @@
                     </ul>
                 <!--/area--></div>
                 <div id="favoriteList" class="area">
-                    <h2>お気に入りユーザ</h2>
                     <ul>
                         <c:forEach var="e" items="${favoriteList}" >
                             <li>
@@ -180,7 +176,6 @@
                     </ul>
                 <!--/area--></div>
                 <div id="chatList" class="area">
-                    <h2>チャット</h2>
                     <ul>
                         <c:forEach var="e" items="${chatList}" >
                             <li>
@@ -198,7 +193,7 @@
                     </ul>
                 <!--/area--></div>
             </div>
-          <!--wrapper--></div>
+        <!--wrapper--></div>
     <script>
        'use strict';
 

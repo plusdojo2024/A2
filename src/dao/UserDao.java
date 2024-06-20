@@ -38,8 +38,7 @@ public class UserDao {
 
 
 			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-			rs.next();//表の一行目を見に行く
-			if (rs.getInt("user_id") != null) {
+			if (rs.next()) {
 				loginUser.setUserId(rs.getInt("user_id"));
 				loginUser.setMail(rs.getString("mail"));
 				loginUser.setPass(rs.getString("pass"));
@@ -285,8 +284,7 @@ public class UserDao {
 			ResultSet rs = pStmt.executeQuery();
 
 			//mailが既に登録されていたらtrue 登録されていなかったらfalseを入れる
-			rs.next();//表の一行目を見に行く
-			if (rs.getInt("user_id") != null) {
+			if (rs.next()) {
 				otherUser.setUserId(rs.getInt("user_id"));
 				otherUser.setUserName(rs.getString("user_name"));
 				otherUser.setIcon(rs.getString("icon"));

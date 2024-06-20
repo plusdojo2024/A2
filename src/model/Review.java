@@ -7,6 +7,7 @@ public class Review implements Serializable {
 	private int contentsId;	//コンテンツID
 	private String title;		//タイトル
 	private String review;		//レビュー内容
+	private String image;      //画像
 	private String createdAt;	//登録日時
 	private String updatedAt;	//更新日時
 
@@ -41,6 +42,12 @@ public class Review implements Serializable {
 	}
 	public void setReview(String review) {
 		this.review = review;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public String getCreatedAt() {
 		return createdAt;

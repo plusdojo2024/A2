@@ -1,5 +1,6 @@
 package servlet;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.ContentsDao;
 import dao.ReviewDisplayDao;
+import model.Contents;
 import model.ReviewDisplay;
 import model.User;
 
@@ -60,11 +62,24 @@ public class ContentsDetailServlet extends HttpServlet {
         		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
         	}
 
+        //自分のレビューと、他ユーザのレビューに分ける
+            //自分のレビューを入れるリストと、他の人のレビューを入れるリストを作る
+            List<ReviewDisplay> myReviewList = new ArrayList<ReviewDisplay>();
+            List<ReviewDisplay> otherReviewList = new ArrayList<ReviewDisplay>();
+
+            //レビューを書いたユーザID＝自分のユーザIDならmyReviewListへ、それ以外はotherReviewListへ入れる
+            for(ReviewDisplay temp: reviewList) {
+            	if(temp.getUserIdWriter() == userId) {
+            		myReviewList.add(temp);
+            	} else {
+            		otherReviewList.add(temp);
+            	}
+            }
+
+
         // リクエストスコープに格納する
-        	request.setAttribute("reviewList", reviewList);
-
-
-
+        	request.setAttribute("myReviewList", myReviewList);
+        	request.setAttribute("otherReviewList", otherReviewList);
 
 		// コンテンツ詳細ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/contentsDetail.jsp");

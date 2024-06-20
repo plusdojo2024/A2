@@ -89,8 +89,8 @@ public class ContentsDao {
 
 					// SELECT文を実行し、結果表を取得する
 					ResultSet rs = pStmt.executeQuery();
-					rs.next();//表の一行目を見に行く
-					if (rs.getInt("user_id") != null) {
+					//表の一行目が入っていたら
+					if (rs.next()) {
 						contents.setContentsId(rs.getInt("contets_id"));
 						contents.setContentsId(rs.getInt("title"));
 						contents.setContentsId(rs.getInt("ruby"));

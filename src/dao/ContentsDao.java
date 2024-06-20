@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +29,24 @@ public class ContentsDao {
 				// INSERTT文を準備する
 				String sql = "INSERT INTO contents(title,ruby,image,genre,year,creator,created_at) VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// Java側で現在のタイムスタンプを取得
+				Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
 				pStmt.setString(1, contents.getTitle());
 				pStmt.setString(2, contents.getRuby());
-				pStmt.setString(3, contents.getImage());
 				pStmt.setString(4, contents.getGenre());
 				pStmt.setString(5, contents.getYear());
 				pStmt.setString(6, contents.getCreator());
-				pStmt.setString(7, contents.getCreatedAt());
+				pStmt.setTimestamp(7, createdAt);
+
+				//画像がnullだった場合は、デフォルト画像を登録する
+				if(contents.getImage() == null) {
+					pStmt.setString(3,"icon_default.png");
+				} else {
+					pStmt.setString(3, contents.getImage());
+				}
+
 
 				// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 				if (pStmt.executeUpdate() == 1) {
@@ -130,7 +142,7 @@ public class ContentsDao {
 
 
 	    //フリーワードで検索してヒットしたコンテンツのリストを返す
-	    public List<Contents> searchContents(String freeWord ) {
+	    public List<Contents> searchContents(String freeWord) {
 			Connection conn = null;
 			List<Contents> contentsList = new ArrayList<Contents>();
 

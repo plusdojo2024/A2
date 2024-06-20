@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,15 @@ public class GoodDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// INSERT文の準備
-			String sql = "INSERT INTO Good(review_id, user_id) VALUES (?,?)";
+			String sql = "INSERT INTO Good(review_id, user_id, created_at) VALUES (?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// Java側で現在のタイムスタンプを取得
+			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
 			pStmt.setInt(1, reviewId);
 			pStmt.setInt(2, userId);
+			pStmt.setTimestamp(3, createdAt);
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {

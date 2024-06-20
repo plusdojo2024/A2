@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
+import java.sql.Timestamp;
 
 import model.User;
 //ログイン、ユーザ登録、メール確認、ユーザ情報更新、ユーザ情報削除、他ユーザを検索する
@@ -94,29 +95,23 @@ public class UserDao {
 			String sql = "INSERT INTO user(mail, pass, user_name, icon, open_close, introduction, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// SQL文を完成させる
+			// Java側で現在のタイムスタンプを取得
+			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+			// SQL文を完成させる
 			pStmt.setString(1, user.getMail());
 			pStmt.setString(2, user.getPass());
 			pStmt.setString(3, user.getUserName());
-
-			if (user.getIcon() != null && !user.getIcon().equals("")) {
-				pStmt.setString(4,user.getIcon());
-			} else {
-				pStmt.setString(4, "");
-			}
-
 			pStmt.setInt(5, user.getOpenClose());
+			pStmt.setString(6, user.getIntroduction());
+			pStmt.setTimestamp(7, createdAt);
 
-
-			if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
-				pStmt.setString(6, user.getIntroduction());
+			//アイコンがnullだった場合は、デフォルト画像を登録する
+			if(user.getIcon() == null) {
+				pStmt.setString(4,"icon_default.png");
 			} else {
-				pStmt.setString(6, "");
+				pStmt.setString(4, user.getIcon());
 			}
-
-			pStmt.setString(7, user.getCreatedAt());
-
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

@@ -32,8 +32,14 @@ public class ReviewDao {
 			pStmt.setInt(2, review.getContentsId());
 			pStmt.setString(3, review.getTitle());
 			pStmt.setString(4, review.getReview());
-			pStmt.setString(5, review.getImage());
 			pStmt.setTimestamp(6, createdAt);
+
+			//画像がnullだった場合は、デフォルト画像を登録する
+			if(review.getImage() == null) {
+				pStmt.setString(5, "icon_default.png");
+			} else {
+				pStmt.setString(5, review.getImage());
+			}
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {
@@ -124,8 +130,14 @@ public class ReviewDao {
 			pStmt.setInt(2, review.getContentsId());
 			pStmt.setString(3, review.getTitle());
 			pStmt.setString(4, review.getReview());
-			pStmt.setString(5, review.getImage());
 			pStmt.setInt(6, review.getReviewId());
+
+			//画像がnullだった場合は、デフォルト画像を登録する
+			if(review.getImage() == null) {
+				pStmt.setString(5, "icon_default.png");
+			} else {
+				pStmt.setString(5, review.getImage());
+			}
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 			if (pStmt.executeUpdate() == 1) {

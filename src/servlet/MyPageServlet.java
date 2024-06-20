@@ -82,7 +82,7 @@ public class MyPageServlet extends HttpServlet {
             //お気に入りユーザDAOを生成
             	FavoriteUserDao fDao = new FavoriteUserDao();
             //お気に入りユーザのリストを取得する
-            	List<FavoriteUser> favoriteUserList = fDao.select(userId);
+            	List<FavoriteUser> favoriteUserList = fDao.userSelect(userId);
             // リクエストスコープに格納する
             	request.setAttribute("favoriteUserList", favoriteUserList);
 

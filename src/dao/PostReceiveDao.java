@@ -82,13 +82,13 @@ public class PostReceiveDao {
 					Class.forName("org.h2.Driver");
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
-					// INSERT文の準備
+					// SQL文の準備
 					String sql = "UPDATE post_receive SET my_interest=1 WHERE user_id=? AND post_id=?";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					pStmt.setInt(1, userId);
 					pStmt.setInt(2, postId);
 
-					// INSERT文を実行し、登録に成功したらresultにtrueを入れる
+					// SQL文を実行し、登録に成功したらresultにtrueを入れる
 					if (pStmt.executeUpdate() == 1) {
 						result = true;
 					}

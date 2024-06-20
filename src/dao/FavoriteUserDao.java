@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,15 @@ public class FavoriteUserDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// INSERTT文を準備する
-				String sql = "INSERT INTO favorite_user(user_id_favorite,user_id) VALUES (?,?)";
+				String sql = "INSERT INTO favorite_user(user_id_favorite,user_id, created_at) VALUES (?,?,?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// Java側で現在のタイムスタンプを取得
+				Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
 				pStmt.setInt(1, userIdFavorite);
 				pStmt.setInt(2, userId);
+				pStmt.setTimestamp(3, createdAt);
 
 				// INSERT文を実行し、登録に成功したらresultにtrueを入れる
 				if (pStmt.executeUpdate() == 1) {
@@ -122,7 +128,7 @@ public class FavoriteUserDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// SQL文を準備する
-				String sql = "SELECT f.user_id, f.favorite_user, u.user_name, u.icon FROM favorite_user AS f(INNER) JOIN user AS uON f.user_id_favorite=u.user_idWHERE f.user_id=? AND u.flag=1  AND u.open_close=1;";
+				String sql = "SELECT f.user_id, f.favorite_user, u.user_name, u.icon FROM favorite_user AS f(INNER) JOIN user AS uON f.user_id_favorite=u.user_idWHERE f.user_id=? AND u.flag=1  AND u.open_close=1";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる

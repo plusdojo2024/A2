@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+/*リセットCSS----------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+/*全体-----------------------------------------*/
+html {
+    font-size: 16px;
+    font-family: sans-serif;
+    color:#545454
+}
+
+body {
+    background-color: #F1EEDC;
+}
+
+/*ヘッダーナビゲーション-----------------------*/
+.nav ul {
+    background-color: #B3C8CF;
+    list-style-type: none;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.nav h1 a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: larger;
+    padding: 0 20px;
+}
+
+/*常にh1をこのデザインに指定する*/
+.nav h1 a:hover,
+.nav h1 a:focus,
+.nav h1 a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 検索フォーム */
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    margin-right: 20px;
+}
+
+.search-box{
+    display: flex;
+}
+
+.search-box select{
+    position: relative;
+    width: 130px;
+    border-radius: 20px 0px 0px 20px;
+    padding: 10px;
+    background-color: #54A3BF;
+    color: #FFFFFF;
+}
+
+.search-input {
+    width: 300px;
+    padding: 10px 50px 10px 10px;
+    box-sizing: border-box;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.nav .search-box select:focus,
+.nav .search-input:focus{
+    outline: none;
+}
+
+/*imgのデザイン指定*/
+.nav .search-button {
+    position: absolute;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: block;
+    margin: 18px 390px;
+}
+
+.nav .post-button {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: block;
+    margin-right: 250px;
+}
+
+.nav .icon-img {
+    position: absolute;
+    left: 310px;
+    top:-33px;
+    margin: 10px 20px 10px 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.nav .user-name{
+    position: absolute;
+    left: 380px;
+    color: #545454;
+    text-decoration: none;
+    display: inline-block;
+    top: -13px;
+}
+
+.nav .user-container{
+    display: flex;
+    align-items: center;
+}
+
+/* メニューの初期状態を非表示に */
+header .nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #cee9ef;
+    width: 170px;
+    font-size: 1em;
+    text-align: left;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
+    padding: 0px  10px 0px  10px;
+    z-index: 1;
+    top: 30px;
+    margin-left: 320px;
+}
+
+header .nav .dropdown-menu li {
+    border-bottom: 1px solid #545454;
+}
+
+header .nav .dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+header .nav .dropdown-menu li a {
+    display: block;
+    padding: 7px;
+    text-decoration: none;
+    color: #545454;
+}
+.co{
+    position: relative;
+    display: inline-block;
+    margin: 0 100px 0 10px;
+}
+
+.dropdown-menu a {
+    color: #545454;
+    background-color: #cee9ef;
+    font-size: 0.8m;
+    text-decoration: none;
+}
+
+/* アイコン画像をホバーした際にメニューを表示 */
+.nav li:hover .dropdown-menu {
+    display: block;
+}
+
+/*フッター--------------------------------------*/
+footer a{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.gotop{
+    display: block;
+    margin-bottom: 12px;
+    margin-right:30px;
+	width: 20px;
+	height: 20px;
+	border-top: 3px solid #FFFFFF;
+	border-right: 3px solid #FFFFFF;
+	transform: rotate(-45deg)
+}
+
+.copyright{
+	padding: 35px;
+	background-color: #B3C8CF;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+/*削除ボタン------------------------------------*/
+.delete-button {
+    display: flex;
+    border: 1px solid black;
+    margin: 10px 30px 10px 400px;
+    padding: 8px;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.delete-button img{
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+.delete-button .delete-text{
+    display: inline-block;
+}

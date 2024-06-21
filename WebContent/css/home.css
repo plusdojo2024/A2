@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 
 main {
     height: 50%; /* 画面の半分の高さ */
@@ -55,7 +53,6 @@ h5 {
 }
 
 .table-wrapper {
-
     overflow: auto; /* コンテンツがクラスを超えたらスクロール */
     max-height: 60vh; /* 最大の高さを画面の80%までに制限 */
 }
@@ -129,5 +126,3 @@ h5 {
     height: 20px;
     margin: -120px 10px 120px 430px;
 }
-
-

@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.User" %>
+<%
+    HttpSession session = request.getSession();
+    User loginUser = (User) session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meat charset="UTF-8">
             <title>ホーム|レコレコ</title>
-            <link rel="stylesheet" href="/A2/css/common.css">
-            <link rel="stylesheet" href="/A2/css/home.css">
+            <link rel="stylesheet" href="common.css">
+            <link rel="stylesheet" href="home.css">
     </head>
         <header>
             <nav class="nav">
@@ -36,7 +41,7 @@
                     <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
                     <div class="co">
                         <div class="user-container"></div>
-                            <li><a href=""><img src="/A2/img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span class="user-name">recoreco</span>
+                            <li><a href=""><img src="<%= loginUser.getIcon() %>" class="icon-img" name="icon" alt="アイコン"><span class="user-name"><%= loginUser.getUserName() %></span>
                                 <ul class="dropdown-menu">
                                     <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                     <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
@@ -52,13 +57,13 @@
         <body>
         <main>
             <form class="ranking">
-                <h2><a href=""><img src="button_good2.png"  class="ok" alt="ハート"></a>いいねランキング</h2>
+                <h2><a href=""><img src="/A2/img/button_good2.png"  class="ok" alt="ハート"></a>いいねランキング</h2>
                 <div class="table-wrapper">
                     <table class="table">
                         <tr>
                             <td>
                                 <div class="goodranking">
-                                    <img src="ranking1.png" class="good" alt="good">
+                                    <img src="/A2/img/ranking1.png" class="good" alt="good">
                                     <img src="icon_default.png"  class="icon" alt="アイコン">
                                     <p>rekoreko さん</p>
                                 </div>
@@ -67,7 +72,7 @@
                         <tr>
                             <td>
                                 <div class="goodranking">
-                                    <img src="ranking2.png" class="good" alt="good">
+                                    <img src="/A2/img/ranking2.png" class="good" alt="good">
                                     <img src="icon_default.png"  class="icon" alt="アイコン">
                                     <p>レコ さん</p>
                                 </div>
@@ -76,7 +81,7 @@
                         <tr>
                             <td>
                                 <div class="goodranking">
-                                    <img src="ranking3.png" class="good" alt="good">
+                                    <img src="/A2/img/ranking3.png" class="good" alt="good">
                                     <img src="icon_default.png"  class="icon" alt="アイコン">
                                     <p>れこれこ さん</p>
                                 </div>
@@ -85,7 +90,7 @@
                         <tr>
                             <td>
                                 <div class="goodranking">
-                                    <img src="ranking4.png" class="good" alt="good">
+                                    <img src="/A2/img/ranking4.png" class="good" alt="good">
                                     <img src="icon_default.png"  class="icon" alt="アイコン">
                                     <p>ReCo さん</p>
                                 </div>
@@ -94,7 +99,7 @@
                         <tr>
                             <td>
                                 <div class="goodranking">
-                                    <img src="ranking5.png" class="good" alt="good">
+                                    <img src="/A2/img/ranking5.png" class="good" alt="good">
                                     <img src="icon_default.png"  class="icon" alt="アイコン">
                                     <p>樋口 さん</p>
                                 </div>
@@ -104,7 +109,7 @@
                 </div>
             </form>
             <form class="ranking">
-                <h2><a href=""><img src="point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
+                <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
                 <div class="table-wrapper">
                     <table class="table">
                         <tr>
@@ -117,8 +122,8 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>鋼の錬金術師</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
@@ -128,13 +133,13 @@
                                 <div class="review">
                                     <div class="timeline">
                                         <img src="content_hh_anime.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
+                                        <img src="icon_default.png"  class="icon1" alt="アイコン" >
                                         <p>樋口 さん</p>
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
@@ -149,8 +154,8 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
@@ -165,12 +170,13 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>鋼の錬金術師</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
-                        </tr> <tr>
+                        </tr>
+                         <tr>
                             <td>
                                 <div class="review">
                                     <div class="timeline">
@@ -180,8 +186,8 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
@@ -196,8 +202,8 @@
                                         <p>06/06 23:35 投稿</p>
                                     </div>
                                     <h3>HUNTER×HUNTER</h3>
-                                    <h4>おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="button_good1.png" class="heart" alt="ハート">
+                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>123</h5>
                                 </div>
                             </td>
@@ -210,5 +216,44 @@
             <a href=#top><span class="gotop"></span></a>
             <p class="copyright">&copy; WAC</p>
         </footer>
+        <script>
+            // h4要素のテキストを制限して省略する関数
+            const truncateText = (element, maxLength) => {
+                let text = element.textContent;
+                if (text.length > maxLength) {
+                    element.textContent = text.slice(0, maxLength) + '…';
+                }
+            };
+
+            // h4要素を持つ要素を取得して処理する
+            document.querySelectorAll('h4.truncate').forEach(h4 => {
+                truncateText(h4, 20); // 20文字まで表示し、それ以降を省略する
+            });
+
+            // ハートの画像をトグルする関数
+            function toggleHeart(element) {
+                if (element.src.includes('/A2/img/button_good1.png')) {
+                    element.src = '/A2/img/button_good2.png';
+                    // ハートをプラス1する
+                    incrementHeart(element.nextElementSibling);
+                } else {
+                    element.src = '/A2/img/button_good1.png';
+                    // ハートをマイナス1する
+                    decrementHeart(element.nextElementSibling);
+                }
+            }
+
+            // ハート数を増やす関数
+            function incrementHeart(element) {
+                let currentCount = parseInt(element.textContent);
+                element.textContent = currentCount + 1;
+            }
+
+            // ハート数を減らす関数
+            function decrementHeart(element) {
+                let currentCount = parseInt(element.textContent);
+                element.textContent = currentCount - 1;
+            }
+        </script>
     </body>
 </html>

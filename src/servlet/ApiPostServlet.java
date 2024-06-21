@@ -1,8 +1,9 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,6 @@ import dao.PostListDao;
 import dao.PostReceiveDao;
 import model.Post;
 import model.PostList;
-import model.ReviewDisplay;
 import model.User;
 
 public class ApiPostServlet {
@@ -89,33 +89,34 @@ public class ApiPostServlet {
 				    }
 
 				} //受け取り時の処理
-					//postDAOからオススメを全て取ってくる
-					//オススメの中から一件ランダムで選ぶ
-					//既に受け取っているかのチェック
-					//受け取ったことがなければそれを受け取りテーブルに記録する
-					//そのオススメを送る
 					else if(status.equals ("受け取り")){
-						//一覧を取ってくる
+						//postDAOからオススメを全て取ってくる
 						List<Post> postList = pDao.selectAllPost();
 						Post postBeans = new Post();
 						int postId;
 						//最大を調べる
 						int size = postList.size();
 						while(true){
-							//ランダム
+							//オススメの中から一件ランダムで選ぶ
+							//ランダムに整数を生成
 							Random rand = new Random();
-					    int num = rand.nextInt(size);
-							//beansを作る
+							int num = rand.nextInt(size);
+
+							//その整数のインデックスの要素を取ってくる
 							postBeans = postList.get(num);
-							postId = postBeans.getPostId();
+							postId = postBeans.getPostId();	//要素のポストIDを取得
+
+							//既に受け取っているかのチェック
+							//受け取ったことがあれば再度処理を繰り返す、受け取っていなければbreak
 							if(!prDao.confirmRecommendHistory(postId)) {
 								break;
 							}
 						}
 
-						//送信されたデータをpostテーブルに追加
+						//受け取ったおすすめをpost_receuveテーブルに追加
 						boolean result = prDao.postReceiveInsert(userId,postId);
 
+						//成功したらJSPの方におすすめを渡す
 						if(result) {
 							//Jackson機能のmapperをインスタンス（実体）化
 							ObjectMapper mapper = new ObjectMapper();
@@ -147,15 +148,20 @@ public class ApiPostServlet {
 			        //自分が気になるを付けているかの情報を取得する
 		        	for(PostList pl: receiveList) {
 		        		int postId = pl.getPostId();
-		        		int myInterest = prDao.checkMyInterest(postId);
+		        		int myInterest = prDao.checkMyInterest(userId, postId);
 		        		pl.setMyInterest(myInterest);
 		        	}
+
+		        	// 2つのArrayListをMapに格納
+		        	Map<String, List<PostList>> map = new HashMap<>();
+		        	map.put("postList", postList);
+		            map.put("receiveList", receiveList);
 
 							//Jackson機能のmapperをインスタンス（実体）化
 							ObjectMapper mapper = new ObjectMapper();
 							try {
 						        //JavaオブジェクトからJSONに変換
-						        String resultJson = mapper.writeValueAsString(result);
+						        String resultJson = mapper.writeValueAsString(map);
 						        System.out.println(resultJson);
 						        //JSONの出力
 						        response.setContentType("application/json; charset=UTF-8");
@@ -163,7 +169,7 @@ public class ApiPostServlet {
 						    } catch (JsonProcessingException e) {
 						        e.printStackTrace();
 						    }
-		}
+					}
+			}
 	}
-
 }

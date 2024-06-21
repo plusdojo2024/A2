@@ -8,13 +8,11 @@ import java.sql.SQLException;
 import java.sql.SQLNonTransientException;
 import java.sql.Timestamp;
 
-import model.PostReceive;
-
 //ポスト受け取り表示のための情報を取ってくるDAO
 public class PostReceiveDao {
 
 	//自分がポストで受け取ったおすすめを、ポストレシーブテーブルに記録する
-	public boolean postReceiveInsert(PostReceive postReceive) {
+	public boolean postReceiveInsert(int userId, int postId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -35,10 +33,9 @@ public class PostReceiveDao {
 			// Java側で現在のタイムスタンプを取得
 			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-
 			// INSERTT文を準備する
-			pStmt.setInt(1,postReceive.getUserId());
-			pStmt.setInt(2,postReceive.getPostId());
+			pStmt.setInt(1,userId);
+			pStmt.setInt(2,postId);
 			pStmt.setTimestamp(3, createdAt);
 
 			// INSERT文を実行し、登録に成功したらresultにtrueを入れる

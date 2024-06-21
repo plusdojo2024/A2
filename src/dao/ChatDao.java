@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Chat;
+import model.Post;
 import model.ReviewDisplay;
 import model.User;
 
@@ -17,10 +18,11 @@ import model.User;
 public class ChatDao {
 
     //指定チャットを始めるため←UserDaoのやつ仕えるかも
-	public User startChat(int userId)
+	public User startChat(int userId) {
 
-	//ランダムチャットの候補相手の一覧を取得する
-	public User selectRandomChat(int contentsId)
+	}
+
+
 
 
 	//トーク履歴を表示させる
@@ -91,5 +93,63 @@ public class ChatDao {
 
 		// 結果を返す
 		return reviewList;
+	}
+}
+
+	//ランダムチャットの候補相手の一覧を取得する
+	public List<User> selectRandomChat(int contentsId){
+		Connection conn = null;
+		List<User> userList = new ArrayList<User>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT m.contents_id, u.user_id, u.user_name, u.icon"
+					+ "FROM my_contents AS m INNER JOIN user AS u ON m.user_id=u.user_id "
+					+ "WHERE m.contents_id=?  AND u.flag=1  AND u.open_close=1";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					User record = new User();
+
+					record.setUserId(rs.getInt("u.user_id"));
+					record.setUserName(rs.getString("u.user_name"));
+					record.setIcon(rs.getString("u.icon"));
+
+					userList.add(record);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				userList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				userList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					userList = null;
+				}
+			}
+		}
+		// 結果を返す
+		return userList;
 	}
 }

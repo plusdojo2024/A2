@@ -49,7 +49,7 @@
 			if(data==="true"){
 				goodCount++;
 				document.getElementById("counter").innerText = goodCount;
-				/* ここにハートが赤く変わる処理 */
+				/* この下でハートに色がついて、valueを0に変える関数を実行する */
 			} else {
 				//失敗した場合はなにもしない
 			}
@@ -59,38 +59,6 @@
 			//失敗した場合はなにもしない
 		  });
 	}
-
-	//１秒毎に実行される処理 なかなか面倒なので、現時点では省略。時間があればやる
-	/* setInterval(function() {
-    	// ここに1秒ごとに実行したい処理を書く
-		//非同期通信始めるよ
-		$.ajaxSetup({scriptCharset:'utf-8'});
-		$.ajax({
-			//どのサーブレットに送るか
-			//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-			url: '/iine/ClickPlusServlet',
-			//どのメソッドを使用するか
-			type:"POST",
-			//受け取るデータのタイプ
-			dataType:"json",
-			//何をサーブレットに飛ばすか（変数を記述）
-			/* data: postData, */
-			//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
-			/* processDate:false,
-			timeStamp: new Date().getTime() */
-		   //非同期通信が成功したときの処理
-		/* }).done(function(data) {
- */
-		// 今回は上の<div id="counter"></div>の中に返ってきた文字列を入れる
-			/* document.getElementById("counter").innerText=data;
-		  }) */
-		   //非同期通信が失敗したときの処理
-		  /* .fail(function() {
-			//失敗とアラートを出す
-			alert("失敗！");
-		  });
-	}, 1000); */
-
 	</script>
 </body>
 </html>

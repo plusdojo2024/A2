@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <style>
         /* モーダルのスタイル */
-        .modal {
+        .modal-review-regist {
             display: none;
             position: fixed;
             z-index: 1;
@@ -21,7 +21,7 @@
             background-color: rgba(0,0,0,0.4);
         }
 
-        .modal-content {
+        .modal-review-regist .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
@@ -31,23 +31,24 @@
             border-radius: 10px;
         }
 
-        .close {
+        .modal-review-regist .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
+            margin-top: -10px;
         }
 
-        .close:hover,
-        .close:focus {
+        .modal-review-regist .close:hover,
+        .modal-review-regist .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
 
-        .btn {
+        .modal-review-regist .btn {
             display: block;
-            margin: 30px 18px 10px 18px;
+            margin: 10px 18px 10px 18px;
             padding: 20px 60px 20px 50px;
             width: 255px;
             color: #ffffff;
@@ -58,58 +59,57 @@
             left: 600px;
         }
 
-        .btn:hover {
+        .modal-review-regist .btn:hover {
             background-color: #35AFDB;
         }
 
-        h6 {
+        .modal-review-regist .modal-title {
             font-size: larger;
             text-align: center;
+            font-weight: bold;
         }
 
-        input[name=review-title]{
+        .modal-review-regist input[name=review-title]{
             border: 1px solid #ccc;
             height: 3em;
-            width: 38em;
-            margin: 10px 30px;
+            width: 100%;
+            margin: 10px 0 10px 30px;
             background-color: #dcdcdc;
             padding: 20px;
         }
 
-        input[name=upload] {
+        .modal-review-regist input[name=upload] {
             border: 1px solid #545454;
-            margin: 0px 50px 0px 60px;
-            padding: 10px 180px 10px 30px;
-            width: 100px;
+            font-size: 0.8em;
+            margin: 30px 5px 0px 5px;
+            padding: 10px 240px 10px 10px;
+            width: 190px;
+            height: 50px;
             color: #545454;
             background-color: #ffffff;
-            font-size: 1.1em;
             border-radius: 10px;
         }
 
-        #review-detail{
+        .modal-review-regist #review-detail{
+            font-family: sans-serif;
             width: 100%;
             height: 150px;
             border: 1px solid #ccc;
             background-color: #dcdcdc;
             padding: 20px;
+            margin: 10px 0 10px 30px;
         }
 
-        #preview{
-            margin-left: 50px;
+        .modal-review-regist #preview{
+            margin:0 40px 0 60px;
         }
 
-        input[name=upload]{
-            border: 1px solid #545454;
-            width: 100px;
-            color: #000000;
-            background-color: #ffffff;
-            font-size: 1.1em;
-            border-radius: 10px;
-        }
-
-        .review-img{
+        .modal-review-regist .review-img{
             display: flex;
+        }
+
+        .modal-review-regist .modal-content .delete-button{
+            margin: -100px 10px 65px 380px;
         }
 
     </style>
@@ -120,15 +120,15 @@
 <button id="openModalBtn" class="btn">モーダルを開く</button>
 
 <!-- レビュー投稿画面のモーダル -->
-<div id="modal1" class="modal">
+<div id="modal-review-regist1" class="modal-review-regist">
     <div class="modal-content">
         <!--閉じるボタン-->
-        <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <h6>レビュー投稿</h6>
+        <span class="close" onclick="closeModal('modal-review-regist1')">&times;</span>
+        <p class="modal-title">レビュー投稿</p>
         <table>
             <tr>
                 <td>
-                    <input type="text" name="review-title" placeholder="レビュータイトル（50文字）">
+                    <input type="text" id="review-title" name="review-title" maxlength="50" placeholder="レビュータイトル（50文字）">
                 </td>
             </tr>
             <tr>
@@ -149,20 +149,20 @@
             </tr>
             <tr>
                  <td>
-                <button class="btn" onclick="openSecondModal()">投稿</button>
+                <button class="btn" onclick="closeModal('modal-review-regist1')">投稿</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
 
-<!-- 次のモーダル -->
+<!-- 次のモーダル
 <div id="modal2" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal2')">&times;</span>
         <p>次のモーダル</p>
     </div>
-</div>
+</div>-->
 
 <script>
     // モーダルを開くボタンを取得
@@ -170,7 +170,7 @@
 
     // モーダルを開く関数
     openModalBtn.onclick = function() {
-        openModal('modal1');
+        openModal('modal-review-regist1');
     }
 
     // モーダルを開く関数
@@ -185,23 +185,66 @@
         modal.style.display = "none";
     }
 
-    // 次のモーダルを開く関数
-    function openSecondModal() {
-        closeModal('modal1');
-        openModal('modal2');
-    }
-
     // モーダルの外側がクリックされたときに閉じる処理
     window.onclick = function(event) {
-        var modal1 = document.getElementById('modal1');
-        var modal2 = document.getElementById('modal2');
+        var modal1 = document.getElementById('modal-review-regist1');
         if (event.target == modal1) {
-            closeModal('modal1');
-        }
-        if (event.target == modal2) {
-            closeModal('modal2');
+            closeModal('modal-review-regist1');
         }
     }
+
+    // ファイル選択時に呼び出される関数
+    function previewImage(event) {
+        // 選択されたファイルを取得
+        var selectedFile = event.target.files[0];
+        // ファイルが選択されている場合
+        if (selectedFile) {
+            // FileReaderオブジェクトを作成
+            var reader = new FileReader();
+            // ファイルの読み込みが完了した時の処理を定義
+            reader.onload = function(event) {
+                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                document.getElementById('preview').src = event.target.result;
+            };
+            // ファイルの読み込みを実行
+            reader.readAsDataURL(selectedFile);
+        } else {
+            // ファイルが選択されていない場合は元のアイコンを表示
+            document.getElementById('preview').src = "img/icon_default.png";
+        }
+    }
+
+    // 削除ボタンをクリックしたときに呼び出される関数
+     function deleteItem() {
+        // 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "img/icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+
+         // ページの再読み込みを防ぐ
+         event.preventDefault();
+    }
+
+     // 文字数制限を設定する関数
+     function limitTextInput(element, maxLength) {
+        element.addEventListener('input', function(event) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.substring(0, maxLength);
+                event.preventDefault();
+            }else{
+
+            }
+        });
+    }
+
+    // レビュータイトルの文字数制限を設定
+    var reviewTitle = document.getElementById('review-title');
+    limitTextInput(reviewTitle, 50);
+
+    // レビュー本文の文字数制限を設定
+    var reviewDetail = document.getElementById('review-detail');
+    limitTextInput(reviewDetail, 500);
+
 </script>
 
 </body>

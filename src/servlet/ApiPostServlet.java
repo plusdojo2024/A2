@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +17,8 @@ import dao.PostDao;
 import dao.PostListDao;
 import dao.PostReceiveDao;
 import model.Post;
-import model.Review;
+import model.PostList;
+import model.ReviewDisplay;
 import model.User;
 
 public class ApiPostServlet {
@@ -55,10 +59,11 @@ public class ApiPostServlet {
 			String status = data1;
 			String title = data2;
 			String recommend = data3;
-				//入力されたデータを表示
-				System.out.println(data1);
-				System.out.println(data2);
-				System.out.println(data3);
+
+			//入力されたデータを表示
+			System.out.println(data1);
+			System.out.println(data2);
+			System.out.println(data3);
 
 			//投函時の処理
 			if(status.equals ("投函")) {
@@ -84,46 +89,80 @@ public class ApiPostServlet {
 				    }
 
 				} //受け取り時の処理
+					//postDAOからオススメを全て取ってくる
+					//オススメの中から一件ランダムで選ぶ
+					//既に受け取っているかのチェック
+					//受け取ったことがなければそれを受け取りテーブルに記録する
+					//そのオススメを送る
 					else if(status.equals ("受け取り")){
-					//beansを作る
-					Review reviewBeans = new Review();
-					reviewBeans.setContentsId(contentsId);
-					reviewBeans.setTitle(title);
-					reviewBeans.setReview(review);
-					reviewBeans.setUserId(userId);
-					//送信されたデータをreviewテーブルに追加
-					boolean result = rDao.reviewUpdate(reviewBeans);
+						//一覧を取ってくる
+						List<Post> postList = pDao.selectAllPost();
+						Post postBeans = new Post();
+						int postId;
+						//最大を調べる
+						int size = postList.size();
+						while(true){
+							//ランダム
+							Random rand = new Random();
+					    int num = rand.nextInt(size);
+							//beansを作る
+							postBeans = postList.get(num);
+							postId = postBeans.getPostId();
+							if(!prDao.confirmRecommendHistory(postId)) {
+								break;
+							}
+						}
 
-					//Jackson機能のmapperをインスタンス（実体）化
-					ObjectMapper mapper = new ObjectMapper();
-					try {
-				        //JavaオブジェクトからJSONに変換
-				        String resultJson = mapper.writeValueAsString(result);
-				        System.out.println(resultJson);
-				        //JSONの出力
-				        response.setContentType("application/json; charset=UTF-8");
-				        response.getWriter().write(resultJson);
-				    } catch (JsonProcessingException e) {
-				        e.printStackTrace();
-				    }
+						//送信されたデータをpostテーブルに追加
+						boolean result = prDao.postReceiveInsert(userId,postId);
+
+						if(result) {
+							//Jackson機能のmapperをインスタンス（実体）化
+							ObjectMapper mapper = new ObjectMapper();
+							try {
+					        //JavaオブジェクトからJSONに変換
+					        String resultJson = mapper.writeValueAsString(postBeans);
+					        System.out.println(resultJson);
+					        //JSONの出力
+					        response.setContentType("application/json; charset=UTF-8");
+					        response.getWriter().write(resultJson);
+					    } catch (JsonProcessingException e) {
+					        e.printStackTrace();
+					    }
+						}
+						else {
+
+						}
 				}//一覧時の処理
-					else if(status.equals ("一覧")){
-					//送信されたデータをreviewテーブルに追加
-					boolean result = rDao.reviewDelete(reviewId);
+					else if(status.equals ("一覧")) {
+							List<PostList> postList = plDao.postSelect(userId);
+							List<PostList> receiveList = plDao.postReceiveSelect(userId);
 
-					//Jackson機能のmapperをインスタンス（実体）化
-					ObjectMapper mapper = new ObjectMapper();
-					try {
-				        //JavaオブジェクトからJSONに変換
-				        String resultJson = mapper.writeValueAsString(result);
-				        System.out.println(resultJson);
-				        //JSONの出力
-				        response.setContentType("application/json; charset=UTF-8");
-				        response.getWriter().write(resultJson);
-				    } catch (JsonProcessingException e) {
-				        e.printStackTrace();
-				    }
-					}
+			        //自分の投函に気になるが付いているかの情報を取得する
+		        	for(PostList pl: postList) {
+		        		int postId = pl.getPostId();
+		        		int interest = prDao.checkInterest(postId);
+		        		pl.setInterest(interest);
+		        	}
+			        //自分が気になるを付けているかの情報を取得する
+		        	for(PostList pl: receiveList) {
+		        		int postId = pl.getPostId();
+		        		int myInterest = prDao.checkMyInterest(postId);
+		        		pl.setMyInterest(myInterest);
+		        	}
+
+							//Jackson機能のmapperをインスタンス（実体）化
+							ObjectMapper mapper = new ObjectMapper();
+							try {
+						        //JavaオブジェクトからJSONに変換
+						        String resultJson = mapper.writeValueAsString(result);
+						        System.out.println(resultJson);
+						        //JSONの出力
+						        response.setContentType("application/json; charset=UTF-8");
+						        response.getWriter().write(resultJson);
+						    } catch (JsonProcessingException e) {
+						        e.printStackTrace();
+						    }
 		}
 	}
 

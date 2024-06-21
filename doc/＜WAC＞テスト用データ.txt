@@ -1,0 +1,241 @@
+＜WAC＞
+CREATE文
+
+create table user (
+user_id INTEGER  AUTO_INCREMENT(1),
+mail VARCHAR (100) NOT NULL,
+pass VARCHAR (20) NOT NULL,
+user_name  VARCHAR (20) NOT NULL,
+icon VARCHAR (100),
+open_close INTEGER NOT NULL DEFAULT 1,
+introduction VARCHAR (200),
+flag INTEGER NOT NULL DEFAULT 1,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP), 
+PRIMARY KEY(user_id)
+)
+
+create table contents (
+contents_id INTEGER AUTO_INCREMENT(1),
+title VARCHAR (50) NOT NULL,
+ruby VARCHAR (50) NOT NULL,
+genre VARCHAR (10)NOT NULL,
+creator VARCHAR (50) NOT NULL,
+year VARCHAR (4) NOT NULL,
+image VARCHAR (100),
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),  
+PRIMARY KEY(contents_id)
+)
+
+create table my_contents (
+my_contents_id INTEGER AUTO_INCREMENT(1),
+contents_id INTEGER NOT NULL,
+user_id INTEGER NOT NULL,
+status INTEGER DEFAULT 0,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),   
+PRIMARY KEY(my_contents_id)
+)
+
+create table review (
+review_id INTEGER AUTO_INCREMENT(1),
+user_id_writer INTEGER NOT NULL,
+contents_id INTEGER NOT NULL,
+title VARCHAR (50) NOT NULL,
+review VARCHAR (500),
+image VARCHAR (100),
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(review_id)
+
+)
+
+create table good (
+good_id INTEGER AUTO_INCREMENT(1),
+review_id INTEGER NOT NULL,
+user_id INTEGER NOT NULL,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(good_id)
+  
+)
+
+create table chat (
+chat_id INTEGER AUTO_INCREMENT(1),
+user_id_speaker INTEGER NOT NULL,
+user_id_listener INTEGER NOT NULL,
+talk VARCHAR (500),
+image VARCHAR (100),
+checked INTEGER NOT NULL DEFAULT 0,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(chat_id)
+
+)
+
+create table favorite_user (
+favorite_user_id INTEGER AUTO_INCREMENT(1),
+user_id INTEGER NOT NULL,
+user_id_favorite INTEGER NOT NULL,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(favorite_user_id)
+)
+
+create table post (
+post_id INTEGER AUTO_INCREMENT(1),
+user_id_writer INTEGER NOT NULL,
+title VARCHAR (50) NOT NULL,
+recommend VARCHAR (200) NOT NULL,
+interest INTEGER NOT NULL DEFAULT 0,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(post_id)   
+)
+
+
+create table post_receive (
+post_receive_id INTEGER AUTO_INCREMENT(1),
+user_id INTEGER NOT NULL,
+post_id INTEGER NOT NULL,
+my_interest INTEGER NOT NULL DEFAULT 0,
+created_at TIMESTAMP NOT NULL,
+updated_at TIMESTAMP NOT NULL DEFAULT(CURRENT_TIMESTAMP),
+PRIMARY KEY(post_receive_id)   
+
+)
+
+
+
+
+テスト用データ
+
+テーブルの行を削除
+DELETE FROM テーブル名 WHERE 条件;
+
+●コンテンツテーブル
+＜漫画＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(1, 'HUNTER×HUNTER', 'ハンターハンター', '漫画', '富樫義博', '2013', 'content_hh_comic.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 'NARUTO', 'ナルト', 'アニメ', '岸本斉史', '2002', 'content_naruto.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, '鋼の錬金術師', 'ハガネノレンキンジュツシ', '漫画', '荒川弘', '2003', 'content_hagaren.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 'CITYHUNTER', 'シティーハンター', '漫画', '北条司', '1985', 'content_cityhunter.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(5, 'ONE PIECE', 'ワンピース', 'アニメ', '尾田栄一郎', '1999', 'content_onepiece.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(6, 'ジョジョの奇妙な冒険', 'ジョジョノキミョウナボウケン', '漫画', '荒木飛呂彦', '1986', 'content_jojo.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(7, '鬼滅の刃', 'キメツノヤイバ', '漫画', '吾峠呼世晴', '2016', 'content_kimetsu.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(8, '葬送のフリーレン', 'ソウソウノフリーレン', '漫画', '山田鐘人', '2020', 'content_sousou.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(9, '五等分の花嫁', 'ゴトウブンノハナヨメ', '漫画', '春場ねぎ', '2017', 'content_hanayome.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(10, 'ドラえもん', 'ドラエモン', '漫画', '藤子・F・不二雄', '1969', 'content_doraemon.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(11, '名探偵コナン', 'メイタンテイコナン', '漫画', '青山剛昌', '1994', 'content_konan.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(12, 'クレヨンしんちゃん', 'クレヨンシンチャン', '漫画', '臼井儀人', '1990', 'content_shinchan.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(13, '銀魂', 'ギンタマ', '漫画', '空知英秋', '2004', 'content_gintama.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(14, 'キャプテン翼', 'キャプテンツバサ', '漫画', '高橋陽一', '1981', 'content_cptsubasa.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+＜アニメ＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(15, 'イナズマイレブン', 'イナズマイレブン', 'アニメ', '日野晃博', '2008', 'content_inazuma.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(16, '進撃の巨人', 'シンゲキノキョジン', 'アニメ', '諫山創', '2013', 'content_shingeki.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(17, '転生したらスライムだった件', 'テンセイシタラスライムダッタケン', 'アニメ', '伏瀬', '2018', 'content_tensura.png', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(18, '呪術廻戦', 'ジュジュツカイセン', 'アニメ', '芥見下々', '2020', 'content_zyuzyutsu.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(19, '僕のヒーローアカデミア', 'ボクノヒーローアカデミア', 'アニメ', '堀越耕平', '2016', 'content_heroaca.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(20, 'スラムダンク', 'スラムダンク', 'アニメ', '井上雄彦', '1993', 'content_suramu.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+＜映画＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(21, 'タイタニック', 'タイタニック', '映画', 'フェリックス・リーゼンバーグ', '1997', 'content_tatanic.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(22, 'キングダム', 'キングダム', '映画', '佐藤信介', '2019', 'content_kingdom.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(23, 'ハリーポッター', 'ハリーポッター', '映画', 'J・K・ローリング', '2001', 'content_harrypotter.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(24, 'STARWARS', 'スターウォーズ', '映画', 'ジョージ・ルーカス', '2015', 'content_starwars.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(25, 'となりのトトロ', 'トナリノトトロ', '映画', '宮崎駿', '1998', 'content_totoro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(26, '天空の城ラピュタ', 'テンクウノシロラピュタ', '映画', '宮崎駿', '1986', 'content_laputa.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(27, '余命１０年', 'ヨメイジュウネン', '映画', '小坂流加', '2022', 'content_yomei10.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(28, '糸', 'イト', '映画', '瀬々敬久', '2020', 'content_ito.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(29, 'ROOKIES', 'ルーキーズ', '映画', '平川雄一郎', '2009', 'content_rookies.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(30, 'アナと雪の女王', 'アナトユキノジョウオウ', '映画', 'クリス・バック・ジェファニー・リー', '2014', 'content_anayuki.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+＜ドラマ＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(31, 'ブザービート', 'ブザービート', 'ドラマ', '大森美香', '2009', 'content.buzzerbeat.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(32, '花より団子', 'ハナヨリダンゴ', 'ドラマ', '神尾葉子', '2005', 'content_hanayoridango.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(33, '家政婦のミタ', 'カセイフノミタ', 'ドラマ', '遊川和彦', '2011', 'content_mita.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(34, 'GTO', 'ジーティーオー', 'ドラマ', '藤沢とおる', '1998', 'content_gto.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(35, 'ごくせん', 'ゴクセン', 'ドラマ', '森本梢子', '2005', 'content_gokusen.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+＜小説＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(36, '白夜行', 'ビャクヤコウ', '小説', '東野圭吾', '2002', 'content_byakuyakou.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(37, '君の膵臓をたべたい', 'キミノスイゾウヲタベタイ', '小説', '住野よる', '2015', 'content_kimisui.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+＜ゲーム＞
+INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, created_at, updated_at) VALUES
+(38, 'スプラトゥーン', 'スプラトゥーン', 'ゲーム', '野上恒', '2015', 'content_splatoon.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(39, 'マリオブラザーズ', 'マリオブラザーズ', 'ゲーム', '宮本茂', '1985', 'content_supermario.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(40, 'どうぶつの森', 'ドウブツノモリ', 'ゲーム', '野上恒', '2001', 'content_doumori.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+●ユーザテーブル
+
+INSERT INTO user (user_id, mail, pass, user_name, icon, open_close, introduction, flag, created_at, updated_at) VALUES 
+
+(1, 'taro.yamada@wac.com', 'taro123', 'TaroYamada', 'taro.jpg', 1, 'こんにちは、山田太郎です。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 'momoko.sakura@wac.com', 'momoko456', 'MomokoSakura', 'maruko.jpg', 0, 'さくらももこです。よろしくです。', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 'shohei.otani@wac.com', 'shohei17', 'ShoheiOtani', 'ShoheiOtani.jpg', 1, '大谷翔平です。憧れるのをやめましょう。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 'messi.lionel@wac.com', 'messi10', 'LionelMessi', 'messi.jpg', 1, '世界のメッシです。スカルプDで気持ちよくなろう！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(5, 'shinnosuke.nohara@wac.com', 'shinnosuke1111', 'ShinnosukeNohara', 'shinnosuke.png', 1, '野原しんのすけです。ケツダケせいじん ぶりぶり～', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(6, 'yoshikau.higuchi@wac.com', 'Yoshikazu1234', 'YoshikazuHiguchi', 'icon_higuchi.png', 1, '樋口至計です。JAVA大好きです！', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+●マイコンテンツテーブル
+INSERT INTO my_contents (my_contents_id, contents_id, user_id, status, created_at, updated_at)VALUES 
+(1, 1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, 4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●レビューテーブル
+INSERT INTO review (review_id, user_id_writer, contents_id, title, review, image, created_at, updated_at)
+VALUES 
+(1, 1, 1, 'HUNTER×HUNTER', 'おもろいおもろいおもろい！！', 'content_hh_comic.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 15, 'イナズマイレブン', 'これはサッカーなのか？', 'content_inazuma.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 31, 'ブザービート', '予想外の結末でキュンキュンした。', 'content.buzzerbeat.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, 40, 'どうぶつの森', 'リセットさんうざい、、', 'content_doumori.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●いいねテーブル
+INSERT INTO good (good_id, review_id, user_id, created_at, updated_at)　VALUES 
+(1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●チャットテーブル
+INSERT INTO chat (chat_id, user_id_speaker, user_id_listener, talk, image, checked, created_at, updated_at)　VALUES 
+(1, 1, 2, 'こんにちは、元気ですか？', 'champions.jpg', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 1, 'はい、元気です。あなたは？', 'champions.jpg', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 1, 2, '私も元気です。', 'champions.jpg', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 2, 1, 'それは良かったです。', 'champions.jpg', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●お気に入りテーブル
+INSERT INTO favorite_user (favorite_user_id,user_id, user_id_favorite, created_at, updated_at)
+VALUES
+(1,2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2,3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●ポストテーブル
+INSERT INTO post (post_id, user_id_writer, title, recommend, interest, created_at, updated_at)
+VALUES
+(1, 1, 'アナと雪の女王', 'ディズニー映画の魅力が詰まった作品！おすすめ！', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 'タイタニック', 'ディカプリオかっこよすぎやって、、おすすめ！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 'となりのトトロ', 'トトロかわいい！見てみて！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, '鬼滅の刃', '今乗ってる作品！おすすめ！', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+●ポスト受け取りテーブル
+INSERT INTO post_receive (post_receive_id, user_id, post_id, my_interest, created_at, updated_at) VALUES
+(1, 1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, 4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(5, 5, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(6, 6, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+

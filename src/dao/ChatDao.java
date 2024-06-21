@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +23,54 @@ public class ChatDao {
 
 	}
 
-
+	//一度表示させたときに既読にするメソッド
 
 
 	//トーク履歴を表示させる
 	public List<Chat> selectChatHistory(int uesrId, int otherUserId)
 
 	//トーク履歴を記録する
-	public boolean registChat(Chat chat)
+	public boolean registChat(Chat chat) {
+		Connection conn = null;
+        boolean result = false;
+
+        try {
+            // JDBCドライバを読み込むで
+            Class.forName("org.h2.Driver");
+            // データベースに接続するで
+            conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data1/sample", "sa", "");
+
+            // SQL文を準備するで
+            String sql = "INSERT INTO chat (user_id_speaker, user_id_listener, talk, image, created_at) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// Java側で現在のタイムスタンプを取得
+			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+
+            // パラメータを設定するで
+            pStmt.setInt(1, chat.getUserIdSpeaker());
+            pStmt.setInt(2, chat.getUserIdListener());
+            pStmt.setString(3, chat.getTalk());
+            pStmt.setString(4, chat.getImage());
+            pStmt.setTimestamp(5, createdAt);
+
+            // SQL文を実行するで
+            result = pStmt.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // データベースを切断するで
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+	}
 
 	//チャットした相手の一覧を表示させる（マイページのタブで利用）
 	public List<Chat> selectChatList(int userId) {

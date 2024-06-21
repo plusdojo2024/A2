@@ -12,6 +12,8 @@ public class Chat implements Serializable{
 	private int check;				//既読
 	private String createdAt;		//登録日時
 	private String updateAt;		//更新日時
+	private String userName;        //相手のユーザ名
+	private String userIcon;       //相手のアイコン
 
 
 	public int getChatId() {
@@ -61,6 +63,18 @@ public class Chat implements Serializable{
 	}
 	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserIcon() {
+		return userIcon;
+	}
+	public void setUserIcon(String userIcon) {
+		this.userIcon = userIcon;
 	}
 
 

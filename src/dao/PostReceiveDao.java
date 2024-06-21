@@ -266,4 +266,54 @@ public class PostReceiveDao {
 					return interest;
 				}
 
+				//指定したポストIDのおすすめに、自分が気になる！をつけたかどうか調べる
+					public int checkMyInterest(int userId, int postId) {
+						Connection conn = null;
+						int myInterest = 0;
+
+						try {
+							//データベースの準備
+							Class.forName("org.h2.Driver");
+							conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+							// SELECT文の準備
+							String sql = "SELECT my_interest FROM post_receive WHERE user_id=? AND post_id=?";
+							PreparedStatement pStmt = conn.prepareStatement(sql);
+							pStmt.setInt(1, userId);
+							pStmt.setInt(2, postId);
+
+							// SELECT文を実行し、結果表を取得する
+							ResultSet rs = pStmt.executeQuery();
+
+							//気になる！をつけていた場合(つまりmy_interestが1だったら)1を入れる。0人だった場合0のまま。
+							rs.next();//表の一行目を見に行く
+							if (rs.getInt("my_interest") == 1) {
+								myInterest = 1;
+							}//処理に失敗したら0のまま
+						}
+						catch (SQLNonTransientException e) {
+							e.printStackTrace();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+						}
+						catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+						finally {
+							// データベースを切断
+							if (conn != null) {
+								try {
+									conn.close();
+								}
+								catch (SQLException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+
+						// 結果を返す
+						return myInterest;
+					}
+
 }

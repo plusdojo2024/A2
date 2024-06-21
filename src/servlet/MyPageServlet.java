@@ -90,7 +90,7 @@ public class MyPageServlet extends HttpServlet {
            //お気に入りユーザDAOを生成
             	ChatDao cDao = new ChatDao();
            //お気に入りユーザのリストを取得する
-            	List<Chat> chatList = fDao.selectHistory(userId);
+            	List<Chat> chatList = cDao.selectHistory(userId);
             //リクエストスコープに格納する
         		request.setAttribute("chatList", chatList);
 

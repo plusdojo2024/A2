@@ -27,7 +27,7 @@ public class TimelineDao {
 
     		// SQL文を準備する
     		String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review,"
-    				+ " r.image,  SUBSTRING(r.created_at,1,19) , u.user_name, u.icon, f.user_id "
+    				+ " r.image,  SUBSTRING(r.created_at,1,19)  AS r.created_at, u.user_name, u.icon, f.user_id "
     				+ "FROM review AS r (INNER) JOIN user AS u "
     				+ "ON r.user_id_writer=u.user_id"
     				+ " LEFT JOIN (SELECT user_id_favorite, user_id FROM favorite_user WHERE user_id=?) AS f"

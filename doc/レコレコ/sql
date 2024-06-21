@@ -143,13 +143,27 @@ AND m.status=0;
 
 
 
-【コンテンツDAO】
+【チャットDAO】
 ランダムチャットの相手を選出する
 SELECT m.contents_id, u.user_id, u.user_name, u.icon
 FROM my_contents AS m
 INNER JOIN user AS u
 ON m.user_id=u.user_id
 WHERE m.contents_id=?  AND u.flag=1  AND u.open_close=1
+
+チャットした相手の一覧を表示させる
+SELECT DISTINCT user_id_speaker, user_id_listener, talk, image, SUBSTRING(created_at,1,19) AS created_at
+WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)
+ORDER BY created_at
+
+指定した相手との最後の会話内容を取得する
+SELECT talk, image, SUBSTRING(created_at,1,19) AS created_at
+WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)
+ORDER BY created_at DESC
+
+SELECT LAST_VALUE(talk) IGNORE NULLS OVER (ORDER BY created_at) FROM chat;
+
+既読数をカウントする
 
 
 【ユーザDAO？】

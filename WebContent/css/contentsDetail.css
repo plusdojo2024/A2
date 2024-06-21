@@ -1,1 +1,459 @@
 @charset "UTF-8";
+
+/* 横並びのコンテナ */
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 横並びのコンテナ2 */
+.flex2 {
+    display: flex;
+}
+
+/* 大きい見出し */
+h1.big {
+    color: black;
+    /* 色 */
+    font-size: 40px;
+    /* フォントサイズ */
+    margin-bottom: 10px;
+    /* 下のマージン */
+}
+
+/* 小見出し */
+h3 {
+    margin: 0%;
+    /* マージン */
+}
+
+/* ラベル */
+label {
+    font-size: 1.2em;
+    /* フォントサイズ */
+    margin: 0 30px 0 30px;
+    /* マージン */
+}
+
+/* セレクトボックス */
+select[name=select] {
+    height: 4.5em;
+    /* 高さ */
+    width: 10em;
+    /* 幅 */
+    border: 1px solid #ccc;
+    /* ボーダー */
+    border-radius: 20px;
+    /* 角丸 */
+}
+
+/* セレクトボックス2 */
+select[name=select2] {
+    margin-left: 60px;
+    /* 左マージン */
+    height: 3.5em;
+    /* 高さ */
+    width: 15em;
+    /* 幅 */
+    border: 1px solid #ccc;
+    /* ボーダー */
+    border-radius: 20px;
+    /* 角丸 */
+    text-align: center;
+    /* 中央揃え */
+}
+
+/* 検索欄 */
+input[name=search] {
+    height: 4em;
+    /* 高さ */
+    width: 30em;
+    /* 幅 */
+    margin: 8px 0 0 0;
+    /* マージン */
+    border: 1px solid #ccc;
+    /* ボーダー */
+    border-radius: 20px;
+    /* 角丸 */
+}
+
+/* 画像 */
+img[name=photo] {
+    margin: 30px 30px 0px 200px;
+    /* マージン */
+}
+
+/* 画像2 */
+img[name=photo2] {
+    margin: 10px 30px 0px 20px;
+    /* マージン */
+}
+
+/* 送信ボタン */
+button[name=submit] {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    /* 高さ */
+    border: none;
+    /* ボーダーなし */
+    margin: 30px 250px 0px 30px;
+    /* マージン */
+    padding: 5px 20px 0px 20px;
+    /* パディング */
+    width: 260px;
+    /* 幅 */
+    color: #ffffff;
+    /* テキスト色 */
+    background-color: #35AFDB;
+    /* 背景色 */
+    font-size: 1em;
+    /* フォントサイズ */
+    border-radius: 10px;
+    /* 角丸 */
+}
+
+/* カラム */
+.column {
+    display: block;
+    width: 100%;
+    color: black;
+    /* テキスト色 */
+    margin: 30px 0px 0px 20px;
+    /* マージン */
+}
+
+/* タブコントロール */
+a[href="#tabpage1"] {
+    margin: 0px 5px 0px 50px;
+    /* マージン */
+}
+
+a[href="#tabpage2"] {
+    margin: 0px 0px 0px -10px;
+    /* マージン */
+    display: none;
+    /* 非表示 */
+}
+
+#tabcontrol a {
+    margin-top: 30px;
+    /* 上マージン */
+    line-height: 4em;
+    /* 行の高さ */
+    height: 40px;
+    /* 高さ */
+    width: 670px;
+    /* 幅 */
+    display: inline-block;
+    /* インラインブロック */
+    border-width: 1px 1px 0px 1px;
+    /* ボーダーの幅 */
+    border-style: solid;
+    /* ボーダースタイル */
+    text-align: center;
+    /* 中央揃え */
+    border-color: white;
+    /* ボーダーの色 */
+    border-radius: 20px 20px 0px 0px;
+    /* 角丸 */
+    padding: 0px 30px 30px 0px;
+    /* パディング */
+    text-decoration: none;
+    /* 下線を削除 */
+    color: black;
+    /* テキスト色 */
+    background-color: gray;
+    /* 背景色 */
+    font-weight: bold;
+    /* フォントの太さ */
+    position: relative;
+    /* 相対位置 */
+}
+
+/* 選択されたタブのスタイル */
+#tabcontrol a.selected {
+    background-color: white;
+    /* 背景色 */
+}
+
+/* ボタン内の画像 */
+.bt img {
+    width: 30px;
+    /* 幅 */
+    height: 30px;
+    /* 高さ */
+    margin-right: 7px;
+    /* 右マージン */
+    margin-bottom: 5px;
+    /* 下マージン */
+}
+
+/* 削除ボタンのスタイル */
+.delete-button {
+    position: relative;
+    /* 相対位置 */
+    bottom: 20px;
+    /* 下からの位置 */
+    border: 1px solid black;
+    /* ボーダー */
+    margin: -120px 20px 0px 10px;
+    /* マージン */
+    padding: 8px;
+    /* パディング */
+    background-color: #ffffff;
+    /* 背景色 */
+    display: flex;
+    /* フレックスレイアウト */
+    align-items: center;
+    /* アイテムを中央揃え */
+    border-radius: 10px;
+    /* 角丸 */
+    gap: 8px;
+    /* アイテム間の間隔 */
+}
+
+/* 別の削除ボタンのスタイル */
+.delete-button1 {
+    position: relative;
+    /* 相対位置 */
+    bottom: 25px;
+    /* 下からの位置 */
+    border: 1px solid black;
+    /* ボーダー */
+    margin: -121px 0px 0px 1100px;
+    /* マージン */
+    padding: 8px;
+    /* パディング */
+    background-color: #ffffff;
+    /* 背景色 */
+    display: flex;
+    /* フレックスレイアウト */
+    align-items: center;
+    /* アイテムを中央揃え */
+    border-radius: 10px;
+    /* 角丸 */
+    gap: 8px;
+    /* アイテム間の間隔 */
+}
+
+/* コンテンツのスタイル */
+.contents {
+    display: flex;
+    /* フレックスレイアウト */
+    border: 1px solid black;
+    /* ボーダー */
+    border-radius: 10px;
+    /* 角丸 */
+    align-items: center;
+    /* アイテムを中央揃え */
+    gap: 5px;
+    /* アイテム間の間隔 */
+    margin: 20px 0px 0px 0px;
+    /* マージン */
+}
+
+/* 別のコンテンツのスタイル */
+.contents1 {
+    display: flex;
+    /* フレックスレイアウト */
+    border: 1px solid black;
+    /* ボーダー */
+    border-radius: 10px;
+    /* 角丸 */
+    align-items: center;
+    /* アイテムを中央揃え */
+    gap: 5px;
+    /* アイテム間の間隔 */
+    margin: 20px 0px 0px 0px;
+    /* マージン */
+}
+
+/* コンテンツ内のテキストスタイル */
+.contents p {
+    color: #545454;
+    /* テキスト色 */
+    margin: -180px 800px 0px 0px;
+    /* マージン */
+}
+
+/* 別のコンテンツ内のテキストスタイル */
+.contents1 p {
+    color: #545454;
+    /* テキスト色 */
+    margin: -178px 700px 0px 0px;
+    /* マージン */
+}
+
+/* 画像のスタイル */
+.image {
+    margin: 10px 30px 20px 50px;
+    /* マージン */
+}
+
+/* 名前のスタイル */
+.namae {
+    margin: -150px 30px 20px -20px;
+    /* マージン */
+    display: flex;
+    /* フレックスレイアウト */
+    position: relative;
+    /* 相対位置 */
+}
+
+/* 別の名前のスタイル */
+.namae1 {
+    margin-top: 5px;
+    /* 上マージン */
+}
+
+/* 短い見出しのスタイル */
+h3.short {
+    margin: -180px 0px 50px 260px;
+    /* マージン */
+}
+
+/* レビューのスタイル */
+.review {
+    margin: -40px 0px 50px 260px;
+    /* マージン */
+}
+
+/* ハートアイコン */
+.heart {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    left: 90%;
+    top: 57%;
+    margin-top: -20px;
+    margin-left: -40px;
+    cursor: pointer;
+
+    /* 背景色を透明に設定 */
+}
+
+.heart2 {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    left: 90%;
+    top: 57%;
+    margin-top: 320px;
+    margin-left: -100px;
+    cursor: pointer;
+
+    /* 背景色を透明に設定 */
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 20px;
+    height: 32px;
+    background: gray;
+    /* ハートの色をピンクに設定 */
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart2::before,
+.heart2::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 20px;
+    height: 32px;
+    background: gray;
+    /* ハートの色をピンクに設定 */
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.heart2::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.heart-count {
+    position: absolute;
+    left: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #545454;
+}
+
+
+.heart.clicked::before,
+.heart.clicked::after {
+    background: #f88dc8;
+    /* クリック後の背景色を赤に変更 */
+}
+
+.heart2.clicked::before,
+.heart2.clicked::after {
+    background: #f88dc8;
+    /* クリック後の背景色を赤に変更 */
+}
+
+/* 選択されたエリア */
+.area.selected {
+    display: block;
+    /* ブロック要素として表示 */
+}
+
+/* エリア */
+.area {
+    border: 1px solid white;
+    /* ボーダー */
+    margin: 0px 50px 0px 50px;
+    /* マージン */
+    padding: 1em;
+    /* パディング */
+    background-color: white;
+    /* 背景色 */
+    overflow-y: scroll;
+    /* 縦スクロール */
+    height: 500px;
+    /* 高さ */
+    display: none;
+    /* 非表示 */
+}
+
+/* タブページ1 */
+#tabpage1 {
+    position: relative;
+    /* 相対位置 */
+    height: 500px;
+    /* 高さ */
+}
+
+/* 新しいレビュー */
+.newreview {
+    position: sticky;
+    /* スティッキー位置 */
+    bottom: -100px;
+    /* 下からの位置 */
+    right: 100px;
+    /* 右からの位置 */
+    margin-left: 1200px;
+    /* 左マージン */
+    margin-top: 200px;
+    /* 上マージン */
+    z-index: 10;
+    /* Zインデックス */
+}

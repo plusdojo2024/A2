@@ -267,7 +267,7 @@ public class UserDao {
 
 
 			// SELECT文を準備する
-			String sql = "SELECT user_id, user_name, icon, introduction FROM user WHERE user_id=? AND flag=1;";
+			String sql = "SELECT user_id, user_name, icon, introduction FROM user WHERE user_id=? AND flag=1 AND open_close=1;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setInt(1, userId);

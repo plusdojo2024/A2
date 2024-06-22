@@ -151,19 +151,25 @@ INNER JOIN user AS u
 ON m.user_id=u.user_id
 WHERE m.contents_id=?  AND u.flag=1  AND u.open_close=1
 
-チャットした相手の一覧を表示させる
-SELECT DISTINCT user_id_speaker, user_id_listener, talk, image, SUBSTRING(created_at,1,19) AS created_at
-WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)
-ORDER BY created_at
 
-指定した相手との最後の会話内容を取得する
-SELECT talk, image, SUBSTRING(created_at,1,19) AS created_at
-WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)
-ORDER BY created_at DESC
+チャットした相手のuserIdの一覧を表示させる
+SELECT DISTINCT user_id_speaker, user_id_listener
+FROM 
+(SELECT user_id_speaker, user_id_listener
+FROM chat
+WHERE user_id_speaker=? OR user_id_listener=?
+ORDER BY created_at DESC)
 
-SELECT LAST_VALUE(talk) IGNORE NULLS OVER (ORDER BY created_at) FROM chat;
 
-既読数をカウントする
+userIdで指定した相手との最後の会話内容を取得する
+SELECT LAST_VALUE(talk) IGNORE NULLS OVER (ORDER BY created_at) 
+FROM chat
+WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?);
+
+userIdで指定した相手との未読数をカウントする
+SELECT COUNT(checked) 
+FROM chat
+WHERE checked=0 AND ((user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?));
 
 
 【ユーザDAO？】

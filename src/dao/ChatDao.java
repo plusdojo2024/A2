@@ -8,18 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import model.Chat;
-import model.Post;
-import model.ReviewDisplay;
 import model.User;
 
 //チャットのための情報を取ってくるDAO
 public class ChatDao {
 
 	//トーク履歴を表示させる
-	public List<Chat> selectChatHistory(int uesrId, int otherUserId){
+	public List<Chat> selectChatHistory(int userId, int otherUserId){
 		Connection conn = null;
 		List<Chat> chatList = new ArrayList<Chat>();
 
@@ -37,10 +37,10 @@ public class ChatDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, uesrId);
+			pStmt.setInt(1, userId);
 			pStmt.setInt(2, otherUserId);
 			pStmt.setInt(3, otherUserId);
-			pStmt.setInt(4, uesrId);
+			pStmt.setInt(4, userId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -130,9 +130,11 @@ public class ChatDao {
 	}
 
 	//チャットした相手の一覧を表示させる（マイページのタブで利用）
-	public List<Chat> selectChatList(int userId) {
+	public List<Integer> selectChatList(int userId) {
 		Connection conn = null;
-		List<Chat> chatList = new ArrayList<Chat>();
+		Set <Integer> chatSet = new LinkedHashSet<Integer>();
+		List<Integer> chatList;
+
 
 		try {
 			// JDBCドライバを読み込む
@@ -142,43 +144,39 @@ public class ChatDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, SUBSTRING(r.created_at,1,19), u.user_name, u.icon FROM review AS r (INNER) JOIN user AS u ON r.user_id_writer=u.user_id WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1";
-			SELECT chat_id, user_id_speaker, user_id_listener, talk, image, SUBSTRING(created_at,1,19) AS created_at"
-					+ "WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)"
-					+ "ORDER BY created_at
+			String sql = "SELECT DISTINCT user_id_speaker, user_id_listener "
+					+ "FROM (SELECT user_id_speaker, user_id_listener FROM chat "
+					+ "WHERE user_id_speaker=? OR user_id_listener=? ORDER BY created_at DESC)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setInt(1, userId);
+			pStmt.setInt(2, userId);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			// 結果表をコレクションにコピーする
+
+
+			// 結果表から自分のuser_idを除き、重複を許さないコレクションにコピーする
 			while (rs.next()) {
-				Chat record = new Chat();
-
-				record.setReviewId(rs.getInt("r.review_id"));
-				record.setUserIdWriter(rs.getInt("r.user_id_writer"));
-				record.setContentsId(rs.getInt("r.contents_id"));
-				record.setTitle(rs.getString("r.title"));
-				record.setReview(rs.getString("r.review"));
-				record.setImage(rs.getString("r.image"));
-				record.setCreatedAt(rs.getString("r.created_at"));
-				record.setUserName(rs.getString("u.user_name"));
-				record.setIcon(rs.getString("u.icon"));
-
-				chatList.add(record);
+				if(rs.getInt("user_id_speaker") != userId) {
+					chatSet.add(rs.getInt("user_id_speaker"));
+				}
+				if(rs.getInt("user_id_listener") != userId) {
+					chatSet.add(rs.getInt("user_id_speaker"));
+				}
 			}
+			chatList = new ArrayList<Integer>(chatSet);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			reviewList = null;
+			chatList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			reviewList = null;
+			chatList = null;
 		}
 		finally {
 			// データベースを切断
@@ -188,15 +186,125 @@ public class ChatDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					reviewList = null;
+					chatList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return reviewList;
+		return chatList;
 	}
-}
+
+
+	//userIdで指定した相手との最後の会話内容を取得する
+	public String getLastTalk(int userId, int otherUserId) {
+		Connection conn = null;
+		String talk = null;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT LAST_VALUE(talk) IGNORE NULLS OVER (ORDER BY created_at) AS talk "
+					+ "FROM chat WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, userId);
+			pStmt.setInt(2, otherUserId);
+			pStmt.setInt(3, otherUserId);
+			pStmt.setInt(4, userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+            //結果のテーブルの1行目を見に行く
+            rs.next();
+
+            //talkに会話内容を入れる。失敗したらnullのままになる
+            talk = rs.getString("talk");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return talk;
+	}
+
+
+	//userIdで指定した相手との未読数をカウントする
+	public int countUnChecked(int userId, int otherUserId) {
+		Connection conn = null;
+		int unChecked = 0;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT COUNT(checked) "
+					+ "FROM chat WHERE checked=0 AND ((user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?))";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, userId);
+			pStmt.setInt(2, otherUserId);
+			pStmt.setInt(3, otherUserId);
+			pStmt.setInt(4, userId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+            //結果のテーブルの1行目を見に行く
+            rs.next();
+
+            //unCheckedに未読数(checked=0)を入れる。失敗したらnullのままになる
+            unChecked = rs.getInt("COUNT(checked)");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return unChecked;
+	}
+
 
 	//ランダムチャットの候補相手の一覧を取得する
 	public List<User> selectRandomChat(int contentsId){

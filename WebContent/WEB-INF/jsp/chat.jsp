@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/chatmodal.css">
     <meta charset="UTF-8">
     <title>チャットモーダル</title>
 </head>
@@ -11,19 +12,27 @@
 
 <!-- モーダルを開くボタン -->
 <button id="openModalBtn" class="btn" onclick="connect()">レビュー</button>
+<input type="hidden" id="userId" value="${userId}">
+<input type="hidden" id="otherUserId" value="${otherUserId}">
 
 <!-- モーダル -->
 <div id="modal1" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('modal1')">&times;</span>
       <body onload="connect()">
-        アイコン/名前
+        <div class="user-info">
+            <img src="img/icon_higuchi.png" class="chat-icon" id="chat-icon">
+            <span class="chat-name" id="chat-name">樋口 さん</span>
+        </div>      
         <div id="chat-container">
           <div id="messages" class="messages"></div>
             <div class="input-area">
-              <button class="button0"><img src="img/point_plus.png" class="point" alt="point"></button>
-              <input type="text" id="message" placeholder="メッセージを入力してください" onkeydown="if(event.key === 'Enter') sendMessage()">
-              <button onclick="sendMessage()">送信</button>
+                <button class="button0" id="button0">
+                    <img src="img/point_plus_chat.png" class="point" alt="point">
+                    <input type="file" name="upload" id="file-button" accept="image/*" onchange="previewImage(event)">
+                </button>
+              <input type="text" id="message" placeholder="メッセージを入力(500字以内)" onkeydown="if(event.key === 'Enter') sendMessage()">
+              <button  class="chat-submit" onclick="sendMessage()">送信</button>
             </div>
           </div>
         </body>
@@ -40,6 +49,7 @@
 
     // モーダルを開く関数
     function openModal(modalId) {
+        //モーダルを開く
         var modal = document.getElementById(modalId);
         modal.style.display = "block";
     }
@@ -59,12 +69,100 @@
         }
     }
 
+    //画像アップロードボタンが押されたときに行われる処理
+    document.getElementById("button0").addEventListener("click", () => {
+    document.getElementById("file-button").click();
+    });
+
+    // ファイル選択時に呼び出される関数
+    function previewImage(event) {
+        // 選択されたファイルを取得
+        var selectedFile = event.target.files[0];
+        // ファイルが選択されている場合
+        if (selectedFile) {
+            // FileReaderオブジェクトを作成
+            var reader = new FileReader();
+            // ファイルの読み込みが完了した時の処理を定義
+            reader.onload = function(event) {
+                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                document.getElementById('preview').src = event.target.result;
+            };
+            // ファイルの読み込みを実行
+            reader.readAsDataURL(selectedFile);
+        } else {
+            // ファイルが選択されていない場合は元のアイコンを表示
+            document.getElementById('preview').src = "icon_default.png";
+        }
+    }
+
+     // 削除ボタンをクリックしたときに呼び出される関数
+     function deleteItem() {
+        // 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+
+        // ページの再読み込みを防ぐ
+        event.preventDefault();
+    }
+
+
     //メッセージのscript
     var socket;
-    var user_id_speaker = "two"; // 送信者のユーザーIDを文字列にする
-    var user_id_listener = "one"; // 受信者のユーザーIDを文字列にする
+    var user_id_speaker;
+    var user_id_listener;
 
-    function connect() {
+    //ChatopenServletから、チャットのための情報を取得する
+    function openChat(){
+        let status = "指定";
+        let userId = document.getElementById("userId").value;
+        let otherUserId = document.getElementById("otherUserId").value;
+
+        let postData = {data1:status, data2:otherUserId}
+
+        $.ajaxSetup({scriptCharset:'utf-8'});
+            $.ajax({
+                //どのサーブレットに送るか
+                //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+                url: '/A2/ApiOtherMyPageServlet',
+                //どのメソッドを使用するか
+                type:"POST",
+                //受け取るデータのタイプ
+                dataType:"json",
+                //何をサーブレットに飛ばすか（変数を記述）
+                data: postData,
+                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+                processDate:false,
+                timeStamp: new Date().getTime()
+               //非同期通信が成功したときの処理
+            }).done(function(data) {
+                //成功した場合、チャットの接続を開始する
+                //相手のユーザ名とアイコンを取得する
+                let userName = data.otherUser.userName;
+                let userIcon = data.otherUser.icon;
+
+                //ユーザ名とアイコンを表示する
+                document.getElementById("user-name").innerText = userName;
+                const target = document.querySelector("#user-icon");
+                const url = "img/" + userIcon;
+                target.src = url;
+
+                //自分と相手のユーザ名を設定する
+                var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
+                var user_id_listener = data.otherUser.userId; // 受信者のユーザーIDを文字列にする
+
+                //接続を開始する
+                connect(data.talkHistory);
+              })
+               //非同期通信が失敗したときの処理
+              .fail(function() {
+                //失敗した場合はなにもしない
+            });
+        
+    }
+
+    function connect(talkHistory) {
+
         // WebSocketを初期化するで
         socket = new WebSocket("ws://" + window.location.host + "/A2/chat");
 

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +18,7 @@ import dao.GoodDao;
 import dao.MyContentsDao;
 import dao.ReviewDao;
 import dao.ReviewDisplayDao;
+import dao.UserDao;
 import model.Chat;
 import model.FavoriteUser;
 import model.MyContents;
@@ -87,10 +89,32 @@ public class MyPageServlet extends HttpServlet {
             	request.setAttribute("favoriteUserList", favoriteUserList);
 
         //チャット履歴の一覧を取得して、リクエストスコープに入れる
-           //お気に入りユーザDAOを生成
+           //DAOを生成
             	ChatDao cDao = new ChatDao();
-           //お気に入りユーザのリストを取得する
-            	List<Chat> chatList = cDao.selectHistory(userId);
+            	UserDao uDao = new UserDao();
+           //チャット履歴のリストを取得する
+            	//チャット履歴のリストを作成する
+            	List<Chat> chatList = new ArrayList<Chat>();
+            	//チャット履歴のある他ユーザのuseIdリストを取得
+            	List<Integer> userIdList = cDao.selectChatList(userId);
+            	//他ユーザのユーザ名、アイコン、最後のトーク履歴、未読数を取得する
+            	for(int i = 0; i < userIdList.size(); i++) {
+            		Chat chat = new Chat();
+
+            		//他ユーザのuserId取得
+            		int otherUserId = userIdList.get(i).intValue();
+            		//他ユーザのユーザ名取得
+            		chat.setUserName(uDao.userSelect(otherUserId).getUserName());
+            		//他ユーザのアイコン取得
+            		chat.setUserIcon(uDao.userSelect(otherUserId).getIcon());
+            		//他ユーザの最後のトーク履歴取得
+            		chat.setTalk(cDao.getLastTalk(userId, otherUserId));
+            		//他ユーザの未読数取得
+            		chat.setCheck(cDao.countUnChecked(userId, otherUserId));
+
+            		chatList.add(chat);
+            	}
+
             //リクエストスコープに格納する
         		request.setAttribute("chatList", chatList);
 

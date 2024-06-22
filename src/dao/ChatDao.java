@@ -306,6 +306,52 @@ public class ChatDao {
 	}
 
 
+	//一度表示させたときに既読にするメソッド
+	public boolean registChecked(int chatId) {
+		Connection conn = null;
+		boolean result = false;
+	
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+	
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+	
+			// SQL文を準備する
+			String sql = "UPDATE chat SET checked=1 WHERE chat_id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+	
+			// SQL文を完成させる
+			pStmt.setInt(1, chatId);
+	
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	
+		// 結果を返す
+		return result;
+	}
+
 	//ランダムチャットの候補相手の一覧を取得する
 	public List<User> selectRandomChat(int contentsId){
 		Connection conn = null;
@@ -321,7 +367,7 @@ public class ChatDao {
 			// SQL文を準備する
 			String sql = "SELECT m.contents_id, u.user_id, u.user_name, u.icon"
 					+ "FROM my_contents AS m INNER JOIN user AS u ON m.user_id=u.user_id "
-					+ "WHERE m.contents_id=?  AND u.flag=1  AND u.open_close=1";
+					+ "WHERE m.contents_id=? AND m.status=1 AND u.flag=1  AND u.open_close=1";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -361,51 +407,5 @@ public class ChatDao {
 		}
 		// 結果を返す
 		return userList;
-	}
-
-	//一度表示させたときに既読にするメソッド
-	public boolean registChecked(int chatId) {
-		Connection conn = null;
-		boolean result = false;
-
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
-
-			// SQL文を準備する
-			String sql = "UPDATE chat SET checked=1 WHERE chat_id=?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			// SQL文を完成させる
-			pStmt.setInt(1, chatId);
-
-			// SQL文を実行する
-			if (pStmt.executeUpdate() == 1) {
-				result = true;
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		// 結果を返す
-		return result;
 	}
 }

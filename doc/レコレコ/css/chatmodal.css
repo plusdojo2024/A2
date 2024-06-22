@@ -1,36 +1,36 @@
-        /* ÉÇÅ[É_ÉãÇÃÉXÉ^ÉCÉã */
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgb(0,0,0);
-          background-color: rgba(0,0,0,0.4);
-      }
+/* ÔøΩÔøΩÔøΩ[ÔøΩ_ÔøΩÔøΩÔøΩÃÉXÔøΩ^ÔøΩCÔøΩÔøΩ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
 
-      .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          width: 40%;
-          height: 80%;
-          border-radius: 13px;
-          box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
-          margin-top: 50px;
-          margin-bottom: 125px;
-      }
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  height: 85%;
+  border-radius: 13px;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 50px;
+  margin-bottom: 125px;
+}
 
-      .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-      }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
 .close:hover,.close:focus {
   color: black;
@@ -79,54 +79,64 @@ body {
 
 .messages {
   flex: 1;
+  height: 100px;
   padding: 20px;
   overflow-y: auto;
-  background-color: #e5ddd5;
+  background-color: #e6e6e6;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .input-area {
   display: flex;
   padding: 10px;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #cccccc;
   background-color: #f9f9f9;
 }
 
 .input-area input[type="text"] {
   flex: 1;
-  padding: 10px;
+  height: 40px;
+  width: 250px;
+  padding: 5px;
+  background-color: #e6e6e6;
   border: 1px solid #cccccc;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-right: 10px;
   font-size: 16px;
 }
 
-.input-area button {
-  padding: 10px 20px;
+.chat-submit {
+  height: 40px;
+  width: 80px;
   border: none;
   background-color: #35AFDB;
   color: white;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
+.chat-submit:hover {
+  background-color: #CFCFCF;
+  color: #545454;
+}
+
+/* ÁîªÂÉè„Ç¢„ÉÉ„Éó„É≠„Éº„Éâ„Éú„Çø„É≥ */
 .button0 {
-  padding: 10px 20px;
+  margin-right: 8px;
   border: none;
-  background-color: #ffffff;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
+  background-color: transparent;
   cursor: pointer;
 }
+
+#file-button {
+  display: none;
+}
+
 .point{
   height: 30px;
   width: 30px;
-}
-
-.input-area button:hover {
-  background-color: #35AFDB;
 }
 
 .message-time {
@@ -140,7 +150,7 @@ body {
 }
 
 .sent-message {
-  background-color: #dcf8c6;
+  background-color: #54A3BF;
   color: #000000;
   padding: 10px 20px;
   border-radius: 10px;
@@ -151,7 +161,6 @@ body {
 
 .received-message {
   background-color: #ffffff;
-  color: #000000;
   padding: 10px 20px;
   border-radius: 10px;
   margin: 10px 0;
@@ -160,8 +169,7 @@ body {
 }
 
 .system-message {
-  background-color: #ffffe0;
-  color: #000000;
+  background-color:  #CEE9EF;
   padding: 10px 20px;
   border-radius: 10px;
   margin: 10px 0;
@@ -169,4 +177,21 @@ body {
   max-width: 60%;
   word-wrap: break-word;
   text-align: center;
+}
+.user-info{
+  display: flex;
+}
+
+.chat-icon{
+  margin-bottom: 15px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.chat-name{
+  display: block;
+  margin: 5px 5px 5px 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
 }

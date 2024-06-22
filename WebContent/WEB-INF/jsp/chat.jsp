@@ -3,10 +3,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Chat</title>
-<link rel="stylesheet" href="/A2/css/chat.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <meta charset="UTF-8">
+    <title>チャットモーダル</title>
+</head>
+<body>
+
+<!-- モーダルを開くボタン -->
+<button id="openModalBtn" class="btn" onclick="connect()">レビュー</button>
+
+<!-- モーダル -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal1')">&times;</span>
+      <body onload="connect()">
+        アイコン/名前
+        <div id="chat-container">
+          <div id="messages" class="messages"></div>
+            <div class="input-area">
+              <button class="button0"><img src="img/point_plus.png" class="point" alt="point"></button>
+              <input type="text" id="message" placeholder="メッセージを入力してください" onkeydown="if(event.key === 'Enter') sendMessage()">
+              <button onclick="sendMessage()">送信</button>
+            </div>
+          </div>
+        </body>
+      </div>
+    </div>
 <script>
+    // モーダルを開くボタンを取得
+    var openModalBtn = document.getElementById("openModalBtn");
+
+    // モーダルを開く関数
+    openModalBtn.onclick = function() {
+        openModal('modal1');
+    }
+
+    // モーダルを開く関数
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    // モーダルを閉じる関数
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    // モーダルの外側がクリックされたときに閉じる処理
+    window.onclick = function(event) {
+        var modal1 = document.getElementById('modal1');
+        var modal2 = document.getElementById('modal2');
+        if (event.target == modal1) {
+            closeModal('modal1');
+        }
+    }
+
+    //メッセージのscript
     var socket;
     var user_id_speaker = "two"; // 送信者のユーザーIDを文字列にする
     var user_id_listener = "one"; // 受信者のユーザーIDを文字列にする
@@ -67,17 +120,6 @@
         document.getElementById("message").value = "";
     }
 </script>
-</head>
-	<body onload="connect()">
-    <div id="chat-container">
-    ああ
-        <div id="messages" class="messages"></div>
-        <div class="input-area">
-        	画像挿入
-            <input type="text" id="message" placeholder="メッセージを入力してください" onkeydown="if(event.key === 'Enter') sendMessage()">
-            <button onclick="sendMessage()">送信</button>
-        </div>
-    </div>
-</body>
 
+</body>
 </html>

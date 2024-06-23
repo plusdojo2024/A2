@@ -57,6 +57,7 @@
         <body>
         <main>
             <form class="ranking">
+            <c:forEach var="e" items="${rankingTopFive}" >
                 <h2><a href=""><img src="/A2/img/button_good2.png"  class="ok" alt="ハート"></a>いいねランキング</h2>
                 <div class="table-wrapper">
                     <table class="table">
@@ -64,11 +65,12 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking1.png" class="good" alt="good">
-                                    <img src="icon_default.png"  class="icon" alt="アイコン">
-                                    <p>rekoreko さん</p>
+                                    <img src="${e.icon}"  class="icon" alt="アイコン">
+                                    <p>${e.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
+                        <!--
                         <tr>
                             <td>
                                 <div class="goodranking">
@@ -105,9 +107,12 @@
                                 </div>
                             </td>
                         </tr>
+                        -->
                     </table>
                 </div>
             </form>
+            </c:forEach>
+            <c:forEach var="e" items="${timeline}" >
             <form class="ranking">
                 <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
                 <div class="table-wrapper">
@@ -116,18 +121,19 @@
                             <td>
                                 <div class="review">
                                     <div class="timeline">
-                                        <img src="content_hagaren.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
-                                        <p>rekoreko さん</p>
-                                        <p>06/06 23:35 投稿</p>
+                                        <img src="${e.image }" class="timeline1" alt="timeline">
+                                        <img src="${e.icon }"  class="icon1" alt="アイコン">
+                                        <p>${e.userName } さん</p>
+                                        <p>${e.createdAt } 投稿</p>
                                     </div>
-                                    <h3>鋼の錬金術師</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！おもろい！</h4>
+                                    <h3>${e.title }</h3>
+                                    <h4 class="truncate">${e.review }</h4>
                                     <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
+                                    <h5>${e.goodCount }</h5>
                                 </div>
                             </td>
                         </tr>
+                        <!--
                         <tr>
                             <td>
                                 <div class="review">
@@ -208,9 +214,11 @@
                                 </div>
                             </td>
                         </tr>
+                         -->
                     </table>
                 </div>
             </form>
+            </c:forEach>
         </main>
         <footer>
             <a href=#top><span class="gotop"></span></a>

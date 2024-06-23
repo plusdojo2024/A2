@@ -71,7 +71,7 @@
                 <td>
                     <label class="open">アカウント公開設定<span class="required"> ＊必須</span></label><br>
                     <label><input type="radio" name="first" id="open" value="yes">公開</label>
-                    <label><input type="radio" name="first" id="open" value="no">非公開<br></label>
+                    <label><input type="radio" name="first" id="open" value="no" class="first">非公開<br></label>
                     <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                     <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                 </td>

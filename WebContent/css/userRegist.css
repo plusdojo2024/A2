@@ -4,7 +4,7 @@
 h3 {
     color: #ffffff;
     background-color: #B3C8CF;
-    margin: 60px 400px 0px 400px;
+    margin: 60px 500px 0px 500px;
     padding: 10px 0 10px 0 ;
     text-align: center;
 }
@@ -23,7 +23,7 @@ h4 {
 
 label {
     font-size: 1.2em;
-    margin: 0 30px 0 30px;
+    margin: 20px 30px 0 -50px;
 }
 
 .required {
@@ -32,18 +32,18 @@ label {
 
 .table {
     background-color: #ffffff;
-    margin: 0px 100px 500px 400px;
-    padding: 10px 61px 50px 64px ;
+    margin: 0px 200px 500px 500px;
+    padding: 10px 153px 50px 230px ;
 }
 
 .table  a {
-    margin: 0 30px 0 30px;
+    margin: 0 30px 0 -50px;
     color: #696969;
     text-decoration: none;
 }
 
 .login {
-    margin: 10px 40px 0px 30px;
+    margin: 10px 40px 0px -50px;
 }
 
 .icon-container {
@@ -61,7 +61,7 @@ label {
 	position: relative;
     bottom: 70px;
     border: 1px solid black;
-    margin: 0px 30px 10px 400px;
+    margin: 0px 30px 10px 300px;
     padding: 5px;
     background-color: #ffffff;
     display: flex; /* 複数の要素を横に並べるため */
@@ -75,7 +75,7 @@ input[name=id], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;
-    margin: 10px 30px;
+    margin: 10px 30px 0 -50px;
     background-color: #dcdcdc;
 }
 
@@ -94,7 +94,7 @@ input[name=my_introduction] {
     border: 1px solid #ccc;
     height: 10em;
     width: 38em;
-    margin: 10px 30px;
+    margin: 10px 30px 0 -50px;
     background-color: #dcdcdc;
     border-radius: 10px; /*四角の角を丸くする*/
 }
@@ -110,6 +110,10 @@ input[type="radio"] {
     border: 2px solid #696969; /* 枠線の色 */
     outline: none;
     cursor: pointer;
+}
+
+.first {
+	margin-left: 40px;
 }
 
 /* ラジオボタンが選択されたときのスタイル */
@@ -128,8 +132,8 @@ input[type="radio"] + label {
 
 input[name=submit] {
     border: none;
-    margin: 30px 30px 10px 50px;
-    padding: 20px 60px 20px 50px;
+    margin: 30px 30px 10px -30px;
+    padding: 20px 60px 20px 60px;
     width: 500px;
     color: #ffffff;
     background-color: #35AFDB;

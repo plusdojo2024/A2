@@ -40,13 +40,12 @@ public class ApiCheckServlet extends HttpServlet {
 				//トークが一度トーク画面に表示されたときの処理
 				if(request.getParameter("data1")!=null) {
 					// 送信されたデータの取得
-					String data1 = request.getParameter("data1");
-					int chatId = Integer.parseInt(data1);
+					String talk = request.getParameter("message");
 						//入力されたデータを表示
-						System.out.println(data1);
+						System.out.println(talk);
 
 						//既読をチャットテーブルに登録
-						boolean result = cDao.registChecked(chatId);
+						boolean result = cDao.registChecked(talk);
 
 						//Jackson機能のmapperをインスタンス（実体）化
 						ObjectMapper mapper = new ObjectMapper();

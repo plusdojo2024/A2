@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -99,15 +98,12 @@ public class ChatDao {
             String sql = "INSERT INTO chat (user_id_speaker, user_id_listener, talk, image, created_at) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// Java側で現在のタイムスタンプを取得
-			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-
-            // パラメータを設定するで
+			  // パラメータを設定するで
             pStmt.setInt(1, chat.getUserIdSpeaker());
             pStmt.setInt(2, chat.getUserIdListener());
             pStmt.setString(3, chat.getTalk());
             pStmt.setString(4, chat.getImage());
-            pStmt.setTimestamp(5, createdAt);
+            pStmt.setString(5, chat.getCreatedAt());
 
             // INSERT文を実行し、登録に成功したらresultにtrueを入れる
          		if (pStmt.executeUpdate() == 1) {
@@ -307,24 +303,24 @@ public class ChatDao {
 
 
 	//一度表示させたときに既読にするメソッド
-	public boolean registChecked(int chatId) {
+	public boolean registChecked(String talk) {
 		Connection conn = null;
 		boolean result = false;
-	
+
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
-	
+
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
-	
+
 			// SQL文を準備する
-			String sql = "UPDATE chat SET checked=1 WHERE chat_id=?";
+			String sql = "UPDATE chat SET checked=1 WHERE talk=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-	
+
 			// SQL文を完成させる
-			pStmt.setInt(1, chatId);
-	
+			pStmt.setString(1, talk);
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
@@ -347,7 +343,7 @@ public class ChatDao {
 				}
 			}
 		}
-	
+
 		// 結果を返す
 		return result;
 	}

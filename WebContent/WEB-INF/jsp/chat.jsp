@@ -23,7 +23,7 @@
         <div class="user-info">
             <img src="img/icon_higuchi.png" class="chat-icon" id="chat-icon">
             <span class="chat-name" id="chat-name">樋口 さん</span>
-        </div>      
+        </div>
         <div id="chat-container">
           <div id="messages" class="messages"></div>
             <div class="input-area">
@@ -158,7 +158,7 @@
               .fail(function() {
                 //失敗した場合はなにもしない
             });
-        
+
     }
 
     function connect(talkHistory) {
@@ -183,11 +183,18 @@
             var speaker = data[2];
             var listener = data[3];
             var message = data.slice(4).join(" ");
+            if(messageが.jpgとかで終わるなら、後ろから空白でspritしてメッセージと文章で分けたい)
             var messageClass = (speaker === user_id_speaker) ? "sent-message" : "received-message";
             var messageElement = "<div class='" + messageClass + "'><div class='message-time'>" + createdAt + "</div><div class='message-content'>" + message + "</div></div>";
             document.getElementById("messages").innerHTML += messageElement;
             document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
         };
+
+        var
+        var jpg = /.jpg$/.test(message);
+
+        メッセージだけを送れるようにして、正規表現で最後が画像の拡張子だった場合、divじゃなくてimgに入れるとかにする
+        inputに入っているときはimgが無効になるように、imgに入っているときはtextが無効になるようにする、送信ボタンを押したらどっちも空白になるようにする
 
         // 接続が閉じたときの処理やで
         socket.onclose = function() {
@@ -205,6 +212,7 @@
     // メッセージを送信する関数やで
     function sendMessage() {
         var message = document.getElementById("message").value;
+        var image = document.getElementById("file-button").value;
         var now = new Date();
         var formattedTime = now.getFullYear() + "-" +
                             ('0' + (now.getMonth() + 1)).slice(-2) + "-" +
@@ -213,9 +221,17 @@
                             ('0' + now.getMinutes()).slice(-2) + ":" +
                             ('0' + now.getSeconds()).slice(-2);
         // メッセージを送信するで
-        var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message;
-        socket.send(messageToSend);
-        document.getElementById("message").value = "";
+        //imgが空白だった場合
+        if (imag) {
+        	var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message + " " + img;
+            socket.send(messageToSend);
+            document.getElementById("message").value = "";
+            document.getElementById("file-button").value = "";
+		} else{
+			var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message;
+	        socket.send(messageToSend);
+	        document.getElementById("message").value = "";
+		}
     }
 </script>
 

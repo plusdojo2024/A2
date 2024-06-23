@@ -1,459 +1,338 @@
 @charset "UTF-8";
 
-/* 横並びのコンテナ */
-.flex {
+
+/* コンテンツ情報----------------------------------- */
+/*配置*/
+.content-info {
     display: flex;
     justify-content: space-between;
 }
 
-/* 横並びのコンテナ2 */
-.flex2 {
-    display: flex;
+/*コンテンツ情報配置*/
+.column{
+    position: relative;
+    left: -2%;
+    margin-top: 2.5%;
 }
 
-/* 大きい見出し */
-h1.big {
-    color: black;
-    /* 色 */
+/* コンテンツ画像 */
+img[name=content-img] {
+    width: 180px;
+    height: 200px;
+    margin: 30px 0px 0px 200px;
+}
+
+/* コンテンツタイトル */
+h2[name=content-title] {
+    color: #545454;
     font-size: 40px;
-    /* フォントサイズ */
     margin-bottom: 10px;
-    /* 下のマージン */
 }
 
-/* 小見出し */
+/* タイトル以下コンテンツ詳細情報 */
 h3 {
+    color: #545454;
     margin: 0%;
-    /* マージン */
 }
 
-/* ラベル */
-label {
-    font-size: 1.2em;
-    /* フォントサイズ */
-    margin: 0 30px 0 30px;
-    /* マージン */
-}
-
-/* セレクトボックス */
-select[name=select] {
-    height: 4.5em;
-    /* 高さ */
-    width: 10em;
-    /* 幅 */
-    border: 1px solid #ccc;
-    /* ボーダー */
-    border-radius: 20px;
-    /* 角丸 */
-}
-
-/* セレクトボックス2 */
-select[name=select2] {
-    margin-left: 60px;
-    /* 左マージン */
-    height: 3.5em;
-    /* 高さ */
-    width: 15em;
-    /* 幅 */
-    border: 1px solid #ccc;
-    /* ボーダー */
-    border-radius: 20px;
-    /* 角丸 */
-    text-align: center;
-    /* 中央揃え */
-}
-
-/* 検索欄 */
-input[name=search] {
-    height: 4em;
-    /* 高さ */
-    width: 30em;
-    /* 幅 */
-    margin: 8px 0 0 0;
-    /* マージン */
-    border: 1px solid #ccc;
-    /* ボーダー */
-    border-radius: 20px;
-    /* 角丸 */
-}
-
-/* 画像 */
-img[name=photo] {
-    margin: 30px 30px 0px 200px;
-    /* マージン */
-}
-
-/* 画像2 */
-img[name=photo2] {
-    margin: 10px 30px 0px 20px;
-    /* マージン */
-}
-
-/* 送信ボタン */
+/* ボタン */
 button[name=submit] {
     display: flex;
     align-items: center;
     height: 45px;
-    /* 高さ */
     border: none;
-    /* ボーダーなし */
     margin: 30px 250px 0px 30px;
-    /* マージン */
     padding: 5px 20px 0px 20px;
-    /* パディング */
     width: 260px;
-    /* 幅 */
     color: #ffffff;
-    /* テキスト色 */
     background-color: #35AFDB;
-    /* 背景色 */
     font-size: 1em;
-    /* フォントサイズ */
     border-radius: 10px;
-    /* 角丸 */
-}
-
-/* カラム */
-.column {
-    display: block;
-    width: 100%;
-    color: black;
-    /* テキスト色 */
-    margin: 30px 0px 0px 20px;
-    /* マージン */
-}
-
-/* タブコントロール */
-a[href="#tabpage1"] {
-    margin: 0px 5px 0px 50px;
-    /* マージン */
-}
-
-a[href="#tabpage2"] {
-    margin: 0px 0px 0px -10px;
-    /* マージン */
-    display: none;
-    /* 非表示 */
-}
-
-#tabcontrol a {
-    margin-top: 30px;
-    /* 上マージン */
-    line-height: 4em;
-    /* 行の高さ */
-    height: 40px;
-    /* 高さ */
-    width: 670px;
-    /* 幅 */
-    display: inline-block;
-    /* インラインブロック */
-    border-width: 1px 1px 0px 1px;
-    /* ボーダーの幅 */
-    border-style: solid;
-    /* ボーダースタイル */
-    text-align: center;
-    /* 中央揃え */
-    border-color: white;
-    /* ボーダーの色 */
-    border-radius: 20px 20px 0px 0px;
-    /* 角丸 */
-    padding: 0px 30px 30px 0px;
-    /* パディング */
-    text-decoration: none;
-    /* 下線を削除 */
-    color: black;
-    /* テキスト色 */
-    background-color: gray;
-    /* 背景色 */
-    font-weight: bold;
-    /* フォントの太さ */
-    position: relative;
-    /* 相対位置 */
-}
-
-/* 選択されたタブのスタイル */
-#tabcontrol a.selected {
-    background-color: white;
-    /* 背景色 */
+    cursor: pointer;
 }
 
 /* ボタン内の画像 */
 .bt img {
     width: 30px;
-    /* 幅 */
     height: 30px;
-    /* 高さ */
     margin-right: 7px;
-    /* 右マージン */
     margin-bottom: 5px;
-    /* 下マージン */
 }
 
-/* 削除ボタンのスタイル */
-.delete-button {
-    position: relative;
-    /* 相対位置 */
-    bottom: 20px;
-    /* 下からの位置 */
-    border: 1px solid black;
-    /* ボーダー */
-    margin: -120px 20px 0px 10px;
-    /* マージン */
-    padding: 8px;
-    /* パディング */
-    background-color: #ffffff;
-    /* 背景色 */
+/*タブ内-------------------------------------------*/
+/*リスト先頭の丸を削除*/
+li{
+    list-style: none;
+}
+
+/*タブの形状*/
+#tab{
     display: flex;
-    /* フレックスレイアウト */
-    align-items: center;
-    /* アイテムを中央揃え */
-    border-radius: 10px;
-    /* 角丸 */
-    gap: 8px;
-    /* アイテム間の間隔 */
+    margin-top: 40px;
+    margin-left: 52.8px;
 }
 
-/* 別の削除ボタンのスタイル */
-.delete-button1 {
-    position: relative;
-    /* 相対位置 */
-    bottom: 25px;
-    /* 下からの位置 */
-    border: 1px solid black;
-    /* ボーダー */
-    margin: -121px 0px 0px 1100px;
-    /* マージン */
-    padding: 8px;
-    /* パディング */
-    background-color: #ffffff;
-    /* 背景色 */
+#tab a {
     display: flex;
-    /* フレックスレイアウト */
     align-items: center;
-    /* アイテムを中央揃え */
-    border-radius: 10px;
-    /* 角丸 */
-    gap: 8px;
-    /* アイテム間の間隔 */
-}
-
-/* コンテンツのスタイル */
-.contents {
-    display: flex;
-    /* フレックスレイアウト */
-    border: 1px solid black;
-    /* ボーダー */
-    border-radius: 10px;
-    /* 角丸 */
-    align-items: center;
-    /* アイテムを中央揃え */
-    gap: 5px;
-    /* アイテム間の間隔 */
-    margin: 20px 0px 0px 0px;
-    /* マージン */
-}
-
-/* 別のコンテンツのスタイル */
-.contents1 {
-    display: flex;
-    /* フレックスレイアウト */
-    border: 1px solid black;
-    /* ボーダー */
-    border-radius: 10px;
-    /* 角丸 */
-    align-items: center;
-    /* アイテムを中央揃え */
-    gap: 5px;
-    /* アイテム間の間隔 */
-    margin: 20px 0px 0px 0px;
-    /* マージン */
-}
-
-/* コンテンツ内のテキストスタイル */
-.contents p {
+    justify-content: center;
+    background-color: #cfcfcf;
+    border-radius: 10px 10px 0 0;
+    width: 700px;
+    height: 50px;
     color: #545454;
-    /* テキスト色 */
-    margin: -180px 800px 0px 0px;
-    /* マージン */
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-/* 別のコンテンツ内のテキストスタイル */
-.contents1 p {
-    color: #545454;
-    /* テキスト色 */
-    margin: -178px 700px 0px 0px;
-    /* マージン */
+/* 選択されたタブのスタイル */
+#tab a.selected {
+    background-color: #ffffff;
+    border-color: #ffffff;
 }
 
-/* 画像のスタイル */
-.image {
-    margin: 10px 30px 20px 50px;
-    /* マージン */
+.tab-content {
+    display: none;
+    border: 1px solid #ffffff;
+    margin: 0px auto 20px auto;
+    padding: 1em;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    height: 500px;
+    width: 1380px;
 }
 
-/* 名前のスタイル */
-.namae {
-    margin: -150px 30px 20px -20px;
-    /* マージン */
+.tab-content.active {
+    display: block;
+}
+
+/* 並び替えセレクトボックス */
+.select{
+    margin: 0 0 10px 20px;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* レビュー内ボタンのスタイル */
+.review-button {
     display: flex;
-    /* フレックスレイアウト */
-    position: relative;
-    /* 相対位置 */
+    margin: -50px 0 150px 800px;
 }
 
-/* 別の名前のスタイル */
-.namae1 {
-    margin-top: 5px;
-    /* 上マージン */
+.review-button .button{
+    display: flex;
+    padding: 8px;
+    border: 1px solid #545454;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px 0 0 30px;
+    cursor: pointer;
 }
 
-/* 短い見出しのスタイル */
-h3.short {
-    margin: -180px 0px 50px 260px;
-    /* マージン */
+.review-button img{
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
 }
 
-/* レビューのスタイル */
-.review {
-    margin: -40px 0px 50px 260px;
-    /* マージン */
+/*レビュー一覧*/
+.reviewBar{
+    margin: 5px 20px 5px 20px;
+    height: 244px;
+    width: 1323px;
+    border: #CFCFCF solid 2px;
+    border-radius: 10px;
+}
+
+.review{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.review-img{
+    height: 200px;
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.review-time{
+    margin-left: 50px;
+    font-size: 0.8rem;
+}
+
+.review p {
+    margin-bottom: 180px;
+    margin-left: 30px;
+    margin-right: -90px;
+}
+
+.review-title {
+    margin-bottom: 300px;
+    margin-left: 240px;
+    margin-top: -180px;
+}
+
+.review-text{
+    margin-top: -280px;
+    margin-left: 240px;
+    margin-right: 20px;
+    max-width: 100%;
 }
 
 /* ハートアイコン */
+.good{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
 .heart {
-    position: absolute;
-    width: 40px;
-    height: 36px;
-    left: 90%;
-    top: 57%;
-    margin-top: -20px;
-    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    padding-right: 4px;
+    margin-left: 1230px;
     cursor: pointer;
-
-    /* 背景色を透明に設定 */
 }
 
-.heart2 {
-    position: absolute;
-    width: 40px;
-    height: 36px;
-    left: 90%;
-    top: 57%;
-    margin-top: 320px;
-    margin-left: -100px;
-    cursor: pointer;
-
-    /* 背景色を透明に設定 */
+/*レビュー新規登録ボタン*/
+.floating-button {
+    position: fixed; /* 固定位置 */
+    bottom: 40px; /* 画面下からの距離 */
+    right: 40px; /* 画面右からの距離 */
+    z-index: 1000; /* 他の要素の上に表示 */
 }
 
-.heart::before,
-.heart::after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: 0;
-    width: 20px;
-    height: 32px;
-    background: gray;
-    /* ハートの色をピンクに設定 */
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-.heart2::before,
-.heart2::after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: 0;
-    width: 20px;
-    height: 32px;
-    background: gray;
-    /* ハートの色をピンクに設定 */
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-.heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-}
-
-.heart2::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-}
-
-.heart-count {
-    position: absolute;
-    left: 45px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #545454;
-}
-
-
-.heart.clicked::before,
-.heart.clicked::after {
-    background: #f88dc8;
-    /* クリック後の背景色を赤に変更 */
-}
-
-.heart2.clicked::before,
-.heart2.clicked::after {
-    background: #f88dc8;
-    /* クリック後の背景色を赤に変更 */
-}
-
-/* 選択されたエリア */
-.area.selected {
+.floating-button img {
     display: block;
-    /* ブロック要素として表示 */
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
 }
 
-/* エリア */
-.area {
-    border: 1px solid white;
-    /* ボーダー */
-    margin: 0px 50px 0px 50px;
-    /* マージン */
-    padding: 1em;
-    /* パディング */
-    background-color: white;
-    /* 背景色 */
-    overflow-y: scroll;
-    /* 縦スクロール */
-    height: 500px;
-    /* 高さ */
+/*他ユーザのレビュー*/
+.users-info{
+    display: flex;
+    align-items: center;
+    margin: -185px 0 0 20px;
+}
+.users-info img{
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    border-radius: 100%;
+}
+
+
+/*モーダル関連----------------------------------------------------*/
+.modal-review-regist {
     display: none;
-    /* 非表示 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
-/* タブページ1 */
-#tabpage1 {
-    position: relative;
-    /* 相対位置 */
-    height: 500px;
-    /* 高さ */
+.modal-review-regist .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
 }
 
-/* 新しいレビュー */
-.newreview {
-    position: sticky;
-    /* スティッキー位置 */
-    bottom: -100px;
-    /* 下からの位置 */
-    right: 100px;
-    /* 右からの位置 */
-    margin-left: 1200px;
-    /* 左マージン */
-    margin-top: 200px;
-    /* 上マージン */
-    z-index: 10;
-    /* Zインデックス */
+.modal-review-regist .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+.modal-review-regist .close:hover,
+.modal-review-regist .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-review-regist .btn {
+    display: block;
+    margin: 10px 18px 10px 18px;
+    padding: 20px 60px 20px 50px;
+    width: 255px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1.2em;
+    border-radius: 20px;
+    position: absolute;
+    left: 600px;
+}
+
+.modal-review-regist .btn:hover {
+    background-color: #35AFDB;
+}
+
+.modal-review-regist .modal-title {
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+}
+
+.modal-review-regist input[name=review-title]{
+    border: 1px solid #ccc;
+    height: 3em;
+    width: 100%;
+    margin: 10px 0 10px 30px;
+    background-color: #dcdcdc;
+    padding: 20px;
+}
+
+.modal-review-regist input[name=upload] {
+    border: 1px solid #545454;
+    font-size: 0.8em;
+    margin: 30px 5px 0px 5px;
+    padding: 10px 240px 10px 10px;
+    width: 190px;
+    height: 50px;
+    color: #545454;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.modal-review-regist #review-detail{
+    font-family: sans-serif;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    background-color: #dcdcdc;
+    padding: 20px;
+    margin: 10px 0 10px 30px;
+}
+
+.modal-review-regist #preview{
+    margin:0 40px 0 60px;
+}
+
+.modal-review-regist .review-img{
+    display: flex;
+}
+
+.modal-review-regist .modal-content .delete-button{
+    margin: -100px 10px 65px 380px;
 }

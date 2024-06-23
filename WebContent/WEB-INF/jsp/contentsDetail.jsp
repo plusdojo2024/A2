@@ -5,60 +5,59 @@
 <head>
  <meta charset="UTF-8">
     <title>コンテンツ詳細|レコレコ</title>
-    <link rel="stylesheet" href="css/test.css">
-    <link rel="stylesheet" href="common.css">
-
-
+    <link rel="stylesheet" href="css/contentsDetail.css">
+    <link rel="stylesheet" href="css/common.css">
 </head>
 
-<body>
-    <header>
-        <nav class="nav">
-            <ul>
-                <li>
-                    <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
-                </li>
-                <li>
-                    <form action="/A2/SearchServlet" class="search-form" method="post">
-                        <div class="search-box">
-                            <select name="select">
-                                <option value="all">すべて</option>
-                                <option value="movie">映画</option>
-                                <option value="dorama">ドラマ</option>
-                                <option value="anime">アニメ</option>
-                                <option value="sonota1">その他（映像）</option>
-                                <option value="novel">小説</option>
-                                <option value="comics">マンガ</option>
-                                <option value="sonota2">その他（書籍）</option>
-                                <option value="game">ゲーム</option>
-                            </select>
-                            <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
-                            <input type="image" src="img/search.png" class="search-button" alt="虫眼鏡">
-                        </div>
-                    </form>
-                </li>
-                <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
-                <div class="co">
-                    <div class="user-container">
-                        <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span
-                                    class="user-name">recoreco</span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                                    <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
-                                    <li><a href="/A2/LoginServlet">ログアウト</a></li>
-                                </ul>
-                            </a>
-                        </li>
-
+<header>
+    <nav class="nav">
+        <ul>
+            <li>
+                <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
+            </li>
+            <li>
+                <form action="/A2/SearchServlet" class="search-form" method="post">
+                     <div class="search-box">
+                        <select name="select">
+                            <option value="all">すべて</option>
+                            <option value="movie">映画</option>
+                            <option value="dorama">ドラマ</option>
+                            <option value="anime">アニメ</option>
+                            <option value="sonota1">その他（映像）</option>
+                            <option value="novel">小説</option>
+                            <option value="comics">マンガ</option>
+                            <option value="sonota2">その他（書籍）</option>
+                            <option value="game">ゲーム</option>
+                        </select>
+                        <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
+                        <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
                     </div>
+                </form>
+            </li>
+            <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+            <div class="co">
+                <div class="user-container">
+                    <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span
+                                class="user-name">recoreco</span>
+                            <ul class="dropdown-menu">
+                                <li><a href="/A2/MyPageServlet">マイページ</a></li>
+                                <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                                <li><a href="/A2/LoginServlet">ログアウト</a></li>
+                            </ul>
+                        </a>
+                    </li>
                 </div>
-            </ul>
-        </nav>
-    </header>
-    <div class="flex">
-        <img src="img/ffx.png" width="180px" height="200px" name="photo" alt="写真">
+            </div>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <!--コンテンツ情報--------------------------------------->
+    <div class="content-info">
+        <img src="img/content_ffx.png" name="content-img" alt="写真">
         <div class="column">
-            <h1 class="big">FINAL FANTASY X</h1><input type="hidden" id="contentsId" value="${contentsId}">
+            <h2 name="content-title">FINAL FANTASY X</h2><input type="hidden" id="contentsId" value="${contentsId}">
             <h3>ゲーム</h3>
             <h3>2001年</h3>
             <h3>スクウェア</h3>
@@ -80,78 +79,314 @@
         </nav>
     </div>
 
-    <p id="tabcontrol">
-        <a href="#tabpage1">
-            自分のレビュー
-        </a>
-        <a href="#tabpage2">
-            他ユーザのレビュー
-        </a>
-    </p>
+    <!--タブ------------------------------------------------>
+    <div class="wrapper">
+        <ul id="tab">
+            <li><a href="#myReview" class="tab-link" data-target="myReview">自分のレビュー</a></li>
+            <li><a href="#otherReview" class="tab-link" data-target="otherReview">他ユーザのレビュー</a></li>
+        </ul>
 
-    <div id="tabbody">
-        <div id="tabpage1" class="area selected">
-            <select name="select2">
-                <option value="all">並び替え</option>
-                <option value="new">新しい順</option>
-                <option value="old">古い順</option>
-            </select>
+        <div id="tabbody">
+            <div id="myReview" class="tab-content">
+                <select name="sort" class="select">　<!--並び替えボタン-->
+                    <option value="sort">並び替え</option>
+                    <option value="fromNew">新しい順</option>
+                    <option value="fromOld">古い順</option>
+                </select>
 
-            <div class="contents">
-                <img src="img/ffx.png" class="image" width="180px" height="200px" alt="写真">
-                <p>06/06 22:22 投稿</p>
-                <button class="delete-button" onclick="goAjaxDelete()">
-                    <img src="img/garbage_can.png" class="delete-icon" width="20px" height="20px" alt="ゴミ箱">削除
-                </button>
-            </div>
+                <ul>
+                    <c:forEach var="e" items="${myReview}">
+                        <li class="reviewBar">
+                            <div class="review">
+                                <img src="img/content_ffx.png" class="review-img" alt="写真">
+                                <p class="review-time">06/06 22:22 投稿</p>
+                                <div class="review-button">
+                                    <button class="button" onclick="goAjaxDelete()">
+                                        <img src="img/point_delete.png">
+                                        <span class="button-text">削除</span>
+                                    </button>
+                                    <button class="button">
+                                        <img src="img/point_edit.png">
+                                        <span class="button-text">編集</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
+                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <div class="good">
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h4>123</h4>
+                            </div>
+                        </li>
+                        <li class="reviewBar">
+                            <div class="review">
+                                <img src="img/content_ffx.png" class="review-img" alt="写真">
+                                <p class="review-time">06/06 22:22 投稿</p>
+                                <div class="review-button">
+                                    <button class="button" onclick="goAjaxDelete()">
+                                        <img src="img/point_delete.png">
+                                        <span class="button-text">削除</span>
+                                    </button>
+                                    <button class="button">
+                                        <img src="img/point_edit.png">
+                                        <span class="button-text">編集</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
+                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <div class="good">
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h4>123</h4>
+                            </div>
+                        </li>
+                        <li class="reviewBar">
+                            <div class="review">
+                                <img src="img/content_ffx.png" class="review-img" alt="写真">
+                                <p class="review-time">06/06 22:22 投稿</p>
+                                <div class="review-button">
+                                    <button class="button" onclick="goAjaxDelete()">
+                                        <img src="img/point_delete.png">
+                                        <span class="button-text">削除</span>
+                                    </button>
+                                    <button id="openModalBtn" class="button">
+                                        <img src="img/point_edit.png">
+                                        <span class="button-text">編集</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
+                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <div class="good">
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h4>123</h4>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div><!--area(myReview)-->
 
-            <h3 class="short" id="title" value="${title}">FINAL FANTASY X</h3>
-            <div class="review" id="review" value="${review}">
-                <input type="hidden" id="reviewId" value="${reviewId}">
-                <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
-            </div>
-            <button class="delete-button1" onclick="goAjaxEdit()">
-                <img src="img/point_edit.png" class="delete-icon" width="20px" height="20px" alt="編集">編集
-            </button>
-            <div class="heart" onclick="toggleHeartColor(this)">
-                <span class="heart-count">0</span>
-            </div>
-            <button>
-            <img src="img/button_review.png" class="newreview" width="100px" height="100px" alt="新規レビューの写真">
-            </button>
-        </div>
+            <div id="otherReview" class="tab-content">
+                <select name="sort" class="select">
+                    <option value="sort">並び替え</option>
+                    <option value="fromNew">新しい順</option>
+                    <option value="fromOld">古い順</option>
+                </select>
+                <ul>
+                    <c:forEach var="e" items="${otherReview}">
+                        <li class="reviewBar">
+                            <div class="review">
+                                <img src="img/content_ffx.png" class="review-img" alt="写真">
+                                <div class="users-info">
+                                    <img src="img/icon_default.png" alt="アイコン写真">
+                                    <span class="users-name">レコさん</span>
+                                </div>
+                                <p class="review-time">06/06 22:22 投稿</p>
+                            </div>
+                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X 好き</h3>
+                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <div class="good">
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h4>123</h4>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div><!--area(otherReview)-->
+        </div><!--tabbody-->
+    </div><!--wrapper-->
 
-        <div id="tabpage2" class="area">
-            <select name="select2">
-                <option value="all">並び替え</option>
-                <option value="new">新しい順</option>
-                <option value="old">古い順</option>
-            </select>
-            <div class="contents1">
-                <img src="img/ffx.png" class="image" width="180px" height="200px" alt="写真">
-                <div class="namae">
-                    <img src="img/login1.png" class="image1" width="40px" height="40px" alt="アイコン写真"><span
-                        class="namae1">名前さん</span>
-                </div>
-                <p>06/06 22:22 投稿</p>
-
-            </div>
-
-            <h3 class="short">FINAL FANTASY X</h3>
-            <div class="review">
-                <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
-            </div>
-            <div class="heart2" onclick="toggleHeartColor(this)">
-                <span class="heart-count">0</span>
-            </div>
-        </div>
-
-
+    <div class="floating-button"><!--レビュー新規登録ボタン-->
+        <img src="img/button_review.png" id="openModalBtnR" alt="レビュー新規登録">
     </div>
 
-    <footer>
-        <a href=#top><span class="gotop"></span></a>
-        <p class="copyright">&copy; WAC</p>
-    </footer>
-  </body>
+    <!-- レビュー新規登録画面のモーダル --------------------->
+    <div id="modal-review-regist" class="modal-review-regist">
+        <div class="modal-content">
+            <!--閉じるボタン-->
+            <span class="close" onclick="closeModal('modal-review-regist')">&times;</span>
+            <p class="modal-title">レビュー投稿</p>
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="review-title" name="review-title" maxlength="50" placeholder="レビュータイトル（50文字）">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="review-img">
+                            <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                        </div>
+                        <button class="delete-button" onclick="deleteItem()">
+                            <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea id="review-detail" maxlength="500" rows="5" placeholder="レビュー本文（500文字以内）" required></textarea>
+                     </td>
+                </tr>
+                <tr>
+                     <td>
+                    <button class="btn" onclick="submitReview()">投稿</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <a href=#top><span class="gotop"></span></a>
+    <p class="copyright">&copy; WAC</p>
+</footer>
+
+
+<script>
+    //タブの切り替え------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                tabs.forEach(item => item.classList.remove('selected'));
+                contents.forEach(item => item.classList.remove('active'));
+
+                tab.classList.add('selected');
+                const target = document.getElementById(tab.dataset.target);
+                target.classList.add('active');
+            });
+        });
+
+        tabs[0].classList.add('selected');
+        contents[0].classList.add('active');
+    });
+
+    //レビュー新規登録モーダル-----------------------------------
+    // モーダルを開くボタンを取得
+    var openModalBtn1 = document.querySelector('#openModalBtn1');
+
+    // モーダルを開く関数
+    openModalBtn1.forEach(btn => {
+        btn.onclick = function() {
+            openModal('modal-review-regist');
+        }
+    });
+
+    // モーダルを開く関数
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    // モーダルを閉じる関数
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    // モーダルの外側がクリックされたときに閉じる処理
+    window.onclick = function(event) {
+        var modal = document.getElementById('modal-review-regist');
+        if (event.target == modal) {
+            closeModal('modal-review-regist');
+        }
+    }
+
+    // ファイル選択時に呼び出される関数
+    function previewImage(event) {
+        // 選択されたファイルを取得
+        var selectedFile = event.target.files[0];
+        // ファイルが選択されている場合
+        if (selectedFile) {
+            // FileReaderオブジェクトを作成
+            var reader = new FileReader();
+            // ファイルの読み込みが完了した時の処理を定義
+            reader.onload = function(event) {
+                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                document.getElementById('preview').src = event.target.result;
+            };
+            // ファイルの読み込みを実行
+            reader.readAsDataURL(selectedFile);
+        } else {
+            // ファイルが選択されていない場合は元のアイコンを表示
+            document.getElementById('preview').src = "img/icon_default.png";
+        }
+    }
+
+    // 削除ボタンをクリックしたときに呼び出される関数
+    function deleteItem(event) {
+        // 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "img/icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+
+         // ページの再読み込みを防ぐ
+         event.preventDefault();
+    }
+
+    // 文字数制限を設定する関数
+    function limitTextInput(element, maxLength) {
+        element.addEventListener('input', function(event) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.substring(0, maxLength);
+                event.preventDefault();
+            } else {
+                // Do nothing
+            }
+        });
+    }
+
+    // レビュータイトルの文字数制限を設定
+    var reviewTitle = document.getElementById('review-title');
+    limitTextInput(reviewTitle, 50);
+
+    // レビュー本文の文字数制限を設定
+    var reviewDetail = document.getElementById('review-detail');
+    limitTextInput(reviewDetail, 500);
+
+    //ハートの色変換JavaScript----------------------------------------------
+    // ハートの画像をトグルする関数
+    function toggleHeart(element) {
+        if (element.src.includes('button_good1.png')) {
+            element.src = 'img/button_good2.png';
+            // ハートをプラス1する
+            incrementHeart(element.nextElementSibling);
+        } else {
+            element.src = 'img/button_good1.png';
+            // ハートをマイナス1する
+            decrementHeart(element.nextElementSibling);
+        }
+    }
+
+    // ハート数を増やす関数
+    function incrementHeart(element) {
+        let currentCount = parseInt(element.textContent);
+        element.textContent = currentCount + 1;
+    }
+
+    // ハート数を減らす関数
+    function decrementHeart(element) {
+        let currentCount = parseInt(element.textContent);
+        element.textContent = currentCount - 1;
+    }
+
+    //レビュー文字が180字超えたら省略する
+    document.addEventListener("DOMContentLoaded", function() {
+        var reviewTextElements = document.getElementsByClassName('review-text');
+
+        for (var i = 0; i < reviewTextElements.length; i++) {
+            var text = reviewTextElements[i].textContent.trim();
+            var maxLength = 180; // 最大文字数の設定
+            var trimmedText = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+            reviewTextElements[i].textContent = trimmedText;
+        }
+    });
+</script>
+
 </html>

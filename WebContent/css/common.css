@@ -170,8 +170,7 @@ header .nav .dropdown-menu li a {
 footer a{
 	position: fixed;
 	bottom: 20px;
-	right: 20px;
-
+	left: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

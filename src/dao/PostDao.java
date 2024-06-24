@@ -29,7 +29,7 @@ public class PostDao {
     		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     		// SQL文を準備する
-    		String sql = "INSERT INTO post(user_id_writer, title, recommend, created_at) VALUE(?, ?, ?, ?) ";
+    		String sql = "INSERT INTO post(user_id_writer, title, recommend, created_at) VALUES(?, ?, ?, ?) ";
 
     		PreparedStatement pStmt = conn.prepareStatement(sql);
 

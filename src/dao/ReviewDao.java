@@ -21,7 +21,7 @@ public class ReviewDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 			//INSERT文の準備
-			String sql = "INSERT INTO review(user_id, contents_id, title, review, image, created_at) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO review(user_id_writer, contents_id, title, review, image, created_at) VALUES (?,?,?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// Java側で現在のタイムスタンプを取得
@@ -122,7 +122,7 @@ public class ReviewDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 			//UPDATE文の準備
-			String sql = "UPDATE review SET user_id=?, contents_id=?, title=?, review=?, image=?, update_at=DEFAULT WHERE review_id=?";
+			String sql = "UPDATE review SET user_id_writer=?, contents_id=?, title=?, review=?, image=?, update_at=DEFAULT WHERE review_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//sql文を完成させる

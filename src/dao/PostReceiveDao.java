@@ -25,7 +25,7 @@ public class PostReceiveDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT post_recieve(user_id, post_id, created_at) VALUE(?, ?, ?)";
+			String sql = "INSERT post_recieve(user_id, post_id, created_at) VALUES(?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
@@ -312,5 +312,6 @@ public class PostReceiveDao {
 						// 結果を返す
 						return myInterest;
 					}
+
 
 }

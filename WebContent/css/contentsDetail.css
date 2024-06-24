@@ -233,6 +233,7 @@ li{
 
 
 /*モーダル関連----------------------------------------------------*/
+/*レビュー新規登録モーダル*/
 .modal-review-regist {
     display: none;
     position: fixed;
@@ -298,7 +299,7 @@ li{
     border: 1px solid #ccc;
     height: 3em;
     width: 100%;
-    margin: 10px 0 10px 30px;
+    margin: 10px 0 10px 70px;
     background-color: #dcdcdc;
     padding: 20px;
 }
@@ -307,7 +308,7 @@ li{
     border: 1px solid #545454;
     font-size: 0.8em;
     margin: 30px 5px 0px 5px;
-    padding: 10px 240px 10px 10px;
+    padding: 10px 280px 10px 10px;
     width: 190px;
     height: 50px;
     color: #545454;
@@ -322,7 +323,7 @@ li{
     border: 1px solid #ccc;
     background-color: #dcdcdc;
     padding: 20px;
-    margin: 10px 0 10px 30px;
+    margin: 10px 0 10px 70px;
 }
 
 .modal-review-regist #preview{
@@ -335,4 +336,129 @@ li{
 
 .modal-review-regist .modal-content .delete-button{
     margin: -100px 10px 65px 380px;
+}
+
+/*レビュー編集モーダル*/
+.review-edit-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.review-edit-modal .modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+}
+
+.review-edit-modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+.review-edit-modal .close:hover,
+.review-edit-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.review-edit-modal .btn {
+    display: block;
+    margin: 10px 18px 10px 18px;
+    padding: 20px 60px 20px 50px;
+    width: 255px;
+    color: #ffffff;
+    background-color: #35AFDB;
+    font-size: 1.2em;
+    border-radius: 20px;
+    position: absolute;
+    left: 600px;
+}
+
+.review-edit-modal .btn:hover {
+    background-color: #35AFDB;
+}
+
+.review-edit-modal .modal-title {
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+}
+
+.review-edit-modal input[name=review-title]{
+    border: 1px solid #ccc;
+    height: 3em;
+    width: 100%;
+    margin: 10px 0 10px 70px;
+    background-color: #dcdcdc;
+    padding: 20px;
+}
+
+.review-edit-modal input[name=upload] {
+    border: 1px solid #545454;
+    font-size: 0.8em;
+    margin: 30px 5px 0px 5px;
+    padding: 10px 280px 10px 10px;
+    width: 190px;
+    height: 50px;
+    color: #545454;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.review-edit-modal #review-detail{
+    font-family: sans-serif;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    background-color: #dcdcdc;
+    padding: 20px;
+    margin: 10px 0 10px 70px;
+}
+
+.review-edit-modal #preview{
+    margin:0 40px 0 60px;
+}
+
+.review-edit-modal .review-img{
+    display: flex;
+}
+
+.review-edit-modal .modal-content .delete-button{
+    margin: -100px 10px 65px 380px;
+}
+
+.review-edit-modal .true-text{
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+}
+
+#review-edit-modal2 .modal-content{
+    width: 30%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#review-edit-modal2 .close{
+    position: absolute;
+    left: 63.5%;
+    margin-top: -8%;
 }

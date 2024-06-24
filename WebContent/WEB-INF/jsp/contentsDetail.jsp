@@ -127,7 +127,7 @@
                                         <img src="img/point_delete.png">
                                         <span class="button-text">削除</span>
                                     </button>
-                                    <button class="button">
+                                    <button class="button" id="openModalBtnE">
                                         <img src="img/point_edit.png">
                                         <span class="button-text">編集</span>
                                     </button>
@@ -149,7 +149,7 @@
                                         <img src="img/point_delete.png">
                                         <span class="button-text">削除</span>
                                     </button>
-                                    <button id="openModalBtn" class="button">
+                                    <button class="button" id="openModalBtnE">
                                         <img src="img/point_edit.png">
                                         <span class="button-text">編集</span>
                                     </button>

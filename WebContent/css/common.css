@@ -97,7 +97,7 @@ body {
 
 .nav .icon-img {
     position: absolute;
-    left: 610px;
+    left: 310px;
     top:-33px;
     margin: 10px 20px 10px 0;
     width: 50px;
@@ -107,7 +107,7 @@ body {
 
 .nav .user-name{
     position: absolute;
-    left: 680px;
+    left: 380px;
     color: #545454;
     text-decoration: none;
     display: inline-block;
@@ -130,8 +130,8 @@ header .nav .dropdown-menu {
     box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.2);
     padding: 0px  10px 0px  10px;
     z-index: 1;
-    top: 20px;
-    margin-left: 650px;
+    top: 30px;
+    margin-left: 320px;
 }
 
 header .nav .dropdown-menu li {

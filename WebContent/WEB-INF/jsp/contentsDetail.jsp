@@ -105,7 +105,7 @@
                                         <img src="img/point_delete.png">
                                         <span class="button-text">削除</span>
                                     </button>
-                                    <button class="button">
+                                    <button class="button" id="openModalBtnE">
                                         <img src="img/point_edit.png">
                                         <span class="button-text">編集</span>
                                     </button>
@@ -236,6 +236,53 @@
             </table>
         </div>
     </div>
+
+    <!--レビュー編集のモーダル----------------------------------->
+    <div id="review-edit-modal1" class="review-edit-modal">
+        <div class="modal-content">
+            <!--閉じるボタン-->
+            <span class="close" onclick="closeModal('review-edit-modal1')">&times;</span>
+            <p class="modal-title">レビュー編集</p>
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="review-title" name="review-title" maxlength="50" placeholder="レビュータイトル（50文字）" value="HUNTER×HUNTER最新巻">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="review-img">
+                            <img src="img/content_hh_comic.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                        </div>
+                        <button class="delete-button" onclick="deleteItem()">
+                            <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea id="review-detail" maxlength="500" rows="5" placeholder="レビュー本文（500文字以内）"　required>オモロイ！オモロイ！</textarea>
+                     </td>
+                </tr>
+                <tr>
+                     <td>
+                    <button class="btn" onclick="openSecondModal()">更新</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 成功画面のモーダル -->
+    <div id="review-edit-modal2" class="review-edit-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('review-edit-modal2')">&times;</span>
+            <p class="true-text">レビューを更新しました。</p>
+        </div>
+    </div>
+
+
 </body>
 
 <footer>
@@ -269,14 +316,12 @@
 
     //レビュー新規登録モーダル-----------------------------------
     // モーダルを開くボタンを取得
-    var openModalBtn1 = document.querySelector('#openModalBtn1');
+    var openModalBtnR = document.getElementById("openModalBtnR");
 
     // モーダルを開く関数
-    openModalBtn1.forEach(btn => {
-        btn.onclick = function() {
-            openModal('modal-review-regist');
-        }
-    });
+    openModalBtnR.onclick = function() {
+        openModal('modal-review-regist');
+    }
 
     // モーダルを開く関数
     function openModal(modalId) {
@@ -292,12 +337,53 @@
 
     // モーダルの外側がクリックされたときに閉じる処理
     window.onclick = function(event) {
-        var modal = document.getElementById('modal-review-regist');
+        var modal1 = document.getElementById('modal-review-regist');
         if (event.target == modal) {
             closeModal('modal-review-regist');
         }
     }
 
+    //レビュー編集モーダル-------------------------------------
+    // モーダルを開くボタンを取得
+    var openModalBtnE = document.getElementById("openModalBtnE");
+
+    // モーダルを開く関数
+    openModalBtnE.onclick = function() {
+        openModal('review-edit-modal1');
+    }
+
+    // モーダルを開く関数
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    // モーダルを閉じる関数
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    // 次のモーダルを開く関数
+    function openSecondModal() {
+        closeModal('review-edit-modal1');
+        openModal('review-edit-modal2');
+    }
+
+    // モーダルの外側がクリックされたときに閉じる処理
+    window.onclick = function(event) {
+        var modal1 = document.getElementById('review-edit-modal1');
+        var modal2 = document.getElementById('review-edit-modal2');
+        if (event.target == modal1) {
+            closeModal('review-edit-modal1');
+        }
+        if (event.target == modal2) {
+            closeModal('review-edit-modal2');
+        }
+    }
+
+
+    //画像プレビュー------------------------------------------------------
     // ファイル選択時に呼び出される関数
     function previewImage(event) {
         // 選択されたファイルを取得
@@ -325,7 +411,6 @@
         document.getElementById('preview').src = "img/icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
-
          // ページの再読み込みを防ぐ
          event.preventDefault();
     }
@@ -349,6 +434,7 @@
     // レビュー本文の文字数制限を設定
     var reviewDetail = document.getElementById('review-detail');
     limitTextInput(reviewDetail, 500);
+
 
     //ハートの色変換JavaScript----------------------------------------------
     // ハートの画像をトグルする関数
@@ -387,6 +473,7 @@
             reviewTextElements[i].textContent = trimmedText;
         }
     });
+
 </script>
 
 </html>

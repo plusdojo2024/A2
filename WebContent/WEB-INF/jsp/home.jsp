@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
-<%
-    HttpSession session = request.getSession();
-    User loginUser = (User) session.getAttribute("loginUser");
-%>
 <!DOCTYPE html>
 <html>
     <head>
         <meat charset="UTF-8">
             <title>ホーム|レコレコ</title>
-            <link rel="stylesheet" href="common.css">
-            <link rel="stylesheet" href="home.css">
+            <link rel="stylesheet" href="/A2/css/common.css">
+            <link rel="stylesheet" href="/A2/css/home.css">
     </head>
         <header>
             <nav class="nav">
@@ -41,10 +37,10 @@
                     <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
                     <div class="co">
                         <div class="user-container"></div>
-                            <li><a href=""><img src="<%= loginUser.getIcon() %>" class="icon-img" name="icon" alt="アイコン"><span class="user-name"><%= loginUser.getUserName() %></span>
+                            <li><a href=""><img src=img/${loginUser.icon} class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
                                 <ul class="dropdown-menu">
                                     <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                                    <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                                    <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
                                     <li><a href="/A2/LoginServlet">ログアウト</a></li>
                                 </ul>
                                 </a>
@@ -57,7 +53,6 @@
         <body>
         <main>
             <form class="ranking">
-            <c:forEach var="e" items="${rankingTopFive}" >
                 <h2><a href=""><img src="/A2/img/button_good2.png"  class="ok" alt="ハート"></a>いいねランキング</h2>
                 <div class="table-wrapper">
                     <table class="table">
@@ -65,18 +60,18 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking1.png" class="good" alt="good">
-                                    <img src="${e.icon}"  class="icon" alt="アイコン">
-                                    <p>${e.userName} さん</p>
+                                    <img src=img/${r1.icon}  class="icon" alt="アイコン">
+                                    <p>${r1.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
-                        <!--
+
                         <tr>
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking2.png" class="good" alt="good">
-                                    <img src="icon_default.png"  class="icon" alt="アイコン">
-                                    <p>レコ さん</p>
+                                    <img src=img/${r2.icon}  class="icon" alt="アイコン">
+                                    <p>${r2.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
@@ -84,8 +79,8 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking3.png" class="good" alt="good">
-                                    <img src="icon_default.png"  class="icon" alt="アイコン">
-                                    <p>れこれこ さん</p>
+                                    <img src=img/${r3.icon}  class="icon" alt="アイコン">
+                                    <p>${r3.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
@@ -93,8 +88,8 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking4.png" class="good" alt="good">
-                                    <img src="icon_default.png"  class="icon" alt="アイコン">
-                                    <p>ReCo さん</p>
+                                    <img src=img/${r4.icon}  class="icon" alt="アイコン">
+                                    <p>${r4.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
@@ -102,16 +97,15 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking5.png" class="good" alt="good">
-                                    <img src="icon_default.png"  class="icon" alt="アイコン">
-                                    <p>樋口 さん</p>
+                                    <img src=img/${r5.icon}  class="icon" alt="アイコン">
+                                    <p>${r5.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
-                        -->
+
                     </table>
                 </div>
             </form>
-            </c:forEach>
             <c:forEach var="e" items="${timeline}" >
             <form class="ranking">
                 <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
@@ -121,8 +115,8 @@
                             <td>
                                 <div class="review">
                                     <div class="timeline">
-                                        <img src="${e.image }" class="timeline1" alt="timeline">
-                                        <img src="${e.icon }"  class="icon1" alt="アイコン">
+                                        <img src=img/${e.image} class="timeline1" alt="timeline">
+                                        <img src=img/${e.icon}  class="icon1" alt="アイコン">
                                         <p>${e.userName } さん</p>
                                         <p>${e.createdAt } 投稿</p>
                                     </div>

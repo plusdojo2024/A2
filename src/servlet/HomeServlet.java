@@ -1,12 +1,12 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,7 +19,7 @@ import model.User;
 
 @WebServlet("/HomeServlet")
 
-public class HomeServlet {
+public class HomeServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,18 +53,35 @@ public class HomeServlet {
 		List<User> ranking = gDao.rankingSelect();
 
 		//いいね数の多い順に並んだリストのうち、上位5名のみを選出したリストを作る
-		List<User> rankingTopFive = new ArrayList<User>();
 
-		for(int i = 0; i < 5; i++) {
-			rankingTopFive.add(ranking.get(i));
+		User r1 = new User();
+		User r2 = new User();
+		User r3 = new User();
+		User r4 = new User();
+		User r5 = new User();
+
+
+		if(ranking != null) {
+
+			 r1 = ranking.get(0);
+			 r2 = ranking.get(1);
+			 r3 = ranking.get(2);
+			 r4 = ranking.get(3);
+			 r5 = ranking.get(4);
+
 		}
 
 		//リクエストスコープにセット
 		request.setAttribute("timeline", timeline);
-		request.setAttribute("rankingTopFive", rankingTopFive);
+		// request.setAttribute("rankingTopFive", rankingTopFive);
+		request.setAttribute("r1", r1);
+		request.setAttribute("r2", r2);
+		request.setAttribute("r3", r3);
+		request.setAttribute("r4", r4);
+		request.setAttribute("r5", r5);
 
 		//マイページのフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/A2/jsp/home.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 		dispatcher.forward(request, response);
 	}
 

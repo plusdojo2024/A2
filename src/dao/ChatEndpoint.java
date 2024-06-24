@@ -60,8 +60,8 @@ public class ChatEndpoint {
                     String user_id_listener = (String) session.getUserProperties().get("user_id_listener");
 
                     try {
-                        Connection conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data1/sample", "sa", "");
-                        String sql = "SELECT user_id_speaker, user_id_listener, talk, image, created_at FROM chat WHERE (user_id_speaker = ? AND user_id_listener = ?) OR (user_id_speaker = ? AND user_id_listener = ?) ORDER BY created_at ASC";
+                        Connection conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+                        String sql = "SELECT user_id_speaker, user_id_listener, talk, created_at FROM chat WHERE (user_id_speaker = ? AND user_id_listener = ?) OR (user_id_speaker = ? AND user_id_listener = ?) ORDER BY created_at ASC";
                         PreparedStatement pStmt = conn.prepareStatement(sql);
                         pStmt.setString(1, user_id_speaker);
                         pStmt.setString(2, user_id_listener);
@@ -70,7 +70,7 @@ public class ChatEndpoint {
                         ResultSet rs = pStmt.executeQuery();
 
                         while (rs.next()) {
-                            String msg = rs.getString("created_at") + " " + rs.getString("user_id_speaker") + " " + rs.getString("user_id_listener") + " " + rs.getString("talk")+ " " + rs.getString("image") ;
+                            String msg = rs.getString("created_at") + " " + rs.getString("user_id_speaker") + " " + rs.getString("user_id_listener") + " " + rs.getString("talk");
                             session.getBasicRemote().sendText(msg);
                         }
 
@@ -95,7 +95,7 @@ public class ChatEndpoint {
             }
 
             // メッセージをデータベースに保存するで
-            String[] parts = message.split(" ", 6); // created_at, user_id_speaker, user_id_listenerとメッセージを分割するで
+            String[] parts = message.split(" ", 5); // created_at, user_id_speaker, user_id_listenerとメッセージを分割するで
             if (parts.length >= 5) {
                 String createdAt = parts[0] + " " + parts[1];
                 String user_id_speaker = parts[2];
@@ -108,9 +108,12 @@ public class ChatEndpoint {
 
                 SampleDAO dao = new SampleDAO();
                 Chat chat = new Chat();
-
-                int result = dao.registChat(user_id_speaker, user_id_listener, talk, null, 0, createdAt);
-                if (result > 0) {
+                chat.setTalk(talk);
+                chat.setUserIdSpeaker(Integer.parseInt(user_id_speaker));
+                chat.setUserIdListener(Integer.parseInt(user_id_listener));
+                chat.setCreatedAt(createdAt);
+                boolean result = dao.registChat(chat);
+                if (result) {
                     logger.log(Level.INFO, "Message saved to database: {0}", message);
                 } else {
                     logger.log(Level.WARNING, "Failed to save message to database: {0}", message);

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,12 @@ import model.User;
 @WebServlet("/ApiChatOpenServlet")
 public class ApiChatOpenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // JSPにフォワードするで
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/chat.jsp");
+        dispatcher.forward(request, response);
+    }
 
 	//コンテンツIdまたはユーザIdを受け取り、ランダムチャットまはた指定チャットの相手のユーザ情報を返す
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

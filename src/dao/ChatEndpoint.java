@@ -106,13 +106,13 @@ public class ChatEndpoint {
                 }
                 String talk = talkBuilder.toString().trim();
 
-                SampleDAO dao = new SampleDAO();
+                ChatDao cDao = new ChatDao();
                 Chat chat = new Chat();
                 chat.setTalk(talk);
                 chat.setUserIdSpeaker(Integer.parseInt(user_id_speaker));
                 chat.setUserIdListener(Integer.parseInt(user_id_listener));
                 chat.setCreatedAt(createdAt);
-                boolean result = dao.registChat(chat);
+                boolean result = cDao.registChat(chat);
                 if (result) {
                     logger.log(Level.INFO, "Message saved to database: {0}", message);
                 } else {

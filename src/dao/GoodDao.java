@@ -167,12 +167,12 @@ public class GoodDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文の準備
-			String sql = "SELECT r.user_id_writer, u.user_name, u.icon, count(r.user_id_writer)"
-					+ "FROM review AS r"
-					+ "INNER JOIN user AS u ON r.user_id_writer = u.user_id"
-					+ "INNER JOIN good AS g ON r.review_id = g.review_id"
-					+ "GROUP BY r.user_id_writer"
-					+ "ORDER BY count(r.user_id_writer)";
+			String sql = "SELECT r.user_id_writer, u.user_name, u.icon, count(r.user_id_writer) "
+					+ "FROM review AS r "
+					+ "INNER JOIN user AS u ON r.user_id_writer = u.user_id "
+					+ "INNER JOIN good AS g ON r.review_id = g.review_id "
+					+ "GROUP BY r.user_id_writer "
+					+ "ORDER BY count(r.user_id_writer) ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する

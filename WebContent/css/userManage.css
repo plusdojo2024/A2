@@ -3,7 +3,7 @@
 h3 {
     color: #ffffff;
     background-color: #B3C8CF;
-    margin: 60px 500px 0px 500px;
+    margin: 60px 400px 0px 400px;
     padding: 10px 0 10px 0 ;
     text-align: center;
 }
@@ -22,19 +22,19 @@ h4 {
 
 .table {
     background-color: #ffffff;
-    margin: 0px 200px 500px 500px;
-    padding: 10px 153px 50px 153px ;
+    margin: 0px 100px 500px 400px;
+    padding: 10px 61px 50px 63.5px ;
 }
 
 .table  a {
-    margin: 0 30px 0 10px;
+    margin: 0 30px 0 30px;
     color: #696969;
     text-decoration: none;
 }
 
 label {
-    font-size: 1.2em;
-    margin: 20px 30px 0 10px;
+    font-size: 1.5em;
+    margin: 0 30px 0 30px;
 }
 
 .required {
@@ -42,7 +42,7 @@ label {
 }
 
 .login {
-    margin: 10px 40px 0px 10px;
+    margin: 10px 40px 0px 30px;
 }
 
 .icon {
@@ -55,7 +55,7 @@ label {
 	position: relative;
     bottom: 70px;
     border: 1px solid black;
-    margin: 0px 30px 10px 360px;
+    margin: 0px 30px 10px 400px;
     padding: 5px;
     background-color: #ffffff;
     display: flex; /* 複数の要素を横に並べるため */
@@ -69,11 +69,11 @@ input[name=id], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;
-    margin: 10px 30px 0 10px;
+    margin: 10px 30px;
     background-color: #dcdcdc;
 }
 
-input[name=upload] {
+input[name=icon] {
     border: 2px solid #000000;
     margin: 0px 5px 0px 5px;
     padding: 10px 200px 10px 10px;
@@ -84,11 +84,11 @@ input[name=upload] {
     border-radius: 10px;
 }
 
-input[name=my_introduction] {
+input[name=introduction] {
     border: 1px solid #ccc;
     height: 10em;
     width: 38em;
-    margin: 10px 30px 0 10px;
+    margin: 10px 30px;
     background-color: #dcdcdc;
     border-radius: 10px; /*四角の角を丸くする*/
 }

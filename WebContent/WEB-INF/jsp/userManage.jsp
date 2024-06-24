@@ -85,7 +85,7 @@
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
                         <img src=img/${loginUser.icon}  id="preview" class="login" alt="アイコン" width="180px" height="200px">
-                        <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                        <input type="file" name="icon" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                         	<img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
@@ -95,14 +95,14 @@
                  <tr>
                     <td>
                         <label class="my_introduction">自己紹介</label><br>
-                        <input type="text" name="my_introduction" placeholder="200文字以内" value="${loginUser.introduction}">
+                        <input type="text" name="introduction" placeholder="200文字以内" value="${loginUser.introduction}">
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="open">アカウント公開設定</label><br>
-                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${loginUser.openClose == 1}}"></c:if>>公開</label>
-                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${loginUser.openClose == 0}"></c:if>>非公開<br></label>
+                        <label><input type="radio" name="first" id="yes" value="1" <c:if test='${loginUser.openClose.equals('1')}'>checked</c:if>>公開</label>
+                        <label><input type="radio" name="first" id="no" value="0" <c:if test='${loginUser.openClose.equals('0')}'>checked</c:if>>非公開<br></label>
                         <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                         <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                     </td>

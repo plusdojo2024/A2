@@ -3,7 +3,7 @@
 h3 {
     color: #ffffff;
     background-color: #B3C8CF;
-    margin: 60px 500px 0px 500px;
+    margin: 60px 400px 0px 400px;
     padding: 10px 0 10px 0 ;
     text-align: center;
 }
@@ -22,32 +22,32 @@ h4 {
 
 .table {
     background-color: #ffffff;
-    margin: 0px 100px 500px 500px;
-    padding: 50px 133px 50px 50px ;
+    margin: 0px 100px 500px 400px;
+    padding: 50px 74px 50px 50px ;
 }
 
 .table  a {
-    margin: 0 30px 0 400px;
+    margin: 0 30px 0 300px;
     color: #696969;
     text-decoration: none;
 }
 
 label {
     font-size: 1.2em;
-    margin: 0 30px 0 150px;
+    margin: 0 30px 0 30px;
 }
 
-input[name=mail], input[name=pass]{
+input[name=mail], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;
-    margin: 10px 30px 10px 150px;
+    margin: 10px 30px;
     background-color: #dcdcdc;
 }
 
 input[name=submit] {
     border: none;
-    margin: 30px 30px 10px 150px;
+    margin: 30px 30px 10px 50px;
     padding: 20px 60px 20px 50px;
     width: 500px;
     color: #ffffff;

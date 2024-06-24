@@ -2,19 +2,22 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-            <title>ホーム|レコレコ</title>
-            <link rel="stylesheet" type="text/css" href="css/searchResult.css">
-    </head>
-        <header>
-            <nav class="nav">
-                <ul>
-                    <li>
-                        <h1>レコレコ</h1>
-                    </li>
-                    <li>
-                        <form action="" method="post">
+<head>
+    <meta charset="UTF-8">
+    <title>ホーム|レコレコ</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/searchResult.css">
+</head>
+
+<header>
+    <nav class="nav">
+        <ul>
+            <li>
+                <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
+            </li>
+            <li>
+                <form action="/A2/SearchServlet" class="search-form" method="post">
+                     <div class="search-box">
                         <select name="select">
                             <option value="all">すべて</option>
                             <option value="movie">映画</option>
@@ -26,103 +29,109 @@
                             <option value="sonota2">その他（書籍）</option>
                             <option value="game">ゲーム</option>
                         </select>
-                        <input type="text" name="search" placeholder="コンテンツ名を検索・登録">
-                        <input type="image" src="image/search.png" width="20px" height="20px" alt="虫眼鏡">
-                    </form>
+                        <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
+                        <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
+                    </div>
+                </form>
+            </li>
+            <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+            <div class="co">
+                <div class="user-container">
+                    <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span
+                                class="user-name">recoreco</span>
+                            <ul class="dropdown-menu">
+                                <li><a href="/A2/MyPageServlet">マイページ</a></li>
+                                <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                                <li><a href="/A2/LoginServlet">ログアウト</a></li>
+                            </ul>
+                        </a>
                     </li>
-                    <li><a href=""><img src="image/post.png" width="60px" height="60px" name="post" alt="ポスト"></a></li>
-                    <li><a href=""><img src="image/login1.png" width="75px" height="75px" name="icon" alt="アイコン"></a></li>
-                </ul>
-            </nav>
-        </header>
-        <body>
-            <div class="title">
-                <h2>検索結果一覧</h2>
+                </div>
             </div>
-            <div class="scrollable-table">
-              <c:forEach var="c" items="${contentsList}">
-                <table class = "table">
-                    <tr>
-                        <td>
-                            <div class="result-item">
-                                <div class="resultphoto">
-                                    <img src="img/${c.image}" alt="作品の写真" class="image">
-                                </div>
-                                <div class="resultinfo">
-                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
-                                    <span>${c.genre}　${c.year}
+        </ul>
+    </nav>
+</header>
 
-                                    </span>
-                                </div>
+<body>
+    <div class="title">
+        <h2>検索結果一覧</h2>
+    </div>
+    <div class="scrollable-table">
+        <c:forEach var="c" items="${contentsList}">
+        <table class = "table">
+            <tr>
+                <td>
+                    <div class="result-item">
+                        <img src="${c.image}" alt="作品の写真" class="content-img">
+                        <div class="result-info">
+                            <span class="content-title"><strong>${c.title}</strong></span><br>
+                            <span>${c.genre} ${c.year}</span>
+                        </div>
 
-                                <div class="reultform">
-                                    <button type="button" class ="button "name="collection" value="コレクションに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        コレクションに追加
-                                    </button>
-                                    <button type="button"  class="button1" name="wishlist" value="ウィッシュリストに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        ウィッシュリストに追加
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="result-item">
-                                <div class="resultphoto">
-                                    <img src="img/${c.image}" alt="作品の写真" class="image">
-                                </div>
-                                <div class="resultinfo">
-                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
-                                    <span>${c.genre}　${c.year}</span>
-                                </div>
+                        <div class="result-form">
+                            <button type="button" name="collection" value="コレクションに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>コレクションに追加</span>
+                            </button><br>
+                            <button type="button" name="wishlist" value="ウィッシュリストに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>ウィッシュリストに追加</span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="result-item">
+                        <img src="${c.image}" alt="作品の写真" class="content-img">
+                        <div class="result-info">
+                            <span class="content-title"><strong>${c.title}</strong></span><br>
+                            <span>${c.genre} ${c.year}</span>
+                        </div>
 
-                                <div class="reultform">
-                                    <button type="button" class ="button "name="collection" value="コレクションに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        コレクションに追加
-                                    </button>
-                                    <button type="button"  class="button1" name="wishlist" value="ウィッシュリストに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        ウィッシュリストに追加
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="result-item">
-                                <div class="resultphoto">
-                                    <img src="img/${c.image}" alt="作品の写真" class="image">
-                                </div>
-                                <div class="resultinfo">
-                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
-                                    <span>${c.genre}　${c.year}</span>
-                                </div>
+                        <div class="result-form">
+                            <button type="button" name="collection" value="コレクションに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>コレクションに追加</span>
+                            </button><br>
+                            <button type="button" name="wishlist" value="ウィッシュリストに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>ウィッシュリストに追加</span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="result-item">
+                        <img src="${c.image}" alt="作品の写真" class="content-img">
+                        <div class="result-info">
+                            <span class="content-title"><strong>${c.title}</strong></span><br>
+                            <span>${c.genre} ${c.year}</span>
+                        </div>
 
-                                <div class="reultform">
-                                    <button type="button" class ="button "name="collection" value="コレクションに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        コレクションに追加
-                                    </button>
-                                    <button type="button"  class="button1" name="wishlist" value="ウィッシュリストに追加">
-                                        <img src="image/point_plus.png" alt="追加の画像">
-                                        ウィッシュリストに追加
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                </c:forEach>
-            </div>
+                        <div class="result-form">
+                            <button type="button" name="collection" value="コレクションに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>コレクションに追加</span>
+                            </button><br>
+                            <button type="button" name="wishlist" value="ウィッシュリストに追加">
+                                <img src="img/point_plus.png" alt="追加の画像">
+                                <span>ウィッシュリストに追加</span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </c:forEach>
+    </div>
+</body>
 
-    <footer class="footer">
-		<a href=#top><span class="gotop"></span></a>
-		<p class="copyright">&copy; WAC</p>
-	</footer>
-    </body>
+<footer class="footer">
+	<a href=#top><span class="gotop"></span></a>
+	<p class="copyright">&copy; WAC</p>
+</footer>
 </html>

@@ -166,10 +166,13 @@
 
         // 全ての必須項目が入力されているかチェック
         if (id === '' || pass === '' || passConfirm === '' || name === '' || open === '') {
+        	event.preventDefault(); // フォームのデフォルトの送信を防ぐ
             showAlert('必須項目を入力してください！');
         } else if (pass.length < 8 || pass.length > 16) {
+        	event.preventDefault(); // フォームのデフォルトの送信を防ぐ
             showAlert('パスワードは8~16桁で入力してください!');
         } else if (pass !== passConfirm) {
+        	event.preventDefault(); // フォームのデフォルトの送信を防ぐ
             showAlert('確認パスワードの値が間違っています！');
         }
     }

@@ -4,15 +4,18 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import dao.UserDao;
 import model.User;
 
+@MultipartConfig(location = "C:\\pleiades\\workspace\\A2\\WebContent\\img") // アップロードファイルの一時的な保存先
 @WebServlet("/UserManageServlet")
 
 public class UserManageServlet extends HttpServlet{
@@ -28,10 +31,9 @@ public class UserManageServlet extends HttpServlet{
 
 		//セッションスコープからユーザIDを取ってくる
 		User user = (User)session.getAttribute("User");
-		int user_id = user.getUserId();
 
 		//マイページのフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/A2/jsp/home.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -49,12 +51,14 @@ public class UserManageServlet extends HttpServlet{
 		String mail = request.getParameter("mail");
 		String pass = request.getParameter("pass");
 		String userName = request.getParameter("name");
-		String icon = request.getParameter("icon");
+		Part part = request.getPart("icon"); // getPartで取得
 		String introduction = request.getParameter("introduction");
 		String openClose = request.getParameter("first");
 
 		// open_closeは文字列として取得されるため、必要に応じて変換する
 	    int openCloseValue = Integer.parseInt(openClose);
+	    String icon = this.getFileName(part);
+	    part.write(icon);
 
 	    //Userオブジェクトを作成し、セットする
 	    User user = new User();
@@ -76,13 +80,13 @@ public class UserManageServlet extends HttpServlet{
 	    	// すでに登録されているメールアドレスの場合、登録失敗としてフォワードする
 	    	String errorMessage = "このメールアドレスはすでに使用されています。";
             request.setAttribute("errorMessage",errorMessage );
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegist.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");
             dispatcher.forward(request, response);
 	    } else {
 	    	//更新または削除を行う
 	    	if(request.getParameter("update").equals("更新")) {
 	    		if(success) {
-	    			response.sendRedirect(request.getContextPath() + "/UserManageServlet");
+	    			response.sendRedirect(request.getContextPath() + "/A2/HomeServlet");
 	    			} else {
 	    				String errorMessage = "登録に失敗しました。";
 	    				request.setAttribute("errorMessage",errorMessage );
@@ -91,9 +95,9 @@ public class UserManageServlet extends HttpServlet{
 	    				dispatcher.forward(request, response);
 	    				}
 	    			}
-	    			else if(request.getParameter("delete1").equals("削除") || request.getParameter("delete1").equals("Yes")) {
+	    			else if(request.getParameter("delete1").equals("削除") || request.getParameter("delete1").equals("はい")) {
 	    					if(success) {
-	    							response.sendRedirect(request.getContextPath() + "/LoginServlet");
+	    							response.sendRedirect(request.getContextPath() + "/A2/LoginServlet");
 	    					} else {
 	    							String errorMessage = "登録に失敗しました。";
 	    							request.setAttribute("errorMessage",errorMessage );
@@ -104,4 +108,16 @@ public class UserManageServlet extends HttpServlet{
 	    			}
 	    		}
 		}
+	//ファイルの名前を取得してくる
+			private String getFileName(Part part) {
+		        String name = null;
+		        for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+		            if (dispotion.trim().startsWith("filename")) {
+		                name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+		                name = name.substring(name.lastIndexOf("\\") + 1);
+		                break;
+		            }
+		        }		// TODO 自動生成されたメソッド・スタブ
+				return name;
+			}
 }

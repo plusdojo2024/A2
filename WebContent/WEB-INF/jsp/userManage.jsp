@@ -37,10 +37,10 @@
             <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
             <div class="co">
                 <div class="user-container"></div>
-                    <li><a href=""><img src="/A2/img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span class="user-name">recoreco</span>
+                    <li><a href=""><img src=img/${loginUser.icon} class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
                         <ul class="dropdown-menu">
                             <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                            <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                            <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
                             <li><a href="/A2/LoginServlet">ログアウト</a></li>
                         </ul>
                         </a>
@@ -51,41 +51,40 @@
     </nav>
 </header>
 <body>
-	<c:forEach var="e" items="${userList}">
         <h3>ユーザ管理</h3>
-        <form id="user_management" method="get" action="/A2/HomeServlet">
+        <form id="user_management" method="post" action="/A2/UserManageServlet">
             <table class="table">
                 <tr>
                     <td>
                         <label class="id">ユーザID（メールアドレス）</label><br>
-                        <input type="email" name="id" id="id" value="${e.mail}">
+                        <input type="email" name="id" id="id" value="${loginUser.mail}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label class="pass">パスワード(8~16桁)</label><br>
-                        <input type="password" name="pass" id="pass" value="${e.pass}">
+                        <input type="password" name="pass" id="pass" value="${loginUser.pass}">
                         <span id="buttonEye1" class="fa fa-eye" onclick="togglePasswordVisibility('pass', 'buttonEye1')"></span>
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="pass">パスワード確認（再度パスワードを入力）</label><br>
-                        <input type="password" name="pass" id="passConfirm" value="${e.pass}">
+                        <input type="password" name="pass" id="passConfirm" value="${loginUser.pass}">
                         <span id="buttonEye2" class="fa fa-eye" onclick="togglePasswordVisibility('passConfirm', 'buttonEye2')"></span>
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="name">ユーザ名（他ユーザに表示される名前）</label><br>
-                        <input type="text" name="name" id="name" value="${e.user_name}">
+                        <input type="text" name="name" id="name" value="${loginUser.userName}">
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
-                        <img src="${e.icon}"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                        <img src=img/${loginUser.icon}  id="preview" class="login" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
@@ -96,43 +95,43 @@
                  <tr>
                     <td>
                         <label class="my_introduction">自己紹介</label><br>
-                        <input type="text" name="my_introduction" placeholder="200文字以内" value="${e.introduction}">
+                        <input type="text" name="my_introduction" placeholder="200文字以内" value="${loginUser.introduction}">
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="open">アカウント公開設定</label><br>
-                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${e.open_close.equals('yes')}">checked</c:if>>公開</label>
-                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${e.open_close.equals('no')}">checked</c:if>>非公開<br></label>
+                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${loginUser.openClose}"></c:if>>公開</label>
+                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${loginUser.openClose}"></c:if>>非公開<br></label>
                         <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                         <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                     </td>
                  </tr>
                  <tr>
                     <td>
-                        <input type="submit" name="update"  id="submit" value="更新">
-                        <input type="button" name="delete1" value="削除" onclick="showDeleteConfirm()">
+                        <input type="submit" name="update"  id="update" value="更新">
+                        <input type="submit" name="delete1"  id="delete" value="削除" onclick="showDeleteConfirm()">
                     </td>
                  </tr>
             </table>
-        </form>
-	</c:forEach>
-        <!-- 2種のアラートボックス -->
+            <!-- 2種のアラートボックス -->
 			<div class="overlay"></div>
 			<div class="confirmBox">
 				<h4>【確認】</h4>
 				<p id="confirmMessage"></p>
                 <div class="aa">
-				<button id="yes" onclick="resetForm();hideConfirm()" class="button1">はい</button>
-				<button id="no" onclick="hideConfirm()" class="button1">いいえ</button>
+				<input type="submit" id="yes" onclick="hideConfirm()" class="button1" value="はい">
+				<button  type="button" id="no" onclick="hideConfirm()" class="button1">いいえ</button>
 			</div>
             </div>
 			<div class="alertBox">
 				<h4>【内容不正】</h4>
 				<p id="alertMessage"></p>
-				<button onclick="hideAlert()" class="button">閉じる</button>
+				<button type="button" onclick="hideAlert()" class="button">閉じる</button>
 			</div>
 			<!-- アラートボックスここまで -->
+        </form>
+
 
         <footer>
             <a href=#top><span class="gotop"></span></a>
@@ -173,97 +172,106 @@
              event.preventDefault();
         }
 
-    //アラートボックス
-    //事前設定
-    //内容取得（入力フォーム全体、パスワード入力フォーム）
-    // 更新ボタン押下時の処理
-    var formObj = document.getElementById('user_management');
-    var idInput = document.getElementById('id');
-    var passInput = document.getElementById('pass');
-    var passConfirmInput = document.getElementById('passConfirm');
-    var nameInput = document.getElementById('name');
-    var openInputs = document.getElementsByName('first');
-
-    formObj.addEventListener('submit', function(event) {
-        event.preventDefault(); // デフォルトの送信を防ぐ
-
-        var id = idInput.value.trim();
-        var pass = passInput.value.trim();
-        var passConfirm = passConfirmInput.value.trim();
-        var name = nameInput.value.trim();
-        var open = '';
-
-        // 選択されたラジオボタンの値を取得
-        for (var i = 0; i < openInputs.length; i++) {
-            if (openInputs[i].checked) {
-                open = openInputs[i].value;
-                break;
-            }
-        }
-
-        if (pass.length < 8 || pass.length > 16) {
-            showAlert('パスワードは8~16桁で入力してください!');
-        } else if (pass !== passConfirm) {
-            showAlert('確認パスワードの値が間違っています！');
-        } else {
-            var confirmMessage = '更新してもよろしいですか？';
-            showConfirm(confirmMessage);
-        }
-    });
-
-    // 削除ボタン押下時の処理
-    function showDeleteConfirm() {
-        var confirmMessage = '本当に削除してもよろしいですか？';
-        showConfirm(confirmMessage);
-    }
-
-    // 確認ボックスのYESボタンをクリックしたときの処理
-    function deleteConfirmed() {
-        formObj.submit(); // フォームを送信して削除処理を実行
-    }
-
-    // 確認ボックスのNOボタンをクリックしたときの処理
-    function hideConfirm() {
-        document.querySelector('.confirmBox').style.display = 'none';
-        document.querySelector('.overlay').style.display = 'none';
-    }
-
-    // アラートボックスのCLOSEボタンをクリックしたときの処理
-    function hideAlert() {
-        document.querySelector('.alertBox').style.display = 'none';
-        document.querySelector('.overlay').style.display = 'none';
-    }
-
-    // アラートボックスを表示する関数
-    function showAlert(alertMessage) {
-        document.querySelector('.alertBox').style.display = 'block';
-        document.querySelector('.overlay').style.display = 'block';
-        document.getElementById('alertMessage').textContent = alertMessage;
-    }
-
-    // 確認ボックスを表示する関数
-    function showConfirm(confirmMessage) {
-        document.querySelector('.confirmBox').style.display = 'block';
-        document.querySelector('.overlay').style.display = 'block';
-        document.getElementById('confirmMessage').textContent = confirmMessage;
-    }
-
-    //目のマークを切り替える
-		//パスワードを目で見えるようにする
-        function togglePasswordVisibility(inputId, buttonId) {
-        var txtPass = document.getElementById(inputId);
-        var btnEye = document.getElementById(buttonId);
-        if (txtPass.type === "text") {
-            txtPass.type = "password";
-            btnEye.className = "fa fa-eye";
-        } else {
-            txtPass.type = "text";
-            btnEye.className = "fa fa-eye-slash";
-        }
-    }
+	    //アラートボックス
+	    //事前設定
+	    //内容取得（入力フォーム全体、パスワード入力フォーム）
+	    // 更新ボタン押下時の処理
+	    var formObj = document.getElementById('user_management');
+	    var idInput = document.getElementById('id');
+	    var passInput = document.getElementById('pass');
+	    var passConfirmInput = document.getElementById('passConfirm');
+	    var nameInput = document.getElementById('name');
+	    var openInputs = document.getElementsByName('first');
 
 
+		 	//submit時の処理
+		 	formObj.onsubmit = function(e){
+				// クリックされたボタンのidを取得
+				const submitter = e.submitter;
+				const click_id = submitter.id;
+				var id = idInput.value.trim();
+		    	var pass = passInput.value.trim();
+		    	var passConfirm = passConfirmInput.value.trim();
+		    	var name = nameInput.value.trim();
+		    	var open = '';
 
-        </script>
-</body>
+				// updateボタンの場合の処理
+				if (click_id === "update") {
+
+			 		// 選択されたラジオボタンの値を取得
+	        		for (var i = 0; i < openInputs.length; i++) {
+	            		if (openInputs[i].checked) {
+	                		open = openInputs[i].value;
+	                		break;
+	            		}
+	        		}
+
+					// 必須項目が空欄の場合、アラートを表示
+					if (id === '' || pass === '' || passConfirm === '' || name === '' || open === '') {
+        				event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+            			showAlert('必須項目を入力してください！');
+					}	else if(pass.length < 8 || pass.length > 16) {
+						event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+			            showAlert('パスワードは8~16桁で入力してください!');
+					} else if (pass !== passConfirm) {
+			        	event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+			            showAlert('確認パスワードの値が間違っています！');
+			        } else {
+			            var confirmMessage = '更新してもよろしいですか？';
+			            showConfirm(confirmMessage);
+			        }
+
+					// deleteボタンの場合の処理
+					} else if (click_id === "delete"){
+						e.preventDefault();		// 一旦 submit を止める
+						showConfirm('本当に削除してもよろしいですか？');	//確認ボックス表示
+						formObj.off('submit');	// submitイベントごとキャンセル
+
+					// 確認ボックスのyesボタンの場合の処理
+					} else if (click_id === "yes"){
+						hideConfirm();	// 確認ボックスを隠す
+					}
+ 				 }
+
+			    // 確認ボックスのいいえボタンをクリックしたときの処理
+			    function hideConfirm() {
+			        document.querySelector('.confirmBox').style.display = 'none';
+			        document.querySelector('.overlay').style.display = 'none';
+			    }
+
+			    // アラートボックスのCLOSEボタンをクリックしたときの処理
+			    function hideAlert() {
+			        document.querySelector('.alertBox').style.display = 'none';
+			        document.querySelector('.overlay').style.display = 'none';
+			    }
+
+			    // アラートボックスを表示する関数
+			    function showAlert(alertMessage) {
+			        document.querySelector('.alertBox').style.display = 'block';
+			        document.querySelector('.overlay').style.display = 'block';
+			        document.getElementById('alertMessage').textContent = alertMessage;
+			    }
+
+			    // 確認ボックスを表示する関数
+			    function showConfirm(confirmMessage) {
+			        document.querySelector('.confirmBox').style.display = 'block';
+			        document.querySelector('.overlay').style.display = 'block';
+			        document.getElementById('confirmMessage').textContent = confirmMessage;
+			    }
+
+			    //目のマークを切り替える
+					//パスワードを目で見えるようにする
+			        function togglePasswordVisibility(inputId, buttonId) {
+			        var txtPass = document.getElementById(inputId);
+			        var btnEye = document.getElementById(buttonId);
+			        if (txtPass.type === "text") {
+			            txtPass.type = "password";
+			            btnEye.className = "fa fa-eye";
+			        } else {
+			            txtPass.type = "text";
+			            btnEye.className = "fa fa-eye-slash";
+			        }
+			    }
+		</script>
+	</body>
 </html>

@@ -42,7 +42,7 @@
                             </ul>
                             </a>
                         </li>
-                        
+
                     </div>
                 </div>
             </ul>
@@ -55,8 +55,8 @@
             <div class="userInfo">
                 <h2 class="userName">recoreco</h2>
                 <p class="achievements">
-                    総レビュー件数　${count_review}件<br><!--実際に動かすときに書く値のメモ-->
-                    総いいね件数　${count_allGood}件<!--実際に動かすときに書く値のメモ-->
+                    総レビュー件数　${reviewCount}件<br><!--実際に動かすときに書く値のメモ-->
+                    総いいね件数　${allGoodCount}件<!--実際に動かすときに書く値のメモ-->
                 </p>
             </div>
             <p class="introduction">
@@ -99,9 +99,9 @@
                                 <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
                                     <a href="javascript:form${e.contents_id}.submit()" class="contents">
                                         <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/content_hh_comic.jpg" alt="コンテンツ画像" class="contentsImage"><br>
-                                        HUNTER×HUNTER<br>
-                                        漫画
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li>
@@ -109,37 +109,27 @@
                                 <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
                                     <a href="javascript:form${e.contents_id}.submit()" class="contents">
                                         <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/content_hh_comic.jpg" alt="コンテンツ画像" class="contentsImage"><br>
-                                        HUNTER×HUNTER<br>
-                                        漫画
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li><li>
                                 <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
                                     <a href="javascript:form${e.contents_id}.submit()" class="contents">
                                         <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/content_hh_comic.jpg" alt="コンテンツ画像" class="contentsImage"><br>
-                                        HUNTER×HUNTER<br>
-                                        漫画
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li><li>
                                 <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
                                     <a href="javascript:form${e.contents_id}.submit()" class="contents">
                                         <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/content_hh_comic.jpg" alt="コンテンツ画像" class="contentsImage"><br>
-                                        HUNTER×HUNTER<br>
-                                        漫画
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="${e.image}" alt="コンテンツ画像"><br>
-                                        ${e.contents_title}<br>
-                                        ${e.contents_jenre}<!--実際に動かすときに書く値のメモ-->
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li>
@@ -156,8 +146,8 @@
                         <c:forEach var="e" items="${reviewList}">
                             <li class="reviewBar">
                                 <div class="review">
-                                    <img src="img/content_naruto.jpg" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">06/06 22:22 投稿</p>
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
                                     <div class="review_button">
                                     <button class="update-button">
                                         <img src="img/point_delete.png">
@@ -166,18 +156,18 @@
                                     <button class="update-button">
                                         <img src="img/point_edit.png">
                                         <span class="update-text">編集</span>
-                                    </button> 
+                                    </button>
                                 </div>
                                 </div>
-                                <h3 class="reviewTitle">FINAL FANTASY X</h3>
-                                <p class="reviewText">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>                                                                                             
+                                <h3 class="reviewTitle"> ${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>123</h5>
+                                <h5>${e.goodCount}</h5>
                             </li>
                             <li class="reviewBar">
                                 <div class="review">
-                                    <img src="img/content_naruto.jpg" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">06/06 22:22 投稿</p>
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
                                     <div class="review_button">
                                     <button class="update-button">
                                         <img src="img/point_delete.png">
@@ -186,18 +176,18 @@
                                     <button class="update-button">
                                         <img src="img/point_edit.png">
                                         <span class="update-text">編集</span>
-                                    </button> 
+                                    </button>
                                 </div>
                                 </div>
-                                <h3 class="reviewTitle">FINAL FANTASY X</h3>
-                                <p class="reviewText">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>                                                                                             
+                                <h3 class="reviewTitle"> ${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>123</h5>
+                                <h5>${e.goodCount}</h5>
                             </li>
                             <li class="reviewBar">
                                 <div class="review">
-                                    <img src="img/content_naruto.jpg" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">06/06 22:22 投稿</p>
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
                                     <div class="review_button">
                                     <button class="update-button">
                                         <img src="img/point_delete.png">
@@ -206,21 +196,13 @@
                                     <button class="update-button">
                                         <img src="img/point_edit.png">
                                         <span class="update-text">編集</span>
-                                    </button> 
+                                    </button>
                                 </div>
                                 </div>
-                                <h3 class="reviewTitle">FINAL FANTASY X</h3>
-                                <p class="reviewText">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>                                                                                             
+                                <h3 class="reviewTitle">${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>123</h5>
-                            </li>
-                            <li>                          
-                                <img src="${e.image}" alt="コンテンツ画像"><br>
-                                ${e.created_at}<br>
-                                ${e.title}<br>
-                                ${e.review}<br>
-                                <span>heart</span>
-                                ${e.good_count}<br><!--実際に動かすときに書く値のメモ-->
+                                <h5>${e.goodCount}</h5>
                             </li>
                         </c:forEach>
                     </ul>
@@ -246,22 +228,12 @@
                     <ul>
                         <c:forEach var="e" items="${collectionList}" class="myContentsList">
                             <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
+                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
                                     <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/content_hh_comic.jpg" alt="コンテンツ画像" class="contentsImage"><br>
-                                        HUNTER×HUNTER<br>
-                                        漫画
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="${e.image}" alt="コンテンツ画像"><br>
-                                        ${e.contents_title}<br>
-                                        ${e.contents_jenre}<!--実際に動かすときに書く値のメモ-->
+                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li>
@@ -279,8 +251,8 @@
                                                 <a href="javascript:form${e.user_id_favorite}.submit()" class="">
                                                     <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
                                                     <div class="user">
-                                                        <img src="img/icon_higuchi.png" class="othericon">
-                                                        <h3>樋口 さん</h3>
+                                                        <img src="img/${e.iconFavorite}" class="othericon">
+                                                        <h3> ${e.userNameFavorite} さん</h3>
                                                     </div>
                                                 </a>
                                             </form>
@@ -292,8 +264,8 @@
                                                 <a href="javascript:form${e.user_id_favorite}.submit()" class="">
                                                     <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
                                                     <div class="user">
-                                                    <img src="img/icon_default.png" class="othericon">
-                                                    <h3>reco さん</h3>
+                                                    <img src="img/${e.iconFavorite}" class="othericon">
+                                                    <h3> ${e.userNameFavorite} さん</h3>
                                                 </div>
                                                 </a>
                                             </form>
@@ -307,8 +279,8 @@
                                                 <a href="javascript:form${e.user_id_favorite}.submit()" class="">
                                                     <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
                                                     <div class="user">
-                                                        <img src="img/icon_higuchi.png" class="othericon">
-                                                        <h3>樋口 さん</h3>
+                                                        <img src="img/${e.iconFavorite}" class="othericon">
+                                                        <h3> ${e.userNameFavorite} さん</h3>
                                                     </div>
                                                 </a>
                                             </form>
@@ -320,37 +292,9 @@
                                                 <a href="javascript:form${e.user_id_favorite}.submit()" class="">
                                                     <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
                                                     <div class="user">
-                                                        <img src="img/icon_default.png" class="othericon">
-                                                        <h3>reco さん</h3>
+                                                        <img src="img/${e.iconFavorite}" class="othericon">
+                                                        <h3> ${e.userNameFavorite}さん</h3>
                                                     </div>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
-                                                <div class="user">
-                                                    <img src="${e.icon}" alt="コンテンツ画像">
-                                                    ${e.name}<!--実際に動かすときに書く値のメモ-->
-                                                </div>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
-                                                <div class="user">
-                                                    <img src="${e.icon}" alt="コンテンツ画像">
-                                                    ${e.name}<!--実際に動かすときに書く値のメモ-->
-                                                </div>
                                                 </a>
                                             </form>
                                         </div>
@@ -368,10 +312,10 @@
                                     <a href="javascript:form${e.user_id}.submit()" class="chat-history">
                                         <input type="hidden" name="user_id" value="${e.user_id}">
                                         <div class="chat">
-                                        <img src="img/icon_higuchi.png" class="chat-icon">
-                                        <h3>樋口 さん</h3>
-                                        <p class="talk">最近のトーク内容</p>
-                                        <span class="check-count">3</span>
+                                        <img src="img/${e.icon}" class="chat-icon">
+                                        <h3> ${e.userName} さん</h3>
+                                        <p class="talk">${e.talk}</p>
+                                        <span class="check-count">${e.check}</span>
                                     </div>
                                     </a>
                                 </form>
@@ -381,10 +325,10 @@
                                     <a href="javascript:form${e.user_id}.submit()" class="chat-history">
                                         <input type="hidden" name="user_id" value="${e.user_id}">
                                         <div class="chat">
-                                        <img src="img/icon_higuchi.png" class="chat-icon">
-                                        <h3>樋口 さん</h3>
-                                        <p class="talk">最近のトーク内容</p>
-                                        <span class="check-count">3</span>
+                                        <img src="img/${e.icon}" class="chat-icon">
+                                        <h3> ${e.userName} さん</h3>
+                                        <p class="talk">${e.talk}</p>
+                                        <span class="check-count">${e.check}</span>
                                     </div>
                                     </a>
                                 </form>
@@ -394,22 +338,11 @@
                                     <a href="javascript:form${e.user_id}.submit()" class="chat-history">
                                         <input type="hidden" name="user_id" value="${e.user_id}">
                                         <div class="chat">
-                                        <img src="img/icon_higuchi.png" class="chat-icon">
-                                        <h3>樋口 さん</h3>
-                                        <p class="talk">最近のトーク内容</p>
-                                        <span class="check-count">4</span>
+                                        <img src="img/${e.icon}" class="chat-icon">
+                                        <h3> ${e.userName} さん</h3>
+                                        <p class="talk">${e.talk}</p>
+                                        <span class="check-count">${e.check}</span>
                                     </div>
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.user_id}" action="/A2/ChatServlet" method="get">
-                                    <a href="javascript:form${e.user_id}.submit()" class="">
-                                        <input type="hidden" name="user_id" value="${e.user_id}">
-                                        <img src="${e.icon}" alt="コンテンツ画像">
-                                        ${e.name}
-                                        ${e.talk}
-                                        ${e.check_count}<!--実際に動かすときに書く値のメモ-->
                                     </a>
                                 </form>
                             </li>

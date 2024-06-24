@@ -27,7 +27,7 @@ public class ReviewDisplayDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, SUBSTRING(r.created_at,1,19) AS r.created_at, u.user_name, u.icon FROM review AS r (INNER) JOIN user AS u ON r.user_id_writer=u.user_id WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1";
+			String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, SUBSTRING(r.created_at,1,19) AS created_at, u.user_name, u.icon FROM review AS r INNER JOIN user AS u ON r.user_id_writer=u.user_id WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -46,7 +46,7 @@ public class ReviewDisplayDao {
 				record.setTitle(rs.getString("r.title"));
 				record.setReview(rs.getString("r.review"));
 				record.setImage(rs.getString("r.image"));
-				record.setCreatedAt(rs.getString("r.created_at"));
+				record.setCreatedAt(rs.getString("created_at"));
 				record.setUserName(rs.getString("u.user_name"));
 				record.setIcon(rs.getString("u.icon"));
 
@@ -92,7 +92,7 @@ public class ReviewDisplayDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, SUBSTRING(r.created_at,1,19) AS r.created_at, u.user_name, u.icon FROM review AS r (INNER) JOIN user AS u ON r.user_id_writer=u.user_id WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1";
+			String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review, r.image, SUBSTRING(r.created_at,1,19) AS created_at, u.user_name, u.icon FROM review AS r INNER JOIN user AS u ON r.user_id_writer=u.user_id WHERE r.user_id_writer=? AND u.flag=1 AND u.open_close=1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -111,7 +111,7 @@ public class ReviewDisplayDao {
 				record.setTitle(rs.getString("r.title"));
 				record.setReview(rs.getString("r.review"));
 				record.setImage(rs.getString("r.image"));
-				record.setCreatedAt(rs.getString("r.created_at"));
+				record.setCreatedAt(rs.getString("created_at"));
 				record.setUserName(rs.getString("u.user_name"));
 				record.setIcon(rs.getString("u.icon"));
 

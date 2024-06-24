@@ -3,116 +3,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/chatmodal.css">
-    <meta charset="UTF-8">
-    <title>チャットモーダル</title>
+	<meta charset="UTF-8">
+	<title>Chat Application</title>
+	<link rel="stylesheet" href="/socketSample/css/chat.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+    <!-- モーダルを開くボタン -->
+<button id="openModalBtn" class="btn">レビュー</button>
+<input type="hidden" id="userId" value="1">
+<input type="hidden" id="otherUserId" value="2">
 
-<!-- モーダルを開くボタン -->
-<button id="openModalBtn" class="btn" onclick="connect()">レビュー</button>
-<input type="hidden" id="userId" value="${userId}">
-<input type="hidden" id="otherUserId" value="${otherUserId}">
 
 <!-- モーダル -->
 <div id="modal1" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('modal1')">&times;</span>
-      <body onload="connect()">
         <div class="user-info">
-            <img src="img/icon_higuchi.png" class="chat-icon" id="chat-icon">
-            <span class="chat-name" id="chat-name">樋口 さん</span>
+            <img src="img/icon_higuchi.png" class="chat-icon">
+            <span class="chat-name">樋口 さん</span>
         </div>
         <div id="chat-container">
           <div id="messages" class="messages"></div>
             <div class="input-area">
                 <button class="button0" id="button0">
-                    <img src="img/point_plus_chat.png" class="point" alt="point">
-                    <input type="file" name="upload" id="file-button" accept="image/*" onchange="previewImage(event)">
+                    <img src="img/point_plus_chat.png" id="point" class="point" alt="point">
+                    <form enctype="multipart/form-data"><input type="file" name="upload" id="file-button" accept="image/*" onchange="previewImage(event)"></form>
                 </button>
-              <input type="text" id="message" placeholder="メッセージを入力(500字以内)" onkeydown="if(event.key === 'Enter') sendMessage()">
-              <button  class="chat-submit" onclick="sendMessage()">送信</button>
+              	<input type="text" id="message" placeholder="メッセージを入力(500字以内)" onkeydown="if(event.key === 'Enter') sendMessage()">
+              	<button  class="chat-submit" onclick="sendMessage()">送信</button>
             </div>
           </div>
-        </body>
       </div>
     </div>
-<script>
-    // モーダルを開くボタンを取得
-    var openModalBtn = document.getElementById("openModalBtn");
+    <script>
+    //モーダル関連
+	  //モーダルを開くボタンを取得
+		var openModalBtn = document.getElementById("openModalBtn");
 
-    // モーダルを開く関数
-    openModalBtn.onclick = function() {
-        openModal('modal1');
-    }
+		// モーダルを開く関数
+		openModalBtn.onclick = function() {
+		    openModal('modal1');
+		}
 
-    // モーダルを開く関数
-    function openModal(modalId) {
-        //モーダルを開く
-        var modal = document.getElementById(modalId);
-        modal.style.display = "block";
-    }
+		// モーダルを開く関数
+		function openModal(modalId) {
+		    var modal = document.getElementById(modalId);
+		    modal.style.display = "block";
+		    connect();
+		}
 
-    // モーダルを閉じる関数
-    function closeModal(modalId) {
-        var modal = document.getElementById(modalId);
-        modal.style.display = "none";
-    }
+		// モーダルを閉じる関数
+		function closeModal(modalId) {
+		    var modal = document.getElementById(modalId);
+		    modal.style.display = "none";
+		}
 
-    // モーダルの外側がクリックされたときに閉じる処理
-    window.onclick = function(event) {
-        var modal1 = document.getElementById('modal1');
-        var modal2 = document.getElementById('modal2');
-        if (event.target == modal1) {
-            closeModal('modal1');
-        }
-    }
+		// モーダルの外側がクリックされたときに閉じる処理
+		window.onclick = function(event) {
+		    var modal1 = document.getElementById('modal1');
+		    var modal2 = document.getElementById('modal2');
+		    if (event.target == modal1) {
+		        closeModal('modal1');
+		    }
+		}
 
-    //画像アップロードボタンが押されたときに行われる処理
-    document.getElementById("button0").addEventListener("click", () => {
-    document.getElementById("file-button").click();
-    });
-
-    // ファイル選択時に呼び出される関数
-    function previewImage(event) {
-        // 選択されたファイルを取得
-        var selectedFile = event.target.files[0];
-        // ファイルが選択されている場合
-        if (selectedFile) {
-            // FileReaderオブジェクトを作成
-            var reader = new FileReader();
-            // ファイルの読み込みが完了した時の処理を定義
-            reader.onload = function(event) {
-                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
-                document.getElementById('preview').src = event.target.result;
-            };
-            // ファイルの読み込みを実行
-            reader.readAsDataURL(selectedFile);
-        } else {
-            // ファイルが選択されていない場合は元のアイコンを表示
-            document.getElementById('preview').src = "icon_default.png";
-        }
-    }
-
-     // 削除ボタンをクリックしたときに呼び出される関数
-     function deleteItem() {
-        // 元のアイコン画像のパスを設定
-        document.getElementById('preview').src = "icon_default.png";
-        // ファイル選択のinput要素もリセットする場合は次の行を追加
-        document.querySelector('input[type="file"]').value = null;
-
-        // ページの再読み込みを防ぐ
-        event.preventDefault();
-    }
-
-
-    //メッセージのscript
+  //チャット関連のJavascript
     var socket;
-    var user_id_speaker;
-    var user_id_listener;
+    var user_id_speaker= document.getElementById("userId").value; // 送信者のユーザーIDを文字列にする
+    var user_id_listener = document.getElementById("otherUserId").value; // 受信者のユーザーIDを文字列にする
 
-    //ChatopenServletから、チャットのための情報を取得する
+  	//ChatopenServletから、チャットのための情報を取得する関数
     function openChat(){
         let status = "指定";
         let userId = document.getElementById("userId").value;
@@ -152,7 +113,7 @@
                 var user_id_listener = data.otherUser.userId; // 受信者のユーザーIDを文字列にする
 
                 //接続を開始する
-                connect(data.talkHistory);
+                connect();
               })
                //非同期通信が失敗したときの処理
               .fail(function() {
@@ -161,10 +122,11 @@
 
     }
 
-    function connect(talkHistory) {
 
+  	//接続を開始する関数
+    function connect() {
         // WebSocketを初期化するで
-        socket = new WebSocket("ws://" + window.location.host + "/A2/chat");
+        socket = new WebSocket("ws://" + window.location.host + "/socketSample/chat");
 
         // 接続が開いたときの処理やで
         socket.onopen = function() {
@@ -183,18 +145,43 @@
             var speaker = data[2];
             var listener = data[3];
             var message = data.slice(4).join(" ");
-            if(messageが.jpgとかで終わるなら、後ろから空白でspritしてメッセージと文章で分けたい)
             var messageClass = (speaker === user_id_speaker) ? "sent-message" : "received-message";
-            var messageElement = "<div class='" + messageClass + "'><div class='message-time'>" + createdAt + "</div><div class='message-content'>" + message + "</div></div>";
+
+            //messageの中身が画像ファイルだった場合、imgタグで表示する
+            var messageElement;
+
+            if(/.jpg$/.test(message) || /.jpeg$/.test(message) || /.png$/.test(message) || /.gif$/.test(message)){
+            	messageElement = "<div class='" + messageClass + "'><div class='message-time'>" + createdAt + "</div><img class='message-content' src='img/" + message + "'></div>";
+            } else {
+                messageElement = "<div class='" + messageClass + "'><div class='message-time'>" + createdAt + "</div><div class='message-content'>" + message + "</div></div>";
+            }
+
             document.getElementById("messages").innerHTML += messageElement;
             document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+
+            //表示したメッセージに既読をつける
+            let postData = {"message":message}
+
+            $.ajaxSetup({scriptCharset:'utf-8'});
+            $.ajax({
+                //どのサーブレットに送るか
+                url: '/A2/ApiCheckServlet',
+                //どのメソッドを使用するか
+                type:"POST",
+                //受け取るデータのタイプ
+                dataType:"json",
+                //何をサーブレットに飛ばすか（変数を記述）
+                data: postData,
+                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+                processDate:false,
+                timeStamp: new Date().getTime()
+               //非同期通信が成功したときの処理
+            }).done(function(data) {
+              })
+               //非同期通信が失敗したときの処理
+              .fail(function() {
+              });
         };
-
-        var
-        var jpg = /.jpg$/.test(message);
-
-        メッセージだけを送れるようにして、正規表現で最後が画像の拡張子だった場合、divじゃなくてimgに入れるとかにする
-        inputに入っているときはimgが無効になるように、imgに入っているときはtextが無効になるようにする、送信ボタンを押したらどっちも空白になるようにする
 
         // 接続が閉じたときの処理やで
         socket.onclose = function() {
@@ -211,8 +198,46 @@
 
     // メッセージを送信する関数やで
     function sendMessage() {
-        var message = document.getElementById("message").value;
-        var image = document.getElementById("file-button").value;
+    	var message;
+        var text = document.getElementById("message").value;
+        var img = document.getElementById("file-button");
+
+      //画像が選択されていた場合、messageには画像のファイルパスが入る
+        if(img.value){
+        	//非同期で画像ファイルアップロードを行う
+	        	//画像ファイルを取得し、FormDataに入れる
+	        	var fd = new FormData();
+	        	fd.append("img", img.files[0]);
+
+	        	$.ajaxSetup({scriptCharset:'utf-8'});
+	            $.ajax({
+	                //どのサーブレットに送るか
+	                url: '/socketSample/ApiFileUploadServlet',
+	                //どのメソッドを使用するか
+	                type:"POST",
+	                //受け取るデータのタイプ
+	                dataType:"json",
+	                //何をサーブレットに飛ばすか（変数を記述）
+	                data: fd,
+	                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+	                processDate:false,
+	                timeStamp: new Date().getTime()
+	               //非同期通信が成功したときの処理
+	            }).done(function(data) {
+	              })
+	               //非同期通信が失敗したときの処理
+	              .fail(function() {
+	              });
+
+        	//ファイル名の書式を整え、messageに入れる
+        	var name = img.value.replace("C:\\fakepath\\", "");
+		    message = name;
+
+        } else {
+        	//画像が選択されていなかった場合はテキストボックスの中身が入る
+        	message = text;
+        }
+
         var now = new Date();
         var formattedTime = now.getFullYear() + "-" +
                             ('0' + (now.getMonth() + 1)).slice(-2) + "-" +
@@ -221,19 +246,61 @@
                             ('0' + now.getMinutes()).slice(-2) + ":" +
                             ('0' + now.getSeconds()).slice(-2);
         // メッセージを送信するで
-        //imgが空白だった場合
-        if (imag) {
-        	var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message + " " + img;
-            socket.send(messageToSend);
-            document.getElementById("message").value = "";
-            document.getElementById("file-button").value = "";
-		} else{
-			var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message;
-	        socket.send(messageToSend);
-	        document.getElementById("message").value = "";
-		}
+        var messageToSend = formattedTime + " " + user_id_speaker + " " + user_id_listener + " " + message;
+        socket.send(messageToSend);
+        document.getElementById("message").value = "";
     }
-</script>
 
+
+
+	//画像アップロードボタンが押されたときに行われる処理
+	document.getElementById("button0").addEventListener("click", () => {
+		var point = document.getElementById('point');
+		if (point.src.includes('point_plus_chat.png')){
+			document.getElementById("file-button").click();
+		} else {
+			deleteItem();
+		}
+	});
+
+	 // 削除ボタンをクリックしたときに呼び出される関数
+	 function deleteItem() {
+	    // ファイル選択のinput要素もリセットする場合は次の行を追加
+	    document.getElementById('file-button').value = null;
+	    // ページの再読み込みを防ぐ
+	    event.preventDefault();
+	  //ファイルを削除したらアップロードボタンに入れ替わる
+	    var point = document.getElementById('point');
+	    toggleButton(point);
+	}
+
+	// ファイル選択時に呼び出される関数
+	function previewImage(event) {
+	    // 選択されたファイルを取得
+	    var selectedFile = event.target.files[0];
+	    // ファイルが選択されている場合
+	    if (selectedFile) {
+	        // FileReaderオブジェクトを作成
+	        var reader = new FileReader();
+	        // ファイルの読み込みが完了した時の処理を定義
+	        reader.onload = function(event) {
+	        };
+	        // ファイルの読み込みを実行
+	        reader.readAsDataURL(selectedFile);
+	    }
+	    //ファイルを読み込んだら、削除ボタンに入れ替わる
+	    var point = document.getElementById('point');
+	    toggleButton(point);
+	}
+
+	 //画像アップロードボタンを削除ボタンに入れ替える
+	 function toggleButton(element) {
+                if (element.src.includes('point_plus_chat.png')) {
+                    element.src = 'img/point_delete.png';
+                } else {
+                    element.src = 'img/point_plus_chat.png';
+                }
+     }
+	</script>
 </body>
 </html>

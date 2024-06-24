@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +19,7 @@ import model.User;
 
 @WebServlet("/HomeServlet")
 
-public class HomeServlet extends HttpServlet{
+public class HomeServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,8 +39,6 @@ public class HomeServlet extends HttpServlet{
 		//レビューディスプレイDAOを生成
     	ReviewDisplayDao rdDao = new ReviewDisplayDao();
 		List<ReviewDisplay> timeline = tDao.userSelect(userId);
-		System.out.println(timeline+"aaa");
-		System.out.println(userId);
 		//いいね数を取得する
     	for(ReviewDisplay reviewDisplay: timeline) {
     		int reviewId = reviewDisplay.getReviewId();
@@ -58,15 +55,8 @@ public class HomeServlet extends HttpServlet{
 		//いいね数の多い順に並んだリストのうち、上位5名のみを選出したリストを作る
 		List<User> rankingTopFive = new ArrayList<User>();
 
-		if(ranking!=null) {
-			int count = 0;
-			for(User r : ranking) {
-				rankingTopFive.add(r);
-				if(count == 4) {
-					break;
-				}
-				count++;
-			}
+		for(int i = 0; i < 5; i++) {
+			rankingTopFive.add(ranking.get(i));
 		}
 
 		//リクエストスコープにセット
@@ -74,7 +64,7 @@ public class HomeServlet extends HttpServlet{
 		request.setAttribute("rankingTopFive", rankingTopFive);
 
 		//マイページのフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/A2/jsp/home.jsp");
 		dispatcher.forward(request, response);
 	}
 

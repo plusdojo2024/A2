@@ -179,11 +179,11 @@ INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, cre
 INSERT INTO user (user_id, mail, pass, user_name, icon, open_close, introduction, flag, created_at, updated_at) VALUES 
 
 (1, 'taro.yamada@wac.com', 'taro123', 'TaroYamada', 'taro.jpg', 1, 'こんにちは、山田太郎です。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(2, 'momoko.sakura@wac.com', 'momoko456', 'MomokoSakura', 'maruko.jpg', 0, 'さくらももこです。よろしくです。', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 'momoko.sakura@wac.com', 'momoko456', 'MomokoSakura', 'maruko.jpg', 0, 'さくらももこです。よろしくです。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'shohei.otani@wac.com', 'shohei17', 'ShoheiOtani', 'ShoheiOtani.jpg', 1, '大谷翔平です。憧れるのをやめましょう。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (4, 'messi.lionel@wac.com', 'messi10', 'LionelMessi', 'messi.jpg', 1, '世界のメッシです。スカルプDで気持ちよくなろう！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(5, 'shinnosuke.nohara@wac.com', 'shinnosuke1111', 'ShinnosukeNohara', 'shinnosuke.png', 1, '野原しんのすけです。ケツダケせいじん ぶりぶり～', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(6, 'yoshikau.higuchi@wac.com', 'Yoshikazu1234', 'YoshikazuHiguchi', 'icon_higuchi.png', 1, '樋口至計です。JAVA大好きです！', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(5, 'shinnosuke.nohara@wac.com', 'shinnosuke1111', 'ShinnosukeNohara', 'shinnosuke.png', 1, '野原しんのすけです。ケツダケせいじん ぶりぶり～', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(6, 'yoshikau.higuchi@wac.com', 'Yoshikazu1234', 'YoshikazuHiguchi', 'icon_higuchi.png', 1, '樋口至計です。JAVA大好きです！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 ●マイコンテンツテーブル
@@ -201,12 +201,29 @@ VALUES
 (3, 3, 31, 'ブザービート', '予想外の結末でキュンキュンした。', 'content.buzzerbeat.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (4, 4, 40, 'どうぶつの森', 'リセットさんうざい、、', 'content_doumori.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
+※追加
+INSERT INTO review(user_id_writer, contents_id, title, review, image, created_at) VALUES (4,10,'ドラえもん','どこでもドアがあったら通勤EASYなのにな～、のび太は総合格闘技始めるべき','content_doraemon.jpg',CURRENT_TIMESTAMP),
+(5,23,'ハリーポッター','パーティス・テンポラス！！','content_harrypotter.jpg',CURRENT_TIMESTAMP),
+(6,9,'五等分の花嫁','みんなは誰派ですか？？','content_hanayome.jpg',CURRENT_TIMESTAMP),
+(6,17,'転生したらスライムだった件','主人公が圧倒的に強いから見てて気持ちいい','content_tensura.png',CURRENT_TIMESTAMP),
+(3,29,'ROOKIES','夢のような青春。。','content_rookies.jpg',CURRENT_TIMESTAMP);
+
 ●いいねテーブル
 INSERT INTO good (good_id, review_id, user_id, created_at, updated_at)　VALUES 
 (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (4, 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+※追加
+INSERT INTO Good(review_id, user_id, created_at) VALUES (1,6,CURRENT_TIMESTAMP),
+(1,4,CURRENT_TIMESTAMP),
+(1,3,CURRENT_TIMESTAMP),
+(2,6,CURRENT_TIMESTAMP),
+(2,3,CURRENT_TIMESTAMP),
+(5,1,CURRENT_TIMESTAMP),
+(6,1,CURRENT_TIMESTAMP);
+
 
 ●チャットテーブル
 INSERT INTO chat (chat_id, user_id_speaker, user_id_listener, talk, image, checked, created_at, updated_at)　VALUES 

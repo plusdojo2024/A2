@@ -1,4 +1,10 @@
 /* 他ユーザのマイページ上部分共通のCSS */
+li{
+  /* リストの先頭の丸をなくす */
+  list-style: none;
+}
+
+
 /* ユーザ情報全体 */
 .profile{
   display: flex;
@@ -156,4 +162,120 @@ display: block;
   /* 角丸 */
   text-align: center;
   /* 中央揃え */
+}
+
+/* コレクション、ウィッシュリストのスタイル */
+.myContentsList{
+  /* コンテンツを横並びにする */
+  display: flex;
+}
+
+.contents{
+  /* 文字のスタイル */
+  color: #545454;
+  text-decoration: none;
+
+  /* 文字を中央に配置する */
+  display: block;
+  text-align: center;
+}
+
+.contentsImage{
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 150px;
+  width: 135px;
+}
+
+/* レビュー一覧のスタイル */
+
+.reviewBar{
+  margin: 5px 20px 5px 20px;
+  height: 244px;
+  width: 1323px;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
+}
+
+.review{
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 50px;
+  display: flex;
+  align-items: center; /* 中央に配置 */
+
+}
+
+.reviewImage{
+  height: 200px;
+  width: 180px;
+  margin-bottom: 10px;
+}
+
+.reviewTime{
+  margin-left: 50px;
+  font-size: 0.8rem;
+}
+
+.review p {
+  margin-bottom: 180px;
+  margin-left: 30px;
+  margin-right: -90px;
+}
+
+.reviewTitle {
+  margin-bottom: 300px;
+  margin-left: 240px;
+  margin-top: -180px;
+}
+
+.reviewText{
+  margin-top: -280px;
+  margin-left: 240px;
+  max-width: 100%; /* レビューテキストの最大幅。デザインに合わせて調整してください。 */
+  
+}
+
+/*削除ボタン------------------------------------*/
+.review_button{
+  display: flex;
+  margin-left: 800px;
+  margin-bottom: 150px;
+  margin-top: -50px;
+}
+
+.update-button {
+  display: flex;
+  border: 1px solid black;
+  padding: 8px;
+  background-color: #ffffff;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-right: 30px;
+}
+
+.update-button img{
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+
+.update-button .update-text{
+  display: inline-block;
+}
+
+h5 {
+  margin: -153px 10px 125px 1270px;
+}
+
+/* ハートアイコン */
+.heart {
+  /* 絶対位置 */
+  width: 30px;
+  /* 幅 */
+  height: 30px;
+  /* 高さ */
+  margin: 30px 10px 120px 1230px;
+  /* 左のマージン */
 }

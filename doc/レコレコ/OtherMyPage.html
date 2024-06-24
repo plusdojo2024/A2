@@ -97,14 +97,42 @@
                         <option value="game">ゲーム</option>
                     </select>
                     <ul>
-                        <c:forEach var="e" items="${collectionList}" >
+                        <c:forEach var="e" items="${collectionList}" class="myContentsList">
                             <li>
                                 <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="">
+                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
                                         <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="${e.image}" alt="コンテンツ画像"><br>
-                                        ${e.contents_title}<br>
-                                        ${e.contents_jenre}
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
+                                    </a>
+                                </form>
+                            </li>
+                            <li>
+                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
+                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
+                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
+                                    </a>
+                                </form>
+                            </li><li>
+                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
+                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
+                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
+                                    </a>
+                                </form>
+                            </li><li>
+                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
+                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
+                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
+                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+                                        ${e.title}<br>
+                                        ${e.genre}
                                     </a>
                                 </form>
                             </li>
@@ -118,14 +146,66 @@
                         <option value="fromOld">古い順</option>
                     </select>
                     <ul>
-                        <c:forEach var="e" items="${reviewList}" >
-                            <li>                          
-                                <img src="${e.image}" alt="コンテンツ画像"><br>
-                                ${e.created_at}<br>
-                                ${e.title}<br>
-                                ${e.review}<br>
-                                <span>heart</span>
-                                ${e.good_count}<br>
+                        <c:forEach var="e" items="${reviewList}">
+                            <li class="reviewBar">
+                                <div class="review">
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
+                                    <div class="review_button">
+                                    <button class="update-button">
+                                        <img src="img/point_delete.png">
+                                        <span class="update-text">削除</span>
+                                    </button>
+                                    <button class="update-button">
+                                        <img src="img/point_edit.png">
+                                        <span class="update-text">編集</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <h3 class="reviewTitle"> ${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h5>${e.goodCount}</h5>
+                            </li>
+                            <li class="reviewBar">
+                                <div class="review">
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
+                                    <div class="review_button">
+                                    <button class="update-button">
+                                        <img src="img/point_delete.png">
+                                        <span class="update-text">削除</span>
+                                    </button>
+                                    <button class="update-button">
+                                        <img src="img/point_edit.png">
+                                        <span class="update-text">編集</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <h3 class="reviewTitle"> ${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h5>${e.goodCount}</h5>
+                            </li>
+                            <li class="reviewBar">
+                                <div class="review">
+                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
+                                    <p class="reviewTime">${e.createdAt}</p>
+                                    <div class="review_button">
+                                    <button class="update-button">
+                                        <img src="img/point_delete.png">
+                                        <span class="update-text">削除</span>
+                                    </button>
+                                    <button class="update-button">
+                                        <img src="img/point_edit.png">
+                                        <span class="update-text">編集</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <h3 class="reviewTitle">${e.title}</h3>
+                                <p class="reviewText">${e.review}</p>
+                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                                <h5>${e.goodCount}</h5>
                             </li>
                         </c:forEach>
                     </ul>

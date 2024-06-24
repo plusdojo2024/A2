@@ -46,7 +46,7 @@
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="${c.image}" alt="作品の写真" class="image">
+                                    <img src="img/${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
                                     <span class="contenttitle"><strong>${c.title}</strong></span><br>
@@ -72,7 +72,7 @@
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="${c.image}" alt="作品の写真" class="image">
+                                    <img src="img/${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
                                     <span class="contenttitle"><strong>${c.title}</strong></span><br>
@@ -96,7 +96,7 @@
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="${c.image}" alt="作品の写真" class="image">
+                                    <img src="img/${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
                                     <span class="contenttitle"><strong>${c.title}</strong></span><br>

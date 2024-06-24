@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <label class="id">ユーザID</label><br>
-                    <input type="email" id="id" name="id" placeholder="メールアドレス">
+                    <input type="email" id="id" name="mail" placeholder="メールアドレス">
                 </td>
             </tr>
             <tr>
@@ -72,13 +72,14 @@
 		//ボックス表示系の処理リスト
 		//登録ボタン押したときの処理
         formObj.onsubmit = function(event) {
-            event.preventDefault(); // フォームのデフォルトの送信を防ぐ
+
 
             // 入力値の取得
             let id = idInput.value.trim();
             let pass = passInput.value.trim();
 
             if (id === '' || pass === '') {
+            	event.preventDefault(); // フォームのデフォルトの送信を防ぐ
                 showAlert('ユーザID、パスワードを入力してください！');
             }
         }

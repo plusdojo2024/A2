@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
-<%
-    HttpSession session = request.getSession();
-    User loginUser = (User) session.getAttribute("loginUser");
-%>
 <!DOCTYPE html>
 <html>
     <head>
         <meat charset="UTF-8">
             <title>ホーム|レコレコ</title>
-            <link rel="stylesheet" href="common.css">
-            <link rel="stylesheet" href="home.css">
+            <link rel="stylesheet" href="/A2/css/common.css">
+            <link rel="stylesheet" href="/A2/css/home.css">
     </head>
         <header>
             <nav class="nav">
@@ -34,14 +30,14 @@
                                     <option value="game">ゲーム</option>
                                 </select>
                                 <input type="text" name="search"  class="search-input" placeholder="コンテンツ名を検索・登録">
-                                <input type="image" src="/A2/img/button_search.png" class="search-button" alt="虫眼鏡">
+                                <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
                             </div>
                         </form>
                     </li>
-                    <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+                    <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
                     <div class="co">
                         <div class="user-container"></div>
-                            <li><a href=""><img src="<%= loginUser.getIcon() %>" class="icon-img" name="icon" alt="アイコン"><span class="user-name"><%= loginUser.getUserName() %></span>
+                            <li><a href=""><img src=img/${loginUser.icon} class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
                                 <ul class="dropdown-menu">
                                     <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                     <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
@@ -65,7 +61,7 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking1.png" class="good" alt="good">
-                                    <img src="${e.icon}"  class="icon" alt="アイコン">
+                                    <img src=img/${e.icon} class="icon" alt="アイコン">
                                     <p>${e.userName} さん</p>
                                 </div>
                             </td>
@@ -121,8 +117,8 @@
                             <td>
                                 <div class="review">
                                     <div class="timeline">
-                                        <img src="${e.image }" class="timeline1" alt="timeline">
-                                        <img src="${e.icon }"  class="icon1" alt="アイコン">
+                                        <img src=img/${e.image} class="timeline1" alt="timeline">
+                                        <img src=img/${e.icon}  class="icon1" alt="アイコン">
                                         <p>${e.userName } さん</p>
                                         <p>${e.createdAt } 投稿</p>
                                     </div>

@@ -27,16 +27,18 @@ public class TimelineDao {
 
     		// SQL文を準備する
     		String sql = "SELECT r.review_id, r.user_id_writer, r.contents_id, r.title, r.review,"
-    				+ " r.image,  SUBSTRING(r.created_at,1,19)  AS r.created_at, u.user_name, u.icon, f.user_id "
-    				+ "FROM review AS r (INNER) JOIN user AS u "
+    				+ " r.image,  SUBSTRING(r.created_at,1,19)  AS created_at, u.user_name, u.icon, f.user_id "
+    				+ "FROM review AS r INNER JOIN user AS u "
     				+ "ON r.user_id_writer=u.user_id"
     				+ " LEFT JOIN (SELECT user_id_favorite, user_id FROM favorite_user WHERE user_id=?) AS f"
     				+ " ON r.user_id_writer=f.user_id_favorite "
     				+ "WHERE f.user_id=? AND u.flag=1  AND u.open_close=1 AND LEFT(r.created_at,10) > (CURRENT_DATE-7)";
+    		System.out.println(sql);
     		PreparedStatement pStmt = conn.prepareStatement(sql);
 
     		// SQL文を完成させる
     		pStmt.setInt(1, userId);
+    		pStmt.setInt(2, userId);
 
     		// SQL文を実行し、結果表を取得する
     		ResultSet rs = pStmt.executeQuery();
@@ -51,7 +53,7 @@ public class TimelineDao {
     			record.setTitle(rs.getString("r.title"));
     			record.setReview(rs.getString("r.review"));
 				record.setImage(rs.getString("r.image"));
-				record.setCreatedAt(rs.getString("r.created_at"));
+				record.setCreatedAt(rs.getString("created_at"));
 				record.setUserName(rs.getString("u.user_name"));
 				record.setIcon(rs.getString("u.icon"));
 				record.setUserId(rs.getString("f.user_id"));

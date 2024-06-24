@@ -51,41 +51,40 @@
     </nav>
 </header>
 <body>
-	<c:forEach var="e" items="${userList}">
         <h3>ユーザ管理</h3>
         <form id="user_management" method="get" action="/A2/HomeServlet">
             <table class="table">
                 <tr>
                     <td>
                         <label class="id">ユーザID（メールアドレス）</label><br>
-                        <input type="email" name="id" id="id" value="${e.mail}">
+                        <input type="email" name="id" id="id" value="${loginUser.mail}">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label class="pass">パスワード(8~16桁)</label><br>
-                        <input type="password" name="pass" id="pass" value="${e.pass}">
+                        <input type="password" name="pass" id="pass" value="${loginUser.pass}">
                         <span id="buttonEye1" class="fa fa-eye" onclick="togglePasswordVisibility('pass', 'buttonEye1')"></span>
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="pass">パスワード確認（再度パスワードを入力）</label><br>
-                        <input type="password" name="pass" id="passConfirm" value="${e.pass}">
+                        <input type="password" name="pass" id="passConfirm" value="${loginUser.pass}">
                         <span id="buttonEye2" class="fa fa-eye" onclick="togglePasswordVisibility('passConfirm', 'buttonEye2')"></span>
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="name">ユーザ名（他ユーザに表示される名前）</label><br>
-                        <input type="text" name="name" id="name" value="${e.user_name}">
+                        <input type="text" name="name" id="name" value="${loginUser.userName}">
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
-                        <img src="${e.icon}"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
+                        <img src="${loginUser.icon}"  id="preview" class="login" alt="アイコン" width="180px" height="200px">
                         <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
@@ -96,14 +95,14 @@
                  <tr>
                     <td>
                         <label class="my_introduction">自己紹介</label><br>
-                        <input type="text" name="my_introduction" placeholder="200文字以内" value="${e.introduction}">
+                        <input type="text" name="my_introduction" placeholder="200文字以内" value="${loginUser.introduction}">
                     </td>
                  </tr>
                  <tr>
                     <td>
                         <label class="open">アカウント公開設定</label><br>
-                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${e.open_close.equals('yes')}">checked</c:if>>公開</label>
-                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${e.open_close.equals('no')}">checked</c:if>>非公開<br></label>
+                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${loginUser.open_close.equals('yes')}">checked</c:if>>公開</label>
+                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${loginUser.open_close.equals('no')}">checked</c:if>>非公開<br></label>
                         <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                         <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                     </td>
@@ -116,7 +115,6 @@
                  </tr>
             </table>
         </form>
-	</c:forEach>
         <!-- 2種のアラートボックス -->
 			<div class="overlay"></div>
 			<div class="confirmBox">

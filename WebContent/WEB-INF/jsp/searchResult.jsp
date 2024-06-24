@@ -40,16 +40,19 @@
                 <h2>検索結果一覧</h2>
             </div>
             <div class="scrollable-table">
+              <c:forEach var="c" items="${contentsList}">
                 <table class = "table">
                     <tr>
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="image/content_hh_anime.jpg" alt="HUNTER×HUNTER" class="image">
+                                    <img src="${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
-                                    <span class="contenttitle"><strong>HUNTER×HUNTER</strong></span><br>
-                                    <span>漫画　1998年</span>
+                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
+                                    <span>${c.genre}　${c.year}
+
+                                    </span>
                                 </div>
 
                                 <div class="reultform">
@@ -69,11 +72,11 @@
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="image/content_cityhunter.jpg" alt="CITYHUNTER" class="image">
+                                    <img src="${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
-                                    <span class="contenttitle"><strong>CITYHUNTER</strong></span><br>
-                                    <span>漫画　1998年</span>
+                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
+                                    <span>${c.genre}　${c.year}</span>
                                 </div>
 
                                 <div class="reultform">
@@ -93,11 +96,11 @@
                         <td>
                             <div class="result-item">
                                 <div class="resultphoto">
-                                    <img src="image/content_hh_comic.jpg" alt="HUNTER×HUNTER" class="image">
+                                    <img src="${c.image}" alt="作品の写真" class="image">
                                 </div>
                                 <div class="resultinfo">
-                                    <span class="contenttitle"><strong>HUNTER×HUNTER</strong></span><br>
-                                    <span>漫画　1998年</span>
+                                    <span class="contenttitle"><strong>${c.title}</strong></span><br>
+                                    <span>${c.genre}　${c.year}</span>
                                 </div>
 
                                 <div class="reultform">
@@ -114,6 +117,7 @@
                         </td>
                     </tr>
                 </table>
+                </c:forEach>
             </div>
 
     <footer class="footer">

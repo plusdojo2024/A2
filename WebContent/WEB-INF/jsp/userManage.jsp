@@ -101,8 +101,8 @@
                  <tr>
                     <td>
                         <label class="open">アカウント公開設定</label><br>
-                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${loginUser.openClose}"></c:if>>公開</label>
-                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${loginUser.openClose}"></c:if>>非公開<br></label>
+                        <label><input type="radio" name="first" id="yes" value="yes" <c:if test="${loginUser.openClose == 1}}"></c:if>>公開</label>
+                        <label><input type="radio" name="first" id="no" value="no" <c:if test="${loginUser.openClose == 0}"></c:if>>非公開<br></label>
                         <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                         <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                     </td>

@@ -37,6 +37,7 @@ public class TimelineDao {
 
     		// SQL文を完成させる
     		pStmt.setInt(1, userId);
+    		pStmt.setInt(2, userId);
 
     		// SQL文を実行し、結果表を取得する
     		ResultSet rs = pStmt.executeQuery();

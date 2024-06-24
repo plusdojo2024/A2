@@ -55,12 +55,13 @@
 <body>
     <!--コンテンツ情報--------------------------------------->
     <div class="content-info">
-        <img src="img/content_ffx.png" name="content-img" alt="写真">
+    <c:forEach var="e" items="${contents}">
+        <img src="img/${e.image}" name="content-img" alt="写真">
         <div class="column">
-            <h2 name="content-title">FINAL FANTASY X</h2><input type="hidden" id="contentsId" value="${contentsId}">
-            <h3>ゲーム</h3>
-            <h3>2001年</h3>
-            <h3>スクウェア</h3>
+            <h2 name="content-title">${e.title}</h2><input type="hidden" id="contentsId" value="${contentsId}">
+            <h3>${e.genre}</h3>
+            <h3>${e.year}</h3>
+            <h3>${e.creator}</h3>
         </div>
 
         <nav class="bt">
@@ -77,6 +78,7 @@
                 ウィッシュリストに追加
             </button>
         </nav>
+        </c:forEach>
     </div>
 
     <!--タブ------------------------------------------------>
@@ -98,8 +100,8 @@
                     <c:forEach var="e" items="${myReview}">
                         <li class="reviewBar">
                             <div class="review">
-                                <img src="img/content_ffx.png" class="review-img" alt="写真">
-                                <p class="review-time">06/06 22:22 投稿</p>
+                                <img src="img/${e.image}" class="review-img" alt="写真">
+                                <p class="review-time">${e.createdAt}</p>
                                 <div class="review-button">
                                     <button class="button" onclick="goAjaxDelete()">
                                         <img src="img/point_delete.png">
@@ -111,17 +113,17 @@
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
-                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>123</h4>
+                                <h4>${e.goodCount}</h4>
                             </div>
                         </li>
                         <li class="reviewBar">
                             <div class="review">
-                                <img src="img/content_ffx.png" class="review-img" alt="写真">
-                                <p class="review-time">06/06 22:22 投稿</p>
+                                <img src="img/${e.image}" class="review-img" alt="写真">
+                                <p class="review-time">${e.createdAt}</p>
                                 <div class="review-button">
                                     <button class="button" onclick="goAjaxDelete()">
                                         <img src="img/point_delete.png">
@@ -133,17 +135,17 @@
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
-                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>123</h4>
+                                <h4>${e.goodCount}</h4>
                             </div>
                         </li>
                         <li class="reviewBar">
                             <div class="review">
-                                <img src="img/content_ffx.png" class="review-img" alt="写真">
-                                <p class="review-time">06/06 22:22 投稿</p>
+                                <img src="img/${e.image}" class="review-img" alt="写真">
+                                <p class="review-time">${e.createdAt}</p>
                                 <div class="review-button">
                                     <button class="button" onclick="goAjaxDelete()">
                                         <img src="img/point_delete.png">
@@ -155,11 +157,11 @@
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X</h3>
-                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>123</h4>
+                                <h4>${e.goodCount}</h4>
                             </div>
                         </li>
                     </c:forEach>
@@ -176,18 +178,18 @@
                     <c:forEach var="e" items="${otherReview}">
                         <li class="reviewBar">
                             <div class="review">
-                                <img src="img/content_ffx.png" class="review-img" alt="写真">
+                                <img src="img/${e.image}" class="review-img" alt="写真">
                                 <div class="users-info">
-                                    <img src="img/icon_default.png" alt="アイコン写真">
-                                    <span class="users-name">レコさん</span>
+                                    <img src="img/${e.icon}" alt="アイコン写真">
+                                    <span class="users-name">${e.userName}</span>
                                 </div>
-                                <p class="review-time">06/06 22:22 投稿</p>
+                                <p class="review-time">${e.createdAt}</p>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">FINAL FANTASY X 好き</h3>
-                            <p class="review-text">オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>123</h4>
+                                <h4>${e.goodCount}</h4>
                             </div>
                         </li>
                     </c:forEach>

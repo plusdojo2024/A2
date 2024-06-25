@@ -46,16 +46,16 @@ public class TimelineDao {
     		while (rs.next()) {
     			ReviewDisplay record = new ReviewDisplay ();
 
-    			record.setReviewId(rs.getInt("r.review_id"));
-    			record.setUserIdWriter(rs.getInt("r.user_id_writer"));
-    			record.setContentsId(rs.getInt("r.contents_id"));
-    			record.setTitle(rs.getString("r.title"));
-    			record.setReview(rs.getString("r.review"));
-				record.setImage(rs.getString("r.image"));
+    			record.setReviewId(rs.getInt("review_id"));
+    			record.setUserIdWriter(rs.getInt("user_id_writer"));
+    			record.setContentsId(rs.getInt("contents_id"));
+    			record.setTitle(rs.getString("title"));
+    			record.setReview(rs.getString("review"));
+				record.setImage(rs.getString("image"));
 				record.setCreatedAt(rs.getString("created_at"));
-				record.setUserName(rs.getString("u.user_name"));
-				record.setIcon(rs.getString("u.icon"));
-				record.setUserId(rs.getString("f.user_id"));
+				record.setUserName(rs.getString("user_name"));
+				record.setIcon(rs.getString("icon"));
+				record.setUserId(rs.getString("user_id"));
 
 				reviewList.add(record);
     		}

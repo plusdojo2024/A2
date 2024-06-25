@@ -374,9 +374,9 @@ public class ChatDao {
 				while (rs.next()) {
 					User record = new User();
 
-					record.setUserId(rs.getInt("u.user_id"));
-					record.setUserName(rs.getString("u.user_name"));
-					record.setIcon(rs.getString("u.icon"));
+					record.setUserId(rs.getInt("user_id"));
+					record.setUserName(rs.getString("user_name"));
+					record.setIcon(rs.getString("icon"));
 
 					userList.add(record);
 				}

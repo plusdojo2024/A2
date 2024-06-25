@@ -40,15 +40,15 @@ public class ReviewDisplayDao {
 			while (rs.next()) {
 				ReviewDisplay record = new ReviewDisplay();
 
-				record.setReviewId(rs.getInt("r.review_id"));
-				record.setUserIdWriter(rs.getInt("r.user_id_writer"));
-				record.setContentsId(rs.getInt("r.contents_id"));
-				record.setTitle(rs.getString("r.title"));
-				record.setReview(rs.getString("r.review"));
-				record.setImage(rs.getString("r.image"));
+				record.setReviewId(rs.getInt("review_id"));
+				record.setUserIdWriter(rs.getInt("user_id_writer"));
+				record.setContentsId(rs.getInt("contents_id"));
+				record.setTitle(rs.getString("title"));
+				record.setReview(rs.getString("review"));
+				record.setImage(rs.getString("image"));
 				record.setCreatedAt(rs.getString("created_at"));
-				record.setUserName(rs.getString("u.user_name"));
-				record.setIcon(rs.getString("u.icon"));
+				record.setUserName(rs.getString("user_name"));
+				record.setIcon(rs.getString("icon"));
 
 				reviewList.add(record);
 			}
@@ -105,15 +105,15 @@ public class ReviewDisplayDao {
 			while (rs.next()) {
 				ReviewDisplay record = new ReviewDisplay();
 
-				record.setReviewId(rs.getInt("r.review_id"));
-				record.setUserIdWriter(rs.getInt("r.user_id_writer"));
-				record.setContentsId(rs.getInt("r.contents_id"));
-				record.setTitle(rs.getString("r.title"));
-				record.setReview(rs.getString("r.review"));
-				record.setImage(rs.getString("r.image"));
+				record.setReviewId(rs.getInt("review_id"));
+				record.setUserIdWriter(rs.getInt("user_id_writer"));
+				record.setContentsId(rs.getInt("contents_id"));
+				record.setTitle(rs.getString("title"));
+				record.setReview(rs.getString("review"));
+				record.setImage(rs.getString("image"));
 				record.setCreatedAt(rs.getString("created_at"));
-				record.setUserName(rs.getString("u.user_name"));
-				record.setIcon(rs.getString("u.icon"));
+				record.setUserName(rs.getString("user_name"));
+				record.setIcon(rs.getString("icon"));
 
 				reviewList.add(record);
 			}

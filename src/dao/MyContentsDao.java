@@ -42,16 +42,16 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("m.my_contents_id"));
-				record.setUserId(rs.getInt("m.user_id"));
-				record.setContentsId(rs.getInt("m.contents_id"));
-				record.setStatus(rs.getInt("m.status"));
-				record.setTitle(rs.getString("c.title"));
-				record.setRuby(rs.getString("c.ruby"));
-				record.setGenre(rs.getString("c.genre"));
-				record.setCreator(rs.getString("c.creator"));
-				record.setYear(rs.getString("c.year"));
-				record.setImage(rs.getString("c.image"));
+				record.setMyContentsId(rs.getInt("my_contents_id"));
+				record.setUserId(rs.getInt("user_id"));
+				record.setContentsId(rs.getInt("contents_id"));
+				record.setStatus(rs.getInt("status"));
+				record.setTitle(rs.getString("title"));
+				record.setRuby(rs.getString("ruby"));
+				record.setGenre(rs.getString("genre"));
+				record.setCreator(rs.getString("creator"));
+				record.setYear(rs.getString("year"));
+				record.setImage(rs.getString("image"));
 
 				collectionList.add(record);
 			}
@@ -167,16 +167,16 @@ public class MyContentsDao {
 			while (rs.next()) {
 				MyContents record = new MyContents();
 
-				record.setMyContentsId(rs.getInt("m.my_contents_id"));
-				record.setUserId(rs.getInt("m.user_id"));
-				record.setContentsId(rs.getInt("m.contents_id"));
-				record.setStatus(rs.getInt("m.status"));
-				record.setTitle(rs.getString("c.title"));
-				record.setRuby(rs.getString("c.ruby"));
-				record.setGenre(rs.getString("c.genre"));
-				record.setCreator(rs.getString("c.creator"));
-				record.setYear(rs.getString("c.year"));
-				record.setImage(rs.getString("c.image"));
+				record.setMyContentsId(rs.getInt("my_contents_id"));
+				record.setUserId(rs.getInt("user_id"));
+				record.setContentsId(rs.getInt("contents_id"));
+				record.setStatus(rs.getInt("status"));
+				record.setTitle(rs.getString("title"));
+				record.setRuby(rs.getString("ruby"));
+				record.setGenre(rs.getString("genre"));
+				record.setCreator(rs.getString("creator"));
+				record.setYear(rs.getString("year"));
+				record.setImage(rs.getString("image"));
 
 				wishList.add(record);
 			}

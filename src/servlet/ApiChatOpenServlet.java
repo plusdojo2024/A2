@@ -119,7 +119,7 @@ public class ApiChatOpenServlet extends HttpServlet {
 							ObjectMapper mapper = new ObjectMapper();
 							try {
 						        //JavaオブジェクトからJSONに変換
-						        String resultJson = mapper.writeValueAsString(map);
+						        String resultJson = mapper.writeValueAsString(otherUser);
 						        System.out.println(resultJson);
 						        //JSONの出力
 						        response.setContentType("application/json; charset=UTF-8");

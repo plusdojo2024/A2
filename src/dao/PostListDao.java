@@ -100,10 +100,10 @@ public class PostListDao {
 			while (rs.next()) {
 				PostList record = new PostList();
 
-				record.setUserId(rs.getInt("r.user_id"));
-				record.setTitle(rs.getString("p.title"));
-				record.setRecommend(rs.getString("p.recommend"));
-				record.setMyInterest(rs.getInt("r.my_interest"));
+				record.setUserId(rs.getInt("user_id"));
+				record.setTitle(rs.getString("title"));
+				record.setRecommend(rs.getString("recommend"));
+				record.setMyInterest(rs.getInt("my_interest"));
 
 				prList.add(record);
 			}

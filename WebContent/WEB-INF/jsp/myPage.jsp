@@ -62,7 +62,7 @@
                 </p>
             </div>
             <p class="introduction">
-                ${introduction}自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介自己紹介
+                ${introduction}
             </p>
         </div>
 

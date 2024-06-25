@@ -29,7 +29,7 @@ public class MyContentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m INNER contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=1";
+			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m INNER JOIN contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -154,7 +154,7 @@ public class MyContentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m INNER contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=0;";
+			String sql = "SELECT m.my_contents_id, m.user_id, m.contents_id, m.status, c.title, c.ruby, c.genre, c.creator, c.year, c.image FROM my_contents AS m INNER JOIN contents AS c ON m.contents_id=c.contents_id WHERE m.user_id=? AND m.status=0;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

@@ -30,7 +30,7 @@ public class UserManageServlet extends HttpServlet{
 		}
 
 		//セッションスコープからユーザIDを取ってくる
-		User user = (User)session.getAttribute("User");
+		User user = (User)session.getAttribute("loginUser");
 
 		//マイページのフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");

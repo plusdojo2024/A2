@@ -33,7 +33,7 @@ public class OtherMyPageServlet extends HttpServlet {
     	}
 
     	//セッションスコープからユーザーIDを取ってくる
-    	User user = (User)session.getAttribute("user");
+    	User user = (User)session.getAttribute("loginUser");
     	int userId = user.getUserId();
 
     	// リクエストパラメータを取得する

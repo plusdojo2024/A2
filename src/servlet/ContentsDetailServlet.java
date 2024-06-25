@@ -35,7 +35,7 @@ public class ContentsDetailServlet extends HttpServlet {
 			return;
 		}
 		//セッションスコープからユーザIDを取ってくる
-    	User user = (User)session.getAttribute("user");
+    	User user = (User)session.getAttribute("loginUser");
     	int userId = user.getUserId();
 
 		//コンテンツIDをパラメータとして取得する

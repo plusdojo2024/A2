@@ -35,7 +35,7 @@ public class ApiOtherMyPageServlet {
 		    	}
 
 		    	//セッションスコープからユーザーIDを取ってくる
-		    	User user = (User)session.getAttribute("user");
+		    	User user = (User)session.getAttribute("loginUser");
 		    	int userId = user.getUserId();
 
 		    	//DAOをインスタンス（実体）化

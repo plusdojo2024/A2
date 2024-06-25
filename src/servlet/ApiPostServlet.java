@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +23,8 @@ import model.Post;
 import model.PostList;
 import model.User;
 
-public class ApiPostServlet {
+@WebServlet("/ApiPostServlet")
+public class ApiPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,7 +59,7 @@ public class ApiPostServlet {
 			String data2 = request.getParameter("data2");
 			String data3 = request.getParameter("data3");
 
-			String status = data1;
+			int status = Integer.parseInt(data1);
 			String title = data2;
 			String recommend = data3;
 
@@ -66,7 +69,7 @@ public class ApiPostServlet {
 			System.out.println(data3);
 
 			//投函時の処理
-			if(status.equals ("投函")) {
+			if(status==0) {
 					//beansを作る
 					Post postBeans = new Post();
 					postBeans.setTitle(title);
@@ -89,7 +92,7 @@ public class ApiPostServlet {
 				    }
 
 				} //受け取り時の処理
-					else if(status.equals ("受け取り")){
+					else if(status==1){
 						//postDAOからオススメを全て取ってくる
 						List<Post> postList = pDao.selectAllPost();
 						Post postBeans = new Post();
@@ -98,7 +101,7 @@ public class ApiPostServlet {
 						int postId;
 						//最大を調べる
 						int size = postList.size();
-						while(true){
+//						while(true){
 							//オススメの中から一件ランダムで選ぶ
 							//ランダムに整数を生成
 							Random rand = new Random();
@@ -108,17 +111,20 @@ public class ApiPostServlet {
 							postBeans = postList.get(num);
 							postId = postBeans.getPostId();	//要素のポストIDを取得
 							String rTitle = postBeans.getTitle();	//titleを取得
+
 							String rRecommend = postBeans.getRecommend();	//recommendを取得
 
-		        	map.put("title", rTitle);
-		          map.put("recommend", rRecommend);
+							System.out.println(rTitle);
+
+				        	map.put("title", rTitle);
+				        	map.put("recommend", rRecommend);
 
 							//既に受け取っているかのチェック
 							//受け取ったことがあれば再度処理を繰り返す、受け取っていなければbreak
-							if(!prDao.confirmRecommendHistory(postId)) {
-								break;
-							}
-						}
+//							if(!prDao.confirmRecommendHistory(postId)) {
+//								break;
+//							}
+//						}
 
 						//受け取ったおすすめをpost_receuveテーブルに追加
 						boolean result = prDao.postReceiveInsert(userId,postId);
@@ -142,7 +148,7 @@ public class ApiPostServlet {
 
 						}
 				}//一覧時の処理
-					else if(status.equals ("一覧")) {
+					else if(status==2) {
 							List<PostList> postList = plDao.postSelect(userId);
 							List<PostList> receiveList = plDao.postReceiveSelect(userId);
 

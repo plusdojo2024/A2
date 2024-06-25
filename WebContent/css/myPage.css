@@ -261,15 +261,20 @@ li{
     width: 100px;
   }
 
+  .container {
+      display: flex;
+      flex-wrap: wrap; /* flexアイテムを折り返す（複数行に配置する） */
+    }
 
   .good_user{
     border: #545454;
-    margin-right:  20px;
-    margin-left: 40px;
     border: #CFCFCF solid 2px;
     border-radius: 10px;
     height: 120px;
-    width: 600px;
+     width: calc(50% - 20px); /* 列の幅を均等に分配し、マージンを考慮して計算 */
+      margin: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box; /* ボックスモデルを維持するために必要なスタイル */
   }
 
   .good_user a{
@@ -281,6 +286,8 @@ li{
     align-items: center; /* 中央に配置 */
     margin-top: 10px;
     margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
   }
 
   .user h3 {

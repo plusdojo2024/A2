@@ -226,7 +226,7 @@
 	            <div class="modalmain">
 	            <br>
 	            <input type="button"name="submit"  value="投函"onclick="openSecondModal()"></button><br>
-	            <input type="button" name="submit" value="受け取り"onclick="openSecondModal1()"></button><br>
+	            <input type="button" name="submit" id="accept" value="受け取り"></button><br>
 	            <input type="button" name="submit3" value="一覧"onclick="openSecondModal2()"></button>
 	            </div>
 	        </div>
@@ -450,40 +450,82 @@
         }
 
         //受け取りAjax
-        function acceptanceAjax() {
 
-        //値を取得してくる
-        let status = "受け取り";
-        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-        let postData = { data1: status }
+        let acceptBtn = document.getElementById('accept');
 
-        //非同期通信始めるよ
-        $.ajaxSetup({ scriptCharset: 'utf-8' });
-        $.ajax({
-            //どのサーブレットに送るか
-            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-            url: '/A2/ApiPostServlet',
-            //どのメソッドを使用するか
-            type: "POST",
-            //受け取るデータのタイプ
-            dataType: "json",
-            //何をサーブレットに飛ばすか（変数を記述）
-            data: postData,
-            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
-            processDate: false,
-            timeStamp: new Date().getTime()
-            //非同期通信が成功したときの処理
-        }).done(function (data) {
-        	var title = data["title"];
-        	var recommend = data["recommnd"];
-        		document.getElementById('r-title').innerHTML = '<textarea class="textbox1" name="title" placeholder="" id="r-title">'+title+'</textarea>';
-        		document.getElementById('r-recommend').innerHTML = '<textarea class="textbox" placeholder="" id="r-recommend">'+recmmend+'</textarea>';
-        })
-            //非同期通信が失敗したときの処理
-            .fail(function () {
-                //失敗した場合はなにもしない
+        acceptBtn.addEventListener('click', function() {
+        	closeModal('modal1');
+            openModal('modal3');
+            acceptanceAjax();
             });
-        }
+
+        /* let status = 1;
+	    let postData = {data1: 1}
+        $.ajax({
+            url: '/A2/ApiPostServlet',
+            type: 'POST',
+            data: postData,
+            success: function(response) {
+            	alert('成功');
+                     },
+            error: function() {
+                alert('Error saving marker');
+            }
+        }); */
+
+        /* var title = response["title"];
+    	var recommend = response["recommnd"];
+    		document.getElementById('r-title').innerHTML = '<textarea class="textbox1" name="title" placeholder="" id="r-title">'+title+'</textarea>';
+    		document.getElementById('r-recommend').innerHTML = '<textarea class="textbox" placeholder="" id="r-recommend">'+recmmend+'</textarea>';
+ */
+
+
+        function acceptanceAjax() {
+			alert("aaaa");
+	/*       closeModal('modal1');
+	         openModal('modal3'); */
+
+	        //値を取得してくる
+	        let status = 1;
+	        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+	        let postData = { data1: status }
+
+	       /*  function openSecondModal1() {
+	            closeModal('modal1');
+	            openModal('modal3');
+	            acceptanceAjax();
+	        } */
+
+	        //非同期通信始めるよ
+	        $.ajaxSetup({ scriptCharset: 'utf-8' });
+	        $.ajax({
+
+	            //どのサーブレットに送るか
+	            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+	            url: '/A2/ApiPostServlet',
+	            //どのメソッドを使用するか
+	            type: "POST",
+	            //受け取るデータのタイプ
+	            dataType: "json",
+	            //何をサーブレットに飛ばすか（変数を記述）
+	            data: postData,
+	            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+	            processDate: false,
+	            timeStamp: new Date().getTime()
+	            //非同期通信が成功したときの処理
+	        }).done(function (data) {
+	        	alert("aaaaa");
+	        	var title = data["title"];
+	        	var recommend = data["recommend"];
+	        		document.getElementById('r-title').innerHTML = title;
+	        		document.getElementById('r-recommend').innerHTML = recommend;
+	        })
+	            //非同期通信が失敗したときの処理
+	            .fail(function () {
+	                //失敗した場合
+
+	            });
+	        }
 
         //一覧Ajax
         function listAjax() {
@@ -511,10 +553,8 @@
             //非同期通信が成功したときの処理
         }).done(function (data) {
             //成功した場合は、確認ダイアログを表示する
-            if (data === "true") {
-            } else {
-                //失敗した場合はなにもしない
-            }
+        	var title = data["postList"];
+        	var recommend = data["receiveList"];
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -604,7 +644,7 @@
             }
             // 受け取りモーダルを開く関数
             function openSecondModal1() {
-                closeModal('modal1');
+            	closeModal('modal1');
                 openModal('modal3');
                 acceptanceAjax();
             }

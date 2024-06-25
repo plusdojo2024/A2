@@ -158,7 +158,7 @@ public class ReviewDisplayDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT count(review_id) FROM good WHERE review_id=? GROUP BY review_id";
+			String sql = "SELECT count(review_id) AS count FROM good WHERE review_id=? GROUP BY review_id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -171,7 +171,9 @@ public class ReviewDisplayDao {
             rs.next();
 
             //countに指定したレビューのいいね数を入れる。失敗したらcountは0のままになる
-            count = rs.getInt("count(review_id)");
+            count = rs.getInt("count");
+            System.out.println(count+"←カウントだよ");
+
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

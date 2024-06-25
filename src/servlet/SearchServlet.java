@@ -30,7 +30,7 @@ public class SearchServlet extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String freeWord = request.getParameter("freeWord");
+		String freeWord = request.getParameter("search");
 
 
 		// 検索処理を行う
@@ -41,14 +41,13 @@ public class SearchServlet extends HttpServlet {
 			//一致するコンテンツがなかったら、検索結果がなかった場合のページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/noSearchResult.jsp");
 			dispatcher.forward(request, response);
+		} else {
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("contentsList", contentsList);
+
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchResult.jsp");
+			dispatcher.forward(request, response);
 		}
-
-
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("contentsList", contentsList);
-
-		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchResult.jsp");
-		dispatcher.forward(request, response);
 	}
 }

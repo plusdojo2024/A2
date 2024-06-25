@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meat charset="UTF-8">
             <title>マイページ|レコレコ</title>
-            <link rel="stylesheet" href="css/OtherMyPage.css">
+            <link rel="stylesheet" href="css/otherMyPage.css">
             <link rel="stylesheet" href="css/common.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
@@ -55,14 +56,15 @@
     <body id="top">
         <!-- ユーザ情報 -->
         <div class="profile">
-            <img src="img/icon_higuchi.png" alt="アイコン" class="icon">
+            <img src="img/${otherUser.icon}" alt="アイコン" class="icon">
             <div class="userInfo">
                 <h2 class="userName">${otherUser.userName} さん</h2>
                 <input type="hidden" id="userIdFavorite" value="${otherUser.userId}">
                 <p class="achievements">
                     総レビュー件数　${otherUser.reviewCount}件<br>
                 </p>
-                <button type="button" name="favorite_add" class="bt" id="favorite_button" value="1" onclick="goAjax()">
+                <button type="button" name="favorite_add" class="bt" id="favorite_button" onclick="goAjax()">
+                	<input type="hidden" id="fBtnValue" value="1">
                     <img src="img/point_favorite.png" alt="お気に入りユーザに追加の画像">
                     <span class="bt-text">お気に入りユーザに追加</span>
                 </button>
@@ -102,45 +104,19 @@
                         <option value="game">ゲーム</option>
                     </select>
                     <ul>
-                        <c:forEach var="e" items="${collectionList}" class="myContentsList">
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li><li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li><li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li>
+                        <c:forEach var="e" items="${collection}">
+                        	<div class="myContentsList">
+	                            <li>
+	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
+	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
+	                                        <input type="hidden" name="id" value="${e.contentsId}">
+	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+	                                        ${e.title}<br>
+	                                        ${e.genre}
+	                                    </a>
+	                                </form>
+	                            </li>
+                            </div>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
@@ -172,49 +148,6 @@
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                 <h5>${e.goodCount}</h5>
                             </li>
-                            <li class="reviewBar">
-                                <div class="review">
-                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">${e.createdAt}</p>
-                                    <div class="review_button">
-                                    <button class="update-button">
-                                        <img src="img/point_delete.png">
-                                        <span class="update-text">削除</span>
-                                    </button>
-                                    <button class="update-button">
-                                        <img src="img/point_edit.png">
-                                        <span class="update-text">編集</span>
-                                    </button>
-                                </div>
-                                </div>
-                                <h3 class="reviewTitle"> ${e.title}</h3>
-                                <p class="reviewText">${e.review}</p>
-                                <img src="img/button_good1.png" class="heart" data-post-id="${e.reviewId}" alt="ハート" onclick="toggleHeart(this)">
-                                <h5 class="goodCount">${e.goodCount}</h5>
-                            </li>
-                            <li class="reviewBar">
-                                <div class="review">
-                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">${e.createdAt}</p>
-                                    <div class="review_button">
-                                    <button class="update-button">
-                                        <img src="img/point_delete.png">
-                                        <span class="update-text">削除</span>
-                                    </button>
-                                    <button class="update-button">
-                                        <img src="img/point_edit.png">
-                                        <span class="update-text">編集</span>
-                                    </button>
-                                </div>
-                                </div>
-                                <h3 class="reviewTitle">${e.title}</h3>
-                                <p class="reviewText">${e.review}</p>
-                                <button type="button" onclick=good>
-	                                <img src="img/button_good1.png" class="heart" id="heart" alt="ハート" value=${e.reviewId} onclick="goGood(this)">
-	                                <input type="hidden" id="good" value=1>
-	                                <h5 id="goodCount">${e.goodCount}</h5>
-	                           </button>
-                            </li>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
@@ -227,7 +160,7 @@
 			    <span class="close" onclick="closeModal('modal1')">&times;</span>
 			        <div class="user-info">
 			        		<form action="/A2/OtherMyPageServlet" method="get">
-							  <button>
+							  <button class="chat-icon-button">
 							     <input type="hidden" name="id" value="${e.userIdWriter}">
 							     <img src="img/icon_default.png" class="chat-icon" id="chat-icon">
 							  </button>
@@ -300,7 +233,7 @@
 
             //値を取得してくる
             let userIdFavorite = document.getElementById('userIdFavorite').value;
-            let life = document.getElementById('favorite_button').value;
+            let life = document.getElementById('fBtnValue').value;
 
 
             //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
@@ -324,12 +257,7 @@
                //非同期通信が成功したときの処理
             }).done(function(data) {
                 //成功した場合は、ボタンが反転する（同時にお気に入り解除ボタンになる）
-                if(data==="true"){
-                	/* ボタンが反転する処理 */
                     favorite_user();
-                } else {
-                    //失敗した場合はなにもしない
-                }
               })
                //非同期通信が失敗したときの処理
               .fail(function() {
@@ -341,15 +269,15 @@
         function favorite_user() {
             var favoriteButton = document.getElementById('favorite_button');
             if (favoriteButton.innerText.includes('お気に入りユーザに追加')) {
-            	favoriteButton.innerHTML = '<img src="img/point_delete.png" alt="削除の画像"> お気に入りユーザを解除';
+            	favoriteButton.innerHTML = '<input type="hidden" id="fBtnValue" value="0"><img src="img/point_favorite.png" alt="削除の画像"> お気に入りユーザを解除';
             	favoriteButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
-            	favoriteButton.value = 0;
             } else {
-            	favoriteButton.innerHTML = '<img src="img/point_favorite.png" alt="追加の画像"> お気に入りユーザに追加';
+            	favoriteButton.innerHTML = '<input type="hidden" id="fBtnValue" value="1"><img src="img/point_favorite.png" alt="追加の画像"> お気に入りユーザに追加';
                 favoriteButton.style.backgroundColor = ''; // デフォルトに戻す
-                favoriteButton.value = 1;
             }
         }
+
+
 
 	//いいね関連
 	document.addEventListener("DOMContentLoaded", function() {
@@ -417,12 +345,10 @@
         function toggleHeart(element) {
                 if (element.src.includes('button_good1.png')) {
                     element.src = 'img/button_good2.png';
-            		let good = document.getElementById('good').value = 0;
                     // ハートをプラス1する
                     incrementHeart(element.nextElementSibling);
                 } else {
                     element.src = 'img/button_good1.png';
-            		let good = document.getElementById('good').value = 1;
                     // ハートをマイナス1する
                     decrementHeart(element.nextElementSibling);
                 }
@@ -448,13 +374,13 @@
        		// モーダルを開く関数
        		openModalBtn.onclick = function() {
        		    openModal('modal1');
+       		 	openChat();
        		}
 
        		// モーダルを開く関数
        		function openModal(modalId) {
        		    var modal = document.getElementById(modalId);
        		    modal.style.display = "block";
-       		 	openChat();
        		}
 
        		// モーダルを閉じる関数
@@ -504,8 +430,8 @@
                    }).done(function(data) {
                        //成功した場合、チャットの接続を開始する
                        //相手のユーザ名とアイコンを取得する
-                       let userName = data.otherUser.userName;
-                       let userIcon = data.otherUser.icon;
+                       let userName = data.userName;
+                       let userIcon = data.icon;
 
                        //ユーザ名とアイコンを表示する
                        document.getElementById("chat-name").innerText = userName + "さん";
@@ -515,14 +441,15 @@
 
                        //自分と相手のユーザ名を設定する
                        var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
-                       var user_id_listener = data.otherUser.userId; // 受信者のユーザーIDを文字列にする
+                       var user_id_listener = data.userId; // 受信者のユーザーIDを文字列にする
 
                        //接続を開始する
                        connect();
                      })
                       //非同期通信が失敗したときの処理
                      .fail(function() {
-                       //失敗した場合はなにもしない
+                       //失敗した場合
+                       alert("error");
                    });
 
            }

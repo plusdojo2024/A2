@@ -154,8 +154,8 @@ public class ContentsDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// SQL文を準備する
-				String sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents"
-						+ "WHERE title LIKE ? OR ruby LIKE ? OR genre LIKE ? creator LIKE ? OR year LIKE ? OR"
+				String sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents "
+						+ "WHERE title LIKE ? OR ruby LIKE ? OR genre LIKE ? OR creator LIKE ? OR year LIKE ? "
 						+ "ORDER BY ruby";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 

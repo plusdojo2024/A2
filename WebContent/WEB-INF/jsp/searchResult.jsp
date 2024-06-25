@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,51 +63,7 @@
             <tr>
                 <td>
                     <div class="result-item">
-                        <img src="${c.image}" alt="作品の写真" class="content-img">
-                        <div class="result-info">
-                            <span class="content-title"><strong>${c.title}</strong></span><br>
-                            <span>${c.genre} ${c.year}</span>
-                        </div>
-
-                        <div class="result-form">
-                            <button type="button" name="collection" value="コレクションに追加">
-                                <img src="img/point_plus.png" alt="追加の画像">
-                                <span>コレクションに追加</span>
-                            </button><br>
-                            <button type="button" name="wishlist" value="ウィッシュリストに追加">
-                                <img src="img/point_plus.png" alt="追加の画像">
-                                <span>ウィッシュリストに追加</span>
-                            </button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="result-item">
-                        <img src="${c.image}" alt="作品の写真" class="content-img">
-                        <div class="result-info">
-                            <span class="content-title"><strong>${c.title}</strong></span><br>
-                            <span>${c.genre} ${c.year}</span>
-                        </div>
-
-                        <div class="result-form">
-                            <button type="button" name="collection" value="コレクションに追加">
-                                <img src="img/point_plus.png" alt="追加の画像">
-                                <span>コレクションに追加</span>
-                            </button><br>
-                            <button type="button" name="wishlist" value="ウィッシュリストに追加">
-                                <img src="img/point_plus.png" alt="追加の画像">
-                                <span>ウィッシュリストに追加</span>
-                            </button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="result-item">
-                        <img src="${c.image}" alt="作品の写真" class="content-img">
+                        <img src="img/${c.image}" alt="作品の写真" class="content-img">
                         <div class="result-info">
                             <span class="content-title"><strong>${c.title}</strong></span><br>
                             <span>${c.genre} ${c.year}</span>

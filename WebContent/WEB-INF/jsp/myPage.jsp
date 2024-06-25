@@ -102,7 +102,7 @@
 	                            <li>
 	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
 	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
-	                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
+	                                        <input type="hidden" name="id" value="${e.contentsId}">
 	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
 	                                        ${e.title}<br>
 	                                        ${e.genre}
@@ -168,7 +168,7 @@
 	                            <li>
 	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
 	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
-	                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
+	                                        <input type="hidden" name="id" value="${e.contentsId}">
 	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
 	                                        ${e.title}<br>
 	                                        ${e.genre}
@@ -181,38 +181,21 @@
                 <!--/area--></div>
                 <div id="favoriteList" class="area">
                     <ul>
-                        <c:forEach var="e" items="${favoriteUserList}" >
-                            <table>
-                                <tr>
-                                    <td>
+                    	<div class="container">
+                        	<c:forEach var="e" items="${favoriteUserList}" >
                                         <div class="good_user">
                                             <form name="form${e.userIdFavorite}" action="/A2/OtherMyPageServlet" method="get">
                                                 <a href="javascript:form${e.userIdFavorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.userIdFavorite}">
-                                                    <div class="user">
-                                                        <img src="img/${e.iconFavorite}" class="othericon">
-                                                        <h3> ${e.userNameFavorite} さん</h3>
-                                                    </div>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="good_user">
-                                            <form name="form${e.userIdFavorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.userNameFavorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.userNameFavorite}">
+                                                    <input type="hidden" name="id" value="${e.userIdFavorite}">
                                                     <div class="user">
                                                     <img src="img/${e.iconFavorite}" class="othericon">
                                                     <h3> ${e.userNameFavorite} さん</h3>
-                                                </div>
+                                                	</div>
                                                 </a>
                                             </form>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </c:forEach>
+                        	</c:forEach>
+                        </div>
                     </ul>
                 <!--/area--></div>
                 <div id="chatList" class="area">

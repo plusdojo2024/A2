@@ -45,7 +45,7 @@ public class HomeServlet extends HttpServlet{
     		reviewDisplay.setGoodCount(rdDao.countGood(reviewId));
     		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
     	}
-
+    	System.out.println("aaa");
 
 		//全ユーザのいいね数の合計を取得し、上位５名のユーザ名とアイコンを取得する
     	//全ユーザのいいね数順のランキングを取得する

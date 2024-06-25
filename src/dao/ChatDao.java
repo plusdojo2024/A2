@@ -30,7 +30,7 @@ public class ChatDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT chat_id, user_id_speaker, user_id_listener, talk, image, SUBSTRING(created_at,1,19) AS created_at FROM chat"
+			String sql = "SELECT chat_id, user_id_speaker, user_id_listener, talk, image, SUBSTRING(created_at,1,19) AS created_at FROM chat "
 					+ "WHERE (user_id_speaker=? AND user_id_listener=?) OR (user_id_speaker=? AND user_id_listener=?)"
 					+ "ORDER BY created_at";
 			PreparedStatement pStmt = conn.prepareStatement(sql);

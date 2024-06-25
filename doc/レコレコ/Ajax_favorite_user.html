@@ -223,9 +223,9 @@
         }
 
         function favorite_user() {
-            var collectionButton = document.getElementById('collectionBtn');
-            if (collectionButton.innerText.includes('お気に入りユーザに追加')) {
-                collectionButton.innerHTML = '<img src="img/point_favorite.png" alt="削除の画像"> お気に入りユーザを解除';
+            var favoriteButton = document.getElementById('favorite_button');
+            if (favoriteButton.innerText.includes('お気に入りユーザに追加')) {
+            	favoriteButton.innerHTML = '<img src="img/point_favorite.png" alt="削除の画像"> お気に入りユーザを解除';
                 collectionButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
             } else {
                 collectionButton.innerHTML = '<img src="img/point_favorite.png" alt="追加の画像"> お気に入りユーザに追加';

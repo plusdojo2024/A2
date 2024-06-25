@@ -58,7 +58,7 @@
                 <tr>
                     <td>
                         <label class="id">ユーザID（メールアドレス）</label><br>
-                        <input type="email" name="id" id="id" value="${loginUser.mail}">
+                        <input type="email" name="mail" id="id" value="${loginUser.mail}">
                     </td>
                 </tr>
                 <tr>
@@ -111,20 +111,29 @@
                  <tr>
                     <td>
                         <input type="submit" name="update"  id="update" value="更新">
-                        <input type="submit" name="delete1"  id="delete" value="削除" onclick="showDeleteConfirm()">
+                        <input type="submit" name="delete2" class="delete2" id="delete" value="削除" ><!-- onclick="showDeleteConfirm()" -->
                     </td>
                  </tr>
             </table>
             <!-- 2種のアラートボックス -->
 			<div class="overlay"></div>
-			<div class="confirmBox">
-				<h4>【確認】</h4>
-				<p id="confirmMessage"></p>
-                <div class="aa">
-				<input type="submit" id="yes" onclick="hideConfirm()" class="button1" name="update1" value="はい">
-				<button  type="button" id="no" onclick="hideConfirm()" class="button1">いいえ</button>
-			</div>
-            </div>
+				<div class="confirmBox">
+					<h4>【確認】</h4>
+					<p id="confirmMessage"></p>
+	                <div class="aa">
+					<input type="submit" id="yes" onclick="hideConfirm()" class="button1" name="update1" value="はい">
+					<button  type="button" id="no" onclick="hideConfirm()" class="button1">いいえ</button>
+					</div>
+				</div>
+			<div class="overlay2"></div>
+				<div class="confirmBox2">
+					<h4>【確認】</h4>
+					<p id="confirmMessage2"></p>
+	                <div class="aa">
+						<input type="submit" id="yes" onclick="hideConfirm2()" class="button1" name="delete2" value="はい">
+						<button  type="button" id="no" onclick="hideConfirm2()" class="button1">いいえ</button>
+					</div>
+            	</div>
 			<div class="alertBox">
 				<h4>【内容不正】</h4>
 				<p id="alertMessage"></p>
@@ -225,13 +234,15 @@
 
 					// deleteボタンの場合の処理
 					} else if (click_id === "delete"){
-						e.preventDefault();		// 一旦 submit を止める
-						showConfirm('本当に削除してもよろしいですか？');	//確認ボックス表示
-						formObj.off('submit');	// submitイベントごとキャンセル
+						alert("aaa");
+							// 一旦 submit を止める
+						showConfirm2('本当に削除してもよろしいですか？');	//確認ボックス表示
+						//formObj.off('submit');	// submitイベントごとキャンセル
+						event.preventDefault();
 
 					// 確認ボックスのyesボタンの場合の処理
 					} else if (click_id === "yes"){
-						hideConfirm();	// 確認ボックスを隠す
+						hideConfirm2();	// 確認ボックスを隠す
 					}
  				 }
 
@@ -240,11 +251,20 @@
 			        document.querySelector('.confirmBox').style.display = 'none';
 			        document.querySelector('.overlay').style.display = 'none';
 			    }
+			 // 確認ボックスのいいえボタンをクリックしたときの処理
+			    function hideConfirm2() {
+			        document.querySelector('.confirmBox2').style.display = 'none';
+			        document.querySelector('.overlay2').style.display = 'none';
+			    }
 
 			    // アラートボックスのCLOSEボタンをクリックしたときの処理
 			    function hideAlert() {
 			        document.querySelector('.alertBox').style.display = 'none';
 			        document.querySelector('.overlay').style.display = 'none';
+			    }
+			    function hideAlert() {
+			        document.querySelector('.alertBox2').style.display = 'none';
+			        document.querySelector('.overlay2').style.display = 'none';
 			    }
 
 			    // アラートボックスを表示する関数
@@ -253,6 +273,11 @@
 			        document.querySelector('.overlay').style.display = 'block';
 			        document.getElementById('alertMessage').textContent = alertMessage;
 			    }
+			    function showAlert(alertMessage) {
+			        document.querySelector('.alertBox2').style.display = 'block';
+			        document.querySelector('.overlay2').style.display = 'block';
+			        document.getElementById('alertMessage2').textContent = alertMessage;
+			    }
 
 			    // 確認ボックスを表示する関数
 			    function showConfirm(confirmMessage) {
@@ -260,6 +285,12 @@
 			        document.querySelector('.overlay').style.display = 'block';
 			        document.getElementById('confirmMessage').textContent = confirmMessage;
 			    }
+			    function showConfirm2(confirmMessage2) {
+			        document.querySelector('.confirmBox2').style.display = 'block';
+			        document.querySelector('.overlay2').style.display = 'block';
+			        document.getElementById('confirmMessage2').textContent = confirmMessage2;
+			    }
+
 
 			    //目のマークを切り替える
 					//パスワードを目で見えるようにする

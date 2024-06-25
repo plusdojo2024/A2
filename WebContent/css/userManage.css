@@ -65,7 +65,7 @@ label {
     gap: 8px;
 }
 
-input[name=id], input[name=pass], input[name=name] {
+input[name=mail], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;
@@ -133,7 +133,7 @@ input[name="update"] {
     border-radius: 20px; /*ログインボタンの角を丸くする*/
 }
 
-input[name="delete1"] {
+.delete2 {
     border: none;
     margin: 30px 18px 10px 18px;
     padding: 20px 60px 20px 50px;
@@ -174,13 +174,33 @@ input[name="delete1"] {
 	color: #545454;
     animation: showAlertAnimation 0.3s ease forwards; /* アニメーションの適用 */
 }
+.confirmBox2, .alertBox2, .confirmBox_delete2{
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+	height: 300px;
+	width: 500px;
+    padding: 55px 40px 40px 40px;
+    background-color: white;
+    /*border: 3px solid #545454;*/
+	border-radius: 5%;
+    z-index: 1000;
+	color: #545454;
+    animation: showAlertAnimation 0.3s ease forwards; /* アニメーションの適用 */
+}
 
 .confirmBox p{
 	font-size: 1.2em;
 	padding: 80px 10px 10px 100px;
     color: #545454;
 }
-
+.confirmBox2 p{
+	font-size: 1.2em;
+	padding: 80px 10px 10px 100px;
+    color: #545454;
+}
 .alertBox p{
     font-size: 1.2em;
 	padding: 80px 10px 10px 70px;
@@ -188,6 +208,16 @@ input[name="delete1"] {
 }
 
 .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.overlay2 {
     display: none;
     position: fixed;
     top: 0;

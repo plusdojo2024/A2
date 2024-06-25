@@ -150,7 +150,15 @@ public class UserDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "UPDATE user SET mail=?, pass=?, user_name=?, icon=?, open_close=?, introduction=? WHERE user_id=? AND flag=1";
+			String sql = "UPDATE user SET mail=?, "
+					+ "pass=?, "
+					+ "user_name=?, ";
+					if(!user.getIcon().equals("")) {
+						sql+= "icon=?, ";
+					}
+					sql+= "open_close=?, "
+					+ "introduction=? "
+					+ "WHERE user_id=? AND flag=1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -158,22 +166,33 @@ public class UserDao {
 			pStmt.setString(2, user.getPass());
 			pStmt.setString(3, user.getUserName());
 
-			if (user.getIcon() != null && !user.getIcon().equals("")) {
-				pStmt.setString(4, user.getIcon());
-			} else {
-				pStmt.setString(4, "");
+			if(!user.getIcon().equals("")) {
+				if (user.getIcon() != null && !user.getIcon().equals("")) {
+					pStmt.setString(4, user.getIcon());
+				} else {
+					pStmt.setString(4, "");
+				}
+
+				pStmt.setInt(5, user.getOpenClose());
+
+
+				if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
+					pStmt.setString(6, user.getIntroduction());
+				} else {
+					pStmt.setString(6, "");
+				}
+				pStmt.setInt(7, user.getUserId());
+			}else {
+				pStmt.setInt(4, user.getOpenClose());
+
+
+				if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
+					pStmt.setString(5, user.getIntroduction());
+				} else {
+					pStmt.setString(5, "");
+				}
+				pStmt.setInt(6, user.getUserId());
 			}
-
-			pStmt.setInt(5, user.getOpenClose());
-
-
-			if (user.getIntroduction() != null && ! user.getIntroduction().equals("")) {
-				pStmt.setString(6, user.getIntroduction());
-			} else {
-				pStmt.setString(6, "");
-			}
-
-			pStmt.setInt(7, user.getUserId());
 
 
 			// SQL文を実行する
@@ -209,6 +228,7 @@ public class UserDao {
 	public boolean userDelete(int userId) {
 		Connection conn = null;
 		boolean result = false;
+		System.out.println(userId+"あいでぃーだよ");
 
 		try {
 			// JDBCドライバを読み込む

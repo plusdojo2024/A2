@@ -58,8 +58,13 @@ public class UserManageServlet extends HttpServlet{
 
 		// open_closeは文字列として取得されるため、必要に応じて変換する
 	    int openCloseValue = Integer.parseInt(openClose);
-	    String icon = this.getFileName(part);
-	    part.write(icon);
+	    String icon = null;
+
+	    icon = this.getFileName(part);
+	    System.out.println(icon+"：アイコンだよ");
+	    if(!icon.equals("")) {
+		    part.write(icon);
+	    }
 
 	    //Userオブジェクトを作成し、セットする
 	    User user = new User();
@@ -73,23 +78,31 @@ public class UserManageServlet extends HttpServlet{
 	    //登録処理を行う
 	    UserDao uDao = new UserDao();
 	    //メールアドレスの確認処理
-	    boolean mail_id = uDao.checkMail(mail);
+	    //boolean mail_id = uDao.checkMail(mail);
 	    //boolean success = uDao.userRegist(user);
 
-
-	    if(mail_id) {
+	    System.out.println(request.getParameter("delete2")+"ボタン");
+	    //if(mail_id) {
 	    	// すでに登録されているメールアドレスの場合、登録失敗としてフォワードする
-	    	String errorMessage = "このメールアドレスはすでに使用されています。";
-            request.setAttribute("errorMessage",errorMessage );
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");
-            dispatcher.forward(request, response);
-	    } else {
+	    //	String errorMessage = "このメールアドレスはすでに使用されています。";
+        //    request.setAttribute("errorMessage",errorMessage );
+        //    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");
+        //    dispatcher.forward(request, response);
+	   // } else {
 	    	//更新または削除を行う
-	    	if(request.getParameter("update1").equals("はい")) {
+	    	if(request.getParameter("update1")!=null &&request.getParameter("update1").equals("はい")) {
+	    		User u = (User)session.getAttribute("loginUser");
+	    		user.setUserId(u.getUserId());
+	    		System.out.println("アップデート");
+	    		System.out.println(user.getIcon()+":アイコンだよ");
 	    		boolean success = uDao.update(user);
 
+
 	    		if(success) {
-	    			response.sendRedirect(request.getContextPath() + "/A2/HomeServlet");
+	    			//登録成功
+	    			session.setAttribute("loginUser", user);
+	    			response.sendRedirect("/A2/HomeServlet");
+
 	    		} else {
 	    				String errorMessage = "登録に失敗しました。";
 	    				request.setAttribute("errorMessage",errorMessage );
@@ -98,13 +111,15 @@ public class UserManageServlet extends HttpServlet{
 	    				dispatcher.forward(request, response);
 	    			}
 	    		}
-	    		else if(request.getParameter("delete1").equals("削除") || request.getParameter("delete1").equals("はい")) {
-	    			int userId = user.getUserId();
+	    		else if(request.getParameter("delete2")!=null && request.getParameter("delete2").equals("はい") || request.getParameter("delete2").equals("はい")) {
+	    			System.out.println("削除入ったよ～～");
+	    			User u = (User)session.getAttribute("loginUser");
+	    			int userId = u.getUserId();
 	    			boolean success = uDao.userDelete(userId);
 	    			if(success) {
-	    				response.sendRedirect(request.getContextPath() + "/A2/LoginServlet");
+	    				response.sendRedirect("/A2/LoginServlet");
 	    			} else {
-	    				String errorMessage = "登録に失敗しました。";
+	    				String errorMessage = "削除に失敗しました。";
 	    				request.setAttribute("errorMessage",errorMessage );
 	    				// ユーザ管理ページにフォワードする
 	    				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp");
@@ -112,7 +127,7 @@ public class UserManageServlet extends HttpServlet{
 	    			}
 	    		}
 	    	}
-		}
+	//	}
 		//ファイルの名前を取得してくる
 		private String getFileName(Part part) {
 			String name = null;

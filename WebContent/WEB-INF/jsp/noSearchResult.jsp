@@ -66,9 +66,263 @@
         </table>
     </div>
 
+    <!--モーダル-->
+    <div id="content-regist-modal1" class="content-regist-modal">
+        <div class="modal-content">
+            <!--閉じるボタン-->
+            <span class="close" onclick="closeModal('content-regist-modal1')">&times;</span>
+            <p class="modal-title">コンテンツ新規登録</p>
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="content-title" name="content-title" maxlength="50" placeholder="コンテンツタイトル（50文字以内）">
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>
+                        <input type="text" id="content-title-ruby" name="content-title-ruby" maxlength="50" placeholder="フリガナ">
+                    </td>
+                </tr>
+                    <td>
+                        <div class="review-img">
+                            <img src="img/default_book.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                        </div>
+                        <button class="delete-button" onclick="deleteItem()">
+                            <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
+                        </button>
+                    </td>
+                </tr>
+                <div class="detail-select">
+                    <tr>
+                    <td>
+                            <p class="detail-items">ジャンル</p>
+                    </td>
+                    <td>
+                            <select name="detail-genre-select">
+                                <option value="all">すべて</option>
+                                <option value="movie">映画</option>
+                                <option value="dorama">ドラマ</option>
+                                <option value="anime">アニメ</option>
+                                <option value="sonota1">その他（映像）</option>
+                                <option value="novel">小説</option>
+                                <option value="comics">マンガ</option>
+                                <option value="sonota2">その他（書籍）</option>
+                                <option value="game">ゲーム</option>
+                            </select>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="detail-items">公開年</p>
+                        </td>
+                        <td>
+                            <select name="detail-year-select">
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                                <option value="1983">1983</option>
+                                <option value="1982">1982</option>
+                                <option value="1981">1981</option>
+                                <option value="1980">1980</option>
+                                <option value="1979">1979</option>
+                                <option value="1978">1978</option>
+                                <option value="1977">1977</option>
+                                <option value="1976">1976</option>
+                                <option value="1975">1975</option>
+                                <option value="1974">1974</option>
+                                <option value="1973">1973</option>
+                                <option value="1972">1972</option>
+                                <option value="1971">1971</option>
+                                <option value="1970">1970</option>
+                                <option value="1969">1969</option>
+                                <option value="1968">1968</option>
+                                <option value="1967">1967</option>
+                                <option value="1966">1966</option>
+                                <option value="1965">1965</option>
+                                <option value="1964">1964</option>
+                                <option value="1963">1963</option>
+                                <option value="1962">1962</option>
+                                <option value="1961">1961</option>
+                                <option value="1960">1960</option>
+                                <option value="1959">1959</option>
+                                <option value="1958">1958</option>
+                                <option value="1957">1957</option>
+                                <option value="1956">1956</option>
+                                <option value="1955">1955</option>
+                                <option value="1954">1954</option>
+                                <option value="1953">1953</option>
+                                <option value="1952">1952</option>
+                                <option value="1951">1951</option>
+                                <option value="1950">1950</option>
+                                <option value="before">それ以前</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="detail-items">製作者</p>
+                        </td>
+                        <td>
+                            <input type="text" id="detail-creator-input" name="detail-creator-input" maxlength="50" placeholder="著者、制作会社など">
+                        </td>
+                    </tr>
+                </div>
+                    <tr>
+                        <td>
+                        <button class="btn" onclick="openSecondModal()">登録</button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 成功画面のモーダル -->
+    <div id="content-regist-modal2" class="content-regist-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('content-regist-modal2')">&times;</span>
+            <p class="true-text">コンテンツを登録しました。</p>
+        </div>
+    </div>
+</body>
+
 <footer class="footer">
 	<a href=#top><span class="gotop"></span></a>
 	<p class="copyright">&copy; WAC</p>
 </footer>
-</body>
+
+<script>
+    // モーダルを開くボタンを取得
+    var openModalBtnC = document.getElementById("openModalBtnC");
+
+    // モーダルを開く関数
+    openModalBtnC.onclick = function() {
+        openModal('content-regist-modal1');
+    }
+
+    // モーダルを開く関数
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+
+    // モーダルを閉じる関数
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    // 次のモーダルを開く関数
+    function openSecondModal() {
+        closeModal('content-regist-modal1');
+        openModal('content-regist-modal2');
+    }
+
+    // モーダルの外側がクリックされたときに閉じる処理
+    window.onclick = function(event) {
+        var modal1 = document.getElementById('content-regist-modal1');
+        var modal2 = document.getElementById('content-regist-modal2');
+        if (event.target == modal1) {
+            closeModal('content-regist-modal1');
+        }
+        if (event.target == modal2) {
+            closeModal('content-regist-modal2');
+        }
+    }
+
+    // ファイル選択時に呼び出される関数
+    function previewImage(event) {
+    	 // 選択されたファイルを取得
+         var selectedFile = event.target.files[0];
+         // ファイルが選択されている場合
+         if (selectedFile) {
+             // FileReaderオブジェクトを作成
+             var reader = new FileReader();
+             // ファイルの読み込みが完了した時の処理を定義
+             reader.onload = function(event) {
+                 // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                 document.getElementById('preview').src = event.target.result;
+             };
+             // ファイルの読み込みを実行
+             reader.readAsDataURL(selectedFile);
+         } else {
+             // ファイルが選択されていない場合は元のアイコンを表示
+             document.getElementById('preview').src = "img/icon_default.png";
+         }
+    }
+
+    // 削除ボタンをクリックしたときに呼び出される関数
+    function deleteItem() {
+    	// 元のアイコン画像のパスを設定
+        document.getElementById('preview').src = "img/icon_default.png";
+        // ファイル選択のinput要素もリセットする場合は次の行を追加
+        document.querySelector('input[type="file"]').value = null;
+
+        // ページの再読み込みを防ぐ
+        event.preventDefault();
+    }
+
+    // 文字数制限を設定する関数
+    function limitTextInput(element, maxLength) {
+        element.addEventListener('input', function(event) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.substring(0, maxLength);
+                event.preventDefault();
+            }else{
+
+            }
+        });
+    }
+
+    // レビュータイトルの文字数制限を設定
+    var contentTitle = document.getElementById('content-title');
+    limitTextInput(contentTitle, 50);
+
+    // レビュータイトルのフリガナの文字数制限を設定
+    var contentTitleRuby = document.getElementById('content-title-ruby');
+    limitTextInput(contentTitleRuby, 50);
+
+    // レビュー本文の文字数制限を設定
+    var detailCreatorInput = document.getElementById('detail-creator-input');
+    limitTextInput(detailCreatorInput, 50);
+</script>
 </html>

@@ -128,7 +128,7 @@ public class FavoriteUserDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 				// SQL文を準備する
-				String sql = "SELECT f.user_id, f.favorite_user, u.user_name, u.icon FROM favorite_user AS f INNER JOIN user AS u ON f.user_id_favorite=u.user_id WHERE f.user_id=? AND u.flag=1  AND u.open_close=1";
+				String sql = "SELECT f.user_id, f.user_id_favorite, u.user_name, u.icon FROM favorite_user AS f INNER JOIN user AS u ON f.user_id_favorite=u.user_id WHERE f.user_id=? AND u.flag=1  AND u.open_close=1";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる

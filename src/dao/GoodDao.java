@@ -121,7 +121,7 @@ public class GoodDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文の準備
-			String sql = "SELECT count(*) FROM good AS g INNER JOIN review AS r ON g.review_id = r.review_id + WHERE r.user_id_writer=?";
+			String sql = "SELECT count(*) FROM good AS g INNER JOIN review AS r ON g.review_id = r.review_id WHERE r.user_id_writer=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, userIdWriter);
 

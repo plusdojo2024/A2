@@ -180,7 +180,12 @@
                             <div class="review">
                                 <img src="img/${e.image}" class="review-img" alt="写真">
                                 <div class="users-info">
-                                    <img src="img/${e.icon}" alt="アイコン写真">
+                                     <form name="form${e.userIdWriter}" action="/A2/OtherMyPageServlet" method="get">
+                                      <a href="javascript:form${e.userIdWriter}.submit()" >
+                                         <input type="hidden" name="id" value="${e.userIdWriter}">
+                                          <img src="img/${e.icon}" alt="アイコン写真">
+                                      </a>
+                                    </form>
                                     <span class="users-name">${e.userName}</span>
                                 </div>
                                 <p class="review-time">${e.createdAt}</p>

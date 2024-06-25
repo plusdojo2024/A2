@@ -93,6 +93,8 @@ public class ApiPostServlet {
 						//postDAOからオススメを全て取ってくる
 						List<Post> postList = pDao.selectAllPost();
 						Post postBeans = new Post();
+						Map<String, String> map = new HashMap<>();
+
 						int postId;
 						//最大を調べる
 						int size = postList.size();
@@ -105,6 +107,11 @@ public class ApiPostServlet {
 							//その整数のインデックスの要素を取ってくる
 							postBeans = postList.get(num);
 							postId = postBeans.getPostId();	//要素のポストIDを取得
+							String rTitle = postBeans.getTitle();	//titleを取得
+							String rRecommend = postBeans.getRecommend();	//recommendを取得
+
+		        	map.put("title", rTitle);
+		          map.put("recommend", rRecommend);
 
 							//既に受け取っているかのチェック
 							//受け取ったことがあれば再度処理を繰り返す、受け取っていなければbreak
@@ -122,7 +129,7 @@ public class ApiPostServlet {
 							ObjectMapper mapper = new ObjectMapper();
 							try {
 					        //JavaオブジェクトからJSONに変換
-					        String resultJson = mapper.writeValueAsString(postBeans);
+					        String resultJson = mapper.writeValueAsString(map);
 					        System.out.println(resultJson);
 					        //JSONの出力
 					        response.setContentType("application/json; charset=UTF-8");

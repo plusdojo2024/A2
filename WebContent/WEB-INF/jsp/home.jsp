@@ -8,6 +8,7 @@
             <title>ホーム|レコレコ</title>
             <link rel="stylesheet" href="/A2/css/common.css">
             <link rel="stylesheet" href="/A2/css/home.css">
+            <link rel="stylesheet" href="/A2/css/postmodal.css">
     </head>
         <header>
             <nav class="nav">
@@ -34,7 +35,7 @@
                             </div>
                         </form>
                     </li>
-                    <li><a href=""><img src="/A2/img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+                     <li><img src="img/button_post.png" class="post-button" name="post" alt="ポスト" id="openModalBtn"></li>
                     <div class="co">
                         <div class="user-container"></div>
                             <li><a href=""><img src=img/${loginUser.icon} class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
@@ -214,10 +215,111 @@
             </form>
             </c:forEach>
         </main>
+
+        <!-- モーダル -->
+	    <!-- 最初のモーダル -->
+	    <div id="modal1" class="modal">
+	        <div class="modal-content">
+	            <span class="close" onclick="closeModal('modal1')">&times;</span>
+	            <p class="ppost">ポスト</p>
+	            <div class="modalmain">
+	            <br>
+	            <input type="button"name="submit"  value="投函"onclick="openSecondModal()"></button><br>
+	            <input type="button" name="submit" value="受け取り"onclick="openSecondModal1()" onclick="acceptanceAjax()"></button><br>
+	            <input type="button" name="submit3" value="一覧"onclick="openSecondModal2()" onclick="listAjax()"></button>
+	            </div>
+	        </div>
+	    </div>
+
+	    <!-- 投函モーダル -->
+	    <div id="modal2" class="modal">
+	        <div class="modal-content">
+	            <span class="close" onclick="closeModal('modal2')">&times;</span>
+	            <p>ポスト投函</p>
+	            <div class="box1">
+	                <input type="text" name="title" placeholder="タイトル(50字以内)" value="${title}"><br>
+	                <textarea class="textbox" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)" value="${recommend}"></textarea><br>
+	            </div>
+	            <input type="button"name="submit1" value="戻る"onclick="openSecondModal3()"></button>
+	            <input type="button"name="submit1" value="投函"onclick="goAjax()"></button>
+	        </div>
+	    </div>
+	    <!-- 受け取りモーダル -->
+	    <div id="modal3" class="modal">
+	        <div class="modal-content">
+	            <span class="close" onclick="closeModal('modal3')">&times;</span>
+	            <p>ポスト受け取り</p>
+	            <div class="box1">
+	                <input type="hidden" id="reviewId" value="${reviewId}">
+	                <textarea class="textbox1" name="title" placeholder="">${title}</textarea><br>
+	                <textarea class="textbox" placeholder="">${recommend}</textarea><br>
+	            </div>
+	            <input type="button"name="submit1" value="戻る"onclick="openSecondModal4()"></button>
+	            <input type="button"name="interestBtn1" value="気になる！" id="interestBtn"></button><input type="hidden" id="interest" value="1">
+	        </div>
+	    </div>
+
+	    <!-- 一覧モーダル -->
+	    <div id="modal4" class="modal">
+	        <div class="modal1-content">
+	            <span class="close" onclick="closeModal('modal4')">&times;</span>
+	            <p>一覧ページ</p>
+	            <div class="box2">
+	            <p id="tabcontrol">
+	                <a href="#tabpage1">
+	                    投函した作品
+	                </a>
+	                <a href="#tabpage2">
+	                    受け取った作品
+	                </a>
+	            </p>
+	            <div id="tabbody">
+	                <div id="tabpage1" class="area selected">
+	                    <div class="contents">
+	                        <h2 class="title3">${title}</h2>
+	                        <div class="maintext">
+	                            <p>${recommend}</p>
+	                        </div>
+	                        <input type="button"name="interestBtn2" value="気になる！" id="interestBtn"></button><input type="hidden" id="interest" value="1">
+	                    </div>
+						<!--
+	                    <div class="contents">
+	                        <h2 class="title3">FINAL FANTASY X</h2>
+	                        <div class="maintext">
+	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+	                        </div>
+	                    </div>
+
+	                    <div class="contents">
+	                        <h2 class="title3">FINAL FANTASY X</h2>
+	                        <div class="maintext">
+	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+	                        </div>
+	                    </div>
+	                     -->
+	                </div>
+
+
+	                <div id="tabpage2" class="area ">
+	                    <div class="contents">
+	                        <h2 class="title3">ベルセルク</h2>
+	                        <div class="maintext">
+	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <input type="button"name="submit1" value="戻る"onclick="openSecondModal5()"></button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
         <footer>
             <a href=#top><span class="gotop"></span></a>
             <p class="copyright">&copy; WAC</p>
         </footer>
+
         <script>
             // h4要素のテキストを制限して省略する関数
             const truncateText = (element, maxLength) => {
@@ -255,6 +357,294 @@
             function decrementHeart(element) {
                 let currentCount = parseInt(element.textContent);
                 element.textContent = currentCount - 1;
+            }
+        </script>
+        <!-- tabjs -->
+        <script type="text/javascript">
+            // ---------------------------
+            // ▼A：対象要素を得る
+            // ---------------------------
+            var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
+            var pages = document.getElementById('tabbody').getElementsByClassName('area');
+
+            // ---------------------------
+            // ▼B：タブの切り替え処理
+            // ---------------------------
+            function changeTab() {
+                var targetid = this.getAttribute('href').substring(1);
+
+                // 対象のタブページだけを表示する
+                for (var i = 0; i < pages.length; i++) {
+                    if (pages[i].id === targetid) {
+                        pages[i].classList.add('selected');
+                    } else {
+                        pages[i].classList.remove('selected');
+                    }
+                }
+
+                // クリックされたタブにselectedクラスを追加し、他のタブから削除する
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('selected');
+                }
+                this.classList.add('selected');
+
+                // ページ遷移しないようにfalseを返す
+                return false;
+            }
+
+            // ---------------------------
+            // ▼C：すべてのタブに対して、クリック時にchangeTab関数が実行されるよう指定する
+            // ---------------------------
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].onclick = changeTab;
+            }
+
+            // ---------------------------
+            // ▼D：最初は先頭のタブを選択しておく
+            // ---------------------------
+            tabs[0].classList.add('selected');
+        </script>
+        <!-- modaljs -->
+        <script>
+            // モーダルを開くボタンを取得
+            var openModalBtn = document.getElementById("openModalBtn");
+
+            // モーダルを開く関数
+            openModalBtn.onclick = function() {
+                openModal('modal1');
+            }
+
+            // モーダルを開く関数
+            function openModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "block";
+            }
+
+            // モーダルを閉じる関数
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "none";
+            }
+
+            // 投函モーダルを開く関数
+            function openSecondModal() {
+                closeModal('modal1');
+                openModal('modal2');
+            }
+            // 受け取りモーダルを開く関数
+            function openSecondModal1() {
+                closeModal('modal1');
+                openModal('modal3');
+            }
+            // 一覧モーダルを開く関数
+            function openSecondModal2() {
+                closeModal('modal1');
+                openModal('modal4');
+            }
+            // 戻るボタン
+            function openSecondModal3() {
+                closeModal('modal2');
+                openModal('modal1');
+            }
+
+            function openSecondModal4() {
+                closeModal('modal3');
+                openModal('modal1');
+            }
+
+            function openSecondModal5() {
+                closeModal('modal4');
+                openModal('modal1');
+            }
+
+            // モーダルの外側がクリックされたときに閉じる処理
+            window.onclick = function(event) {
+                var modal1 = document.getElementById('modal1');
+                var modal2 = document.getElementById('modal2');
+                if (event.target == modal1) {
+                    closeModal('modal1');
+                }
+                if (event.target == modal2) {
+                    closeModal('modal2');
+                }
+                if (event.target == modal3) {
+                    closeModal('modal3');
+                }
+                if (event.target == modal4) {
+                    closeModal('modal4');
+                }
+            }
+        </script>
+
+        <script>
+        //投函Ajax
+        function goAjax() {
+
+        //値を取得してくる
+        let status = "登録";
+        let title = document.getElementById('title').value;
+        let recommend = document.getElementById('recommend').value;
+
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: status, data2: title, data3: recommend }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiPostServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+            //モーダルを開く処理
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //受け取りAjax
+        function acceptanceAjax() {
+
+        //値を取得してくる
+        let status = "受け取り";
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: status }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiPostServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //一覧Ajax
+        function listAjax() {
+
+        //値を取得してくる
+        let status = "一覧";
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: status }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiPostServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //気になるAjax
+        function interestAjax() {
+
+        //値を取得してくる
+        let interest = document.getElementById('interest').value;
+        let reviewId = document.getElementById('reviewId').value;
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let reviewDeleteData = { data1: interest, data2: reviewId }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiInterestServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+            //成功した場合は、確認ダイアログを表示する
+            if (data === "true") {
+                togglebutton()
+            } else {
+                //失敗した場合はなにもしない
+            }
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
+
+        //反転
+        function togglebutton() {
+                var wishlistButton = document.getElementById('interestBtn');
+                if (collectionButton.value === "1") {
+                    interestBtn.innerHTML = '<span style="font-size: 95%;">気になった！</span>';
+                    interestBtn.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
+                    interest.value = "0"; // value属性を0に変更
+                } else {
+                    interestBtn.innerHTML = '気になる';
+                    interestBtn.style.backgroundColor = ''; // デフォルトに戻す
+                    interest.value = "1"; // value属性を1に変更
+                }
             }
         </script>
     </body>

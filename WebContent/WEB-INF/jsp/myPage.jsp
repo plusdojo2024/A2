@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,16 +54,16 @@
     <body id="top">
         <!-- ユーザ情報 -->
         <div class="profile">
-            <img src="img/icon_default.png" alt="アイコン" class="icon">
+            <img src="img/${loginUser.icon}" alt="アイコン" class="icon">
             <div class="userInfo">
-                <h2 class="userName">recoreco</h2>
+                <h2 class="userName">${loginUser.userName}</h2>
                 <p class="achievements">
-                    総レビュー件数　${reviewCount}件<br><!--実際に動かすときに書く値のメモ-->
-                    総いいね件数　${allGoodCount}件<!--実際に動かすときに書く値のメモ-->
+                    総レビュー件数　${loginUser.reviewCount}件<br><!--実際に動かすときに書く値のメモ-->
+                    総いいね件数　${loginUser.allGoodCount}件<!--実際に動かすときに書く値のメモ-->
                 </p>
             </div>
             <p class="introduction">
-                ${introduction}
+                ${loginUser.introduction}
             </p>
         </div>
 
@@ -96,45 +97,19 @@
                         <option value="game">ゲーム</option>
                     </select>
                     <ul>
-                        <c:forEach var="e" items="${collectionList}" class="myContentsList">
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li><li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li><li>
-                                <form name="form${e.contents_id}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contents_id}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li>
+                        <c:forEach var="e" items="${collection}">
+                        	<div  class="myContentsList">
+	                            <li>
+	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
+	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
+	                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
+	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+	                                        ${e.title}<br>
+	                                        ${e.genre}
+	                                    </a>
+	                                </form>
+	                            </li>
+	                        </div>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
@@ -166,46 +141,6 @@
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                 <h5>${e.goodCount}</h5>
                             </li>
-                            <li class="reviewBar">
-                                <div class="review">
-                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">${e.createdAt}</p>
-                                    <div class="review_button">
-                                    <button class="update-button">
-                                        <img src="img/point_delete.png">
-                                        <span class="update-text">削除</span>
-                                    </button>
-                                    <button class="update-button" id="openModalBtnE">
-                                        <img src="img/point_edit.png">
-                                        <span class="update-text">編集</span>
-                                    </button>
-                                </div>
-                                </div>
-                                <h3 class="reviewTitle"> ${e.title}</h3>
-                                <p class="reviewText">${e.review}</p>
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>${e.goodCount}</h5>
-                            </li>
-                            <li class="reviewBar">
-                                <div class="review">
-                                    <img src="img/${e.image}" alt="写真" class="reviewImage">
-                                    <p class="reviewTime">${e.createdAt}</p>
-                                    <div class="review_button">
-                                    <button class="update-button">
-                                        <img src="img/point_delete.png">
-                                        <span class="update-text">削除</span>
-                                    </button>
-                                    <button class="update-button" id="openModalBtnE">
-                                        <img src="img/point_edit.png">
-                                        <span class="update-text">編集</span>
-                                    </button>
-                                </div>
-                                </div>
-                                <h3 class="reviewTitle">${e.title}</h3>
-                                <p class="reviewText">${e.review}</p>
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>${e.goodCount}</h5>
-                            </li>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
@@ -228,30 +163,32 @@
                         <option value="game">ゲーム</option>
                     </select>
                     <ul>
-                        <c:forEach var="e" items="${collectionList}" class="myContentsList">
-                            <li>
-                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
-                                    <a href="javascript:form${e.contents_id}.submit()" class="contents">
-                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
-                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
-                                        ${e.title}<br>
-                                        ${e.genre}
-                                    </a>
-                                </form>
-                            </li>
+                        <c:forEach var="e" items="${wishList}">
+                        	<div class="myContentsList">
+	                            <li>
+	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
+	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
+	                                        <input type="hidden" name="contens_id" value="${e.contentsId}">
+	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
+	                                        ${e.title}<br>
+	                                        ${e.genre}
+	                                    </a>
+	                                </form>
+	                            </li>
+                            </div>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
                 <div id="favoriteList" class="area">
                     <ul>
-                        <c:forEach var="e" items="${favoriteList}" >
+                        <c:forEach var="e" items="${favoriteUserList}" >
                             <table>
                                 <tr>
                                     <td>
                                         <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
+                                            <form name="form${e.userIdFavorite}" action="/A2/OtherMyPageServlet" method="get">
+                                                <a href="javascript:form${e.userIdFavorite}.submit()" class="">
+                                                    <input type="hidden" name="user_id_favorite" value="${e.userIdFavorite}">
                                                     <div class="user">
                                                         <img src="img/${e.iconFavorite}" class="othericon">
                                                         <h3> ${e.userNameFavorite} さん</h3>
@@ -262,41 +199,13 @@
                                     </td>
                                     <td>
                                         <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
+                                            <form name="form${e.userIdFavorite}" action="/A2/OtherMyPageServlet" method="get">
+                                                <a href="javascript:form${e.userNameFavorite}.submit()" class="">
+                                                    <input type="hidden" name="user_id_favorite" value="${e.userNameFavorite}">
                                                     <div class="user">
                                                     <img src="img/${e.iconFavorite}" class="othericon">
                                                     <h3> ${e.userNameFavorite} さん</h3>
                                                 </div>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
-                                                    <div class="user">
-                                                        <img src="img/${e.iconFavorite}" class="othericon">
-                                                        <h3> ${e.userNameFavorite} さん</h3>
-                                                    </div>
-                                                </a>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="good_user">
-                                            <form name="form${e.user_id_favorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.user_id_favorite}.submit()" class="">
-                                                    <input type="hidden" name="user_id_favorite" value="${e.user_id_favorite}">
-                                                    <div class="user">
-                                                        <img src="img/${e.iconFavorite}" class="othericon">
-                                                        <h3> ${e.userNameFavorite}さん</h3>
-                                                    </div>
                                                 </a>
                                             </form>
                                         </div>
@@ -310,43 +219,15 @@
                     <ul>
                         <c:forEach var="e" items="${chatList}" >
                             <li>
-                                <form name="form${e.user_id}" action="/A2/ChatServlet" method="get">
-                                    <a href="javascript:form${e.user_id}.submit()" class="chat-history">
-                                        <input type="hidden" name="user_id" value="${e.user_id}">
-                                        <div class="chat">
-                                        <img src="img/${e.icon}" class="chat-icon">
-                                        <h3> ${e.userName} さん</h3>
-                                        <p class="talk">${e.talk}</p>
-                                        <span class="check-count">${e.check}</span>
-                                    </div>
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.user_id}" action="/A2/ChatServlet" method="get">
-                                    <a href="javascript:form${e.user_id}.submit()" class="chat-history">
-                                        <input type="hidden" name="user_id" value="${e.user_id}">
-                                        <div class="chat">
-                                        <img src="img/${e.icon}" class="chat-icon">
-                                        <h3> ${e.userName} さん</h3>
-                                        <p class="talk">${e.talk}</p>
-                                        <span class="check-count">${e.check}</span>
-                                    </div>
-                                    </a>
-                                </form>
-                            </li>
-                            <li>
-                                <form name="form${e.user_id}" action="/A2/ChatServlet" method="get">
-                                    <a href="javascript:form${e.user_id}.submit()" class="chat-history">
-                                        <input type="hidden" name="user_id" value="${e.user_id}">
-                                        <div class="chat">
-                                        <img src="img/${e.icon}" class="chat-icon">
-                                        <h3> ${e.userName} さん</h3>
-                                        <p class="talk">${e.talk}</p>
-                                        <span class="check-count">${e.check}</span>
-                                    </div>
-                                    </a>
-                                </form>
+                                <a href="javascript:form${e.userIdSpeaker}.submit()" class="chat-history">
+                                    <input type="hidden" name="user_id" value="${e.userIdSpeaker}">
+                                    <div class="chat">
+	                                    <img src="img/${e.userIcon}" class="chat-icon">
+	                                    <h3> ${e.userName} さん</h3>
+	                                    <p class="talk">${e.talk}</p>
+	                                    <span class="check-count">${e.check}</span>
+                                 	</div>
+                                  </a>
                             </li>
                         </c:forEach>
                     </ul>

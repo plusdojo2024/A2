@@ -52,6 +52,7 @@ public class MyPageServlet extends HttpServlet {
     	// UserのBeansに入れる
     		user.setReviewCount(reviewCount);
     		user.setAllGoodCount(allGoodCount);
+    		request.setAttribute("loginUser", user);
 
         //コレクション、ウィッシュリストの一覧を取得してリクエストスコープに入れる
             //マイコレクションDAOを生成
@@ -104,13 +105,19 @@ public class MyPageServlet extends HttpServlet {
             		//他ユーザのuserId取得
             		int otherUserId = userIdList.get(i).intValue();
             		User temp = uDao.userSelect(otherUserId);
+            		int t = temp.getUserId();
+            		System.out.println(t);
 
+            		//他ユーザのユーザID取得
+            		chat.setUserIdSpeaker(otherUserId);
             		//他ユーザのユーザ名取得
             		chat.setUserName(temp.getUserName());
             		//他ユーザのアイコン取得
             		chat.setUserIcon(temp.getIcon());
             		//他ユーザの最後のトーク履歴取得
-            		chat.setTalk(cDao.getLastTalk(userId, otherUserId));
+            		String talk = cDao.getLastTalk(userId, otherUserId);
+            		chat.setTalk(talk);
+            		System.out.println(talk);
             		//他ユーザの未読数取得
             		chat.setCheck(cDao.countUnChecked(userId, otherUserId));
 

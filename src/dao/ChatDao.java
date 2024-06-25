@@ -161,7 +161,7 @@ public class ChatDao {
 					chatSet.add(rs.getInt("user_id_speaker"));
 				}
 				if(rs.getInt("user_id_listener") != userId) {
-					chatSet.add(rs.getInt("user_id_speaker"));
+					chatSet.add(rs.getInt("user_id_listener"));
 				}
 			}
 			chatList = new ArrayList<Integer>(chatSet);
@@ -223,6 +223,7 @@ public class ChatDao {
 
             //talkに会話内容を入れる。失敗したらnullのままになる
             talk = rs.getString("talk");
+            System.out.println(talk);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

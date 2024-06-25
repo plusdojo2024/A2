@@ -92,7 +92,7 @@ public class UserDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// INSERTT文を準備する
-			String sql = "INSERT INTO user(mail, pass, user_name, icon, open_close, introduction, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO user(mail, pass, user_name, icon, open_close, introduction, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// Java側で現在のタイムスタンプを取得

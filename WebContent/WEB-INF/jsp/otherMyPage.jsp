@@ -7,6 +7,7 @@
             <title>マイページ|レコレコ</title>
             <link rel="stylesheet" href="css/OtherMyPage.css">
             <link rel="stylesheet" href="css/common.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <header>
         <nav class="nav">
@@ -188,8 +189,8 @@
                                 </div>
                                 <h3 class="reviewTitle"> ${e.title}</h3>
                                 <p class="reviewText">${e.review}</p>
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h5>${e.goodCount}</h5>
+                                <img src="img/button_good1.png" class="heart" data-post-id="${e.reviewId}" alt="ハート" onclick="toggleHeart(this)">
+                                <h5 class="goodCount">${e.goodCount}</h5>
                             </li>
                             <li class="reviewBar">
                                 <div class="review">
@@ -351,6 +352,22 @@
         }
 
 	//いいね関連
+	document.addEventListener("DOMContentLoaded", function() {
+	    const goodButtons = document.querySelectorAll(".heart");
+
+		    goodButtons.forEach(function(button) {
+		        button.addEventListener("click", function() {
+		            const goodId = this.getAttribute("data-post-id");
+		            const GoodCount = this.nextElementSibling;
+
+
+
+
+
+
+		        });
+		    });
+		});
 		function goGood(element){
 
 		//値を取得してくる

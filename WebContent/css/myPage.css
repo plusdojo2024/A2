@@ -1,200 +1,330 @@
-@charset "UTF-8";
-html {
-    font-size: 16px;
-    font-family: sans-serif;
+/* ページ全体のスタイル */
+
+li{
+  /* リストの先頭の丸をなくす */
+  list-style: none;
 }
 
-body {
-    background-color: #F1EEDC;
+
+/* マイページ上部分共通のスタイル */
+/* ユーザ情報全体 */
+.profile{
+  display: flex;
+  margin-top: 3%;
+  margin-left: 15%;
+  margin-left: 15%;
 }
 
-.nav ul {
-    background-color: #B3C8CF;
-    list-style-type: none;
-    padding: 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
+/* アイコン */
+.icon{
+  height: 200px;
+  width: 200px;
 }
 
-.nav img {
-    margin: 10px 10px 10px 0;
+/* ユーザ名と実績 */
+.userInfo{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 4%;
+  margin-right: 3%;
 }
 
-.nav a:last-child {
-    margin: 5px 100px 0 0;
+/* ユーザ名 */
+.userName{
+  font-family: sans-serif;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
-h1 {
-    color: #ffffff;
-    margin: 3px 0 0 0 ;
-    font-size: 40px;
+/* 実績 */
+.achievements{
+  font-size: 1.1rem;
 }
 
-h3 {
-    color: #ffffff;
-    background-color: #B3C8CF;
-    margin: 60px 400px 0px 400px;
-    padding: 10px 0 10px 0 ;
-    text-align: center;
+/* 自己紹介文 */
+.introduction{
+  background-color: #FFFFFF;
+  height: 150px;
+  width: 400px;
+  padding: 25px;
+
+  /* 垂直・水平方向に真ん中に表示されるようにする */
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
-.table {
-    background-color: #ffffff;
-    margin: 0px 100px 500px 400px;
-    padding: 10px 45px 50px 17px ;
+/* タブのスタイル */
+/*tabの形状*/
+#tab {
+  /* タブメニューを横に並べる */
+  display: flex;
+
+  /* margin */
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 15px;
 }
 
-.table  a {
-    margin: 0 30px 0 30px;
-    color: #696969;
-    text-decoration: none;
+
+#tab a{
+  /* 垂直・水平方向に真ん中に表示されるようにする */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 背景 */
+  background-color: #CFCFCF;
+
+  /* 角を丸く */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  /* 高さと幅 */
+  width: 283px;
+  height: 50px;
+
+  color: #545454;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-label {
-    font-size: 1.2em;
-    margin: 0 30px 0 30px;
+#tab a.selected{
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
-.required {
-    color: #ffa500;
+/* 選択されたタブのスタイル */
+
+.area {
+  border: 1px solid white;
+  /* ボーダー */
+  margin: -16px 50px 50px 50px;
+  /* マージン */
+  padding: 1em;
+  /* パディング */
+  background-color: white;
+  /* 背景色 */
+  overflow-y: scroll;
+  /* 縦スクロール */
+  height: 500px;
+  /* 高さ */
+  width: 1380px;
+  display: none;
+  /* 非表示 */
 }
 
-.login {
-    margin: 10px 50px 10px 50px;
+.area.selected {
+display: block;
+/* ブロック要素として表示 */
 }
 
-.delete-button {
-    border: 1px solid black;
-    margin: 10px 30px 10px 400px;
-    padding: 5px;
-    background-color: #ffffff;
-    display: flex; /* 複数の要素を横に並べるため */
-    align-items: center;
-    border-radius: 10px; /*四角の角を丸くする*/
+
+/* selectタブのスタイル */
+.select{
+  margin: 10px;
+  height: 30px;
+  /* 高さ */
+  width: 100px;
+  /* 幅 */
+  border: 1px solid #ccc;
+  /* ボーダー */
+  border-radius: 20px;
+  /* 角丸 */
+  text-align: center;
+  /* 中央揃え */
 }
 
-select[name=select] {
-    height: 4.5em;
-    width: 10em;
-    border: 1px solid #ccc;
-    color: #ffffff;
-    background-color: #54A3BF;
-    border-radius: 20px; /*ジャンル欄の角を丸くする*/
+
+/* コレクション、ウィッシュリストのスタイル */
+.myContentsList{
+  /* コンテンツを横並びにする */
+  display: flex;
 }
 
-input[name=search] {
-    height: 4em;
-    width: 30em;
-    margin: 8px 0 0 0;
-    border: 1px solid #ccc;
-    border-radius: 20px; /*検索欄の角を丸くする*/
+.contents{
+  /* 文字のスタイル */
+  color: #545454;
+  text-decoration: none;
+
+  /* 文字を中央に配置する */
+  display: block;
+  text-align: center;
 }
 
-input[name=id], input[name=pass], input[name=name] {
-    border: 1px solid #ccc;
-    height: 3em;
-    width: 38em;
-    margin: 10px 30px;
-    background-color: #dcdcdc;
+.contentsImage{
+  margin-left: 40px;
+  margin-right: 40px;
+  height: 150px;
+  width: 135px;
 }
 
-input[name=upload] {
-    border: 2px solid #000000;
-    margin: 0px 50px 0px 60px;
-    padding: 10px 180px 10px 30px;
-    width: 100px;
-    color: #000000;
-    background-color: #ffffff;
-    font-size: 1.1em;
-    border-radius: 10px;
+/* レビュー一覧のスタイル */
+
+.reviewBar{
+  margin: 5px 20px 5px 20px;
+  height: 244px;
+  width: 1323px;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
 }
 
-input[name=my_introduction] {
-    border: 1px solid #ccc;
-    height: 10em;
-    width: 38em;
-    margin: 10px 30px;
-    background-color: #dcdcdc;
-    border-radius: 10px; /*四角の角を丸くする*/
+.review{
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 50px;
+  display: flex;
+  align-items: center; /* 中央に配置 */
+
 }
 
-/* フッター */
-footer a{
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.reviewImage{
+  height: 200px;
+  width: 180px;
+  margin-bottom: 10px;
 }
 
-.gotop{
-    display: block;
-    margin-bottom: 30px;
-    margin-right:30px;
-	width: 20px;
-	height: 20px;
-	border-top: 3px solid #FFFFFF;
-	border-right: 3px solid #FFFFFF;
-	transform: rotate(-45deg)
+.reviewTime{
+  margin-left: 50px;
+  font-size: 0.8rem;
 }
 
-.copyright{
-	padding: 50px;
-	background-color: #B3C8CF;
-	color: #FFFFFF;
-	text-align: center;
+.review p {
+  margin-bottom: 180px;
+  margin-left: 30px;
+  margin-right: -90px;
 }
 
-/* ラジオボタンのスタイル */
-input[type="radio"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%; /* 円形のボタン */
-    border: 2px solid #696969; /* 枠線の色 */
-    outline: none;
-    cursor: pointer;
+.reviewTitle {
+  margin-bottom: 300px;
+  margin-left: 240px;
+  margin-top: -180px;
 }
 
-/* ラジオボタンが選択されたときのスタイル */
-input[type="radio"]:checked {
-    background-color: #1e90ff; /* 選択されたときの背景色 */
-    padding: 4px; /* 枠線と背景の間に空白を入れる */
+.reviewText{
+  margin-top: -280px;
+  margin-left: 240px;
+  max-width: 100%; /* レビューテキストの最大幅。デザインに合わせて調整してください。 */
+
 }
 
-/* ラジオボタンのラベルのスタイル */
-input[type="radio"] + label {
-    font-size: 1em;
-    color: #696969;
-    margin-left: 20px; /* ラベルとボタンの間隔 */
-    cursor: pointer;
+/*削除ボタン------------------------------------*/
+.review_button{
+  display: flex;
+  margin-left: 800px;
+  margin-bottom: 150px;
+  margin-top: -50px;
 }
 
-input[name="update"] {
-    border: none;
-    margin: 30px 19px 10px 19px;
-    padding: 20px 60px 20px 50px;
-    width: 255px;
-    color: #ffffff;
-    background-color: #35AFDB;
-    font-size: 1.2em;
-    border-radius: 20px; /*ログインボタンの角を丸くする*/
+.update-button {
+  display: flex;
+  border: 1px solid black;
+  padding: 8px;
+  background-color: #ffffff;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-right: 30px;
 }
 
-input[name="delete1"] {
-    border: none;
-    margin: 30px 18px 10px 18px;
-    padding: 20px 60px 20px 50px;
-    width: 255px;
-    color: #ffffff;
-    background-color: #35AFDB;
-    font-size: 1.2em;
-    border-radius: 20px; /*ログインボタンの角を丸くする*/
+.update-button img{
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+
+.update-button .update-text{
+  display: inline-block;
+}
+
+h5 {
+  margin: -153px 10px 125px 1270px;
+}
+
+/* ハートアイコン */
+.heart {
+  /* 絶対位置 */
+  width: 30px;
+  /* 幅 */
+  height: 30px;
+  /* 高さ */
+  margin: 30px 10px 120px 1230px;
+  /* 左のマージン */
+}
+
+/* お気に入りユーザ */
+.othericon {
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+}
+
+
+.good_user{
+  border: #545454;
+  margin-right:  20px;
+  margin-left: 40px;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
+  height: 120px;
+  width: 600px;
+}
+
+.good_user a{
+  text-decoration: none;
+}
+
+.user {
+  display: flex;
+  align-items: center; /* 中央に配置 */
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.user h3 {
+  color: black;
+  margin-left: 50px;
+  font-size: 1.5em;
+}
+
+
+/* チャット履歴のスタイル */
+.chat-history {
+  display: flex;
+  margin: 5px 20px 5px 20px;
+  color: #545454;
+  text-decoration: none;
+  border: #CFCFCF solid 2px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.chat-icon{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+.chat{
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.chat h3{
+  color: black;
+  margin-left: 50px;
+  font-size: 1.5em;
+}
+
+.talk {
+  margin-left: 150px;
+}
+
+.check-count {
+  border: #35afdb;
+  border-radius: 100px;
+  background-color: #35afdb;
+  color: #ffffff;
+  padding: 20px 27px;
+  margin-left: 600px;
 }

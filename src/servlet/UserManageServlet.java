@@ -54,6 +54,7 @@ public class UserManageServlet extends HttpServlet{
 		Part part = request.getPart("icon"); // getPartで取得
 		String introduction = request.getParameter("introduction");
 		String openClose = request.getParameter("first");
+		System.out.println(userName);
 
 		// open_closeは文字列として取得されるため、必要に応じて変換する
 	    int openCloseValue = Integer.parseInt(openClose);
@@ -86,6 +87,7 @@ public class UserManageServlet extends HttpServlet{
 	    	//更新または削除を行う
 	    	if(request.getParameter("update1").equals("はい")) {
 	    		boolean success = uDao.update(user);
+
 	    		if(success) {
 	    			response.sendRedirect(request.getContextPath() + "/A2/HomeServlet");
 	    		} else {

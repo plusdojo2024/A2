@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
 </header>
 <body>
         <h3>ユーザ管理</h3>
-        <form id="user_management" method="post" action="/A2/UserManageServlet">
+        <form id="user_management" method="post" action="/A2/UserManageServlet" enctype="multipart/form-data">
             <table class="table">
                 <tr>
                     <td>
@@ -85,7 +86,7 @@
                         <label class="photo">アイコン画像の選択</label><br>
                         <div class="icon">
                         <img src=img/${loginUser.icon}  id="preview" class="login" alt="アイコン" width="180px" height="200px">
-                        <input type="file" name="icon" accept="image/*" onchange="previewImage(event)"><br>
+                        <input type="file" name="icon" accept="image/*" onchange="previewImage(event)" src="img/${loginUser.icon}"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                         	<img src="/A2/img/point_delete.png" class="delete-icon" alt="ゴミ箱"> <span class="delete-text">削除</span>
@@ -101,8 +102,8 @@
                  <tr>
                     <td>
                         <label class="open">アカウント公開設定</label><br>
-                        <label><input type="radio" name="first" id="yes" value="1" <c:if test='${loginUser.openClose.equals('1')}'>checked</c:if>>公開</label>
-                        <label><input type="radio" name="first" id="no" value="0" <c:if test='${loginUser.openClose.equals('0')}'>checked</c:if>>非公開<br></label>
+                        <label><input type="radio" name="first" id="yes" value="1" <c:if test='${loginUser.openClose == 1}'>checked</c:if>>公開</label>
+                        <label><input type="radio" name="first" id="no" value="0" <c:if test='${loginUser.openClose == 0}'>checked</c:if>>非公開<br></label>
                         <a >アカウントを非公開にすると、他のユーザからチャット機能が制限され、</a><br>
                         <a >あなたの書いたレビューは他ユーザから閲覧されません。</a>
                     </td>
@@ -120,7 +121,7 @@
 				<h4>【確認】</h4>
 				<p id="confirmMessage"></p>
                 <div class="aa">
-				<input type="submit" id="yes" onclick="hideConfirm()" class="button1" value="はい">
+				<input type="submit" id="yes" onclick="hideConfirm()" class="button1" name="update1" value="はい">
 				<button  type="button" id="no" onclick="hideConfirm()" class="button1">いいえ</button>
 			</div>
             </div>
@@ -219,6 +220,7 @@
 			        } else {
 			            var confirmMessage = '更新してもよろしいですか？';
 			            showConfirm(confirmMessage);
+			            event.preventDefault(); // フォームのデフォルトの送信を防ぐ
 			        }
 
 					// deleteボタンの場合の処理

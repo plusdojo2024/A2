@@ -14,7 +14,7 @@ import javax.servlet.http.Part;
 import dao.UserDao;
 import model.User;
 
-@MultipartConfig(location = "C:\\pleiades\\workspace\\Nyample\\WebContent\\images") // アップロードファイルの一時的な保存先
+@MultipartConfig(location = "C:\\pleiades\\workspace\\A2\\WebContent\\img") // アップロードファイルの一時的な保存先
 @WebServlet("/UserRegistServlet")
 
 public class UserRegistServlet extends HttpServlet{
@@ -74,7 +74,7 @@ public class UserRegistServlet extends HttpServlet{
 	    	//登録が成功した場合
 		    boolean success = uDao.userRegist(user);
 	      if(success) {
-	    	response.sendRedirect(request.getContextPath() + "/LoginServlet");
+	    	response.sendRedirect(request.getContextPath() + "/A2/LoginServlet");
 	    } else {
 	    	// 新規ユーザ登録ページにフォワードする
 	    	String errorMessage = "登録に失敗しました。";

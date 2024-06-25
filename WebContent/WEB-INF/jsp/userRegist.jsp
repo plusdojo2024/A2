@@ -20,12 +20,12 @@
 </header>
 <body>
 <h3>新規ユーザ登録</h3>
-<form action="/A2/userRegistServlet" id="userRegist_form" method=post>
+<form action="/A2/UserRegistServlet" id="userRegist_form" method="post" enctype="multipart/form-data">
         <table class="table">
             <tr>
                 <td>
                     <label class="id">ユーザID（メールアドレス）<span class="required">＊必須</span></label><br>
-                    <input type="email" name="id" id="id">
+                    <input type="email" name="mail" id="id">
                 </td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@
              <tr>
                 <td>
                     <label class="my_introduction">自己紹介</label><br>
-                    <input type="text" name="my_introduction" placeholder="200文字以内">
+                    <input type="text" name="introduction" placeholder="200文字以内">
                 </td>
              </tr>
              <tr>
@@ -82,8 +82,6 @@
                 </td>
              </tr>
         </table>
-        </form>
-
         <!-- アラートボックス -->
 	    <div class="overlay"></div>
 		<div class="alertBox">
@@ -92,7 +90,7 @@
 			<button onclick="hideAlert()" class="submit">閉じる</button>
 		</div>
 		<!-- アラートボックスここまで -->
-
+        </form>
         <footer>
             <a href=#top><span class="gotop"></span></a>
             <p class="copyright">&copy; WAC</p>
@@ -141,12 +139,11 @@
     let passConfirmInput = document.getElementById('passConfirm');
     let nameInput = document.getElementById('name');
     let openInputs = document.getElementsByName('first');
-    let introductionInput = document.getElementsByName('my_introduction')[0];
+    let introductionInput = document.getElementsByName('introduction')[0];
 
 
     // 登録ボタン押したときの処理
     formObj.onsubmit = function(event) {
-        event.preventDefault(); // フォームのデフォルトの送信を防ぐ
 
         // 入力値の取得
         let id = idInput.value.trim();

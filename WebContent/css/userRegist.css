@@ -71,7 +71,7 @@ label {
     gap: 8px;
 }
 
-input[name=id], input[name=pass], input[name=name] {
+input[name=mail], input[name=pass], input[name=name] {
     border: 1px solid #ccc;
     height: 3em;
     width: 38em;
@@ -90,7 +90,7 @@ input[name=upload] {
     border-radius: 10px;
 }
 
-input[name=my_introduction] {
+input[name=introduction] {
     border: 1px solid #ccc;
     height: 10em;
     width: 38em;

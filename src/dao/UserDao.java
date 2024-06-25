@@ -206,7 +206,7 @@ public class UserDao {
 
 
 	// 引数userIDで指定されたユーザー情報を削除し、成功したらtrueを返す
-	public boolean userDelete(int userID) {
+	public boolean userDelete(int userId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -222,7 +222,7 @@ public class UserDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, userID);
+			pStmt.setInt(1, userId);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

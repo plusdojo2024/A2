@@ -173,6 +173,7 @@ public class GoodDao {
 					+ "INNER JOIN good AS g ON r.review_id = g.review_id "
 					+ "GROUP BY r.user_id_writer "
 					+ "ORDER BY count(r.user_id_writer) ";
+			System.out.println(sql);
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
@@ -181,9 +182,9 @@ public class GoodDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				User record = new User();
-				record.setUserId(rs.getInt("r.user_id_writer"));
-				record.setUserName(rs.getString("u.user_name"));
-				record.setIcon(rs.getString("u.icon"));
+				record.setUserId(rs.getInt("user_id_writer"));
+				record.setUserName(rs.getString("user_name"));
+				record.setIcon(rs.getString("icon"));
 				record.setAllGoodCount(rs.getInt("count(r.user_id_writer)"));
 
 				rankingList.add(record);

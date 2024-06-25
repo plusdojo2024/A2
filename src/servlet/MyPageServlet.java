@@ -103,10 +103,12 @@ public class MyPageServlet extends HttpServlet {
 
             		//他ユーザのuserId取得
             		int otherUserId = userIdList.get(i).intValue();
+            		User temp = uDao.userSelect(otherUserId);
+
             		//他ユーザのユーザ名取得
-            		chat.setUserName(uDao.userSelect(otherUserId).getUserName());
+            		chat.setUserName(temp.getUserName());
             		//他ユーザのアイコン取得
-            		chat.setUserIcon(uDao.userSelect(otherUserId).getIcon());
+            		chat.setUserIcon(temp.getIcon());
             		//他ユーザの最後のトーク履歴取得
             		chat.setTalk(cDao.getLastTalk(userId, otherUserId));
             		//他ユーザの未読数取得

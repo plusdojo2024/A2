@@ -142,7 +142,7 @@ public class FavoriteUserDao {
 					FavoriteUser record = new FavoriteUser();
 
 					record.setUserId(rs.getInt("user_id"));
-					record.setUserIdFavorite(rs.getInt("favorite_user"));
+					record.setUserIdFavorite(rs.getInt("user_id_favorite"));
 					record.setUserNameFavorite(rs.getString("user_name"));
 					record.setIconFavorite(rs.getString("icon"));
 

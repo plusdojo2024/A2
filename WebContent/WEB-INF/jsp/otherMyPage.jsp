@@ -280,7 +280,7 @@
         function favorite_user() {
             var favoriteButton = document.getElementById('favorite_button');
             if (favoriteButton.innerText.includes('お気に入りユーザに追加')) {
-            	favoriteButton.innerHTML = '<input type="hidden" id="fBtnValue" value="0"><img src="img/point_favorite.png" alt="削除の画像"> お気に入りユーザを解除';
+            	favoriteButton.innerHTML = '<input type="hidden" id="fBtnValue" value="0"><img src="img/point_favorite.png"> お気に入りユーザを解除';
             	favoriteButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
             } else {
             	favoriteButton.innerHTML = '<input type="hidden" id="fBtnValue" value="1"><img src="img/point_favorite.png" alt="追加の画像"> お気に入りユーザに追加';

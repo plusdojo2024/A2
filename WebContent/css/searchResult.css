@@ -48,7 +48,6 @@ h2 {
 }
 
 .result-item {
-    border: 1px solid black;
     border-radius: 10px; /*四角の角を丸くする*/
     background-color: #FFFFFF;
     width:80%;

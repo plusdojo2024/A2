@@ -103,13 +103,13 @@ public class ContentsDao {
 					ResultSet rs = pStmt.executeQuery();
 					//表の一行目が入っていたら
 					if (rs.next()) {
-						contents.setContentsId(rs.getInt("contets_id"));
-						contents.setContentsId(rs.getInt("title"));
-						contents.setContentsId(rs.getInt("ruby"));
-						contents.setContentsId(rs.getInt("genre"));
-						contents.setContentsId(rs.getInt("creator"));
-						contents.setContentsId(rs.getInt("year"));
-						contents.setContentsId(rs.getInt("image"));
+						contents.setContentsId(rs.getInt("contents_id"));
+						contents.setTitle(rs.getString("title"));
+						contents.setRuby(rs.getString("ruby"));
+						contents.setGenre(rs.getString("genre"));
+						contents.setCreator(rs.getString("creator"));
+						contents.setYear(rs.getString("year"));
+						contents.setImage(rs.getString("image"));
 					} else {
 						contents = null;
 					}

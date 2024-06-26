@@ -277,7 +277,9 @@
 			            <div class="input-area">
 			                <button class="button0" id="button0">
 			                    <img src="img/point_plus_chat.png" id="point" class="point" alt="point">
-			                    <form enctype="multipart/form-data"><input type="file" name="upload" id="file-button" accept="image/*" onchange="previewImage(event)"></form>
+			                    <form enctype="multipart/form-data">
+			                    	<!-- <input type="file" name="upload" id="file-button" accept="image/*"> -->
+			                    </form>
 			                </button>
 			              	<input type="text" id="message" placeholder="メッセージを入力(500字以内)" onkeydown="if(event.key === 'Enter') sendMessage()">
 			              	<button  class="chat-submit" onclick="sendMessage()">送信</button>
@@ -789,7 +791,7 @@
         var img = document.getElementById("file-button");
 
       //画像が選択されていた場合、messageには画像のファイルパスが入る
-        if(img.value){
+       /*  if(img.value){ */
         	//非同期で画像ファイルアップロードを行う
 	        	//画像ファイルを取得し、FormDataに入れる
 	        	/* var fd = new FormData();

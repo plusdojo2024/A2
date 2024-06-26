@@ -256,7 +256,6 @@
     function openSecondModal() {
         closeModal('content-regist-modal1');
         openModal('content-regist-modal2');
-        registerAjax();
     }
 
     // モーダルの外側がクリックされたときに閉じる処理
@@ -342,10 +341,10 @@
 
 
         //画像が選択されていた場合、別のAjaxで送る
-          if(image.value){
+          /* if(image.value){ */
           	//非同期で画像ファイルアップロードを行う
   	        	//画像ファイルを取得し、FormDataに入れる
-  	        	var fd = new FormData();
+  	        	/* var fd = new FormData();
   	        	fd.append("img", image.files[0]);
 
   	        	$.ajaxSetup({scriptCharset:'utf-8'});
@@ -369,10 +368,10 @@
   	              .fail(function() {
 
   	              });
-    		}
+    		} */
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-        let postData = { data1: title, data2: ruby, data3: imageName, data4: genre, data5: year, data6: creater }
+        let postData = { data1: title, data2: ruby, data3: imageName, data4: genre, data5: year, data6: creater}
 
         //非同期通信始めるよ
         $.ajaxSetup({ scriptCharset: 'utf-8' });
@@ -395,7 +394,7 @@
       		  textForm.value = '';
       		var textForm = document.getElementById("content-title-ruby");
       		  textForm.value = '';
-      		var textForm = document.getElementById("preview");
+      		var textForm = document.getElementById("image");
     		  textForm.value = '';
     		var textForm = document.getElementById("detail-genre-select");
       		  textForm.value = '';

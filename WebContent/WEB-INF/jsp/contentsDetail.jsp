@@ -401,7 +401,7 @@
 
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-        let postData = { data1: status, data2: title, data3: recommend }
+        let postData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviwId }
 
         //非同期通信始めるよ
         $.ajaxSetup({ scriptCharset: 'utf-8' });

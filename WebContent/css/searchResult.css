@@ -192,8 +192,8 @@ a {
 .content-regist-modal input[name=content-title],
 .content-regist-modal input[name=content-title-ruby]{
     border: 1px solid #ccc;
-    height: 3em;
-    width: 100%;
+    height: 1.5em;
+    width: 90%;
     margin: 10px 0 10px 30px;
     background-color: #dcdcdc;
     padding: 20px;
@@ -205,11 +205,11 @@ a {
 
 .content-regist-modal input[name=upload] {
     border: 1px solid #545454;
-    font-size: 0.8em;
-    margin: 30px 5px 0px 5px;
-    padding: 10px 240px 10px 10px;
-    width: 190px;
-    height: 50px;
+    font-size: 1em;
+    margin: 40px 5px 10px 5px;
+    padding: 5px 100px 0px 10px;
+    width: 150px;
+    height: 40px;
     color: #545454;
     background-color: #ffffff;
     border-radius: 10px;
@@ -238,12 +238,21 @@ a {
     left: 100px;
 }
 
-.content-regist-modal input[name=detail-creator-input] ,
 .content-regist-modal select{
-    width: 160px;
+    width: 200px;
     height: 38px;
     border: 1px solid #dcdcdc;
     padding: 7px;
+    position: absolute;
+    left: 780px;
+    margin: -15px 0 0 0;
+}
+
+.content-regist-modal input[name=detail-creator-input]{
+	width: 193px;
+    height: 32px;
+    border: 1px solid #dcdcdc;
+    padding: 3px;
     position: absolute;
     left: 780px;
     margin: -15px 0 0 0;

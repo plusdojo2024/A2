@@ -174,7 +174,8 @@
 	                <p class="receive-recommend" id="r-recommend"></p><br>
 	            </div>
 	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal4()">
-	            <button class="interestBtn1" style="background-color: #ccc;" onclick="interestAjax(element)">気になる！</button>
+	            <button class="interestBtn1" id="receive-interestBtn" onclick="interestAjax(this)">気になる！</button>
+	            <input type=hidden id="receive-interest">
 	        </div>
 	    </div>
 
@@ -194,15 +195,11 @@
 	            </p>
 	            <div id="tabbody">
 	                <div id="tabpage1" class="area selected">
-	                	<div id="post-container">
-	                    	<div class="contents" id="p-contents"></div>
-	                    </div>
+	                	<div id="post-container"></div>
 	                </div>
 
 	                <div id="tabpage2" class="area ">
-	                    <div id="receive-container">
-	                    	<div class="contents" id="p-contents"></div>
-	                    </div>
+	                    <div id="receive-container"></div>
 	                </div>
 
 
@@ -385,8 +382,10 @@
 	        }).done(function (data) {
 	        	var title = data["title"];
 	        	var recommend = data["recommend"];
+	        	var postId = data["postId"];
 	        		document.getElementById('r-title').innerHTML = title;
 	        		document.getElementById('r-recommend').innerHTML = recommend;
+	        		document.getElementById('receive-interest').value = postId;
 	        })
 	            //非同期通信が失敗したときの処理
 	            .fail(function () {
@@ -425,17 +424,17 @@
         	var receiveList = data["receiveList"];
         	postList.forEach(function(value){
 	        		if(value.interest==='1'){
-	        			document.getElementById('post-container').innerHTML = '<div class="contents" id="p-contents"><h2 class="title">'+ value.title +'</h2><p class="maintext">'+ value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
+	        			document.getElementById('post-container').innerHTML += '<div class="contents" id="p-contents"><h2 class="title">'+ value.title +'</h2><p class="maintext">'+ value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
 	        		} else{
-	        			document.getElementById('post-container').innerHTML = '<div class="contents" id="p-contents"><h2 class="title">'+ value.title + '</h2><p class="maintext">' + value.recommend + '</p></div>';
+	        			document.getElementById('post-container').innerHTML += '<div class="contents" id="p-contents"><h2 class="title">'+ value.title + '</h2><p class="maintext">' + value.recommend + '</p></div>';
 	        		}
 
         	});
         	receiveList.forEach(function(value){
         		if(value.myInterest==='1'){
-        			document.getElementById('receive-container').innerHTML = '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">'+value.recommend +'</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
+        			document.getElementById('receive-container').innerHTML += '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">'+value.recommend +'</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
         		} else{
-        			document.getElementById('receive-container').innerHTML = '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">' + value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #ccc;" onclick="interestAjax(this)">気になる！</button><input type=hidden value="' + value.postId + '"></div>';
+        			document.getElementById('receive-container').innerHTML += '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">' + value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #ccc;" onclick="interestAjax(this)">気になる！</button><input type=hidden value="' + value.postId + '"></div>';
         		}
         	});
         })
@@ -444,7 +443,6 @@
                 //失敗した場合はなにもしない
             });
         }
-
 
 
         //気になるAjax

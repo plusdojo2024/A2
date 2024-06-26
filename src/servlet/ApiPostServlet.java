@@ -96,7 +96,7 @@ public class ApiPostServlet extends HttpServlet {
 						//postDAOからオススメを全て取ってくる
 						List<Post> postList = pDao.selectAllPost();
 						Post postBeans = new Post();
-						Map<String, String> map = new HashMap<>();
+						Map<String, Object> map = new HashMap<>();
 
 						int postId;
 						//最大を調べる
@@ -118,6 +118,7 @@ public class ApiPostServlet extends HttpServlet {
 
 				        	map.put("title", rTitle);
 				        	map.put("recommend", rRecommend);
+				        	map.put("postId", postId);
 
 							//既に受け取っているかのチェック
 							//受け取ったことがあれば再度処理を繰り返す、受け取っていなければbreak

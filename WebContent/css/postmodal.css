@@ -308,7 +308,8 @@ a[href="#tabpage2"] {
   margin: 10px 20px 10px 20px;
   padding: 10px 20px 10px 20px;
   width: 230px;
-  color: #545454;
+  color: #FFFFFF;
+  background-color: #ccc;
   font-size: 1.2em;
   font-weight: bold; /* 太くする */
   border-radius: 10px; /*ボタンの角を丸くする*/

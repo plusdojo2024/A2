@@ -184,8 +184,8 @@
                 <tr>
                     <td>
                         <div class="review-img">
-                            <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
-                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                            <img src="img/img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                        	<input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
@@ -388,20 +388,20 @@
         }
 
 
-      	//登録Ajax
+      	//レビュー登録Ajax
         function goRegisterAjax() {
 
         //値を取得してくる
         let status = "登録";
         let contentsId = document.getElementById('contentsId').value;
-        let title = document.getElementById('title').value;
-        let review = document.getElementById('review').value;
-        let reviewId = document.getElementById('reviwId').value;
+        let title = document.getElementById('review-title').value;
+        let review = document.getElementById('review-detail').value;
+        let reviewId = 0;
 
 
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-        let postData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviwId }
+        let postData = { data1: status, data2: contentsId, data3: title, data4: review, data5: reviewId}
 
         //非同期通信始めるよ
         $.ajaxSetup({ scriptCharset: 'utf-8' });
@@ -420,7 +420,10 @@
             timeStamp: new Date().getTime()
             //非同期通信が成功したときの処理
         }).done(function (data) {
-
+        	var textForm = document.getElementById("review-title");
+    		  textForm.value = '';
+    		var textForm = document.getElementById("review-detail");
+    		  textForm.value = '';
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -525,35 +528,34 @@
 
 
     //画像プレビュー------------------------------------------------------
-    // ファイル選択時に呼び出される関数
+    / ファイル選択時に呼び出される関数
     function previewImage(event) {
-        // 選択されたファイルを取得
-        var selectedFile = event.target.files[0];
-        // ファイルが選択されている場合
-        if (selectedFile) {
-            // FileReaderオブジェクトを作成
-            var reader = new FileReader();
-            // ファイルの読み込みが完了した時の処理を定義
-            reader.onload = function(event) {
-                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
-                document.getElementById('preview').src = event.target.result;
-            };
-            // ファイルの読み込みを実行
-            reader.readAsDataURL(selectedFile);
-        } else {
-            // ファイルが選択されていない場合は元のアイコンを表示
-            document.getElementById('preview').src = "img/icon_default.png";
-        }
+         // 選択されたファイルを取得
+         var selectedFile = event.target.files[0];
+         // ファイルが選択されている場合
+         if (selectedFile) {
+             // FileReaderオブジェクトを作成
+             var reader = new FileReader();
+             // ファイルの読み込みが完了した時の処理を定義
+             reader.onload = function(event) {
+                 // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                 document.getElementById('preview').src = event.target.result;
+             };
+             // ファイルの読み込みを実行
+             reader.readAsDataURL(selectedFile);
+         } else {
+             // ファイルが選択されていない場合は元のアイコンを表示
+             document.getElementById('preview').src = "img/icon_default.png";
+         }
     }
-
     // 削除ボタンをクリックしたときに呼び出される関数
-    function deleteItem(event) {
+    function deleteItem() {
         // 元のアイコン画像のパスを設定
         document.getElementById('preview').src = "img/icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
-         // ページの再読み込みを防ぐ
-         event.preventDefault();
+        // ページの再読み込みを防ぐ
+        event.preventDefault();
     }
 
     // 文字数制限を設定する関数
@@ -794,7 +796,7 @@
 	        	$.ajaxSetup({scriptCharset:'utf-8'});
 	            $.ajax({
 	                //どのサーブレットに送るか
-	                url: '/socketSample/ApiFileUploadServlet',
+	                url: '/A2/ApiFileUploadServlet',
 	                //どのメソッドを使用するか
 	                type:"POST",
 	                //受け取るデータのタイプ

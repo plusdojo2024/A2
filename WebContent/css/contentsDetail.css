@@ -464,7 +464,7 @@ li{
 }
 
 
-/* チャットのスタイル */
+/* チャットモーダルのスタイル */
 /* モーダルのスタイル */
 .modal {
   display: none;
@@ -652,14 +652,20 @@ li{
 
 .chat-icon{
   margin-bottom: 12px;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
+  background:transparent;
 }
 
 .chat-name{
   display: block;
-  margin: 5px 5px 5px 10px;
+  margin: 10px 5px 5px 30px;
   font-size: 1.3rem;
   font-weight: bold;
 }
+
+.chat-icon-button{
+	background:transparent;
+}
+

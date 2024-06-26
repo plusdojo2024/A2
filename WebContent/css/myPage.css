@@ -141,6 +141,7 @@ li{
   .myContentsList{
     /* コンテンツを横並びにする */
     display: flex;
+    flex-wrap: wrap;
   }
 
   .contents{

@@ -184,8 +184,8 @@
                 <tr>
                     <td>
                         <div class="review-img">
-                            <img src="img/img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
-                        	<input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                            <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
@@ -528,7 +528,7 @@
 
 
     //画像プレビュー------------------------------------------------------
-    / ファイル選択時に呼び出される関数
+    // ファイル選択時に呼び出される関数
     function previewImage(event) {
          // 選択されたファイルを取得
          var selectedFile = event.target.files[0];
@@ -790,7 +790,7 @@
         if(img.value){
         	//非同期で画像ファイルアップロードを行う
 	        	//画像ファイルを取得し、FormDataに入れる
-	        	var fd = new FormData();
+	        	/* var fd = new FormData();
 	        	fd.append("img", img.files[0]);
 
 	        	$.ajaxSetup({scriptCharset:'utf-8'});
@@ -811,7 +811,7 @@
 	              })
 	               //非同期通信が失敗したときの処理
 	              .fail(function() {
-	              });
+	              }); */
 
         	//ファイル名の書式を整え、messageに入れる
         	var name = img.value.replace("C:\\fakepath\\", "");

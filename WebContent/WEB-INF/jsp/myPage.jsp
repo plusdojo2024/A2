@@ -97,9 +97,8 @@
                         <option value="sonota2">その他（書籍）</option>
                         <option value="game">ゲーム</option>
                     </select>
-                    <ul>
+                    <ul class="myContentsList">
                         <c:forEach var="e" items="${collection}">
-                        	<div  class="myContentsList">
 	                            <li>
 	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
 	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
@@ -110,7 +109,6 @@
 	                                    </a>
 	                                </form>
 	                            </li>
-	                        </div>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>
@@ -163,9 +161,8 @@
                         <option value="sonota2">その他（書籍）</option>
                         <option value="game">ゲーム</option>
                     </select>
-                    <ul>
+                    <ul class="myContentsList">
                         <c:forEach var="e" items="${wishList}">
-                        	<div class="myContentsList">
 	                            <li>
 	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
 	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
@@ -176,7 +173,6 @@
 	                                    </a>
 	                                </form>
 	                            </li>
-                            </div>
                         </c:forEach>
                     </ul>
                 <!--/area--></div>

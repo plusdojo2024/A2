@@ -88,7 +88,7 @@
                     <td>
                         <div class="review-img">
                             <img src="img/default_book.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
-                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)" id="image"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
@@ -333,15 +333,47 @@
         //値を取得してくる
         let title = document.getElementById('content-title').value;
         let ruby = document.getElementById('content-title-ruby').value;
-        let image = document.getElementById('preview').value;
+        let image = document.getElementById('image');
         let genre = document.getElementById('detail-genre-select').value;
         let year = document.getElementById('detail-year-select').value;
         let creater = document.getElementById('detail-creator-input').value;
 
+        let imageName = image.value.replace("C:\\fakepath\\", "");
 
+
+        //画像が選択されていた場合、別のAjaxで送る
+          if(image.value){
+          	//非同期で画像ファイルアップロードを行う
+  	        	//画像ファイルを取得し、FormDataに入れる
+  	        	var fd = new FormData();
+  	        	fd.append("img", image.files[0]);
+
+  	        	$.ajaxSetup({scriptCharset:'utf-8'});
+  	            $.ajax({
+  	                //どのサーブレットに送るか
+  	                url: '/A2/ApiFileUploadServlet',
+  	                //どのメソッドを使用するか
+  	                type:"POST",
+  	                //受け取るデータのタイプ
+  	                dataType:"json",
+  	                //何をサーブレットに飛ばすか（変数を記述）
+  	                data: fd,
+  	                //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+  	                processDate:false,
+  	                timeStamp: new Date().getTime()
+  	               //非同期通信が成功したときの処理
+  	            }).done(function(data) {
+  	            	alert("success");
+  	            }
+  	              })
+  	               //非同期通信が失敗したときの処理
+  	              .fail(function() {
+  	            	alert("error");
+  	              });
+    		}
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-        let postData = { data1: title, data2: ruby, data3: image, data4: genre, data5: year, data6: creater }
+        let postData = { data1: title, data2: ruby, data3: imageName, data4: genre, data5: year, data6: creater }
 
         //非同期通信始めるよ
         $.ajaxSetup({ scriptCharset: 'utf-8' });
@@ -374,9 +406,8 @@
       		  textForm.value = '';
 
       		openSecondModal();
-        })
-            //非同期通信が失敗したときの処理
-            .fail(function () {
+      	//非同期通信が失敗したときの処理
+        }).fail(function () {
                 //失敗した場合はなにもしない
             });
         }

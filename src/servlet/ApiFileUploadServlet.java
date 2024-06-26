@@ -30,6 +30,14 @@ public class ApiFileUploadServlet extends HttpServlet {
 			// 送信されたデータの取得
 				Part part = request.getPart("img"); // getPartで取得
 
+				String img = null;
+
+			    img = this.getFileName(part);
+			    System.out.println(img+"：アイコンだよ");
+			    if(!img.equals("")) {
+				    part.write(img);
+			    }
+
 			String image = this.getFileName(part);
 			// サーバの指定のファイルパスへファイルを保存
 	        //場所はクラス名↑の上に指定してある
@@ -54,15 +62,15 @@ public class ApiFileUploadServlet extends HttpServlet {
 
 	//ファイルの名前を取得してくる
 	private String getFileName(Part part) {
-	       String name = null;
-	       for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
-	           if (dispotion.trim().startsWith("filename")) {
-	               name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
-	               name = name.substring(name.lastIndexOf("\\") + 1);
-	               break;
-	           }
-	       }
-			return name;
-		}
+		String name = null;
+		for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+			if (dispotion.trim().startsWith("filename")) {
+				name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+				name = name.substring(name.lastIndexOf("\\") + 1);
+				break;
+			}
+		}		// TODO 自動生成されたメソッド・スタブ
+				return name;
+	}
 
 }

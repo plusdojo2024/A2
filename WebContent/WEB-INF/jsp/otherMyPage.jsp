@@ -555,7 +555,7 @@
        	        	$.ajaxSetup({scriptCharset:'utf-8'});
        	            $.ajax({
        	                //どのサーブレットに送るか
-       	                url: '/socketSample/ApiFileUploadServlet',
+       	                url: '/A2/ApiFileUploadServlet',
        	                //どのメソッドを使用するか
        	                type:"POST",
        	                //受け取るデータのタイプ

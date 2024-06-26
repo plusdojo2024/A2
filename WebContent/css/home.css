@@ -14,7 +14,6 @@ main {
     margin-top: 30px;
     padding: 20px;
     margin-bottom: 20px;
-
 }
 
 .ranking h2 {
@@ -66,7 +65,7 @@ h5 {
     border: #545454;
     border-radius: 20px; /*検索欄の角を丸くする*/
     display: flex;
-    padding: 10px 80px 10px 80px;
+    padding: 10px 50px 10px 50px;
     background-color: #ffffff;
     align-items: center;
     margin: 5px 0;
@@ -84,7 +83,7 @@ h5 {
     border: #545454;
     border-radius: 20px; /*検索欄の角を丸くする*/
     display: flex;
-    padding: 20px 90px 20px 90px;
+    padding: 20px 70px 20px 70px;
     background-color: #ffffff;
     align-items: center; /* 中央に配置 */
     margin: 5px 0;
@@ -99,7 +98,7 @@ h5 {
 .timeline1 {
     width: 90px;
     height: 100px;
-    margin: 0 10px 0 -90px;
+    margin: 0 10px 0 -60px;
 }
 
 .timeline p {

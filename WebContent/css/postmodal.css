@@ -7,7 +7,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 150%;
   overflow: auto;
   text-align: center;
   background-color: rgb(0,0,0);
@@ -34,7 +34,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
-  height: 80%;
+  height: 50%;
   border-radius: 13px;
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
   margin-top: 50px;
@@ -72,6 +72,12 @@
 /* ポスト */
 .ppost{
   text-align: center;
+  font-family: "Yu Gothic", "游ゴシック体", YuGothic, "游ゴシック Medium", "メイリオ", Meiryo, sans-serif; /* ゴシック体のフォントを優先的に指定 */
+  font-size: 2.5em;
+  font-weight: bold; /* 太くする */
+  margin-top: 10px;
+  margin-left: 10px;
+
 }
 .modalhed{
   text-align: center;
@@ -80,24 +86,28 @@
 
 input[name=submit] {
   border: none;
-  margin: 15px 30px 10px 30px;
-  padding: 20px 30px 20px 50px;
-  width: 500px;
+  margin: 15px 30px 20px 30px;
+  padding: 40px 30px 40px 30px;
+  width: 400px;
   color: #ffffff;
   background-color: #35AFDB;
-  font-size: 1.2em;
+  font-size: 1.5em;
   border-radius: 20px; /*ボタンの角を丸くする*/
+  font-weight: bold; /* 太くする */
+  font-family: "Yu Gothic", "游ゴシック体", YuGothic, "游ゴシック Medium", "メイリオ", Meiryo, sans-serif; /* ゴシック体のフォントを優先的に指定 */
 }
 
 input[name=submit3] {
   border: none;
   margin: 15px 30px 10px 30px;
-  padding: 20px 30px 20px 50px;
-  width: 500px;
-  color: #ffffff;
+  padding: 40px 30px 40px 30px;
+  width: 400px;
+  color: #545454;
   background-color: #CFCFCF;
-  font-size: 1.2em;
+  font-size: 1.5em;
   border-radius: 20px; /*ボタンの角を丸くする*/
+  font-weight: bold; /* 太くする */
+  font-family: "Yu Gothic", "游ゴシック体", YuGothic, "游ゴシック Medium", "メイリオ", Meiryo, sans-serif; /* ゴシック体のフォントを優先的に指定 */
 }
 
 input[name=submit1] {
@@ -108,7 +118,20 @@ input[name=submit1] {
   color: #ffffff;
   background-color: #35AFDB;
   font-size: 1.2em;
-  border-radius: 20px; /*ボタンの角を丸くする*/
+  font-weight: bold; /* 太くする */
+  border-radius: 10px; /*ボタンの角を丸くする*/
+}
+
+input[name=submit5] {
+  border: none;
+  margin: 10px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
+  width: 230px;
+  color: #545454;
+  background-color: #CFCFCF;
+  font-size: 1.2em;
+  font-weight: bold; /* 太くする */
+  border-radius: 10px; /*ボタンの角を丸くする*/
 }
 
 input[name=interestBtn1] {
@@ -119,7 +142,7 @@ input[name=interestBtn1] {
   color: #ffffff;
   background-color: #35AFDB;
   font-size: 1.2em;
-  border-radius: 20px; /*ボタンの角を丸くする*/
+  border-radius: 10px; /*ボタンの角を丸くする*/
 }
 
 input[name=interestBtn2] {
@@ -134,22 +157,23 @@ input[name=interestBtn2] {
   border-radius: 20px; /*ボタンの角を丸くする*/
   width: 120px;
   height: 40px;
-  margin: 0px -280px 5px 0px;
+  margin: 0px -230px 5px 0px;
 }
 
 /* テキスト入力欄 */
 input[name=title] {
   border: 1px solid #ccc;
-  height: 3em;
+  height: 5em;
   width: 38em;
   margin: 3px 5px;
   background-color: #dcdcdc;
   /*border-radius: 10px; /*四角の角を丸くする*/
+
 }
 
 .textbox{
   border: 1px solid #ccc;
-  height: 13em;
+  height: 20em;
   width: 38em;
   margin: 3px 5px;
   background-color: #dcdcdc;
@@ -182,7 +206,7 @@ margin: 3px 5px;
   padding: 0.5em 1px;
   margin: 5px 40px;
   font-weight: bold;
-  border: solid 3px #000000;
+  border: solid 3px #545454;
 }
 .box1 p {
   margin: 0;
@@ -193,7 +217,7 @@ margin: 3px 5px;
   padding: 0.5em 1px;
   margin: 5px 40px;
   font-weight: bold;
-  border: solid 3px #000000;
+  border: solid 3px #545454;
 }
 .box1 p {
   margin: 0;
@@ -247,7 +271,7 @@ margin: 3px 5px;
   /* 枠線：黒色の実線を1pxの太さで引く */
   margin: -16px 50px 0px 50px;
   /* 上側にあるタブと1pxだけ重ねるために「-1px」を指定 */
-  padding: 1em;
+  padding: 5px;
   /* 内側の余白量 */
   background-color: white;
   /* 背景色：白色 */
@@ -256,9 +280,10 @@ margin: 3px 5px;
 
   /* 重なり順序を「最も背面」にするため */
   overflow: scroll;
-  height: 400px;
-  width: 426px;
+  height: 320px;
+  width: 450px;
   display: none;
+  margin-top: 2px;
 }
 
 
@@ -269,12 +294,13 @@ a[href="#tabpage2"] {
 
 .contents {
  /*display: flex;*/
-  border: 1px solid black;
+  border: 1px solid #545454;
   border-radius: 10px;
   align-items: center;
   /* 中央に配置 */
   gap: 5px;
-  margin: 20px 0px 0px 0px;
+  margin: 20px 40px 0px 0px;
+  padding: 10px;
 
 
 }

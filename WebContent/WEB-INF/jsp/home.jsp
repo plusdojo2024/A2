@@ -155,12 +155,12 @@
 	    <div id="modal2" class="modal">
 	        <div class="modal-content">
 	            <span class="close" onclick="closeModal('modal2')">&times;</span>
-	            <p>ポスト投函</p>
+	            <p class="ppost">ポスト投函</p>
 	            <div class="box1">
 	                <input type="text" name="title" placeholder="タイトル(50字以内)" value="${title}" id="title"><br>
 	                <textarea class="textbox" placeholder="この作品のおすすめポイントを書いてみましょう！(200文字以内)" value="${recommend}" id="recommend"></textarea><br>
 	            </div>
-	            <input type="button"name="submit1" value="戻る"onclick="openSecondModal3()"></button>
+	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal3()"></button>
 	            <input type="button"name="submit1" value="投函"onclick="goAjax()"></button>
 	        </div>
 	    </div>
@@ -168,12 +168,12 @@
 	    <div id="modal3" class="modal">
 	        <div class="modal-content">
 	            <span class="close" onclick="closeModal('modal3')">&times;</span>
-	            <p>ポスト受け取り</p>
+	            <p class="ppost">ポスト受け取り</p>
 	            <div class="box1">
 	                <textarea class="textbox1" name="title" placeholder="" id="r-title"></textarea><br>
 	                <textarea class="textbox" placeholder="" id="r-recommend"></textarea><br>
 	            </div>
-	            <input type="button"name="submit1" value="戻る"onclick="openSecondModal4()"></button>
+	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal4()"></button>
 	            <input type="button"name="interestBtn1" value="気になる！" id="interestBtn"></button><input type="hidden" id="interest" value="1">
 	        </div>
 	    </div>
@@ -182,7 +182,7 @@
 	    <div id="modal4" class="modal">
 	        <div class="modal1-content">
 	            <span class="close" onclick="closeModal('modal4')">&times;</span>
-	            <p>一覧ページ</p>
+	            <p class="ppost">一覧ページ</p>
 	            <div class="box2">
 	            <p id="tabcontrol">
 	                <a href="#tabpage1">
@@ -228,9 +228,10 @@
 	                    </div>
 	                </div>
 
-	                <input type="button"name="submit1" value="戻る"onclick="openSecondModal5()"></button>
+
 	                </div>
 	            </div>
+	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal5()"></button>
 	        </div>
 	    </div>
 

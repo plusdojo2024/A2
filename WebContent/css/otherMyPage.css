@@ -177,6 +177,7 @@ display: block;
     /* 文字のスタイル */
     color: #545454;
     text-decoration: none;
+    background:transparent;
 
     /* 文字を中央に配置する */
     display: block;
@@ -188,6 +189,10 @@ display: block;
     margin-right: 40px;
     height: 150px;
     width: 135px;
+  }
+
+  .contents-form{
+  	width: calc(16% - 20px);
   }
 
   /* レビュー一覧のスタイル */

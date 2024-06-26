@@ -185,7 +185,7 @@
                     <td>
                         <div class="review-img">
                             <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
-                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)" id="image"><br>
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
@@ -265,8 +265,8 @@
 			    <span class="close" onclick="closeModal('modal1')">&times;</span>
 			        <div class="user-info">
 			        		<form action="/A2/OtherMyPageServlet" method="get">
-							  <button class="chat-icon-button">
-							     <input type="hidden" name="id" value="${e.userIdWriter}">
+							  <button class="chat-icon-button" id="chat-icon-button">
+							     <input type="hidden" name="id" id="chat-id">
 							     <img src="img/icon_default.png" class="chat-icon" id="chat-icon">
 							  </button>
 							</form>
@@ -277,9 +277,7 @@
 			            <div class="input-area">
 			                <button class="button0" id="button0">
 			                    <img src="img/point_plus_chat.png" id="point" class="point" alt="point">
-			                    <form enctype="multipart/form-data">
-			                    	<!-- <input type="file" name="upload" id="file-button" accept="image/*"> -->
-			                    </form>
+			                    <form enctype="multipart/form-data"><input type="file" name="upload" id="file-button" accept="image/*" onchange="previewImage(event)"></form>
 			                </button>
 			              	<input type="text" id="message" placeholder="メッセージを入力(500字以内)" onkeydown="if(event.key === 'Enter') sendMessage()">
 			              	<button  class="chat-submit" onclick="sendMessage()">送信</button>
@@ -426,8 +424,6 @@
     		  textForm.value = '';
     		var textForm = document.getElementById("review-detail");
     		  textForm.value = '';
-    		var textForm = document.getElementById("image");
-    		  textForm.value = '';
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -534,32 +530,33 @@
     //画像プレビュー------------------------------------------------------
     // ファイル選択時に呼び出される関数
     function previewImage(event) {
-         // 選択されたファイルを取得
-         var selectedFile = event.target.files[0];
-         // ファイルが選択されている場合
-         if (selectedFile) {
-             // FileReaderオブジェクトを作成
-             var reader = new FileReader();
-             // ファイルの読み込みが完了した時の処理を定義
-             reader.onload = function(event) {
-                 // プレビュー画像のsrc属性に選択されたファイルの内容を設定
-                 document.getElementById('preview').src = event.target.result;
-             };
-             // ファイルの読み込みを実行
-             reader.readAsDataURL(selectedFile);
-         } else {
-             // ファイルが選択されていない場合は元のアイコンを表示
-             document.getElementById('preview').src = "img/icon_default.png";
-         }
+        // 選択されたファイルを取得
+        var selectedFile = event.target.files[0];
+        // ファイルが選択されている場合
+        if (selectedFile) {
+            // FileReaderオブジェクトを作成
+            var reader = new FileReader();
+            // ファイルの読み込みが完了した時の処理を定義
+            reader.onload = function(event) {
+                // プレビュー画像のsrc属性に選択されたファイルの内容を設定
+                document.getElementById('preview').src = event.target.result;
+            };
+            // ファイルの読み込みを実行
+            reader.readAsDataURL(selectedFile);
+        } else {
+            // ファイルが選択されていない場合は元のアイコンを表示
+            document.getElementById('preview').src = "img/icon_default.png";
+        }
     }
+
     // 削除ボタンをクリックしたときに呼び出される関数
-    function deleteItem() {
+    function deleteItem(event) {
         // 元のアイコン画像のパスを設定
         document.getElementById('preview').src = "img/icon_default.png";
         // ファイル選択のinput要素もリセットする場合は次の行を追加
         document.querySelector('input[type="file"]').value = null;
-        // ページの再読み込みを防ぐ
-        event.preventDefault();
+         // ページの再読み込みを防ぐ
+         event.preventDefault();
     }
 
     // 文字数制限を設定する関数
@@ -694,6 +691,7 @@
                 const target = document.querySelector("#chat-icon");
                 const url = "img/" + userIcon;
                 target.src = url;
+                document.getElementById("chat-id").value = data.userId;
 
                 //自分と相手のユーザ名を設定する
                 var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
@@ -791,10 +789,10 @@
         var img = document.getElementById("file-button");
 
       //画像が選択されていた場合、messageには画像のファイルパスが入る
-       /*  if(img.value){ */
+        if(img.value){
         	//非同期で画像ファイルアップロードを行う
 	        	//画像ファイルを取得し、FormDataに入れる
-	        	/* var fd = new FormData();
+	        	var fd = new FormData();
 	        	fd.append("img", img.files[0]);
 
 	        	$.ajaxSetup({scriptCharset:'utf-8'});
@@ -815,7 +813,7 @@
 	              })
 	               //非同期通信が失敗したときの処理
 	              .fail(function() {
-	              }); */
+	              });
 
         	//ファイル名の書式を整え、messageに入れる
         	var name = img.value.replace("C:\\fakepath\\", "");

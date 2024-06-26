@@ -117,13 +117,13 @@
                     <ul class="myContentsList">
                         <c:forEach var="e" items="${collection}">
 	                            <li>
-	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get">
-	                                    <a href="javascript:form${e.contentsId}.submit()" class="contents">
+	                                <form name="form${e.contentsId}" action="/A2/ContentsDetailServlet" method="get" class="contents-form">
+	                                    <button class="contents">
 	                                        <input type="hidden" name="id" value="${e.contentsId}">
 	                                        <img src="img/${e.image}" alt="コンテンツ画像" class="contentsImage"><br>
 	                                        ${e.title}<br>
 	                                        ${e.genre}
-	                                    </a>
+	                                    </button>
 	                                </form>
 	                            </li>
                         </c:forEach>

@@ -144,10 +144,15 @@ li{
     flex-wrap: wrap;
   }
 
+  .contents-form{
+  	width: calc(16% - 20px);
+  }
+
   .contents{
     /* 文字のスタイル */
     color: #545454;
     text-decoration: none;
+    background:transparent;
 
     /* 文字を中央に配置する */
     display: block;

@@ -87,7 +87,7 @@ public class PostListDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT r.user_id, p.title, p.recommend, r.my_interest FROM post AS INNER JOIN post_recieve AS ON p.post_id=r.post_id WHERE r.user_id=?";
+			String sql = "SELECT r.user_id, p.post_id, p.title, p.recommend, r.my_interest FROM post AS p INNER JOIN post_receive AS r ON p.post_id=r.post_id WHERE r.user_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -101,6 +101,7 @@ public class PostListDao {
 				PostList record = new PostList();
 
 				record.setUserId(rs.getInt("user_id"));
+				record.setPostId(rs.getInt("post_id"));
 				record.setTitle(rs.getString("title"));
 				record.setRecommend(rs.getString("recommend"));
 				record.setMyInterest(rs.getInt("my_interest"));

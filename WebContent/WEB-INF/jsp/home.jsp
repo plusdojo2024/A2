@@ -170,11 +170,11 @@
 	            <span class="close" onclick="closeModal('modal3')">&times;</span>
 	            <p class="ppost">ポスト受け取り</p>
 	            <div class="box1">
-	                <textarea class="textbox1" name="title" placeholder="" id="r-title"></textarea><br>
-	                <textarea class="textbox" placeholder="" id="r-recommend"></textarea><br>
+	                <h2 class="receive-title" name="title" id="r-title"></h2><br>
+	                <p class="receive-recommend" id="r-recommend"></p><br>
 	            </div>
-	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal4()"></button>
-	            <input type="button"name="interestBtn1" value="気になる！" id="interestBtn"></button><input type="hidden" id="interest" value="1">
+	            <input type="button"name="submit5" value="戻る"onclick="openSecondModal4()">
+	            <button class="interestBtn1" style="background-color: #ccc;" onclick="interestAjax(element)">気になる！</button>
 	        </div>
 	    </div>
 
@@ -194,37 +194,14 @@
 	            </p>
 	            <div id="tabbody">
 	                <div id="tabpage1" class="area selected">
-	                    <div class="contents">
-	                        <h2 class="title3">${title}</h2>
-	                        <div class="maintext">
-	                            <p>${recommend}</p>
-	                        </div>
-	                        <input type="button"name="interestBtn2" value="気になる！" id="interestBtn"></button><input type="hidden" id="interest" value="1">
+	                	<div id="post-container">
+	                    	<div class="contents" id="p-contents"></div>
 	                    </div>
-						<!--
-	                    <div class="contents">
-	                        <h2 class="title3">FINAL FANTASY X</h2>
-	                        <div class="maintext">
-	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
-	                        </div>
-	                    </div>
-
-	                    <div class="contents">
-	                        <h2 class="title3">FINAL FANTASY X</h2>
-	                        <div class="maintext">
-	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
-	                        </div>
-	                    </div>
-	                     -->
 	                </div>
 
-
 	                <div id="tabpage2" class="area ">
-	                    <div class="contents">
-	                        <h2 class="title3">ベルセルク</h2>
-	                        <div class="maintext">
-	                            <p>オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！オモロイ！！</p>
-	                        </div>
+	                    <div id="receive-container">
+	                    	<div class="contents" id="p-contents"></div>
 	                    </div>
 	                </div>
 
@@ -330,7 +307,7 @@
         function goAjax() {
 
         //値を取得してくる
-        let status = "0";
+        let status = 0;
         let title = document.getElementById('title').value;
         let recommend = document.getElementById('recommend').value;
 
@@ -377,42 +354,16 @@
             acceptanceAjax();
             });
 
-        /* let status = 1;
-	    let postData = {data1: 1}
-        $.ajax({
-            url: '/A2/ApiPostServlet',
-            type: 'POST',
-            data: postData,
-            success: function(response) {
-            	alert('成功');
-                     },
-            error: function() {
-                alert('Error saving marker');
-            }
-        }); */
-
-        /* var title = response["title"];
-    	var recommend = response["recommnd"];
-    		document.getElementById('r-title').innerHTML = '<textarea class="textbox1" name="title" placeholder="" id="r-title">'+title+'</textarea>';
-    		document.getElementById('r-recommend').innerHTML = '<textarea class="textbox" placeholder="" id="r-recommend">'+recmmend+'</textarea>';
- */
 
 
         function acceptanceAjax() {
-			alert("aaaa");
-	/*       closeModal('modal1');
-	         openModal('modal3'); */
+
 
 	        //値を取得してくる
 	        let status = 1;
 	        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
 	        let postData = { data1: status }
 
-	       /*  function openSecondModal1() {
-	            closeModal('modal1');
-	            openModal('modal3');
-	            acceptanceAjax();
-	        } */
 
 	        //非同期通信始めるよ
 	        $.ajaxSetup({ scriptCharset: 'utf-8' });
@@ -432,7 +383,6 @@
 	            timeStamp: new Date().getTime()
 	            //非同期通信が成功したときの処理
 	        }).done(function (data) {
-	        	alert("aaaaa");
 	        	var title = data["title"];
 	        	var recommend = data["recommend"];
 	        		document.getElementById('r-title').innerHTML = title;
@@ -449,7 +399,7 @@
         function listAjax() {
 
         //値を取得してくる
-        let status = "2";
+        let status =2;
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
         let postData = { data1: status }
 
@@ -470,9 +420,24 @@
             timeStamp: new Date().getTime()
             //非同期通信が成功したときの処理
         }).done(function (data) {
-            //成功した場合は、確認ダイアログを表示する
-        	var title = data["postList"];
-        	var recommend = data["receiveList"];
+            //成功した場合は、リストを表示する
+        	var postList = data["postList"];
+        	var receiveList = data["receiveList"];
+        	postList.forEach(function(value){
+	        		if(value.interest==='1'){
+	        			document.getElementById('post-container').innerHTML = '<div class="contents" id="p-contents"><h2 class="title">'+ value.title +'</h2><p class="maintext">'+ value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
+	        		} else{
+	        			document.getElementById('post-container').innerHTML = '<div class="contents" id="p-contents"><h2 class="title">'+ value.title + '</h2><p class="maintext">' + value.recommend + '</p></div>';
+	        		}
+
+        	});
+        	receiveList.forEach(function(value){
+        		if(value.myInterest==='1'){
+        			document.getElementById('receive-container').innerHTML = '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">'+value.recommend +'</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #35AFDB;" onclick="interestAjax(this)">気になった！</button><input type=hidden value="' + value.postId + '"></div>';
+        		} else{
+        			document.getElementById('receive-container').innerHTML = '<div class="contents" id="r-contents"><h2 class="title">'+value.title+'</h2><p class="maintext">' + value.recommend + '</p><button type="button" name="interestBtn2" id="interestBtn" style="background-color: #ccc;" onclick="interestAjax(this)">気になる！</button><input type=hidden value="' + value.postId + '"></div>';
+        		}
+        	});
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -480,14 +445,19 @@
             });
         }
 
+
+
         //気になるAjax
-        function interestAjax() {
+        function interestAjax(element) {
 
         //値を取得してくる
-        let interest = document.getElementById('interest').value;
-        let reviewId = document.getElementById('reviewId').value;
+        let interest = 0;
+        if(element.innerText.includes('気になる！')){
+        	interest = 1;
+        }
+        let postId = element.nextElementSibling.value;
         //{変数名：中に入れるもの}みたいに書いて、複数の値をinterestData変数に格納
-        let interestData = { data1: interest, data2: reviewId }
+        let interestData = { data1: interest, data2: postId }
 
         //非同期通信始めるよ
         $.ajaxSetup({ scriptCharset: 'utf-8' });
@@ -507,11 +477,7 @@
             //非同期通信が成功したときの処理
         }).done(function (data) {
             //成功した場合は、確認ダイアログを表示する
-            if (data === "true") {
-                togglebutton()
-            } else {
-                //失敗した場合はなにもしない
-            }
+            togglebutton(element);
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -520,18 +486,16 @@
         }
 
         //反転
-        function togglebutton() {
-                var interestButton = document.getElementById('interestBtn');
-                if (interestButton.value === "1") {
-                    interestBtn.innerHTML = '<span style="font-size: 95%;">気になった！</span>';
-                    interestBtn.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
-                    interest.value = "0"; // value属性を0に変更
+        function togglebutton(element) {
+                if (element.innerText.includes('気になる！')) {
+                	element.innerHTML = '気になった！';
+                	element.style.backgroundColor = '#35AFDB'; // 背景色を変更
                 } else {
-                    interestBtn.innerHTML = '気になる';
-                    interestBtn.style.backgroundColor = ''; // デフォルトに戻す
-                    interest.value = "1"; // value属性を1に変更
+                	element.innerHTML = '気になる！';
+                	element.style.backgroundColor = '#ccc'; // デフォルトに戻す
                 }
             }
+
         </script>
                 <!-- modaljs -->
         <script>

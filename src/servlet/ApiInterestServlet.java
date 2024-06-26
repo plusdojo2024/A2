@@ -49,7 +49,7 @@ public class ApiInterestServlet extends HttpServlet {
 					String data1 = request.getParameter("data1");
 					String data2 = request.getParameter("data2");
 					int interest = Integer.parseInt(data1);
-					int reviewId = Integer.parseInt(data2);
+					int postId = Integer.parseInt(data2);
 						//入力されたデータを表示
 						System.out.println(data1);
 						System.out.println(data2);
@@ -58,7 +58,7 @@ public class ApiInterestServlet extends HttpServlet {
 					if(interest == 1) {
 
 						//送信されたデータをpost_receiveテーブルに追加
-						boolean result = prDao.myInterestRegist(reviewId, userId);
+						boolean result = prDao.myInterestRegist(postId, userId);
 
 						//Jackson機能のmapperをインスタンス（実体）化
 						ObjectMapper mapper = new ObjectMapper();
@@ -76,7 +76,7 @@ public class ApiInterestServlet extends HttpServlet {
 					//いいねが削除された時の処理
 					} else {
 						//送信されたデータをpost_receiveテーブルに追加
-						boolean result = prDao.myInterestDelete(reviewId, userId);
+						boolean result = prDao.myInterestDelete(postId, userId);
 
 						//Jackson機能のmapperをインスタンス（実体）化
 						ObjectMapper mapper = new ObjectMapper();

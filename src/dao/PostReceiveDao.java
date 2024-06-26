@@ -86,7 +86,7 @@ public class PostReceiveDao {
 					pStmt.setInt(2, postId);
 
 					// SQL文を実行し、登録に成功したらresultにtrueを入れる
-					if (pStmt.executeUpdate() == 1) {
+					if (pStmt.executeUpdate() > 0 ) {
 						result = true;
 					}
 				}
@@ -133,7 +133,7 @@ public class PostReceiveDao {
 					pStmt.setInt(2, postId);
 
 					// INSERT文を実行し、登録に成功したらresultにtrueを入れる
-					if (pStmt.executeUpdate() == 1) {
+					if (pStmt.executeUpdate() > 0) {
 						result = true;
 					}
 				}

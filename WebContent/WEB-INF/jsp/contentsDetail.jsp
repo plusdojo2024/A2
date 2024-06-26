@@ -185,7 +185,7 @@
                     <td>
                         <div class="review-img">
                             <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
-                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
+                            <input type="file" name="upload" accept="image/*" onchange="previewImage(event)" id="image"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">
                             <img src="img/point_delete.png" class="delete-icon" alt="ゴミ箱"><span class="delete-text">削除</span>
@@ -423,6 +423,8 @@
         	var textForm = document.getElementById("review-title");
     		  textForm.value = '';
     		var textForm = document.getElementById("review-detail");
+    		  textForm.value = '';
+    		var textForm = document.getElementById("image");
     		  textForm.value = '';
         })
             //非同期通信が失敗したときの処理

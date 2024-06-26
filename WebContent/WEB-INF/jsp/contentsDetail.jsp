@@ -408,7 +408,7 @@
         $.ajax({
             //どのサーブレットに送るか
             //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-            url: '/A2/ApiPostServlet',
+            url: '/A2/ApiReviewServlet',
             //どのメソッドを使用するか
             type: "POST",
             //受け取るデータのタイプ
@@ -420,10 +420,7 @@
             timeStamp: new Date().getTime()
             //非同期通信が成功したときの処理
         }).done(function (data) {
-        	var textForm = document.getElementById("title");
-      		  textForm.value = '';
-      		var textForm = document.getElementById("recommend");
-      		  textForm.value = '';
+
         })
             //非同期通信が失敗したときの処理
             .fail(function () {

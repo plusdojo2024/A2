@@ -174,6 +174,7 @@
             <!--閉じるボタン-->
             <span class="close" onclick="closeModal('modal-review-regist')">&times;</span>
             <p class="modal-title">レビュー投稿</p>
+            <input type="hidden" id="reviwId" value="${reviwId}">
             <table>
                 <tr>
                     <td>
@@ -198,7 +199,7 @@
                 </tr>
                 <tr>
                      <td>
-                    <button class="btn" onclick="submitReview()">投稿</button>
+                    <button class="btn" onclick="goRegisterAjax()">投稿</button>
                     </td>
                 </tr>
             </table>
@@ -384,6 +385,50 @@
                 .fail(function () {
                     //失敗した場合はなにもしない
                 });
+        }
+
+
+      	//登録Ajax
+        function goRegisterAjax() {
+
+        //値を取得してくる
+        let status = "登録";
+        let contentsId = document.getElementById('contentsId').value;
+        let title = document.getElementById('title').value;
+        let review = document.getElementById('review').value;
+        let reviewId = document.getElementById('reviwId').value;
+
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let postData = { data1: status, data2: title, data3: recommend }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiPostServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+        	var textForm = document.getElementById("title");
+      		  textForm.value = '';
+      		var textForm = document.getElementById("recommend");
+      		  textForm.value = '';
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
         }
 
 

@@ -16,7 +16,7 @@ import dao.ContentsDao;
 import model.Contents;
 import model.User;
 
-@WebServlet("/ContentsRegistServlet")
+@WebServlet("/ApiContentsRegistServlet")
 public class ApiContentsRegistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

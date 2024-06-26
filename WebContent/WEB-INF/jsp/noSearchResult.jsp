@@ -7,6 +7,7 @@
             <title>検索結果|レコレコ</title>
             <link rel="stylesheet" href="css/common.css">
             <link rel="stylesheet" type="text/css" href="css/searchResult.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
 <header>
     <nav class="nav">
@@ -100,7 +101,7 @@
                             <p class="detail-items">ジャンル</p>
                     </td>
                     <td>
-                            <select name="detail-genre-select">
+                            <select name="detail-genre-select" id="detail-genre-select">
                                 <option value="all">すべて</option>
                                 <option value="movie">映画</option>
                                 <option value="dorama">ドラマ</option>
@@ -118,7 +119,7 @@
                             <p class="detail-items">公開年</p>
                         </td>
                         <td>
-                            <select name="detail-year-select">
+                            <select name="detail-year-select" id="detail-year-select">
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -209,7 +210,7 @@
                 </div>
                     <tr>
                         <td>
-                        <button class="btn" onclick="openSecondModal()">登録</button>
+                        <button class="btn" onclick="registerAjax()">登録</button>
                         </td>
                     </tr>
             </table>
@@ -255,6 +256,7 @@
     function openSecondModal() {
         closeModal('content-regist-modal1');
         openModal('content-regist-modal2');
+        registerAjax();
     }
 
     // モーダルの外側がクリックされたときに閉じる処理
@@ -324,5 +326,59 @@
     // レビュー本文の文字数制限を設定
     var detailCreatorInput = document.getElementById('detail-creator-input');
     limitTextInput(detailCreatorInput, 50);
+
+    //登録Ajax
+    function registerAjax() {
+
+        //値を取得してくる
+        let title = document.getElementById('content-title').value;
+        let ruby = document.getElementById('content-title-ruby').value;
+        let image = document.getElementById('preview').value;
+        let genre = document.getElementById('detail-genre-select').value;
+        let year = document.getElementById('detail-year-select').value;
+        let creater = document.getElementById('detail-creator-input').value;
+
+
+
+        //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+        let postData = { data1: title, data2: ruby, data3: image, data4: genre, data5: year, data6: creater }
+
+        //非同期通信始めるよ
+        $.ajaxSetup({ scriptCharset: 'utf-8' });
+        $.ajax({
+            //どのサーブレットに送るか
+            //ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+            url: '/A2/ApiContentsRegistServlet',
+            //どのメソッドを使用するか
+            type: "POST",
+            //受け取るデータのタイプ
+            dataType: "json",
+            //何をサーブレットに飛ばすか（変数を記述）
+            data: postData,
+            //この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+            processDate: false,
+            timeStamp: new Date().getTime()
+            //非同期通信が成功したときの処理
+        }).done(function (data) {
+        	var textForm = document.getElementById("content-title");
+      		  textForm.value = '';
+      		var textForm = document.getElementById("content-title-ruby");
+      		  textForm.value = '';
+      		var textForm = document.getElementById("preview");
+    		  textForm.value = '';
+    		var textForm = document.getElementById("detail-genre-select");
+      		  textForm.value = '';
+      		var textForm = document.getElementById("detail-year-select");
+    		  textForm.value = '';
+    		var textForm = document.getElementById("detail-creator-input");
+      		  textForm.value = '';
+
+      		openSecondModal();
+        })
+            //非同期通信が失敗したときの処理
+            .fail(function () {
+                //失敗した場合はなにもしない
+            });
+        }
 </script>
 </html>

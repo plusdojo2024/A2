@@ -329,7 +329,7 @@
         function goAjax() {
 
         //値を取得してくる
-        let status = "登録";
+        let status = "0";
         let title = document.getElementById('title').value;
         let recommend = document.getElementById('recommend').value;
 
@@ -355,12 +355,10 @@
             timeStamp: new Date().getTime()
             //非同期通信が成功したときの処理
         }).done(function (data) {
-            //成功した場合は、確認ダイアログを表示する
-            if (data === "true") {
-            //モーダルを開く処理
-            } else {
-                //失敗した場合はなにもしない
-            }
+        	var textForm = document.getElementById("title");
+      		  textForm.value = '';
+      		var textForm = document.getElementById("recommend");
+      		  textForm.value = '';
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -450,7 +448,7 @@
         function listAjax() {
 
         //値を取得してくる
-        let status = "一覧";
+        let status = "2";
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
         let postData = { data1: status }
 

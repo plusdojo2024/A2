@@ -61,7 +61,7 @@
     <div class="content-info">
         <img src="img/${contents.image}" name="content-img" alt="写真">
         <div class="column">
-            <h2 name="content-title">${e.title}</h2>
+            <h2 name="content-title">${contents.title}</h2>
             <input type="hidden" id="contentsId" value="${contents.contentsId}">
             <h3>${contents.genre}</h3>
             <h3>${contents.year}</h3>

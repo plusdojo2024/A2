@@ -109,114 +109,31 @@
                     </table>
                 </div>
             </form>
-            <form class="ranking">
+            <div class="ranking">
                 <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
                 <div class="table-wrapper">
-
-            <c:forEach var="e" items="${timeline}" >
-                    <table class="table">
-                        <tr>
-                        		<div class="review">
-                                    <div class="timeline">
-                                        <img src=img/${e.image} class="timeline1" alt="timeline">
-                                        <img src=img/${e.icon}  class="icon1" alt="アイコン">
-                                        <p>${e.userName } さん</p>
-                                        <p>${e.createdAt } 投稿</p>
-                                    </div>
-                                    <h3>${e.title }</h3>
-                                    <h4 class="truncate">${e.review }</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>${e.goodCount }</h5>
-                                </div>
-                        </tr>
-                        <!--
-                        <tr>
-                            <td>
-                                <div class="review">
-                                    <div class="timeline">
-                                        <img src="content_hh_anime.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン" >
-                                        <p>樋口 さん</p>
-                                        <p>06/06 23:35 投稿</p>
-                                    </div>
-                                    <h3>HUNTER×HUNTER</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
-                                </div>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <div class="review">
-                                    <div class="timeline">
-                                        <img src="content_hh_comic.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
-                                        <p>rekoreko さん</p>
-                                        <p>06/06 23:35 投稿</p>
-                                    </div>
-                                    <h3>HUNTER×HUNTER</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="review">
-                                    <div class="timeline">
-                                        <img src="content_hagaren.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
-                                        <p>rekoreko さん</p>
-                                        <p>06/06 23:35 投稿</p>
-                                    </div>
-                                    <h3>鋼の錬金術師</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
-                                </div>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <div class="review">
-                                    <div class="timeline">
-                                        <img src="content_hh_anime.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
-                                        <p>rekoreko さん</p>
-                                        <p>06/06 23:35 投稿</p>
-                                    </div>
-                                    <h3>HUNTER×HUNTER</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="review">
-                                    <div class="timeline">
-                                        <img src="content_hh_comic.jpg" class="timeline1" alt="timeline">
-                                        <img src="icon_default.png"  class="icon1" alt="アイコン">
-                                        <p>rekoreko さん</p>
-                                        <p>06/06 23:35 投稿</p>
-                                    </div>
-                                    <h3>HUNTER×HUNTER</h3>
-                                    <h4 class="truncate">おもろい！おもろい！おもろい！おもろい！</h4>
-                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                    <h5>123</h5>
-                                </div>
-                            </td>
-                        </tr>
-                         -->
-
-                    </table>
-                    </c:forEach>
+                	<div class="table">
+	                    <table>
+			                    <c:forEach var="e" items="${timeline}" >
+			                        <tr>
+			                        		<div class="review">
+			                                    <div class="timeline">
+			                                        <img src=img/${e.image} class="timeline1" alt="timeline">
+			                                        <img src=img/${e.icon}  class="icon1" alt="アイコン">
+			                                        <p>${e.userName } さん</p>
+			                                        <p>${e.createdAt } 投稿</p>
+			                                    </div>
+			                                    <h3>${e.title }</h3>
+			                                    <h4 class="truncate">${e.review }</h4>
+			                                    <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+			                                    <h5>${e.goodCount }</h5>
+			                                </div>
+			                        </tr>
+								</c:forEach>
+	                    </table>
+	                </div>
                 </div>
-            </form>
-
+            </div>
         </main>
 
         <!-- モーダル -->

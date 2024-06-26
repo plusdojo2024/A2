@@ -167,15 +167,13 @@ public class ReviewDisplayDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-            //結果のテーブルの1行目を見に行く
-            rs.next();
-
             //countに指定したレビューのいいね数を入れる。失敗したらcountは0のままになる
+            while(rs.next()) {
             count = rs.getInt("count");
             System.out.println(count+"←カウントだよ");
+            }
 
-		}
-		catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		catch (ClassNotFoundException e) {

@@ -40,12 +40,19 @@ public class HomeServlet extends HttpServlet{
     	ReviewDisplayDao rdDao = new ReviewDisplayDao();
 		List<ReviewDisplay> timeline = tDao.userSelect(userId);
 		//いいね数を取得する
+		int goodCount=0;
+		int myGood=0;
+		int reviewId=0;
     	for(ReviewDisplay reviewDisplay: timeline) {
-    		int reviewId = reviewDisplay.getReviewId();
-    		reviewDisplay.setGoodCount(rdDao.countGood(reviewId));
-    		reviewDisplay.setMyGood(rdDao.confirmGood(userId, reviewId));
+    		reviewId = reviewDisplay.getReviewId();
+    		goodCount = rdDao.countGood(reviewId);
+    		myGood = rdDao.confirmGood(userId, reviewId);
+    		reviewDisplay.setGoodCount(goodCount);
+    		reviewDisplay.setMyGood(myGood);
     	}
-    	System.out.println("aaa");
+    	System.out.println(goodCount);
+    	System.out.println(myGood);
+    	System.out.println(reviewId);
 
 		//全ユーザのいいね数の合計を取得し、上位５名のユーザ名とアイコンを取得する
     	//全ユーザのいいね数順のランキングを取得する

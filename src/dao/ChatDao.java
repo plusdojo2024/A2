@@ -92,7 +92,7 @@ public class ChatDao {
             // JDBCドライバを読み込むで
             Class.forName("org.h2.Driver");
             // データベースに接続するで
-            conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data1/sample", "sa", "");
+            conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
             // SQL文を準備するで
             String sql = "INSERT INTO chat (user_id_speaker, user_id_listener, talk, image, created_at) VALUES (?, ?, ?, ?, ?)";

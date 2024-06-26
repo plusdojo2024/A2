@@ -13,7 +13,7 @@ import model.ReviewDisplay;
 
 public class TimelineDao {
 
-	//ユーザIDでレビューを検索し、指定したユーザが書いたレビューとそれを書いたユーザ情報の一覧のリストを返す(いいねの情報のみ別途取得)
+	 //favoriteUserのuserIdで検索し、1週間以内に投稿されたレビューを表示する(いいねの情報のみ別途取得)
     public List<ReviewDisplay> userSelect(int userId) {
     	Connection conn = null;
     	List<ReviewDisplay> reviewList = new ArrayList<ReviewDisplay>();
@@ -84,6 +84,6 @@ public class TimelineDao {
 		return reviewList;
 	}
 
-    //favoriteUserのuserIdで検索し、1週間以内に投稿されたレビューを表示する
+
 
 }

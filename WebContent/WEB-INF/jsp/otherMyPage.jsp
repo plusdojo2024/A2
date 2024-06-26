@@ -63,11 +63,22 @@
                 <p class="achievements">
                     総レビュー件数　${otherUser.reviewCount}件<br>
                 </p>
-                <button type="button" name="favorite_add" class="bt" id="favorite_button" onclick="goAjax()">
-                	<input type="hidden" id="fBtnValue" value="1">
-                    <img src="img/point_favorite.png" alt="お気に入りユーザに追加の画像">
-                    <span class="bt-text">お気に入りユーザに追加</span>
-                </button>
+	                <c:choose>
+						  <c:when test="${favorite == 1}">
+						  	<button type="button" name="favorite_add" class="bt" id="favorite_button" onclick="goAjax()"style="background-color: #ccc;">
+								<input type="hidden" id="fBtnValue" value="0">
+								<img src="img/point_favorite.png" alt="削除の画像">
+								<span class="bt-text">お気に入りユーザを解除</span>
+							</button>
+						  </c:when>
+						  <c:when test="${favorite == 0}">
+						  	<button type="button" name="favorite_add" class="bt" id="favorite_button" onclick="goAjax()">
+							  	<input type="hidden" id="fBtnValue" value="1">
+		                    	<img src="img/point_favorite.png" alt="お気に入りユーザに追加の画像">
+		                    	<span class="bt-text">お気に入りユーザに追加</span>
+		                    </button>
+						  </c:when>
+					</c:choose>
                 <button type="button" name="direct-chat" class="bt" id="openModalBtn">
                     <img src="img/point_chat.png" alt="チャットの画像">
                     <span class="bt-text">チャットをする</span>
@@ -403,7 +414,7 @@
            var socket;
            var userId = document.getElementById("userId").value;
            var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
-           var user_id_listener; // 受信者のユーザーIDを文字列にする
+           var user_id_listener = 0; // 受信者のユーザーIDを文字列にする
 
          	//ChatopenServletから、チャットのための情報を取得する関数
            function openChat(){
@@ -441,7 +452,7 @@
 
                        //自分と相手のユーザ名を設定する
                        var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
-                       var user_id_listener = data.userId; // 受信者のユーザーIDを文字列にする
+                       user_id_listener = data.userId; // 受信者のユーザーIDを文字列にする
 
                        //接続を開始する
                        connect();

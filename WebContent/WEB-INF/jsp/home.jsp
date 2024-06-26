@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="model.User" %>
 <!DOCTYPE html>
 <html>
@@ -108,14 +109,14 @@
                     </table>
                 </div>
             </form>
-            <c:forEach var="e" items="${timeline}" >
             <form class="ranking">
                 <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
                 <div class="table-wrapper">
+
+            <c:forEach var="e" items="${timeline}" >
                     <table class="table">
                         <tr>
-                            <td>
-                                <div class="review">
+                        		<div class="review">
                                     <div class="timeline">
                                         <img src=img/${e.image} class="timeline1" alt="timeline">
                                         <img src=img/${e.icon}  class="icon1" alt="アイコン">
@@ -127,7 +128,6 @@
                                     <img src="/A2/img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
                                     <h5>${e.goodCount }</h5>
                                 </div>
-                            </td>
                         </tr>
                         <!--
                         <tr>
@@ -211,10 +211,12 @@
                             </td>
                         </tr>
                          -->
+
                     </table>
+                    </c:forEach>
                 </div>
             </form>
-            </c:forEach>
+
         </main>
 
         <!-- モーダル -->

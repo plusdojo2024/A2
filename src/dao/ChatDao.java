@@ -362,11 +362,14 @@ public class ChatDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT m.contents_id, u.user_id, u.user_name, u.icon"
+			String sql = "SELECT m.contents_id, u.user_id, u.user_name, u.icon "
 					+ "FROM my_contents AS m INNER JOIN user AS u ON m.user_id=u.user_id "
 					+ "WHERE m.contents_id=? AND m.status=1 AND u.flag=1  AND u.open_close=1";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, contentsId);
 
 			// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();

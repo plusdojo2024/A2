@@ -89,18 +89,18 @@ public class ApiChatOpenServlet extends HttpServlet {
 					        	map.put("otherUser", otherUser);
 					            map.put("talkHistory", talkHistory);
 
-							//Jackson機能のmapperをインスタンス（実体）化
-							ObjectMapper mapper = new ObjectMapper();
-							try {
-						        //JavaオブジェクトからJSONに変換
-						        String resultJson = mapper.writeValueAsString(map);
-						        System.out.println(resultJson);
-						        //JSONの出力
-						        response.setContentType("application/json; charset=UTF-8");
-						        response.getWriter().write(resultJson);
-						    } catch (JsonProcessingException e) {
-						        e.printStackTrace();
-						    }
+					          //Jackson機能のmapperをインスタンス（実体）化
+								ObjectMapper mapper = new ObjectMapper();
+								try {
+							        //JavaオブジェクトからJSONに変換
+							        String resultJson = mapper.writeValueAsString(otherUser);
+							        System.out.println(resultJson);
+							        //JSONの出力
+							        response.setContentType("application/json; charset=UTF-8");
+							        response.getWriter().write(resultJson);
+							    } catch (JsonProcessingException e) {
+							        e.printStackTrace();
+							    }
 
 					} else if(status.equals ("指定")) {
 						//指定されたユーザの情報を取得

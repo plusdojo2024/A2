@@ -16,6 +16,10 @@ h2 {
     padding: 10px 0px 10px 0px;
 }
 
+a {
+	color: #545454;
+}
+
 .noSearch {
     display:inline;
     color: #545454;
@@ -77,6 +81,10 @@ h2 {
     text-align: center;
 }
 
+.result-info a{
+    text-decoration: none;
+}
+
 .result-form{
     position:absolute;
     left:70%;
@@ -114,6 +122,7 @@ h2 {
     border:1px solid #DCDCDC;
     background-color: #DCDCDC;
 }
+
 
 #openModalBtnC{
     cursor: pointer;

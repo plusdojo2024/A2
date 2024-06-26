@@ -37,7 +37,8 @@
                 <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
                 <div class="co">
                     <div class="user-container">
-                        <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span class="user-name">recoreco</span>
+                        <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
+                			<input type="hidden" id="userId" value="${loginUser.userId}">
                             <ul class="dropdown-menu">
                                 <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                 <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>

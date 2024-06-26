@@ -203,7 +203,7 @@
                     <ul>
                         <c:forEach var="e" items="${chatList}" >
                             <li>
-                                <a href="javascript:form${e.userIdSpeaker}.submit()" class="chat-history">
+                                <div class="chat-history">
                                     <input type="hidden" name="user_id" value="${e.userIdSpeaker}">
                                     <div class="chat">
 	                                    <img src="img/${e.userIcon}" class="chat-icon">
@@ -211,7 +211,7 @@
 	                                    <p class="talk">${e.talk}</p>
 	                                    <span class="check-count">${e.check}</span>
                                  	</div>
-                                  </a>
+                                  </div>
                             </li>
                         </c:forEach>
                     </ul>

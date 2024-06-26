@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,58 +12,59 @@
 </head>
 
 <header>
-    <nav class="nav">
-        <ul>
-            <li>
-                <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
-            </li>
-            <li>
-                <form action="/A2/SearchServlet" class="search-form" method="post">
-                     <div class="search-box">
-                        <select name="select">
-                            <option value="all">すべて</option>
-                            <option value="movie">映画</option>
-                            <option value="dorama">ドラマ</option>
-                            <option value="anime">アニメ</option>
-                            <option value="sonota1">その他（映像）</option>
-                            <option value="novel">小説</option>
-                            <option value="comics">マンガ</option>
-                            <option value="sonota2">その他（書籍）</option>
-                            <option value="game">ゲーム</option>
-                        </select>
-                        <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
-                        <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
-                    </div>
-                </form>
-            </li>
-            <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
-            <div class="co">
-                <div class="user-container">
-                    <li><a href=""><img src="img/icon_default.png" class="icon-img" name="icon" alt="アイコン"><span
-                                class="user-name">recoreco</span>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
+                </li>
+                <li>
+                    <form action="/A2/SearchServlet" class="search-form" method="post">
+                        <div class="search-box">
+                            <select name="select">
+                                <option value="all">すべて</option>
+                                <option value="movie">映画</option>
+                                <option value="dorama">ドラマ</option>
+                                <option value="anime">アニメ</option>
+                                <option value="sonota1">その他（映像）</option>
+                                <option value="novel">小説</option>
+                                <option value="comics">マンガ</option>
+                                <option value="sonota2">その他（書籍）</option>
+                                <option value="game">ゲーム</option>
+                            </select>
+                            <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
+                            <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
+                        </div>
+                    </form>
+                </li>
+                <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+                <div class="co">
+                    <div class="user-container">
+                        <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
+                			<input type="hidden" id="userId" value="${loginUser.userId}">
                             <ul class="dropdown-menu">
                                 <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                                <li><a href="/A2/userManageServlet">ユーザ管理</a></li>
+                                <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
                                 <li><a href="/A2/LoginServlet">ログアウト</a></li>
                             </ul>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
+
+                    </div>
                 </div>
-            </div>
-        </ul>
-    </nav>
-</header>
+            </ul>
+        </nav>
+    </header>
 
 <body>
     <!--コンテンツ情報--------------------------------------->
     <div class="content-info">
-    <c:forEach var="e" items="${contents}">
-        <img src="img/${e.image}" name="content-img" alt="写真">
+        <img src="img/${contents.image}" name="content-img" alt="写真">
         <div class="column">
-            <h2 name="content-title">${e.title}</h2><input type="hidden" id="contentsId" value="${contentsId}">
-            <h3>${e.genre}</h3>
-            <h3>${e.year}</h3>
-            <h3>${e.creator}</h3>
+            <h2 name="content-title">${e.title}</h2>
+            <input type="hidden" id="contentsId" value="${contents.contentsId}">
+            <h3>${contents.genre}</h3>
+            <h3>${contents.year}</h3>
+            <h3>${contents.creator}</h3>
         </div>
 
         <nav class="bt">
@@ -78,7 +81,6 @@
                 ウィッシュリストに追加
             </button>
         </nav>
-        </c:forEach>
     </div>
 
     <!--タブ------------------------------------------------>
@@ -97,7 +99,7 @@
                 </select>
 
                 <ul>
-                    <c:forEach var="e" items="${myReview}">
+                    <c:forEach var="e" items="${myReviewList}">
                         <li class="reviewBar">
                             <div class="review">
                                 <img src="img/${e.image}" class="review-img" alt="写真">
@@ -113,51 +115,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
-                            <p class="review-text">${e.review}</p>
-                            <div class="good">
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>${e.goodCount}</h4>
-                            </div>
-                        </li>
-                        <li class="reviewBar">
-                            <div class="review">
-                                <img src="img/${e.image}" class="review-img" alt="写真">
-                                <p class="review-time">${e.createdAt}</p>
-                                <div class="review-button">
-                                    <button class="button" onclick="goAjaxDelete()">
-                                        <img src="img/point_delete.png">
-                                        <span class="button-text">削除</span>
-                                    </button>
-                                    <button class="button" id="openModalBtnE">
-                                        <img src="img/point_edit.png">
-                                        <span class="button-text">編集</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
-                            <p class="review-text">${e.review}</p>
-                            <div class="good">
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>${e.goodCount}</h4>
-                            </div>
-                        </li>
-                        <li class="reviewBar">
-                            <div class="review">
-                                <img src="img/${e.image}" class="review-img" alt="写真">
-                                <p class="review-time">${e.createdAt}</p>
-                                <div class="review-button">
-                                    <button class="button" onclick="goAjaxDelete()">
-                                        <img src="img/point_delete.png">
-                                        <span class="button-text">削除</span>
-                                    </button>
-                                    <button class="button" id="openModalBtnE">
-                                        <img src="img/point_edit.png">
-                                        <span class="button-text">編集</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <h3 class="review-title" id="title" value="${e.title}">${e.title}</h3>
                             <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
@@ -175,7 +133,7 @@
                     <option value="fromOld">古い順</option>
                 </select>
                 <ul>
-                    <c:forEach var="e" items="${otherReview}">
+                    <c:forEach var="e" items="${otherReviewList}">
                         <li class="reviewBar">
                             <div class="review">
                                 <img src="img/${e.image}" class="review-img" alt="写真">
@@ -190,7 +148,7 @@
                                 </div>
                                 <p class="review-time">${e.createdAt}</p>
                             </div>
-                            <h3 class="review-title" id="title" value="${title}">${e.title}</h3>
+                            <h3 class="review-title" id="title" value="${e.title}">${e.title}</h3>
                             <p class="review-text">${e.review}</p>
                             <div class="good">
                                 <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">

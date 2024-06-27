@@ -50,9 +50,6 @@ public class HomeServlet extends HttpServlet{
     		reviewDisplay.setGoodCount(goodCount);
     		reviewDisplay.setMyGood(myGood);
     	}
-    	System.out.println(goodCount);
-    	System.out.println(myGood);
-    	System.out.println(reviewId);
 
 		//全ユーザのいいね数の合計を取得し、上位５名のユーザ名とアイコンを取得する
     	//全ユーザのいいね数順のランキングを取得する
@@ -74,7 +71,7 @@ public class HomeServlet extends HttpServlet{
 			 r2 = ranking.get(1);
 			 r3 = ranking.get(2);
 			 r4 = ranking.get(3);
-			 //r5 = ranking.get(4);
+			 r5 = ranking.get(4);
 
 		}
 

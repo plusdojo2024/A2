@@ -142,7 +142,7 @@ public class ContentsDao {
 
 
 	    //フリーワードで検索してヒットしたコンテンツのリストを返す
-	    public List<Contents> searchContents(String freeWord) {
+	    public List<Contents> searchContents(String freeWord, String genre) {
 			Connection conn = null;
 			List<Contents> contentsList = new ArrayList<Contents>();
 
@@ -153,18 +153,39 @@ public class ContentsDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
 
+				String sql;
+				PreparedStatement pStmt;
+
+				if(genre.equals("すべて")) {
 				// SQL文を準備する
-				String sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents "
+					sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents "
 						+ "WHERE title LIKE ? OR ruby LIKE ? OR genre LIKE ? OR creator LIKE ? OR year LIKE ? "
 						+ "ORDER BY ruby";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-				// SQL文を完成させる
-				pStmt.setString(1, "%" + freeWord + "%");
-				pStmt.setString(2, "%" + freeWord + "%");
-				pStmt.setString(3, "%" + freeWord + "%");
-				pStmt.setString(4, "%" + freeWord + "%");
-				pStmt.setString(5, "%" + freeWord + "%");
+					pStmt = conn.prepareStatement(sql);
+
+					// SQL文を完成させる
+					pStmt.setString(1, "%" + freeWord + "%");
+					pStmt.setString(2, "%" + freeWord + "%");
+					pStmt.setString(3, "%" + freeWord + "%");
+					pStmt.setString(4, "%" + freeWord + "%");
+					pStmt.setString(5, "%" + freeWord + "%");
+				} else {
+					sql = "SELECT contents_id,title,ruby,genre,creator,year,image FROM contents "
+							+ "WHERE (title LIKE ? OR ruby LIKE ? OR genre LIKE ? OR creator LIKE ? OR year LIKE ? "
+							+ ") AND genre=? ORDER BY ruby";
+
+					pStmt = conn.prepareStatement(sql);
+
+					// SQL文を完成させる
+					pStmt.setString(1, "%" + freeWord + "%");
+					pStmt.setString(2, "%" + freeWord + "%");
+					pStmt.setString(3, "%" + freeWord + "%");
+					pStmt.setString(4, "%" + freeWord + "%");
+					pStmt.setString(5, "%" + freeWord + "%");
+					pStmt.setString(6, genre);
+				}
+
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();

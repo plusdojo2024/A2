@@ -19,15 +19,15 @@
                     <form action="/A2/SearchServlet" class="search-form" method="post">
                         <div class="search-box">
                             <select name="select">
-                                <option value="all">すべて</option>
-                                <option value="movie">映画</option>
-                                <option value="dorama">ドラマ</option>
-                                <option value="anime">アニメ</option>
-                                <option value="sonota1">その他（映像）</option>
-                                <option value="novel">小説</option>
-                                <option value="comics">マンガ</option>
-                                <option value="sonota2">その他（書籍）</option>
-                                <option value="game">ゲーム</option>
+                                <option value="すべて">すべて</option>
+                                <option value="映画">映画</option>
+                                <option value="ドラマ">ドラマ</option>
+                                <option value="アニメ">アニメ</option>
+                                <option value="その他（映像）">その他（映像）</option>
+                                <option value="小説">小説</option>
+                                <option value="マンガ">マンガ</option>
+                                <option value="その他（書籍）">その他（書籍）</option>
+                                <option value="ゲーム">ゲーム</option>
                             </select>
                             <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
                             <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
@@ -38,7 +38,7 @@
                 <div class="co">
                     <div class="user-container">
                         <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
-                			<input type="hidden" id="userId" value="${loginUser.userId}">
+                			<input type="hidden" id="loginUserId" value="${loginUser.userId}">
                             <ul class="dropdown-menu">
                                 <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                 <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
@@ -52,7 +52,6 @@
             </ul>
         </nav>
     </header>
-
 <body>
     <div class="title">
         <h2>検索結果一覧</h2>

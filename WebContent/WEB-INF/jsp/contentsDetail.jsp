@@ -22,15 +22,15 @@
                     <form action="/A2/SearchServlet" class="search-form" method="post">
                         <div class="search-box">
                             <select name="select">
-                                <option value="all">すべて</option>
-                                <option value="movie">映画</option>
-                                <option value="dorama">ドラマ</option>
-                                <option value="anime">アニメ</option>
-                                <option value="sonota1">その他（映像）</option>
-                                <option value="novel">小説</option>
-                                <option value="comics">マンガ</option>
-                                <option value="sonota2">その他（書籍）</option>
-                                <option value="game">ゲーム</option>
+                                <option value="すべて">すべて</option>
+                                <option value="映画">映画</option>
+                                <option value="ドラマ">ドラマ</option>
+                                <option value="アニメ">アニメ</option>
+                                <option value="その他（映像）">その他（映像）</option>
+                                <option value="小説">小説</option>
+                                <option value="マンガ">マンガ</option>
+                                <option value="その他（書籍）">その他（書籍）</option>
+                                <option value="ゲーム">ゲーム</option>
                             </select>
                             <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
                             <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
@@ -41,7 +41,7 @@
                 <div class="co">
                     <div class="user-container">
                         <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
-                			<input type="hidden" id="userId" value="${loginUser.userId}">
+                			<input type="hidden" id="loginUserId" value="${loginUser.userId}">
                             <ul class="dropdown-menu">
                                 <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                 <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
@@ -73,16 +73,38 @@
                 <img src="img/point_chat.png" alt="チャットの画像">
                 ランダムチャットを開始
             </button>
-            <button type="button" name="submit" id="collectionBtn" onclick="goAjaxCollection()">
-            	<input type="hidden" id="cBtnValue" value="1">
-                <img src="img/point_plus.png" alt="追加の画像">
-                コレクションに追加
-            </button>
-            <button type="button" name="submit" id="wishlistBtn" onclick="goAjaxWishlist()">
-            	<input type="hidden" id="wBtnValue" value="1">
-                <img src="img/point_plus.png" alt="追加の画像">
-                ウィッシュリストに追加
-            </button>
+            <c:choose>
+			    <c:when test="${contents.myStatus==1}">
+				    <button type="button" name="submit" id="collectionBtn" onclick="goAjaxCollection()" style="background-color: #ccc;">
+				        <input type="hidden" id="cBtnValue" value="0">
+				        <img src="img/point_delete.png" alt="削除の画像">
+				        コレクションから削除
+				    </button>
+			    </c:when>
+			    <c:when test="${contents.myStatus==0 || contents.myStatus==2}">
+				    <button type="button" name="submit" id="collectionBtn" onclick="goAjaxCollection()">
+				        <input type="hidden" id="cBtnValue" value="1">
+				        <img src="img/point_plus.png" alt="追加の画像">
+				        コレクションに追加
+				    </button>
+			    </c:when>
+			</c:choose>
+            <c:choose>
+			    <c:when test="${contents.myStatus==0}">
+				    <button type="button" name="submit" id="wishlistBtn" onclick="goAjaxWishlist()" style="background-color: #ccc;">
+				        <input type="hidden" id="wBtnValue" value="0">
+				        <img src="img/point_delete.png" alt="削除の画像">
+				        ウィッシュリストから削除
+				    </button>
+			    </c:when>
+			    <c:when test="${contents.myStatus==1 || contents.myStatus==2}">
+				    <button type="button" name="submit" id="wishlistBtn" onclick="goAjaxWishlist()">
+				        <input type="hidden" id="wBtnValue" value="1">
+				        <img src="img/point_plus.png" alt="追加の画像">
+				        ウィッシュリストに追加
+				    </button>
+			    </c:when>
+			</c:choose>
         </nav>
     </div>
 

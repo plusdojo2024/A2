@@ -179,7 +179,7 @@ INSERT INTO contents (contents_id, title, ruby, genre, creator, year, image, cre
 INSERT INTO user (user_id, mail, pass, user_name, icon, open_close, introduction, flag, created_at, updated_at) VALUES 
 
 (1, 'taro.yamada@wac.com', 'taro1234', 'TaroYamada', 'taro.jpg', 1, 'こんにちは、山田太郎です。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(2, 'momoko.sakura@wac.com', 'momoko456', 'MomokoSakura', 'maruko.jpg', 0, 'さくらももこです。よろしくです。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 'momoko.sakura@wac.com', 'momoko456', 'MomokoSakura', 'maruko.jpg', 1, 'さくらももこです。よろしくです。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'shohei.otani@wac.com', 'shohei17', 'ShoheiOtani', 'ShoheiOtani.jpg', 1, '大谷翔平です。憧れるのをやめましょう。', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (4, 'messi.lionel@wac.com', 'messi1010', 'LionelMessi', 'messi.jpg', 1, '世界のメッシです。スカルプDで気持ちよくなろう！', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (5, 'shinnosuke.nohara@wac.com', 'shinnosuke1111', 'ShinnosukeNohara', 'shinnosuke.png', 1, '野原しんのすけです。ケツダケせいじん ぶりぶり～', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -235,7 +235,9 @@ INSERT INTO chat (chat_id, user_id_speaker, user_id_listener, talk, image, check
 INSERT INTO favorite_user (favorite_user_id,user_id, user_id_favorite, created_at, updated_at)
 VALUES
 (1,2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(2,3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+(2,3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3,1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4,1, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 ●ポストテーブル
 INSERT INTO post (post_id, user_id_writer, title, recommend, interest, created_at, updated_at)
@@ -247,11 +249,9 @@ VALUES
 
 ●ポスト受け取りテーブル
 INSERT INTO post_receive (post_receive_id, user_id, post_id, my_interest, created_at, updated_at) VALUES
-(1, 1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(2, 2, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(3, 3, 3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-(4, 4, 4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(1, 1, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(2, 2, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(3, 3, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+(4, 4, 3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (5, 5, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (6, 6, 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-

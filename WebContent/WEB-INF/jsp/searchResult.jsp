@@ -21,15 +21,15 @@
                     <form action="/A2/SearchServlet" class="search-form" method="post">
                         <div class="search-box">
                             <select name="select">
-                                <option value="all">すべて</option>
-                                <option value="movie">映画</option>
-                                <option value="dorama">ドラマ</option>
-                                <option value="anime">アニメ</option>
-                                <option value="sonota1">その他（映像）</option>
-                                <option value="novel">小説</option>
-                                <option value="comics">マンガ</option>
-                                <option value="sonota2">その他（書籍）</option>
-                                <option value="game">ゲーム</option>
+                                <option value="すべて">すべて</option>
+                                <option value="映画">映画</option>
+                                <option value="ドラマ">ドラマ</option>
+                                <option value="アニメ">アニメ</option>
+                                <option value="その他（映像）">その他（映像）</option>
+                                <option value="小説">小説</option>
+                                <option value="マンガ">マンガ</option>
+                                <option value="その他（書籍）">その他（書籍）</option>
+                                <option value="ゲーム">ゲーム</option>
                             </select>
                             <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
                             <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
@@ -40,7 +40,7 @@
                 <div class="co">
                     <div class="user-container">
                         <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
-                			<input type="hidden" id="userId" value="${loginUser.userId}">
+                			<input type="hidden" id="loginUserId" value="${loginUser.userId}">
                             <ul class="dropdown-menu">
                                 <li><a href="/A2/MyPageServlet">マイページ</a></li>
                                 <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
@@ -54,7 +54,6 @@
             </ul>
         </nav>
     </header>
-
 <body>
     <div class="title">
         <h2>検索結果一覧</h2>
@@ -78,16 +77,38 @@
 		        						</form>
 
 				                        <div class="result-form">
-				                            <button type="button" name="collection" id="collectionBtn" onclick="goAjaxCollection()">
-				                            	<input type="hidden" id="cBtnValue" value="1">
-				                                <img src="img/point_plus.png" alt="追加の画像">
-				                                <span>コレクションに追加</span>
-				                            </button><br>
-				                            <button type="button" name="wishlist" id="wishlistBtn" onclick="goAjaxWishlist()">
-				                            	<input type="hidden" id="wBtnValue" value="1">
-				                                <img src="img/point_plus.png" alt="追加の画像">
-				                                <span>ウィッシュリストに追加</span>
-				                            </button>
+				                            <c:choose>
+											    <c:when test="${c.myStatus==1}">
+											        <button type="button" name="collection" id="collectionBtn" value="${c.contentsId}" onclick="goAjaxCollection(this)" style="background-color: #ccc;">
+											            <input type="hidden" id="cBtnValue" value="0">
+											            <img src="img/point_delete.png" alt="削除の画像">
+											            <span>コレクションから削除</span>
+											        </button>
+											    </c:when>
+											    <c:when test="${c.myStatus==0 || c.myStatus==2}">
+											        <button type="button" name="collection" id="collectionBtn" value="${c.contentsId}" onclick="goAjaxCollection(this)">
+											            <input type="hidden" id="cBtnValue" value="1">
+											            <img src="img/point_plus.png" alt="追加の画像">
+											            <span>コレクションに追加</span>
+											        </button>
+											    </c:when>
+											</c:choose><br>
+											<c:choose>
+											    <c:when test="${c.myStatus==0}">
+											        <button type="button" name="wishlist" id="wishlistBtn" value="${c.contentsId}" onclick="goAjaxWishlist(this)" style="background-color: #ccc;">
+											            <input type="hidden" id="wBtnValue" value="0">
+											            <img src="img/point_delete.png" alt="削除の画像">
+											            <span>ウィッシュリストから削除</span>
+											        </button>
+											    </c:when>
+											    <c:when test="${c.myStatus==1 || c.myStatus==2}">
+											        <button type="button" name="wishlist" id="wishlistBtn" value="${c.contentsId}" onclick="goAjaxWishlist(this)">
+											            <input type="hidden" id="wBtnValue" value="1">
+											            <img src="img/point_plus.png" alt="追加の画像">
+											            <span>ウィッシュリストに追加</span>
+											        </button>
+											    </c:when>
+											</c:choose>
 				                        </div>
 			                    	</div>
 			                    </div>
@@ -103,12 +124,12 @@
 </footer>
 <script>
 //コレクション・ウィッシュリストに追加のAjax-----------------
-function goAjaxCollection() {
+function goAjaxCollection(element) {
 
         //値を取得してくる
         let status = 1;
-        let contentsId = document.getElementById('contentsId').value;
-        let life = document.getElementById('cBtnValue').value;
+        let contentsId = element.value;
+        let life = element.firstElementChild.value;
 
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
@@ -132,7 +153,7 @@ function goAjaxCollection() {
             //非同期通信が成功したときの処理
         }).done(function (data) {
             //成功した場合
-                toggleCollection();
+                toggleCollection(element);
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -141,12 +162,12 @@ function goAjaxCollection() {
     }
 
 
-    function goAjaxWishlist() {
+    function goAjaxWishlist(element) {
 
         //値を取得してくる
         let status = 0;
-        let contentsId = document.getElementById('contentsId').value;
-        let life = document.getElementById('wBtnValue').value;
+        let contentsId = element.value;
+        let life = element.firstElementChild.value;
 
 
         //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
@@ -170,7 +191,7 @@ function goAjaxCollection() {
             //非同期通信が成功したときの処理
         }).done(function (data) {
             //成功した場合
-            toggleWishlist();
+            toggleWishlist(element);
         })
             //非同期通信が失敗したときの処理
             .fail(function () {
@@ -182,26 +203,24 @@ function goAjaxCollection() {
 
 
 
-    function toggleCollection() {
-        var collectionButton = document.getElementById('collectionBtn');
-            if (collectionButton.innerText.includes('コレクションに追加')) {
-                collectionButton.innerHTML = '<input type="hidden" id="cBtnValue" value="0"><img src="img/point_delete.png" alt="削除の画像"> コレクションから削除';
-                collectionButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
+    function toggleCollection(element) {
+            if (element.innerText.includes('コレクションに追加')) {
+            	element.innerHTML = '<input type="hidden" id="cBtnValue" value="0"><img src="img/point_delete.png" alt="削除の画像"> コレクションから削除';
+            	element.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
             } else {
-                collectionButton.innerHTML = '<input type="hidden" id="cBtnValue" value="1"><img src="img/point_plus.png" alt="追加の画像"> コレクションに追加';
-                collectionButton.style.backgroundColor = ''; // デフォルトに戻す
+            	element.innerHTML = '<input type="hidden" id="cBtnValue" value="1"><img src="img/point_plus.png" alt="追加の画像"> コレクションに追加';
+            	element.style.backgroundColor = ''; // デフォルトに戻す
             }
     }
 
 
-    function toggleWishlist() {
-        var wishlistButton = document.getElementById('wishlistBtn');
-        if (wishlistButton.innerText.includes('ウィッシュリストに追加')) {
-            wishlistButton.innerHTML = '<input type="hidden" id="wBtnValue" value="0"><img src="img/point_delete.png" alt="削除の画像"> <span style="font-size: 95%;">ウィッシュリストから削除</span>';
-            wishlistButton.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
+    function toggleWishlist(element) {
+        if (element.innerText.includes('ウィッシュリストに追加')) {
+        	element.innerHTML = '<input type="hidden" id="wBtnValue" value="0"><img src="img/point_delete.png" alt="削除の画像"> <span style="font-size: 95%;">ウィッシュリストから削除</span>';
+        	element.style.backgroundColor = '#ccc'; // 背景色をグレーに変更
         } else {
-            wishlistButton.innerHTML = '<input type="hidden" id="wBtnValue" value="1"><img src="img/point_plus.png" alt="追加の画像"> ウィッシュリストに追加';
-            wishlistButton.style.backgroundColor = ''; // デフォルトに戻す
+        	element.innerHTML = '<input type="hidden" id="wBtnValue" value="1"><img src="img/point_plus.png" alt="追加の画像"> ウィッシュリストに追加';
+        	element.style.backgroundColor = ''; // デフォルトに戻す
         }
     }
 </script>

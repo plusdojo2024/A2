@@ -298,7 +298,7 @@ public class UserDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			//mailが既に登録されていたらtrue 登録されていなかったらfalseを入れる
+			//該当するユーザ情報を取得
 			if (rs.next()) {
 				otherUser.setUserId(rs.getInt("user_id"));
 				otherUser.setUserName(rs.getString("user_name"));

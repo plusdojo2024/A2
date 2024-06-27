@@ -99,34 +99,34 @@ public class MyPageServlet extends HttpServlet {
             	//チャット履歴のある他ユーザのuseIdリストを取得
             	List<Integer> userIdList = cDao.selectChatList(userId);
             	//他ユーザのユーザ名、アイコン、最後のトーク履歴、未読数を取得する
-            	for(int i = 0; i < userIdList.size(); i++) {
-            		Chat chat = new Chat();
+            	if(userIdList!=null) {
+	            	for(int i = 0; i < userIdList.size(); i++) {
+	            		Chat chat = new Chat();
 
-            		//他ユーザのuserId取得
-            		int otherUserId = userIdList.get(i).intValue();
-            		User temp = uDao.userSelect(otherUserId);
-            		int t = temp.getUserId();
-            		System.out.println(t);
+	            		//他ユーザのuserId取得
+	            		int otherUserId = userIdList.get(i).intValue();
+	            		User temp = uDao.userSelect(otherUserId);
 
-            		//他ユーザのユーザID取得
-            		chat.setUserIdSpeaker(otherUserId);
-            		//他ユーザのユーザ名取得
-            		chat.setUserName(temp.getUserName());
-            		//他ユーザのアイコン取得
-            		chat.setUserIcon(temp.getIcon());
-            		//他ユーザの最後のトーク履歴取得
-            		String talk = cDao.getLastTalk(userId, otherUserId);
-            		chat.setTalk(talk);
-            		System.out.println(talk);
-            		//他ユーザの未読数取得
-            		chat.setCheck(cDao.countUnChecked(userId, otherUserId));
+	            		//他ユーザのユーザID取得
+	            		chat.setUserIdSpeaker(otherUserId);
+	            		//他ユーザのユーザ名取得
+	            		chat.setUserName(temp.getUserName());
+	            		//他ユーザのアイコン取得
+	            		chat.setUserIcon(temp.getIcon());
+	            		//他ユーザの最後のトーク履歴取得
+	            		String talk = cDao.getLastTalk(userId, otherUserId);
+	            		chat.setTalk(talk);
+	            		//他ユーザの未読数取得
+	            		chat.setCheck(cDao.countUnChecked(userId, otherUserId));
 
-            		chatList.add(chat);
+	            		chatList.add(chat);
+
+
+	            	}
+	            	//リクエストスコープに格納する
+            		request.setAttribute("chatList", chatList);
+
             	}
-
-            //リクエストスコープに格納する
-        		request.setAttribute("chatList", chatList);
-
 
     	// マイページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/myPage.jsp");

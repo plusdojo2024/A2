@@ -13,49 +13,51 @@
             <link rel="stylesheet" href="/A2/css/postmodal.css">
     </head>
         <header>
-            <nav class="nav">
-                <ul>
-                    <li>
-                        <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
-                    </li>
-                    <li>
-                        <form action="/A2/SearchServlet"  class="search-form" method="post">
-                            <div class="search-box">
-                                <select name="select">
-                                    <option value="all">すべて</option>
-                                    <option value="movie">映画</option>
-                                    <option value="dorama">ドラマ</option>
-                                    <option value="anime">アニメ</option>
-                                    <option value="sonota1">その他（映像）</option>
-                                    <option value="novel">小説</option>
-                                    <option value="comics">マンガ</option>
-                                    <option value="sonota2">その他（書籍）</option>
-                                    <option value="game">ゲーム</option>
-                                </select>
-                                <input type="text" name="search"  class="search-input" placeholder="コンテンツ名を検索・登録">
-                                <input type="image" src="/A2/img/button_search.png" class="search-button" alt="虫眼鏡">
-                            </div>
-                        </form>
-                    </li>
-                     <li><img src="img/button_post.png" class="post-button" name="post" alt="ポスト" id="openModalBtn"></li>
-                    <div class="co">
-                        <div class="user-container"></div>
-                            <li><a href=""><img src=img/${loginUser.icon} class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/A2/MyPageServlet">マイページ</a></li>
-                                    <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
-                                    <li><a href="/A2/LoginServlet">ログアウト</a></li>
-                                </ul>
-                                </a>
-                            </li>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <h1><a href="/A2/HomeServlet">レコレコ</a></h1>
+                </li>
+                <li>
+                    <form action="/A2/SearchServlet" class="search-form" method="post">
+                        <div class="search-box">
+                            <select name="select">
+                                <option value="すべて">すべて</option>
+                                <option value="映画">映画</option>
+                                <option value="ドラマ">ドラマ</option>
+                                <option value="アニメ">アニメ</option>
+                                <option value="その他（映像）">その他（映像）</option>
+                                <option value="小説">小説</option>
+                                <option value="マンガ">マンガ</option>
+                                <option value="その他（書籍）">その他（書籍）</option>
+                                <option value="ゲーム">ゲーム</option>
+                            </select>
+                            <input type="text" name="search" class="search-input" placeholder="コンテンツ名・キーワードで検索">
+                            <input type="image" src="img/button_search.png" class="search-button" alt="虫眼鏡">
                         </div>
+                    </form>
+                </li>
+                <li><a href=""><img src="img/button_post.png" class="post-button" name="post" alt="ポスト"></a></li>
+                <div class="co">
+                    <div class="user-container">
+                        <li><a href=""><img src="img/${loginUser.icon}" class="icon-img" name="icon" alt="アイコン"><span class="user-name">${loginUser.userName}</span>
+                			<input type="hidden" id="loginUserId" value="${loginUser.userId}">
+                            <ul class="dropdown-menu">
+                                <li><a href="/A2/MyPageServlet">マイページ</a></li>
+                                <li><a href="/A2/UserManageServlet">ユーザ管理</a></li>
+                                <li><a href="/A2/LoginServlet">ログアウト</a></li>
+                            </ul>
+                            </a>
+                        </li>
+
                     </div>
-                </ul>
-            </nav>
-        </header>
+                </div>
+            </ul>
+        </nav>
+    </header>
         <body>
         <main>
-            <form class="ranking">
+            <div class="ranking">
                 <h2><a href=""><img src="/A2/img/button_good2.png"  class="ok" alt="ハート"></a>いいねランキング</h2>
                 <div class="table-wrapper">
                     <table class="table">
@@ -63,8 +65,13 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking1.png" class="good" alt="good">
-                                    <img src=img/${r1.icon}  class="icon" alt="アイコン">
-                                    <p>${r1.userName} さん</p>
+                                    <form  action="/A2/OtherMyPageServlet" method="get">
+	                                    <button>
+	                                    	<img src=img/${r1.icon}  class="icon" alt="アイコン">
+	                                    	<input type="hidden" name="id" value="${r1.userId}">
+	                                    </button>
+                                    </form>
+                            <p>${r1.userName} さん</p>
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +80,12 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking2.png" class="good" alt="good">
-                                    <img src=img/${r2.icon}  class="icon" alt="アイコン">
+                                    <form  action="/A2/OtherMyPageServlet" method="get">
+	                                    <button>
+	                                    	<img src=img/${r2.icon}  class="icon" alt="アイコン">
+	                                    	<input type="hidden" name="id" value="${r2.userId}">
+	                                    </button>
+                                    </form>
                                     <p>${r2.userName} さん</p>
                                 </div>
                             </td>
@@ -82,7 +94,12 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking3.png" class="good" alt="good">
-                                    <img src=img/${r3.icon}  class="icon" alt="アイコン">
+                                    <form  action="/A2/OtherMyPageServlet" method="get">
+	                                    <button>
+	                                    	<img src=img/${r3.icon}  class="icon" alt="アイコン">
+	                                    	<input type="hidden" name="id" value="${r3.userId}">
+	                                    </button>
+                                    </form>
                                     <p>${r3.userName} さん</p>
                                 </div>
                             </td>
@@ -91,7 +108,12 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking4.png" class="good" alt="good">
-                                    <img src=img/${r4.icon}  class="icon" alt="アイコン">
+                                    <form  action="/A2/OtherMyPageServlet" method="get">
+	                                    <button>
+	                                    	<img src=img/${r4.icon}  class="icon" alt="アイコン">
+	                                    	<input type="hidden" name="id" value="${r4.userId}">
+	                                    </button>
+                                    </form>
                                     <p>${r4.userName} さん</p>
                                 </div>
                             </td>
@@ -100,7 +122,12 @@
                             <td>
                                 <div class="goodranking">
                                     <img src="/A2/img/ranking5.png" class="good" alt="good">
-                                    <img src=img/${r5.icon}  class="icon" alt="アイコン">
+                                    <form  action="/A2/OtherMyPageServlet" method="get">
+	                                    <button>
+	                                    	<img src=img/${r5.icon}  class="icon" alt="アイコン">
+	                                    	<input type="hidden" name="id" value="${r5.userId}">
+	                                    </button>
+                                    </form>
                                     <p>${r5.userName} さん</p>
                                 </div>
                             </td>
@@ -108,7 +135,7 @@
 
                     </table>
                 </div>
-            </form>
+            </div>
             <div class="ranking">
                 <h2><a href=""><img src="/A2/img/point_timeline.png"  class="ok"  alt="時計"></a>タイムライン</h2>
                 <div class="table-wrapper">
@@ -119,7 +146,12 @@
 			                        		<div class="review">
 			                                    <div class="timeline">
 			                                        <img src=img/${e.image} class="timeline1" alt="timeline">
-			                                        <img src=img/${e.icon}  class="icon1" alt="アイコン">
+			                                        <form  action="/A2/OtherMyPageServlet" method="get">
+					                                    <button>
+					                                    	<img src=img/${e.icon}  class="icon1" alt="アイコン">
+					                                    	<input type="hidden" name="id" value="${e.userIdWriter}">
+					                                    </button>
+				                                    </form>
 			                                        <p>${e.userName } さん</p>
 			                                        <p>${e.createdAt } 投稿</p>
 			                                    </div>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ContentsDao;
+import dao.MyContentsDao;
 import dao.ReviewDisplayDao;
 import model.Contents;
 import model.ReviewDisplay;
@@ -43,9 +44,14 @@ public class ContentsDetailServlet extends HttpServlet {
 		int contentsId = Integer.parseInt(request.getParameter("id"));
 		//コンテンツDAOをnewする
 		ContentsDao cDao = new ContentsDao();
+		MyContentsDao mDao = new MyContentsDao();
 
 		//コンテンツ情報を取得する
 		Contents contents = cDao.contentsSelect(contentsId);
+
+		//自分のステータスを取得し、リスト内のビーンズに格納する
+		contents.setMyStatus(mDao.confirmContents(userId, contentsId));
+
 		//コンテンツ情報をリクエストスコープに入れる
 		request.setAttribute("contents", contents);
 

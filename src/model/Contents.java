@@ -11,6 +11,7 @@ public class Contents implements Serializable {
 	private String image;				//画像
 	private String createdAt;	//登録日時
 	private String updatedAt;	//更新日時
+	private int myStatus; //コレクション、ウィッシュリストに入れているか否か
 
 	public int getContentsId() {
 		return contentsId;
@@ -65,5 +66,11 @@ public class Contents implements Serializable {
 	}
 	public void setUpdatedAt(String updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public int getMyStatus() {
+		return myStatus;
+	}
+	public void setMyStatus(int myStatus) {
+		this.myStatus = myStatus;
 	}
 }

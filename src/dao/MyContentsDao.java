@@ -312,7 +312,60 @@ public class MyContentsDao {
 		return result;
 	}
 
+	//コンテンツIDで指定したコンテンツについて、自分のステータスを確認する。コレクション＝１、ウィッシュリスト＝0、どちらでもなければ2
+    public int confirmContents(int userId, int contentsId) {
+		Connection conn = null;
+		int myStatus = 2;
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/wac", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT status FROM my_contents WHERE user_id=? AND contents_id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, userId);
+            pStmt.setInt(2, contentsId);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+            //結果のテーブルの1行目を見に行く
+            rs.next();
+
+            //countの結果が1なら、いいねがついているのでtrue。0なら、いいねはついていないのでfalseのまま
+            if (rs.getInt("status") == 1) {
+            	myStatus = 1;
+            } else if(rs.getInt("status") == 0) {
+            	myStatus = 0;
+            }
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return myStatus;
+	}
 
 
 

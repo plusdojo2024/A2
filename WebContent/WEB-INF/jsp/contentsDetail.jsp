@@ -184,7 +184,7 @@
                 <tr>
                     <td>
                         <div class="review-img">
-                            <img src="img/icon_default.png"  id="preview" alt="アイコン" width="180px" height="200px">
+                            <img src="img/default_book.jpg"  id="preview" alt="アイコン" width="180px" height="200px">
                             <input type="file" name="upload" accept="image/*" onchange="previewImage(event)"><br>
                         </div>
                         <button class="delete-button" onclick="deleteItem()">

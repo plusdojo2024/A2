@@ -159,6 +159,7 @@ li{
     text-align: center;
   }
 
+
   .contentsImage{
     margin-left: 40px;
     margin-right: 40px;
@@ -287,6 +288,7 @@ li{
     text-decoration: none;
   }
 
+
   .user {
     display: flex;
     align-items: center; /* 中央に配置 */
@@ -294,6 +296,10 @@ li{
     margin-left: 20px;
     margin-bottom: 20px;
     margin-right: 20px;
+  }
+
+  button{
+  background-color: transparent;
   }
 
   .user h3 {

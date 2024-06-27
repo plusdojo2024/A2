@@ -182,13 +182,13 @@
                         	<c:forEach var="e" items="${favoriteUserList}" >
                                         <div class="good_user">
                                             <form name="form${e.userIdFavorite}" action="/A2/OtherMyPageServlet" method="get">
-                                                <a href="javascript:form${e.userIdFavorite}.submit()" class="">
+                                                <button>
                                                     <input type="hidden" name="id" value="${e.userIdFavorite}">
                                                     <div class="user">
                                                     <img src="img/${e.iconFavorite}" class="othericon">
                                                     <h3> ${e.userNameFavorite} さん</h3>
                                                 	</div>
-                                                </a>
+                                                </button>
                                             </form>
                                         </div>
                         	</c:forEach>

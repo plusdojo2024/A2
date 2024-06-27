@@ -424,6 +424,29 @@
     		  textForm.value = '';
     		var textForm = document.getElementById("review-detail");
     		  textForm.value = '';
+
+    		 /*  <li class="reviewBar"><div class="review">
+                  <img src="img/default_book.jpg" class="review-img" alt="写真">
+                  <p class="review-time">${e.createdAt}</p>
+                  <div class="review-button">
+                      <button class="button" onclick="goAjaxDelete()">
+                          <img src="img/point_delete.png">
+                          <span class="button-text">削除</span>
+                      </button>
+                      <button class="button" id="openModalBtnE">
+                          <img src="img/point_edit.png">
+                          <span class="button-text">編集</span>
+                      </button>
+                  </div>
+              </div>
+              <h3 class="review-title" id="title" value="${e.title}">${e.title}</h3>
+              <p class="review-text">${e.review}</p>
+              <div class="good">
+                  <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+                  <h4>${e.goodCount}</h4>
+              </div>
+          </li> */
+
         })
             //非同期通信が失敗したときの処理
             .fail(function () {

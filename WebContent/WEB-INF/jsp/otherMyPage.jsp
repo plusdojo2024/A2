@@ -169,8 +169,8 @@
 			    <span class="close" onclick="closeModal('modal1')">&times;</span>
 			        <div class="user-info">
 			        		<form action="/A2/OtherMyPageServlet" method="get">
-							  <button class="chat-icon-button">
-							     <input type="hidden" name="id" value="${e.userIdWriter}">
+							  <button class="chat-icon-button" id="chat-icon-button">
+							     <input type="hidden" name="id" id="chat-id">
 							     <img src="img/icon_default.png" class="chat-icon" id="chat-icon">
 							  </button>
 							</form>
@@ -447,6 +447,7 @@
                        const target = document.querySelector("#chat-icon");
                        const url = "img/" + userIcon;
                        target.src = url;
+                       document.getElementById("chat-id").value = data.userId;
 
                        //自分と相手のユーザ名を設定する
                        var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする

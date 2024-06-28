@@ -124,30 +124,32 @@
                 </select>
 
                 <ul>
-                    <c:forEach var="e" items="${myReviewList}">
-                        <li class="reviewBar">
-                            <div class="review">
-                                <img src="img/${e.image}" class="review-img" alt="写真">
-                                <p class="review-time">${e.createdAt}</p>
-                                <div class="review-button">
-                                    <button class="button" onclick="goAjaxDelete()">
-                                        <img src="img/point_delete.png">
-                                        <span class="button-text">削除</span>
-                                    </button>
-                                    <button class="button" id="openModalBtnE">
-                                        <img src="img/point_edit.png">
-                                        <span class="button-text">編集</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <h3 class="review-title" id="title" value="${e.title}">${e.title}</h3>
-                            <p class="review-text">${e.review}</p>
-                            <div class="good">
-                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
-                                <h4>${e.goodCount}</h4>
-                            </div>
-                        </li>
-                    </c:forEach>
+                	<c:if test="${!empty myReviewList}">
+	                    <c:forEach var="e" items="${myReviewList}">
+	                        <li class="reviewBar">
+	                            <div class="review">
+	                                <img src="img/${e.image}" class="review-img" alt="写真">
+	                                <p class="review-time">${e.createdAt}</p>
+	                                <div class="review-button">
+	                                    <button class="button" onclick="goAjaxDelete()">
+	                                        <img src="img/point_delete.png">
+	                                        <span class="button-text">削除</span>
+	                                    </button>
+	                                    <button class="button" id="openModalBtnE">
+	                                        <img src="img/point_edit.png">
+	                                        <span class="button-text">編集</span>
+	                                    </button>
+	                                </div>
+	                            </div>
+	                            <h3 class="review-title" id="title" value="${e.title}">${e.title}</h3>
+	                            <p class="review-text">${e.review}</p>
+	                            <div class="good">
+	                                <img src="img/button_good1.png" class="heart" alt="ハート" onclick="toggleHeart(this)">
+	                                <h4>${e.goodCount}</h4>
+	                            </div>
+	                        </li>
+	                    </c:forEach>
+	                 </c:if>
                 </ul>
             </div><!--area(myReview)-->
 
@@ -164,10 +166,10 @@
                                 <img src="img/${e.image}" class="review-img" alt="写真">
                                 <div class="users-info">
                                      <form name="form${e.userIdWriter}" action="/A2/OtherMyPageServlet" method="get">
-                                      <a href="javascript:form${e.userIdWriter}.submit()" >
+                                      <button>
                                          <input type="hidden" name="id" value="${e.userIdWriter}">
                                           <img src="img/${e.icon}" alt="アイコン写真">
-                                      </a>
+                                      </button>
                                     </form>
                                     <span class="users-name">${e.userName}</span>
                                 </div>
@@ -527,7 +529,7 @@
     // モーダルの外側がクリックされたときに閉じる処理
     window.onclick = function(event) {
         var modal1 = document.getElementById('modal-review-regist');
-        if (event.target == modal) {
+        if (event.target == modal1) {
             closeModal('modal-review-regist');
         }
     }
@@ -677,7 +679,7 @@
        		 	openChat();
        		}
 
-       		// モーダルを開く関数
+       		/* // モーダルを開く関数
        		function openModal(modalId) {
        		    var modal = document.getElementById(modalId);
        		    modal.style.display = "block";
@@ -687,7 +689,7 @@
        		function closeModal(modalId) {
        		    var modal = document.getElementById(modalId);
        		    modal.style.display = "none";
-       		}
+       		} */
 
        		// モーダルの外側がクリックされたときに閉じる処理
        		window.onclick = function(event) {
@@ -699,7 +701,7 @@
        		}
 
     var socket;
-    var userId = document.getElementById("userId").value;
+    var userId = document.getElementById("loginUserId").value;
     var user_id_speaker = userId; // 送信者のユーザーIDを文字列にする
     var user_id_listener = 0; // 受信者のユーザーIDを文字列にする
 

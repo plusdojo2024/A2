@@ -335,17 +335,16 @@ public class MyContentsDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-            //結果のテーブルの1行目を見に行く
-            rs.next();
 
             //countの結果が1なら、いいねがついているのでtrue。0なら、いいねはついていないのでfalseのまま
-            if (rs.getInt("status") == 1) {
-            	myStatus = 1;
-            } else if(rs.getInt("status") == 0) {
-            	myStatus = 0;
+            if(rs.next()) {
+	            if (rs.getInt("status") == 1) {
+	            	myStatus = 1;
+	            } else if(rs.getInt("status") == 0) {
+	            	myStatus = 0;
+	            }
             }
-		}
-		catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		catch (ClassNotFoundException e) {
